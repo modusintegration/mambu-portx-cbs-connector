@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>template-portx-cbs-connector</artifactId>
-        <groupId>io.portx.cbs.connector</groupId>
-        <version>1.0.0-SNAPSHOT</version>
+        <groupId>org.apache.camel.springboot</groupId>
+        <artifactId>spring-boot</artifactId>
+        <version>3.18.0</version>
     </parent>
-
+    <properties>
+        <portx-camel-lib.version>2.0.16</portx-camel-lib.version>
+        <sentry.version>5.6.1</sentry.version>
+        <atlassian.oai.validator.version>2.21.1</atlassian.oai.validator.version>
+    </properties>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>mambu-portx-cbs-connector</artifactId>
@@ -13,6 +17,67 @@
     <version>1.0.0-SNAPSHOT</version>
 
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.camel</groupId>
+                    <artifactId>camel-restdsl-openapi-plugin</artifactId>
+                    <version>${camel-version}</version>
+                    <executions>
+                        <execution>
+                            <phase>generate-sources</phase>
+                            <goals>
+                                <goal>generate-with-dto</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <swaggerCodegenMavenPluginVersion>3.0.19</swaggerCodegenMavenPluginVersion>
+                        <specificationUri>${basedir}${file.separator}src${file.separator}spec${file.separator}swagger.yaml</specificationUri>
+                        <modelPackage>io.portx.bankacctmgmt</modelPackage>
+                        <packageName>io.portx.bankacctmgmt</packageName>
+                        <outputDirectory>${project.build.directory}${file.separator}generated-sources${file.separator}openapi${file.separator}src${file.separator}main${file.separator}java</outputDirectory>
+                        <restConfiguration>true</restConfiguration>
+                        <configOptions>
+                            <dateLibrary>java11</dateLibrary>
+                        </configOptions>
+                    </configuration>
+                    <dependencies>
+                        <dependency>
+                            <groupId>com.github.jknack</groupId>
+                            <artifactId>handlebars</artifactId>
+                            <version>4.3.0</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <configuration>
+                        <layout>ZIP</layout>
+                    </configuration>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.8.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>3.1.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.camel</groupId>
+                    <artifactId>camel-maven-plugin</artifactId>
+                    <version>${camel-version}</version>
+                </plugin>
+
+            </plugins>
+        </pluginManagement>
+
         <plugins>
             <!-- allows the route to be ran via 'mvn camel:run' -->
             <plugin>
@@ -39,7 +104,12 @@
                     </execution>
                 </executions>
             </plugin>
-
+            <plugin>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
         </plugins>
 
         <resources>
@@ -54,27 +124,220 @@
             </resource>
         </resources>
     </build>
+    <profiles>
+        <profile>
+            <id>debug</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.apache.camel.springboot</groupId>
+                    <artifactId>camel-debug-starter</artifactId>
+                    <version>${camel-version}</version>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>    
+    <dependencyManagement>
+        <dependencies>
+            <!-- Spring Boot BOM -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot-version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- Camel BOM -->
+            <dependency>
+                <groupId>org.apache.camel.springboot</groupId>
+                <artifactId>camel-servlet-starter</artifactId>
+                <version>${camel-version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter-tomcat</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.camel.springboot</groupId>
+                <artifactId>camel-jetty-starter</artifactId>
+                <version>${camel-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.camel.springboot</groupId>
+                <artifactId>camel-rest-starter</artifactId>
+                <version>${camel-version}</version>
+            </dependency>
 
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-jetty</artifactId>
+                <version>${spring-boot-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>${spring-boot-version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter-tomcat</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <dependency>
+                <groupId>io.portx.camel</groupId>
+                <artifactId>portx-camel-lib</artifactId>
+                <version>${portx-camel-lib.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.ehcache</groupId>
+                <artifactId>ehcache</artifactId>
+                <version>3.9.4</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
     <dependencies>
+        <dependency>
+            <groupId>ch.qos.logback.contrib</groupId>
+            <artifactId>logback-json-classic</artifactId>
+            <version>0.1.5</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback.contrib</groupId>
+            <artifactId>logback-jackson</artifactId>
+            <version>0.1.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.atlassian.oai</groupId>
+            <artifactId>swagger-request-validator-core</artifactId>
+            <version>${atlassian.oai.validator.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.skyscreamer</groupId>
+            <artifactId>jsonassert</artifactId>
+            <version>1.5.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>xmlunit</groupId>
+            <artifactId>xmlunit</artifactId>
+            <version>RELEASE</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-test-spring-junit5</artifactId>
+            <version>${camel-version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-test</artifactId>
+            <version>${spring-boot-version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- fine grained dependencies when using engine-starter -->
+        <dependency>
+            <groupId>org.apache.camel.springboot</groupId>
+            <artifactId>camel-spring-boot-engine-starter</artifactId>
+            <version>${camel-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel.springboot</groupId>
+            <artifactId>camel-bean-starter</artifactId>
+            <version>${camel-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel.springboot</groupId>
+            <artifactId>camel-http-starter</artifactId>
+            <version>${camel-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel.springboot</groupId>
+            <artifactId>camel-direct-starter</artifactId>
+            <version>${camel-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel.springboot</groupId>
+            <artifactId>camel-log-starter</artifactId>
+            <version>${camel-version}</version>
+        </dependency>
+
+        <!-- xml-io with fast xml route loader -->
+        <dependency>
+            <groupId>org.apache.camel.springboot</groupId>
+            <artifactId>camel-xml-io-dsl-starter</artifactId>
+            <version>${camel-version}</version>
+        </dependency>
+        <!-- used to dump routes as XML -->
+        <dependency>
+            <groupId>org.apache.camel.springboot</groupId>
+            <artifactId>camel-xml-jaxb-dsl-starter</artifactId>
+            <version>${camel-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.camel.springboot</groupId>
+            <artifactId>camel-datasonnet-starter</artifactId>
+            <version>${camel-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel.springboot</groupId>
+            <artifactId>camel-groovy-starter</artifactId>
+            <version>${camel-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.sentry</groupId>
+            <artifactId>sentry-spring-boot-starter</artifactId>
+            <version>${sentry.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.sentry</groupId>
+            <artifactId>sentry-logback</artifactId>
+            <version>${sentry.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+            <version>${spring-boot-version}</version>
+        </dependency>        
         <dependency>
             <groupId>io.portx.camel</groupId>
             <artifactId>portx-camel-lib</artifactId>
+            <version>${camel-version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.camel.springboot</groupId>
             <artifactId>camel-servlet-starter</artifactId>
+            <version>${camel-version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.camel.springboot</groupId>
             <artifactId>camel-rest-starter</artifactId>
+            <version>${camel-version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <version>${camel-version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jetty</artifactId>
+            <version>${camel-version}</version>
         </dependency>
         
         <dependency>
@@ -85,6 +348,7 @@
         <dependency>
             <groupId>org.ehcache</groupId>
             <artifactId>ehcache</artifactId>
+            <version>${camel-version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.camel</groupId>
@@ -92,12 +356,42 @@
             <version>${camel-version}</version>
         </dependency>    
     </dependencies>
-
+    <repositories>
+        <repository>
+            <id>portx-repository-snapshots</id>
+            <name>portx-repository-snapshots</name>
+            <snapshots>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+            <url>https://portx.jfrog.io/portx/portx-snapshots</url>
+        </repository>
+        <repository>
+            <id>portx-repository-releases</id>
+            <name>portx-repository-releases</name>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <url>https://portx.jfrog.io/portx/portx-releases</url>
+        </repository>
+    </repositories>
     <scm>
         <connection>scm:git:https://github.com/modusintegration/${project.artifactId}.git</connection>
         <developerConnection>scm:git:https://github.com/modusintegration/${project.artifactId}.git</developerConnection>
         <url>https://github.com/modusintegration/${project.artifactId}.git</url>
         <tag>HEAD</tag>
     </scm>
+
+    <distributionManagement>
+        <repository>
+            <id>portx-repository-releases</id>
+            <name>PortX Releases Repository</name>
+            <url>https://portx.jfrog.io/portx/portx-releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>portx-repository-snapshots</id>
+            <name>PortX Snapshots Repository</name>
+            <url>https://portx.jfrog.io/portx/portx-snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
 
 </project>
