@@ -1,0 +1,44 @@
+spring:
+  profiles:
+    active: local
+  cache:
+    jcache:
+      config: ehcache.xml
+  main:
+    allow-bean-definition-overriding: true
+
+server:
+  port: 7777
+
+camel:
+  component:
+    servlet:
+      mapping:
+        context-path: /*
+
+  springboot:
+    main-run-controller: true
+    name: Application
+    stream-caching-enabled: true
+    startup-summary-level: verbose
+    routes-include-pattern: classpath:camel/*.xml
+
+management:
+  port: 8081
+endpoints:
+  enabled: false
+  health:
+    enabled: true
+
+mambu:
+  host: modusbox.sandbox.mambu.com
+  username: shashi
+  password: Modusbox@123
+
+error:
+  default:
+    code: BANKACCTMGMT_OBPCOM_ERROR
+    message: An error happened in bankacctmgmt obpcom sys API
+  authentication:
+    code: BANKACCTMGMT_OBPCOM_AUTH_ERROR
+    message: An error happened during authentication

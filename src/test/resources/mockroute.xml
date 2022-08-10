@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<routes xmlns="http://camel.apache.org/schema/spring" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <route id="mockRoute">
+        <from uri="direct:mockRouteURI"/>
+
+        <log message="MOCK: Mocking http route ${header.CamelInterceptedEndpoint} ${header.CamelHttpPath}"  loggingLevel="DEBUG"/>
+
+        <choice>
+            <when>
+                <simple>${header.CamelInterceptedEndpoint} regex '^.*/helloworld.*' &amp;&amp; ${header.CamelHttpMethod} == 'POST'</simple>
+                <setHeader name="CamelHttpResponseCode">
+                    <constant>201</constant>
+                </setHeader>
+                <setBody>
+                    <constant>{"hello":"world"}</constant>
+                </setBody>
+                <log message="MOCK: ${header.CamelHttpMethod} ${header.CamelInterceptedEndpoint} ${header.CamelHttpResponseCode} ${body}"  loggingLevel="DEBUG"/>
+            </when>
+
+            <otherwise>
+                <log message="MOCK: No match for ${header.CamelHttpMethod} ${header.CamelInterceptedEndpoint} - CamelHttpPath is ${header.CamelHttpPath}" loggingLevel="DEBUG"/>
+            </otherwise>
+        </choice>
+    </route>
+</routes>
