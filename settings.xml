@@ -1,0 +1,40 @@
+
+<?xml version="1.0"?>
+<settings>
+    <activeProfiles>
+        <activeProfile>github</activeProfile>
+    </activeProfiles>
+
+    <profiles>
+        <profile>
+            <id>github</id>
+            <repositories>
+                <repository>
+                    <id>github-base</id>
+                    <name>GitHub Packages</name>
+                    <!-- <url>https://maven.pkg.github.com/modusintegration/talkdesk-base</url> -->
+                    <url>https://maven.pkg.github.com/modusintegration/cbs-connector-base</url>
+                </repository>
+                <repository>
+                    <id>github-common</id>
+                    <name>GitHub Packages</name>
+                    <!-- <url>https://maven.pkg.github.com/modusintegration/talkdesk-common</url> -->
+                    <url>https://maven.pkg.github.com/modusintegration/cbs-connector-common</url>
+                </repository>
+            </repositories>
+        </profile>
+    </profiles>
+
+    <servers>
+        <server>
+            <id>github-base</id>
+            <username>${MVN_USER}</username>
+            <password>${MVN_AUTH_TOKEN}</password>
+        </server>
+        <server>
+            <id>github-common</id>
+            <username>${MVN_USER}</username>
+            <password>${MVN_AUTH_TOKEN}</password>
+        </server>
+    </servers>
+</settings>
