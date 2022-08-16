@@ -1,0 +1,31 @@
+{
+	"info": {
+		"_postman_id": "233fb49c-b0e8-4fd3-849c-8308d5521e19",
+		"name": "mambu-cbs-connector",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5382217"
+	},
+	"item": [
+		{
+			"name": "Get Branches",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7777/mambu-portx-cbs-connector/1.0/branches",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"mambu-portx-cbs-connector",
+						"1.0",
+						"branches"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
