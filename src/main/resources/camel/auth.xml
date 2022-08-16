@@ -21,7 +21,7 @@
             <setHeader name="Authorization">
                 <constant>DirectLogin username=juancorrea, password=blackwing2023, consumer_key=mhqg1t3sqv3ost2f1k2q0kbidhownvrpjjzhalfi</constant>
             </setHeader>
-            <to uri="https://{{obpcom.host}}:{{obpcom.port}}/my/logins/direct?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
+            <!-- <to uri="https://{{obpcom.host}}:{{obpcom.port}}/my/logins/direct?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
             <log message="Direct Login response is ${body}"/>
             <setProperty name="errorCode">
                 <constant>{{error.authentication.code}}</constant>

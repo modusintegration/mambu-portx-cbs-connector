@@ -34,8 +34,8 @@
                     <configuration>
                         <swaggerCodegenMavenPluginVersion>3.0.19</swaggerCodegenMavenPluginVersion>
                         <specificationUri>${basedir}${file.separator}src${file.separator}spec${file.separator}swagger.yaml</specificationUri>
-                        <modelPackage>io.portx.bankacctmgmt</modelPackage>
-                        <packageName>io.portx.bankacctmgmt</packageName>
+                        <modelPackage>io.portx.cbs.connector</modelPackage>
+                        <packageName>io.portx.cbs.connector</packageName>
                         <outputDirectory>${project.build.directory}${file.separator}generated-sources${file.separator}openapi${file.separator}src${file.separator}main${file.separator}java</outputDirectory>
                         <restConfiguration>true</restConfiguration>
                         <configOptions>
@@ -317,7 +317,7 @@
         <dependency>
             <groupId>io.portx.camel</groupId>
             <artifactId>portx-camel-lib</artifactId>
-            <version>${camel-version}</version>
+            <version>${portx-camel-lib.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.camel.springboot</groupId>
@@ -332,12 +332,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <version>${camel-version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jetty</artifactId>
-            <version>${camel-version}</version>
+            <version>${spring-boot-version}</version>
         </dependency>
         
         <dependency>
@@ -348,7 +347,7 @@
         <dependency>
             <groupId>org.ehcache</groupId>
             <artifactId>ehcache</artifactId>
-            <version>${camel-version}</version>
+            <version>3.9.4</version>
         </dependency>
         <dependency>
             <groupId>org.apache.camel</groupId>
