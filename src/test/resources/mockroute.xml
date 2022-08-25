@@ -7,16 +7,15 @@
 
         <choice>
             <when>
-                <simple>${header.CamelInterceptedEndpoint} regex '^.*/helloworld.*' &amp;&amp; ${header.CamelHttpMethod} == 'POST'</simple>
+                <simple>${header.CamelInterceptedEndpoint} regex '^.*/api/branches.*' &amp;&amp; ${header.CamelHttpMethod} == 'GET'</simple>
                 <setHeader name="CamelHttpResponseCode">
-                    <constant>201</constant>
+                    <constant>200</constant>
                 </setHeader>
                 <setBody>
-                    <constant>{"hello":"world"}</constant>
+                    <simple>resource:classpath:test-data/json/mambuAPI/getBranchesResponse.json</simple>
                 </setBody>
-                <log message="MOCK: ${header.CamelHttpMethod} ${header.CamelInterceptedEndpoint} ${header.CamelHttpResponseCode} ${body}"  loggingLevel="DEBUG"/>
+                <log message="MOCK: ${header.CamelHttpMethod} ${header.CamelInterceptedEndpoint} ${header.CamelHttpPath} ${header.CamelHttpResponseCode}"  loggingLevel="DEBUG"/>
             </when>
-
             <otherwise>
                 <log message="MOCK: No match for ${header.CamelHttpMethod} ${header.CamelInterceptedEndpoint} - CamelHttpPath is ${header.CamelHttpPath}" loggingLevel="DEBUG"/>
             </otherwise>

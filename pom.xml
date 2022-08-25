@@ -25,6 +25,7 @@
                     <version>${camel-version}</version>
                     <executions>
                         <execution>
+                          <?m2e ignore?>
                             <phase>generate-sources</phase>
                             <goals>
                                 <goal>generate-with-dto</goal>
@@ -39,7 +40,7 @@
                         <outputDirectory>${project.build.directory}${file.separator}generated-sources${file.separator}openapi${file.separator}src${file.separator}main${file.separator}java</outputDirectory>
                         <restConfiguration>true</restConfiguration>
                         <configOptions>
-                            <dateLibrary>java11</dateLibrary>
+                            <dateLibrary>java18</dateLibrary>
                         </configOptions>
                     </configuration>
                     <dependencies>
@@ -353,7 +354,7 @@
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-debug</artifactId>
             <version>${camel-version}</version>
-        </dependency>    
+        </dependency>
     </dependencies>
     <repositories>
         <repository>
