@@ -12,11 +12,14 @@ import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.DisplayName;
 
+@DisplayName("Application Tests")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT, classes=Application.class)
 public class ApplicationTest extends APITest {
 
     @Test
+    @DisplayName("Test get branches endpoint")
     public void testGetBranches() throws Exception {
         Exchange exchange = sendTestRequest("direct:findBranches", ExchangePattern.InOut, new Processor() {
             @Override
@@ -27,13 +30,12 @@ public class ApplicationTest extends APITest {
         });
 
         String response = exchange.getIn().getBody(String.class);
-        assertNotNull(response);
+        assertNotNull(response, "Response is not null");
         JSONAssert.assertEquals(TestResourceReader.readFileAsString("test-data/json/mambuAPI/getBranchesResponse.json"), response, true);
     }
     @Override
     public String[] getMockedRouteIDs() {
-        return new String[] { "findBranchesRoute"
-                            };
+        return new String[] { "findBranchesRoute" };
     }
 
     @Override
