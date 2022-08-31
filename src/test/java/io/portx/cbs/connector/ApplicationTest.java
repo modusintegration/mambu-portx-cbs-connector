@@ -33,9 +33,68 @@ public class ApplicationTest extends APITest {
         assertNotNull(response, "Response is not null");
         JSONAssert.assertEquals(TestResourceReader.readFileAsString("test-data/json/mambuAPI/getBranchesResponse.json"), response, true);
     }
+
+    @Test
+    @DisplayName("Test create branch endpoint")
+    public void testCreateBranch() throws Exception {
+        Exchange exchange = sendTestRequest("direct:testCreateBranch", ExchangePattern.InOut, new Processor() {
+            @Override
+            public void process(Exchange exchange) throws Exception {
+                Message in = exchange.getIn();
+                in.setBody(TestResourceReader.readFileAsString("test-data/json/mambuAPI/createBranchRequest.json"));
+            }
+        });
+
+        String response = exchange.getIn().getBody(String.class);
+        JSONAssert.assertEquals(TestResourceReader.readFileAsString("test-data/json/mambuAPI/createBranchRequest.json"), response, true);
+
+        String createBranchRequest = exchange.getProperty("TEST_createBranchRequest", String.class);
+        assertNotNull(createBranchRequest);
+        JSONAssert.assertEquals(TestResourceReader.readFileAsString("test-data/json/mambuAPI/createBranchRequest.json"), createBranchRequest, true);
+    }
+
+
+    // @Test
+    // @DisplayName("Test update branch endpoint")
+    // public void testUpdateBranch() throws Exception {
+    //     Exchange exchange = sendTestRequest("direct:testUpdateBranch", ExchangePattern.InOut, new Processor() {
+    //         @Override
+    //         public void process(Exchange exchange) throws Exception {
+    //             Message in = exchange.getIn();
+    //             in.setBody(TestResourceReader.readFileAsString("test-data/json/mambuAPI/updateBranchRequest.json"));
+    //         }
+    //     });
+
+    //     String response = exchange.getIn().getBody(String.class);
+    //     JSONAssert.assertEquals(TestResourceReader.readFileAsString("test-data/json/mambuAPI/updateBranchRequest.json"), response, true);
+
+    //     String updateBranchRequest = exchange.getProperty("TEST_updateBranchRequest", String.class);
+    //     assertNotNull(updateBranchRequest);
+    //     JSONAssert.assertEquals(TestResourceReader.readFileAsString("test-data/json/mambuAPI/updateBranchRequest.json"), updateBranchRequest, true);
+    // }
+
+    @Test
+    @DisplayName("Test Database Query")
+    public void testDatabase() throws Exception {
+        Exchange exchange = sendTestRequest("direct:testDatabase", ExchangePattern.InOut, new Processor() {
+            @Override
+            public void process(Exchange exchange) throws Exception {
+                Message in = exchange.getIn();
+                in.setBody(TestResourceReader.readFileAsString("test-data/json/mambuAPI/updateBranchRequest.json"));
+            }
+        });
+
+        String response = exchange.getIn().getBody(String.class);
+        JSONAssert.assertEquals(TestResourceReader.readFileAsString("test-data/json/mambuAPI/updateBranchRequest.json"), response, true);
+
+        String updateBranchRequest = exchange.getProperty("TEST_updateBranchRequest", String.class);
+        assertNotNull(updateBranchRequest);
+        JSONAssert.assertEquals(TestResourceReader.readFileAsString("test-data/json/mambuAPI/updateBranchRequest.json"), updateBranchRequest, true);
+    }
+
     @Override
     public String[] getMockedRouteIDs() {
-        return new String[] { "findBranchesRoute" };
+        return new String[] { "findBranchesRoute", "testCreateBranchRoute", "testUpdateBranchRoute", "testDatabaseRoute" };
     }
 
     @Override

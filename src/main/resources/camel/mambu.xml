@@ -26,4 +26,54 @@
         <log message="GET branches response is ${body}"/>
         <to uri="direct:endRoute"/>
     </route>
+    <route id="testCreateBranchRoute" routeConfigurationId="*">
+        <from uri="direct:testCreateBranch"/>
+        <setProperty name="flowId">
+            <simple>${routeId}:${id}</simple>
+        </setProperty>
+        <setHeader name="CamelHttpMethod">
+            <constant>POST</constant>
+        </setHeader>
+        <to uri="https://{{mambu.host}}/api/branches"/>
+        <choice>
+            <when>
+                <simple>${header.CamelHttpResponseCode} == 200</simple>
+                <setBody><simple>${body}</simple></setBody>
+            </when>
+            <otherwise>
+                <setBody>
+                    <constant>null</constant>
+                </setBody>
+            </otherwise>
+        </choice>
+    </route>
+    <route id="testUpdateBranchRoute" routeConfigurationId="*">
+        <from uri="direct:testUpdateBranch"/>
+        <setProperty name="flowId">
+            <simple>${routeId}:${id}</simple>
+        </setProperty>
+        <setHeader name="CamelHttpMethod">
+            <constant>PUT</constant>
+        </setHeader>
+        <to uri="https://{{mambu.host}}/api/branches/id"/>
+        <choice>
+            <when>
+                <simple>${header.CamelHttpResponseCode} == 200</simple>
+                <setBody><simple>${body}</simple></setBody>
+            </when>
+            <otherwise>
+                <setBody>
+                    <constant>null</constant>
+                </setBody>
+            </otherwise>
+        </choice>
+    </route>
+    <!-- <route id="testDatabaseRoute" routeConfigurationId="*">
+        <from uri="direct:testDatabase"/>
+        <setProperty name="flowId">
+            <simple>${routeId}:${id}</simple>
+        </setProperty>
+        <to uri="sql:select count(*) as cnt from person where last_name=# and status='A'?dataSource=#myDataSource"/>
+        <log message="Result: ${body}:"/> 
+    </route> -->
 </routes>
