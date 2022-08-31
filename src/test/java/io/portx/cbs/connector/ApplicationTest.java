@@ -54,29 +54,10 @@ public class ApplicationTest extends APITest {
     }
 
 
-    // @Test
-    // @DisplayName("Test update branch endpoint")
-    // public void testUpdateBranch() throws Exception {
-    //     Exchange exchange = sendTestRequest("direct:testUpdateBranch", ExchangePattern.InOut, new Processor() {
-    //         @Override
-    //         public void process(Exchange exchange) throws Exception {
-    //             Message in = exchange.getIn();
-    //             in.setBody(TestResourceReader.readFileAsString("test-data/json/mambuAPI/updateBranchRequest.json"));
-    //         }
-    //     });
-
-    //     String response = exchange.getIn().getBody(String.class);
-    //     JSONAssert.assertEquals(TestResourceReader.readFileAsString("test-data/json/mambuAPI/updateBranchRequest.json"), response, true);
-
-    //     String updateBranchRequest = exchange.getProperty("TEST_updateBranchRequest", String.class);
-    //     assertNotNull(updateBranchRequest);
-    //     JSONAssert.assertEquals(TestResourceReader.readFileAsString("test-data/json/mambuAPI/updateBranchRequest.json"), updateBranchRequest, true);
-    // }
-
     @Test
-    @DisplayName("Test Database Query")
-    public void testDatabase() throws Exception {
-        Exchange exchange = sendTestRequest("direct:testDatabase", ExchangePattern.InOut, new Processor() {
+    @DisplayName("Test update branch endpoint")
+    public void testUpdateBranch() throws Exception {
+        Exchange exchange = sendTestRequest("direct:testUpdateBranch", ExchangePattern.InOut, new Processor() {
             @Override
             public void process(Exchange exchange) throws Exception {
                 Message in = exchange.getIn();
@@ -91,6 +72,20 @@ public class ApplicationTest extends APITest {
         assertNotNull(updateBranchRequest);
         JSONAssert.assertEquals(TestResourceReader.readFileAsString("test-data/json/mambuAPI/updateBranchRequest.json"), updateBranchRequest, true);
     }
+
+    // @Test
+    // @DisplayName("Test Database Query")
+    // public void testDatabase() throws Exception {
+    //     Exchange exchange = sendTestRequest("direct:testDatabase", ExchangePattern.InOut, new Processor() {
+    //         @Override
+    //         public void process(Exchange exchange) throws Exception {
+    //             Message in = exchange.getIn();
+    //         }
+    //     });
+
+    //     String response = exchange.getIn().getBody(String.class);
+    //     assertEquals(10, response);
+    // }
 
     @Override
     public String[] getMockedRouteIDs() {

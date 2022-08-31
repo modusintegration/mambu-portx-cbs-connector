@@ -29,13 +29,23 @@
                 </setHeader>
                 <log message="MOCK: ${header.CamelHttpMethod} ${header.CamelInterceptedEndpoint} ${header.CamelHttpPath} ${header.CamelHttpResponseCode}"  loggingLevel="DEBUG"/>
             </when>
-            <!-- <when>
-                <simple>${header.CamelInterceptedEndpoint} regex '^.*sql:select count(*) as cnt from person where last_name.*'</simple>
+            <when>
+                <simple>${header.CamelInterceptedEndpoint} regex '^.*/api/branches.*' &amp;&amp; ${header.CamelHttpMethod} == 'PUT'</simple>
                 <setProperty name="TEST_updateBranchRequest">
                     <simple>${body}</simple>
                 </setProperty>
                 <setBody>
                     <simple>resource:classpath:test-data/json/mambuAPI/updateBranchRequest.json</simple>
+                </setBody>
+                <setHeader name="CamelHttpResponseCode">
+                    <constant>200</constant>
+                </setHeader>
+                <log message="MOCK: ${header.CamelHttpMethod} ${header.CamelInterceptedEndpoint} ${header.CamelHttpPath} ${header.CamelHttpResponseCode}"  loggingLevel="DEBUG"/>
+            </when>
+            <!-- <when>
+                <simple>${header.CamelInterceptedEndpoint} regex '^.*sql:select count(*) as cnt from person where last_name.*'</simple>
+                <setBody>
+                    <simple>10</simple>
                 </setBody>
                 <log message="MOCK: ${header.CamelHttpMethod} ${header.CamelInterceptedEndpoint} ${header.CamelHttpPath} ${header.CamelHttpResponseCode}"  loggingLevel="DEBUG"/>
             </when> -->
