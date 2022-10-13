@@ -7,7 +7,7 @@ jobs:
   package-gbp-deploy-dr-push:
     env:
       REGISTRY: 854173534877.dkr.ecr.us-west-2.amazonaws.com
-      APP_NAME: portx/mambu-portx-cbs-connector
+      APP_NAME: demos/mambu-portx-cbs-connector
     name: Build API package
     runs-on: ubuntu-latest
     permissions:
