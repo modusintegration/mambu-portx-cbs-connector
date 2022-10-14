@@ -2,7 +2,7 @@ name: build
 on:
   push:
     branches:
-      - develop
+      - oba-1.0.8
 jobs:
   package-gbp-deploy-dr-push:
     env:
