@@ -1,4 +1,4 @@
-FROM amazoncorretto:17
+FROM adoptopenjdk/openjdk11:jdk-11.0.8_10-centos-slim
 VOLUME /tmp
 
 WORKDIR /app
