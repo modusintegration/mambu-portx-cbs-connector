@@ -3,7 +3,8 @@ VOLUME /tmp
 
 WORKDIR /app
 
-COPY ./target/*.jar /app/app.jar
+REMOVE 
+COPY ./target/mambu-portx-cbs-connector-1.0.1.jar /app/app.jar
 
 EXPOSE 8080 8090
 
