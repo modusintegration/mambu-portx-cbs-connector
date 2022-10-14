@@ -1,4 +1,4 @@
-export DOCKER_REPOSITORY_URL := 854173534877.dkr.ecr.us-west-2.amazonaws.com/bankacctmgmt/mambu-portx-cbs-connector
+export DOCKER_REPOSITORY_URL := 854173534877.dkr.ecr.us-west-2.amazonaws.com/demos/mambu-portx-cbs-connector
 
 MAVEN_VERSION = $(shell docker run --rm $(DOCKER_REPOSITORY_URL):builder-$(GIT_BRANCH) mvn -Dexec.executable="echo" -Dexec.args='$${project.version}' -Dhttp.agent="routing-engine" --non-recursive -q org.codehaus.mojo:exec-maven-plugin:1.6.0:exec)
 
