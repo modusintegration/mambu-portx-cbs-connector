@@ -1,10 +1,19 @@
-FROM amazoncorretto:17
-VOLUME /tmp
+FROM 854173534877.dkr.ecr.us-west-2.amazonaws.com/demo/base-image:builder-latest as maven
+
+FROM maven as builder
+
+COPY . $CODE_HOME
+
+RUN mvn clean package
+
+FROM openjdk:18-jdk-slim as runtime
+
+RUN useradd -u 1000 -m -d /app app-user
+
+USER app-user
 
 WORKDIR /app
 
-COPY ./target/*.jar /app/app.jar
+COPY --from=builder /build/target/*.jar mambu-portx-cbs-connector.jar
 
-EXPOSE 8080 8090
-
-ENTRYPOINT java $JAVA_OPTS -jar /app/app.jar
+CMD java -jar mambu-portx-cbs-connector.jar
