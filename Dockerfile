@@ -1,4 +1,4 @@
-FROM 854173534877.dkr.ecr.us-west-2.amazonaws.com/bankacctmgmt/base-image:builder-latest as maven
+FROM 854173534877.dkr.ecr.us-west-2.amazonaws.com/demos/base-image:builder-latest as maven
 
 FROM maven as builder
 
