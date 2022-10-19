@@ -1,0 +1,10 @@
+/** DataSonnet
+version=2.0
+output application/json
+input payload application/json
+*/
+{
+  "lastName": payload.lastName,
+  "firstName": payload.firstName,
+  "state": payload.status
+}

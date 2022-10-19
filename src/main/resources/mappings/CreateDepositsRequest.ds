@@ -1,0 +1,11 @@
+/** DataSonnet
+version=2.0
+output application/json
+input payload application/json
+*/
+{
+  "accountHolderKey": payload.relatedAccounts[0].accountId,
+  "accountHolderType": payload.accountType,
+  "name": payload.name,
+  "productTypeKey": payload.productId
+}
