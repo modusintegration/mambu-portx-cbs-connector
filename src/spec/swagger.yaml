@@ -223,6 +223,25 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /depositproducts:
+    get:
+      tags:
+        - DepositProducts
+      summary: Retrieves list of deposit products
+      operationId: findDepositProducts
+      responses:
+        '200':
+          description: Deposit Products
+          content:
+            application/json:
+              schema:
+                type: string
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /persons:
     post:
       tags:

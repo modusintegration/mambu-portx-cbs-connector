@@ -1734,6 +1734,27 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Get Deposit Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7777/mambu-portx-cbs-connector/1.0/depositproducts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7777",
+							"path": [
+								"mambu-portx-cbs-connector",
+								"1.0",
+								"depositproducts"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}

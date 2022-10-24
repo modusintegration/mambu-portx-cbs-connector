@@ -26,6 +26,31 @@
         <log message="GET branches response is ${body}"/>
         <to uri="direct:endRoute"/>
     </route>
+    <route id="findDepositProductsRoute" routeConfigurationId="*">
+        <from uri="direct:findDepositProducts"/>
+        <setProperty name="flowId">
+            <simple>${routeId}:${id}</simple>
+        </setProperty>
+        <setBody><constant>{}</constant></setBody>
+        <to uri="direct:startRoute"/>
+        <log message="== findDepositProducts Route"/>
+        <setHeader name="CamelHttpMethod">
+            <constant>GET</constant>
+        </setHeader>
+        <setHeader name="Accept">
+            <constant>application/vnd.mambu.v2+json</constant>
+        </setHeader>
+         <!-- Use processor to set the auth header  -->
+        <setProperty name="authHeader">
+            <simple>{{mambu.username}}:{{mambu.password}}</simple>
+        </setProperty>
+        <process ref="encodeAuthHeader" />
+
+        <log message="GET depositproducts request is ${body}"/>
+        <to uri="https://{{mambu.host}}/api/depositproducts?detailsLevel=FULL&amp;throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
+        <log message="GET depositproducts response is ${body}"/>
+        <to uri="direct:endRoute"/>
+    </route>
     <route id="findPersonRoute" routeConfigurationId="*">
         <from uri="direct:findPerson"/>
         <setProperty name="flowId">
@@ -36,6 +61,9 @@
         <log message="== findPerson Route"/>
         <setHeader name="CamelHttpMethod">
             <constant>GET</constant>
+        </setHeader>
+        <setHeader name="Accept">
+            <constant>application/vnd.mambu.v2+json</constant>
         </setHeader>
         <!-- Use processor to set the auth header  -->
         <setProperty name="authHeader">
