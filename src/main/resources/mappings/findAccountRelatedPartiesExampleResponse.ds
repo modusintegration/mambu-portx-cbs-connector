@@ -1,0 +1,11 @@
+{
+  "accountId": "0dd926fe-1ca2-11ed-861d-0242ac120002",
+  "accountNumber": "12345678",
+  "parties": [
+    {
+      "partyId": "5fb9d4d6-1a3c-11ed-861d-0242ac120002",
+      "partyType": "Person",
+      "partyRelationType": "Owner"
+    }
+  ]
+}

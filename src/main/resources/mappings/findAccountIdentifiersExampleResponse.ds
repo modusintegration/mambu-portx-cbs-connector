@@ -1,0 +1,12 @@
+{
+  "iBAN": "AL35202111090000000001234567",
+  "accountNumber": "12345678",
+  "routingNumber": "12345678",
+  "identifiers": [
+    {
+      "identification": "string",
+      "schemeName": "BBANIdentifier",
+      "issuer": "string"
+    }
+  ]
+}

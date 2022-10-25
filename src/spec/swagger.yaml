@@ -2,10 +2,10 @@
 openapi: 3.0.1
 info:
   title: PortX Open Banking Account Management
-  description: PortX Account Management
+  description: "PortX Bank Account Management (BAM) semantic and interaction is based on ISO 20022 and restricted to the US banking domain.The scope covers the following communication flows: bank account opening, maintenance, closing and reporting.\nIn many cases, the financial institution will require additional documentation that is available as PDF or Word document. The recommended solution is to group one BAM message (for example the account opening request) with these accompanying documents in one file archive. The archive establishes the link between the different documents.\nEvery BAM request message has an attribute to support the ISO 20022 digital signature. \n"
   contact:
     email: betiana.darderes@modusbox.com
-  version: 1.0.8
+  version: 1.0.10
 servers:
   - url: /mambu-portx-cbs-connector/1.0
     description: SwaggerHub API
@@ -21,7 +21,7 @@ paths:
   /accounts:
     post:
       tags:
-        - Banking Accounts
+        - Accounts
       summary: Opens a Banking account
       operationId: openBankingAccount
       parameters:
@@ -69,7 +69,7 @@ paths:
   /accounts/{accountId}:
     get:
       tags:
-        - Banking Accounts
+        - Accounts
       summary: Retrieves an account
       operationId: findAccount
       parameters:
@@ -82,7 +82,7 @@ paths:
         - name: bankId
           in: header
           description: Bank Identification
-#          required: true
+          #          required: true
           schema:
             $ref: '#/components/schemas/Id'
       responses:
@@ -110,62 +110,194 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-    patch:
-      tags:
-        - Banking Accounts
-      summary: Updates an account.
-      operationId: updateAccount
-      description: Use the JSON Merge Patch standard https://tools.ietf.org/html/rfc7396
-      parameters:
-        - name: accountId
-          in: path
-          description: Account Identification
-          required: true
-          schema:
-            $ref: '#/components/schemas/AccountId'
-        - name: bankId
-          in: header
-          description: Bank Identification
-          required: true
-          schema:
-            $ref: '#/components/schemas/Id'
-      requestBody:
-        content:
-          application/merge-patch+json:
-            schema:
-              $ref: '#/components/schemas/Account'
-        required: true
-      responses:
-        "200":
-          description: Updated account
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Account'
-        "400":
-          description: Bad Request. Account Id could not be processed due to format errors.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        "404":
-          description: No matching accounts have found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        "500":
-          description: Internal server error.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+#    patch:
+#      tags:
+#        - Accounts
+#      summary: Updates an account.
+#      operationId: updateAccount
+#      description: Use the JSON Merge Patch standard https://tools.ietf.org/html/rfc7396
+#      parameters:
+#        - name: accountId
+#          in: path
+#          description: Account Identification
+#          required: true
+#          schema:
+#            $ref: '#/components/schemas/AccountId'
+#        - name: bankId
+#          in: header
+#          description: Bank Identification
+#          required: true
+#          schema:
+#            $ref: '#/components/schemas/Id'
+#      requestBody:
+#        content:
+#          application/merge-patch+json:
+#            schema:
+#              $ref: '#/components/schemas/Account'
+#        required: true
+#      responses:
+#        "200":
+#          description: Updated account
+#          content:
+#            application/json:
+#              schema:
+#                $ref: '#/components/schemas/Account'
+#        "400":
+#          description: Bad Request. Account Id could not be processed due to format errors.
+#          content:
+#            application/json:
+#              schema:
+#                $ref: '#/components/schemas/Error'
+#        "404":
+#          description: No matching accounts have found.
+#          content:
+#            application/json:
+#              schema:
+#                $ref: '#/components/schemas/Error'
+#        "500":
+#          description: Internal server error.
+#          content:
+#            application/json:
+#              schema:
+#                $ref: '#/components/schemas/Error'
   /accounts/{accountId}/balances:
     get:
       tags:
-        - Banking Accounts
+        - Accounts
       summary: Retrieves an account balance ammounts
-      operationId: findDepositAccountBalances
+      operationId: findAccountBalances
+      parameters:
+        - name: accountId
+          in: path
+          description: Account Identification
+          required: true
+          schema:
+            $ref: '#/components/schemas/AccountId'
+        - name: bankId
+          in: header
+          description: Bank Identification
+          #          required: true
+          schema:
+            $ref: '#/components/schemas/Id'
+      responses:
+        "200":
+          description: Matching account was found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountBalanceResponse'
+        "400":
+          description: Bad Request. Account Id could not be processed due to format errors.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: No matching accounts have found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /accounts/{accountId}/identifiers:
+    get:
+      tags:
+        - Accounts
+      summary: Retrieves all the identifiers of an account
+      operationId: findAccountIdentifiers
+      parameters:
+        - name: accountId
+          in: path
+          description: Account Identification
+          required: true
+          schema:
+            $ref: '#/components/schemas/AccountId'
+        - name: bankId
+          in: header
+          description: Bank Identification
+          #        required: true
+          schema:
+            $ref: '#/components/schemas/Id'
+      responses:
+        "200":
+          description: Matching account was found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountIdentifiers'
+        "400":
+          description: Bad Request. Account Id could not be processed due to format errors.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: No matching accounts have found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /accounts/{accountId}/parties:
+    get:
+      tags:
+        - Accounts
+      summary: Retrieves all the identifiers of an account
+      operationId: findAccountRelatedParties
+      parameters:
+        - name: accountId
+          in: path
+          description: Account Identification
+          required: true
+          schema:
+            $ref: '#/components/schemas/AccountId'
+        - name: bankId
+          in: header
+          description: Bank Identification
+          #        required: true
+          schema:
+            $ref: '#/components/schemas/Id'
+      responses:
+        "200":
+          description: Matching account was found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountPartyResponse'
+        "400":
+          description: Bad Request. Account Id could not be processed due to format errors.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: No matching accounts have found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /accounts/{accountId}/owners:
+    get:
+      tags:
+        - Accounts
+      summary: Retrieves all the identifiers of an account
+      operationId: findAccountOwners
       parameters:
         - name: accountId
           in: path
@@ -185,7 +317,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AccountBalance'
+                $ref: '#/components/schemas/AccountOwnerResponse'
         "400":
           description: Bad Request. Account Id could not be processed due to format errors.
           content:
@@ -216,26 +348,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/BranchesJson400'
-        '500':
-          description: Internal server error.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-  /depositproducts:
-    get:
-      tags:
-        - DepositProducts
-      summary: Retrieves list of deposit products
-      operationId: findDepositProducts
-      responses:
-        '200':
-          description: Deposit Products
-          content:
-            application/json:
-              schema:
-                type: string
+                $ref: '#/components/schemas/Branches'
         '500':
           description: Internal server error.
           content:
@@ -260,7 +373,7 @@ paths:
         - name: bankId
           in: header
           description: Bank Identification
-#          required: true
+          #          required: true
           schema:
             $ref: '#/components/schemas/Id'
       requestBody:
@@ -288,16 +401,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /persons/{partyId}:
+  /persons/{personId}:
     get:
       tags:
         - Parties
       summary: Retrieves a person
       operationId: findPerson
       parameters:
-        - name: partyId
+        - name: personId
           in: path
-          description: Party Identification
+          description: Person Identification
           required: true
           schema:
             $ref: '#/components/schemas/Id'
@@ -334,16 +447,68 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-    patch:
+#    patch:
+#      tags:
+#        - Parties
+#      summary: Updates a person
+#      description: Use the JSON Merge Patch standard https://tools.ietf.org/html/rfc7396
+#      operationId: updatePerson
+#      parameters:
+#        - name: personId
+#          in: path
+#          description: Person Identification
+#          required: true
+#          schema:
+#            $ref: '#/components/schemas/Id'
+#        - name: servicerId
+#          in: header
+#          description: Account Servicer Identification (Bank)
+#          required: false
+#          schema:
+#            maxLength: 36
+#            minLength: 1
+#            type: string
+#      requestBody:
+#        content:
+#          application/merge-patch+json:
+#            schema:
+#              $ref: '#/components/schemas/Person'
+#        required: true
+#      responses:
+#        "200":
+#          description: Person Updated.
+#          content:
+#            application/json:
+#              schema:
+#                $ref: '#/components/schemas/Person'
+#        "400":
+#          description: Bad Request. Person Id could not be processed due to format errors.
+#          content:
+#            application/json:
+#              schema:
+#                $ref: '#/components/schemas/Error'
+#        "404":
+#          description: No matching persons have found.
+#          content:
+#            application/json:
+#              schema:
+#                $ref: '#/components/schemas/Error'
+#        "500":
+#          description: Internal server error.
+#          content:
+#            application/json:
+#              schema:
+#                $ref: '#/components/schemas/Error'
+  /persons/{personId}/accounts:
+    get:
       tags:
         - Parties
-      summary: Updates a person
-      description: Use the JSON Merge Patch standard https://tools.ietf.org/html/rfc7396
-      operationId: updatePerson
+      summary: Retrieves a person
+      operationId: findPersonAccounts
       parameters:
-        - name: partyId
+        - name: personId
           in: path
-          description: Party Identification
+          description: Person Identification
           required: true
           schema:
             $ref: '#/components/schemas/Id'
@@ -355,19 +520,13 @@ paths:
             maxLength: 36
             minLength: 1
             type: string
-      requestBody:
-        content:
-          application/merge-patch+json:
-            schema:
-              $ref: '#/components/schemas/Person'
-        required: true
       responses:
         "200":
-          description: Person Updated.
+          description: Matching person was found.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Person'
+                $ref: '#/components/schemas/PersonAccountResponse'
         "400":
           description: Bad Request. Person Id could not be processed due to format errors.
           content:
@@ -432,16 +591,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /organizations/{partyId}:
+  /organizations/{organizationId}:
     get:
       tags:
         - Parties
       summary: Retrieves an organizations
       operationId: findOrganization
       parameters:
-        - name: partyId
+        - name: organizationId
           in: path
-          description: Party Identification
+          description: Organization Identification
           required: true
           schema:
             $ref: '#/components/schemas/Id'
@@ -478,16 +637,68 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-    patch:
+#    patch:
+#      tags:
+#        - Parties
+#      summary: Updates an organizations
+#      description: Use the JSON Merge Patch standard https://tools.ietf.org/html/rfc7396
+#      operationId: updateOrganization
+#      parameters:
+#        - name: organizationId
+#          in: path
+#          description: Organization Identification
+#          required: true
+#          schema:
+#            $ref: '#/components/schemas/Id'
+#        - name: servicerId
+#          in: header
+#          description: Account Servicer Identification (Bank)
+#          required: false
+#          schema:
+#            maxLength: 36
+#            minLength: 1
+#            type: string
+#      requestBody:
+#        content:
+#          application/merge-patch+json:
+#            schema:
+#              $ref: '#/components/schemas/Organization'
+#        required: true
+#      responses:
+#        "200":
+#          description: Organization Updated.
+#          content:
+#            application/json:
+#              schema:
+#                $ref: '#/components/schemas/Organization'
+#        "400":
+#          description: Bad Request. Organization Id could not be processed due to format errors.
+#          content:
+#            application/json:
+#              schema:
+#                $ref: '#/components/schemas/Error'
+#        "404":
+#          description: No matching persons have found.
+#          content:
+#            application/json:
+#              schema:
+#                $ref: '#/components/schemas/Error'
+#        "500":
+#          description: Internal server error.
+#          content:
+#            application/json:
+#              schema:
+#                $ref: '#/components/schemas/Error'
+  /organizations/{organizationId}/accounts:
+    get:
       tags:
         - Parties
-      summary: Updates an organizations
-      description: Use the JSON Merge Patch standard https://tools.ietf.org/html/rfc7396
-      operationId: updateOrganization
+      summary: Retrieves an organizations
+      operationId: findOrganizationAccounts
       parameters:
-        - name: partyId
+        - name: organizationId
           in: path
-          description: Party Identification
+          description: Organization Identification
           required: true
           schema:
             $ref: '#/components/schemas/Id'
@@ -499,19 +710,13 @@ paths:
             maxLength: 36
             minLength: 1
             type: string
-      requestBody:
-        content:
-          application/merge-patch+json:
-            schema:
-              $ref: '#/components/schemas/Organization'
-        required: true
       responses:
         "200":
-          description: Organization Updated.
+          description: Matching organization was found.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Organization'
+                $ref: '#/components/schemas/OrganizationAccountResponse'
         "400":
           description: Bad Request. Organization Id could not be processed due to format errors.
           content:
@@ -520,6 +725,40 @@ paths:
                 $ref: '#/components/schemas/Error'
         "404":
           description: No matching persons have found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /products:
+    get:
+      tags:
+        - Products
+      summary: Retrieves a financial product
+      operationId: findProduct
+      parameters:
+        - name: servicerId
+          in: header
+          description: Account Servicer Identification (Bank)
+          required: false
+          schema:
+            maxLength: 36
+            minLength: 1
+            type: string
+      responses:
+        "200":
+          description: Matching product was found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        "404":
+          description: No matching product have found.
           content:
             application/json:
               schema:
@@ -549,6 +788,8 @@ components:
           $ref: '#/components/schemas/Description'
         currency:
           $ref: '#/components/schemas/CurrencyCode'
+        initialAmount:
+          $ref: '#/components/schemas/AmountInCents'
         contract:
           $ref: '#/components/schemas/Document'
         parties:
@@ -605,6 +846,11 @@ components:
       type: string
       description: "Three contiguous letters for the representation of currencies and funds. Valid currency codes are registered with the ISO 4217 Maintenance Agency. \n"
       example: USD
+    AmountInCents:
+      pattern: ^-?([0]|([1-9][0-9]{0,12}))([.][0-9]{0,8})?$
+      type: string
+      description: "Number of monetary units where the decimal part is implied by the currency.\nNote: \n total number of digits: 21\n number of digits in fractional part: 8\n maxInclusive: 9999999999999.99999999\n"
+      example: "100"
     Document:
       type: object
       properties:
@@ -615,7 +861,6 @@ components:
           description: |
             Account contract established between the organisation or the group to which the organisation belongs, and the account servicer. This contract has to be applied for the new account to be opened and maintained.
         signOffDate:
-          description: Signoff date of the document.
           $ref: '#/components/schemas/Date'
       description: |
         Document that contains the information of the contract agreed between both parties.
@@ -649,7 +894,7 @@ components:
       maxLength: 35
       minLength: 1
       type: string
-      description: "Type of the account. Some possible ISO 20022 compliant values are: \n LiquidityManager, LimitManager, PaymentManager, Reader, BackupManager, SettlementManager, FundManagementCompany, TransferAgent, FundAccountant, Registrar, InvestmentManager, Custodian, Auditor, PayingAgent, CashCorrespondent, DataProvider, FinalAgent, Investor, FirstAgent, Intermediary, Distributor, Concentrator, UnderlyingClient1, UnderlyingClient2, TransmittingAgent, FundBroker, FinancialAdvisor, ContactPersonAtInstructingPartyInstitution, ContactPersonAtExecutingPartyInstitution, NameOfAgentToOrder, PrimeBroker, Internal, LegalGuardian, DecisionMaker, Guarantor.\n"
+      description: "Type of the account. Some possible ISO 20022 compliant values are: \n AccountOwner, LiquidityManager, LimitManager, PaymentManager, Reader, BackupManager, SettlementManager, FundManagementCompany, TransferAgent, FundAccountant, Registrar, InvestmentManager, Custodian, Auditor, PayingAgent, CashCorrespondent, DataProvider, FinalAgent, Investor, FirstAgent, Intermediary, Distributor, Concentrator, UnderlyingClient1, UnderlyingClient2, TransmittingAgent, FundBroker, FinancialAdvisor, ContactPersonAtInstructingPartyInstitution, ContactPersonAtExecutingPartyInstitution, NameOfAgentToOrder, PrimeBroker, Internal, LegalGuardian, DecisionMaker, Guarantor.\n"
       example: PaymentManager
     RelatedAccount:
       type: object
@@ -674,8 +919,6 @@ components:
     AccountResponse:
       type: object
       properties:
-        accountId:
-          $ref: '#/components/schemas/AccountId'
         servicerBranchId:
           $ref: '#/components/schemas/ServicerBranchId'
         accountType:
@@ -690,6 +933,8 @@ components:
           $ref: '#/components/schemas/Description'
         currency:
           $ref: '#/components/schemas/CurrencyCode'
+        initialAmount:
+          $ref: '#/components/schemas/AmountInCents'
         contract:
           $ref: '#/components/schemas/Document'
         parties:
@@ -700,6 +945,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/RelatedAccount'
+        supplementaryData:
+          type: array
+          items:
+            $ref: '#/components/schemas/SupplementaryData'
         status:
           $ref: '#/components/schemas/AccountStatus'
         statusDateAndTime:
@@ -711,12 +960,22 @@ components:
           description: Status defined by the account servicer.
         openDate:
           $ref: '#/components/schemas/Date'
+        closeDate:
+          $ref: '#/components/schemas/Date'
         maturityDate:
           $ref: '#/components/schemas/Date'
-        supplementaryData:
+        iBAN:
+          $ref: '#/components/schemas/IBAN'
+        accountNumber:
+          $ref: '#/components/schemas/AccountNumber'
+        routingNumber:
+          $ref: '#/components/schemas/RoutingNumber'
+        identifiers:
           type: array
           items:
-            $ref: '#/components/schemas/SupplementaryData'
+            $ref: '#/components/schemas/AccountIdentification'
+        accountId:
+          $ref: '#/components/schemas/AccountId'
     AccountDetailedStatus:
       type: object
       properties:
@@ -731,6 +990,8 @@ components:
           description: Status defined by the account servicer.
         openDate:
           $ref: '#/components/schemas/Date'
+        closeDate:
+          $ref: '#/components/schemas/Date'
         maturityDate:
           $ref: '#/components/schemas/Date'
       description: Specifies the current state of an account.
@@ -744,94 +1005,41 @@ components:
       type: string
       format: date-time
       example: 2022-04-17T08:00:00Z
-    Error:
-      required:
-        - code
-        - message
-      type: object
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
-    Account:
-      type: object
-      properties:
-        accountId:
-          $ref: '#/components/schemas/AccountId'
-        iBAN:
-          maxLength: 34
-          minLength: 1
-          pattern: ^[A-Z]{2,2}[0-9]{2,2}[a-zA-Z0-9]{1,30}$
-          type: string
-          description: |
-            The International Bank Account Number is a code used internationally by financial institutions to uniquely identify the account of a customer at a financial institution. A valid IBAN consists of all three of the following components: Country Code, check digits and BBAN.
-          example: AL35202111090000000001234567
-        identifiers:
-          type: array
-          items:
-            $ref: '#/components/schemas/AccountIdentification'
-        servicerBranchId:
-          $ref: '#/components/schemas/ServicerBranchId'
-        accountType:
-          $ref: '#/components/schemas/AccountType'
-        accountOwnershipType:
-          $ref: '#/components/schemas/AccountOwnershipType'
-        productId:
-          $ref: '#/components/schemas/ProductId'
-        name:
-          $ref: '#/components/schemas/AccountName'
-        accountPurpose:
-          $ref: '#/components/schemas/Description'
-        currency:
-          $ref: '#/components/schemas/CurrencyCode'
-        contract:
-          $ref: '#/components/schemas/Document'
-        parties:
-          type: array
-          items:
-            $ref: '#/components/schemas/AccountParty'
-        relatedAccounts:
-          type: array
-          items:
-            $ref: '#/components/schemas/RelatedAccount'
-        supplementaryData:
-          type: array
-          items:
-            $ref: '#/components/schemas/SupplementaryData'
-        status:
-          $ref: '#/components/schemas/AccountStatus'
-        statusDateAndTime:
-          $ref: '#/components/schemas/DateAndTime'
-        substatus:
-          maxLength: 35
-          minLength: 1
-          type: string
-          description: Status defined by the account servicer.
-        openDate:
-          $ref: '#/components/schemas/Date'
-        maturityDate:
-          $ref: '#/components/schemas/Date'
-        balances:
-          type: array
-          items:
-            $ref: '#/components/schemas/Balance'
     AccountIdentifiers:
       type: object
       properties:
         iBAN:
-          maxLength: 34
-          minLength: 1
-          pattern: ^[A-Z]{2,2}[0-9]{2,2}[a-zA-Z0-9]{1,30}$
-          type: string
-          description: |
-            The International Bank Account Number is a code used internationally by financial institutions to uniquely identify the account of a customer at a financial institution. A valid IBAN consists of all three of the following components: Country Code, check digits and BBAN.
-          example: AL35202111090000000001234567
+          $ref: '#/components/schemas/IBAN'
+        accountNumber:
+          $ref: '#/components/schemas/AccountNumber'
+        routingNumber:
+          $ref: '#/components/schemas/RoutingNumber'
         identifiers:
           type: array
           items:
             $ref: '#/components/schemas/AccountIdentification'
+    IBAN:
+      maxLength: 34
+      minLength: 1
+      pattern: ^[A-Z]{2,2}[0-9]{2,2}[a-zA-Z0-9]{1,30}$
+      type: string
+      description: |
+        The International Bank Account Number is a code used internationally by financial institutions to uniquely identify the account of a customer at a financial institution. A valid IBAN consists of all three of the following components: Country Code, check digits and BBAN.
+      example: AL35202111090000000001234567
+    AccountNumber:
+      maxLength: 12
+      minLength: 8
+      type: string
+      description: |
+        The account number—usually between eight and 12 digits—identifies the account.
+      example: "12345678"
+    RoutingNumber:
+      maxLength: 9
+      minLength: 9
+      type: string
+      description: |
+        The routing number (sometimes referred to as an ABA routing number, regarding the American Bankers Association) is a sequence of nine digits used by banks to identify specific financial institutions within the United States.
+      example: "12345678"
     AccountIdentification:
       type: object
       properties:
@@ -853,6 +1061,81 @@ components:
           minLength: 1
           type: string
           description: Entity that assigns the identification.
+    Error:
+      required:
+        - code
+        - message
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+    Account:
+      type: object
+      properties:
+        iBAN:
+          $ref: '#/components/schemas/IBAN'
+        accountNumber:
+          $ref: '#/components/schemas/AccountNumber'
+        routingNumber:
+          $ref: '#/components/schemas/RoutingNumber'
+        identifiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountIdentification'
+        servicerBranchId:
+          $ref: '#/components/schemas/ServicerBranchId'
+        accountType:
+          $ref: '#/components/schemas/AccountType'
+        accountOwnershipType:
+          $ref: '#/components/schemas/AccountOwnershipType'
+        productId:
+          $ref: '#/components/schemas/ProductId'
+        name:
+          $ref: '#/components/schemas/AccountName'
+        accountPurpose:
+          $ref: '#/components/schemas/Description'
+        currency:
+          $ref: '#/components/schemas/CurrencyCode'
+        initialAmount:
+          $ref: '#/components/schemas/AmountInCents'
+        contract:
+          $ref: '#/components/schemas/Document'
+        parties:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountParty'
+        relatedAccounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/RelatedAccount'
+        supplementaryData:
+          type: array
+          items:
+            $ref: '#/components/schemas/SupplementaryData'
+        status:
+          $ref: '#/components/schemas/AccountStatus'
+        statusDateAndTime:
+          $ref: '#/components/schemas/DateAndTime'
+        substatus:
+          maxLength: 35
+          minLength: 1
+          type: string
+          description: Status defined by the account servicer.
+        openDate:
+          $ref: '#/components/schemas/Date'
+        closeDate:
+          $ref: '#/components/schemas/Date'
+        maturityDate:
+          $ref: '#/components/schemas/Date'
+        balances:
+          type: array
+          items:
+            $ref: '#/components/schemas/Balance'
+        accountId:
+          $ref: '#/components/schemas/AccountId'
     AccountBalance:
       type: object
       properties:
@@ -879,20 +1162,70 @@ components:
       type: string
       description: "Specifies the nature of the balance. Possible ISO 20022 compliant value names are:\n Current, \n Available, \n Pending, \n Blocked.\n"
       example: Available
-    AmountInCents:
-      pattern: ^-?([0]|([1-9][0-9]{0,12}))([.][0-9]{0,8})?$
+    AccountBalanceResponse:
+      type: object
+      properties:
+        accountId:
+          $ref: '#/components/schemas/AccountId'
+        accountNumber:
+          $ref: '#/components/schemas/AccountNumber'
+        balances:
+          type: array
+          items:
+            $ref: '#/components/schemas/Balance'
+    AccountPartyResponse:
+      type: object
+      properties:
+        accountId:
+          $ref: '#/components/schemas/AccountId'
+        accountNumber:
+          $ref: '#/components/schemas/AccountNumber'
+        parties:
+          type: array
+          items:
+            $ref: '#/components/schemas/RelatedParty'
+    RelatedParty:
+      type: object
+      properties:
+        partyId:
+          $ref: '#/components/schemas/Id'
+        partyType:
+          $ref: '#/components/schemas/PartyType'
+        partyRelationType:
+          $ref: '#/components/schemas/PartyRelationType'
+    PartyRelationType:
+      maxLength: 35
+      minLength: 1
       type: string
-      description: "Number of monetary units where the decimal part is implied by the currency.\nNote: \n total number of digits: 21\n number of digits in fractional part: 8\n maxInclusive: 9999999999999.99999999\n"
-      example: "100"
+      description: |
+        Type of relation between parties.  Some ISO 20022 compliant values for Organizations are: representativeOfficer, responsibleParty.
+      example: Owner
+    AccountOwnerResponse:
+      type: object
+      properties:
+        accountId:
+          $ref: '#/components/schemas/AccountId'
+        accountNumber:
+          $ref: '#/components/schemas/AccountNumber'
+        owners:
+          type: array
+          items:
+            $ref: '#/components/schemas/RelatedParty'
     PersonRequest:
       type: object
       properties:
-        id:
+        lEI:
+          maxLength: 36
+          minLength: 1
+          #          pattern: ^[A-Z0-9]{18,18}[0-9]{2,2}$
           type: string
-        lastName:
-          type: string
-        firstName:
-            type: string
+          description: |
+            Legal Entity Identifier is a code allocated to a party as described in ISO 17442 "Financial Services - Legal Entity Identifier (LEI)".
+          example: 2ZCNRR8UK83OBTEK2170
+        genericIdentifiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/PersonIdentification'
         name:
           $ref: '#/components/schemas/PartyName'
         shortName:
@@ -918,26 +1251,6 @@ components:
           $ref: '#/components/schemas/TaxInformation'
         supplementaryData:
           $ref: '#/components/schemas/SupplementaryData'
-        bIC:
-          maxLength: 36
-          minLength: 1
-          #          pattern: ^[A-Z0-9]{4,4}[A-Z]{2,2}[A-Z0-9]{2,2}([A-Z0-9]{3,3}){0,1}$
-          type: string
-          description: |
-            Business identification code of the organization. Code allocated to a financial or non-financial institution by the ISO 9362 Registration Authority, as described in ISO 9362: 2014 - "Banking - Banking telecommunication messages - Business identifier code (BIC)".
-          example: AAAABBCCXXX
-        lEI:
-          maxLength: 36
-          minLength: 1
-          #          pattern: ^[A-Z0-9]{18,18}[0-9]{2,2}$
-          type: string
-          description: |
-            Legal Entity Identifier is a code allocated to a party as described in ISO 17442 "Financial Services - Legal Entity Identifier (LEI)".
-          example: 2ZCNRR8UK83OBTEK2170
-        genericIdentifiers:
-          type: array
-          items:
-            $ref: '#/components/schemas/PersonIdentification'
         placeAndDateOfBirth:
           $ref: '#/components/schemas/PlaceAndDateOfBirth'
         signature:
@@ -950,21 +1263,11 @@ components:
           example: true
         civilStatus:
           $ref: '#/components/schemas/CivilStatus'
+        structuredName:
+          $ref: '#/components/schemas/StructuredName'
     PersonIdentifiers:
       type: object
       properties:
-        genericIdentifiers:
-          type: array
-          items:
-            $ref: '#/components/schemas/PersonIdentification'
-        bIC:
-          maxLength: 36
-          minLength: 1
-          #          pattern: ^[A-Z0-9]{4,4}[A-Z]{2,2}[A-Z0-9]{2,2}([A-Z0-9]{3,3}){0,1}$
-          type: string
-          description: |
-            Business identification code of the organization. Code allocated to a financial or non-financial institution by the ISO 9362 Registration Authority, as described in ISO 9362: 2014 - "Banking - Banking telecommunication messages - Business identifier code (BIC)".
-          example: AAAABBCCXXX
         lEI:
           maxLength: 36
           minLength: 1
@@ -973,17 +1276,13 @@ components:
           description: |
             Legal Entity Identifier is a code allocated to a party as described in ISO 17442 "Financial Services - Legal Entity Identifier (LEI)".
           example: 2ZCNRR8UK83OBTEK2170
+        genericIdentifiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/PersonIdentification'
     PartyIdentifiers:
       type: object
       properties:
-        bIC:
-          maxLength: 36
-          minLength: 1
-          #          pattern: ^[A-Z0-9]{4,4}[A-Z]{2,2}[A-Z0-9]{2,2}([A-Z0-9]{3,3}){0,1}$
-          type: string
-          description: |
-            Business identification code of the organization. Code allocated to a financial or non-financial institution by the ISO 9362 Registration Authority, as described in ISO 9362: 2014 - "Banking - Banking telecommunication messages - Business identifier code (BIC)".
-          example: AAAABBCCXXX
         lEI:
           maxLength: 36
           minLength: 1
@@ -1050,22 +1349,6 @@ components:
       type: string
       description: Short name by which a party is known and which is usually used to identify that party.
       example: Jane Birkin
-    RelatedParty:
-      type: object
-      properties:
-        partyId:
-          $ref: '#/components/schemas/Id'
-        partyType:
-          $ref: '#/components/schemas/PartyType'
-        partyRelationType:
-          $ref: '#/components/schemas/PartyRelationType'
-    PartyRelationType:
-      maxLength: 35
-      minLength: 1
-      type: string
-      description: |
-        Type of relation between parties.  Some ISO 20022 compliant values for Organizations are: representativeOfficer, responsibleParty.
-      example: Owner
     CountryCode:
       pattern: ^([A-Z]{2,2})?$
       type: string
@@ -1289,11 +1572,46 @@ components:
         Widow,
         StableUnion
       example: Single
+    StructuredName:
+      type: object
+      properties:
+        firstName:
+          maxLength: 200
+          minLength: 1
+          type: string
+          description: |
+            Person given first name.
+          example: Mary
+        middleName:
+          maxLength: 200
+          minLength: 1
+          type: string
+          description: |
+            Person given middle name.
+          example: Joe
+        lastName:
+          maxLength: 200
+          minLength: 1
+          type: string
+          description: |
+            Person surname.
+          example: Smith
+      description: |
+        The structured name is used to initialize the person name with the format <firstName middleName lastName>
     Person:
       type: object
       properties:
-        personId:
-          $ref: '#/components/schemas/Id'
+        lEI:
+          maxLength: 36
+          minLength: 1
+          #          pattern: ^\[A-Z0-9]{18,18}[0-9]{2,2}$
+          type: string
+          description: |
+            Legal Entity Identifier is a code allocated to a party as described in ISO 17442 "Financial Services - Legal Entity Identifier (LEI)".
+        genericIdentifiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/PersonIdentification'
         name:
           $ref: '#/components/schemas/PartyName'
         shortName:
@@ -1315,49 +1633,40 @@ components:
             Domestic, Foreign, Mixed
         status:
           $ref: '#/components/schemas/InstructionStatus'
+        taxInformation:
+          $ref: '#/components/schemas/TaxInformation'
         supplementaryData:
-          type: array
-          items:
-            $ref: '#/components/schemas/SupplementaryData'
-        bIC:
-          maxLength: 36
-          minLength: 1
-          #          pattern: ^\[A-Z0-9]{4,4}[A-Z]{2,2}[A-Z0-9]{2,2}([A-Z0-9]{3,3}){0,1}$
-          type: string
-          description: |
-            Business identification code of the organization. Code allocated to a financial or non-financial institution by the ISO 9362 Registration Authority, as described in ISO 9362: 2014 - "Banking - Banking telecommunication messages - Business identifier code (BIC)".
-        lEI:
-          maxLength: 36
-          minLength: 1
-          #          pattern: ^\[A-Z0-9]{18,18}[0-9]{2,2}$
-          type: string
-          description: |
-            Legal Entity Identifier is a code allocated to a party as described in ISO 17442 "Financial Services - Legal Entity Identifier (LEI)".
-        genericIdentifiers:
-          type: array
-          items:
-            $ref: '#/components/schemas/PersonIdentification'
+          $ref: '#/components/schemas/SupplementaryData'
         placeAndDateOfBirth:
           $ref: '#/components/schemas/PlaceAndDateOfBirth'
         signature:
           $ref: '#/components/schemas/DigitalSignature'
         contact:
           $ref: '#/components/schemas/PersonContactDetails'
+        headOfHousehold:
+          type: boolean
+          description: Indicates whether the person pay the costs of supporting a house.
+          example: true
+        civilStatus:
+          $ref: '#/components/schemas/CivilStatus'
+        structuredName:
+          $ref: '#/components/schemas/StructuredName'
+        personId:
+          $ref: '#/components/schemas/Id'
+    PersonAccountResponse:
+      type: object
+      properties:
+        personId:
+          $ref: '#/components/schemas/Id'
+        personName:
+          $ref: '#/components/schemas/PartyName'
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Account'
     OrganizationRequest:
       type: object
       properties:
-        genericIdentifiers:
-          type: array
-          items:
-            $ref: '#/components/schemas/OrganizationIdentification'
-        bIC:
-          maxLength: 36
-          minLength: 1
-          #          pattern: ^[A-Z0-9]{4,4}[A-Z]{2,2}[A-Z0-9]{2,2}([A-Z0-9]{3,3}){0,1}$
-          type: string
-          description: |
-            Business identification code of the organization. Code allocated to a financial or non-financial institution by the ISO 9362 Registration Authority, as described in ISO 9362: 2014 - "Banking - Banking telecommunication messages - Business identifier code (BIC)".
-          example: AAAABBCCXXX
         lEI:
           maxLength: 36
           minLength: 1
@@ -1366,6 +1675,18 @@ components:
           description: |
             Legal Entity Identifier is a code allocated to a party as described in ISO 17442 "Financial Services - Legal Entity Identifier (LEI)".
           example: 2ZCNRR8UK83OBTEK2170
+        bIC:
+          maxLength: 36
+          minLength: 1
+          #          pattern: ^[A-Z0-9]{4,4}[A-Z]{2,2}[A-Z0-9]{2,2}([A-Z0-9]{3,3}){0,1}$
+          type: string
+          description: |
+            Business identification code of the organization. Code allocated to a financial or non-financial institution by the ISO 9362 Registration Authority, as described in ISO 9362: 2014 - "Banking - Banking telecommunication messages - Business identifier code (BIC)".
+          example: AAAABBCCXXX
+        genericIdentifiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrganizationIdentification'
         name:
           $ref: '#/components/schemas/PartyName'
         shortName:
@@ -1394,18 +1715,6 @@ components:
     OrganizationIdentifiers:
       type: object
       properties:
-        genericIdentifiers:
-          type: array
-          items:
-            $ref: '#/components/schemas/OrganizationIdentification'
-        bIC:
-          maxLength: 36
-          minLength: 1
-          #          pattern: ^[A-Z0-9]{4,4}[A-Z]{2,2}[A-Z0-9]{2,2}([A-Z0-9]{3,3}){0,1}$
-          type: string
-          description: |
-            Business identification code of the organization. Code allocated to a financial or non-financial institution by the ISO 9362 Registration Authority, as described in ISO 9362: 2014 - "Banking - Banking telecommunication messages - Business identifier code (BIC)".
-          example: AAAABBCCXXX
         lEI:
           maxLength: 36
           minLength: 1
@@ -1414,6 +1723,18 @@ components:
           description: |
             Legal Entity Identifier is a code allocated to a party as described in ISO 17442 "Financial Services - Legal Entity Identifier (LEI)".
           example: 2ZCNRR8UK83OBTEK2170
+        bIC:
+          maxLength: 36
+          minLength: 1
+          #          pattern: ^[A-Z0-9]{4,4}[A-Z]{2,2}[A-Z0-9]{2,2}([A-Z0-9]{3,3}){0,1}$
+          type: string
+          description: |
+            Business identification code of the organization. Code allocated to a financial or non-financial institution by the ISO 9362 Registration Authority, as described in ISO 9362: 2014 - "Banking - Banking telecommunication messages - Business identifier code (BIC)".
+          example: AAAABBCCXXX
+        genericIdentifiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrganizationIdentification'
     OrganizationIdentification:
       type: object
       properties:
@@ -1437,22 +1758,6 @@ components:
     Organization:
       type: object
       properties:
-        organizationId:
-          $ref: '#/components/schemas/Id'
-        placeOfOperationAddress:
-          $ref: '#/components/schemas/PostalAddress'
-        genericIdentifiers:
-          type: array
-          items:
-            $ref: '#/components/schemas/OrganizationIdentification'
-        bIC:
-          maxLength: 36
-          minLength: 1
-          #          pattern: ^[A-Z0-9]{4,4}[A-Z]{2,2}[A-Z0-9]{2,2}([A-Z0-9]{3,3}){0,1}$
-          type: string
-          description: |
-            Business identification code of the organization. Code allocated to a financial or non-financial institution by the ISO 9362 Registration Authority, as described in ISO 9362: 2014 - "Banking - Banking telecommunication messages - Business identifier code (BIC)".
-          example: AAAABBCCXXX
         lEI:
           maxLength: 36
           minLength: 1
@@ -1461,6 +1766,18 @@ components:
           description: |
             Legal Entity Identifier is a code allocated to a party as described in ISO 17442 "Financial Services - Legal Entity Identifier (LEI)".
           example: 2ZCNRR8UK83OBTEK2170
+        bIC:
+          maxLength: 36
+          minLength: 1
+          #          pattern: ^[A-Z0-9]{4,4}[A-Z]{2,2}[A-Z0-9]{2,2}([A-Z0-9]{3,3}){0,1}$
+          type: string
+          description: |
+            Business identification code of the organization. Code allocated to a financial or non-financial institution by the ISO 9362 Registration Authority, as described in ISO 9362: 2014 - "Banking - Banking telecommunication messages - Business identifier code (BIC)".
+          example: AAAABBCCXXX
+        genericIdentifiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrganizationIdentification'
         name:
           $ref: '#/components/schemas/PartyName'
         shortName:
@@ -1486,15 +1803,51 @@ components:
           $ref: '#/components/schemas/TaxInformation'
         supplementaryData:
           $ref: '#/components/schemas/SupplementaryData'
-    BranchesJson400:
+        organizationId:
+          $ref: '#/components/schemas/Id'
+        placeOfOperationAddress:
+          $ref: '#/components/schemas/PostalAddress'
+    OrganizationAccountResponse:
+      type: object
+      properties:
+        organizationId:
+          $ref: '#/components/schemas/Id'
+        organizationName:
+          $ref: '#/components/schemas/PartyName'
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Account'
+    Product:
+      type: object
+      properties:
+        productId:
+          $ref: '#/components/schemas/Id'
+        name:
+          maxLength: 35
+          minLength: 1
+          type: string
+        description:
+          $ref: '#/components/schemas/Description'
+        acccountType:
+          maxLength: 35
+          minLength: 1
+          type: string
+        productType:
+          maxLength: 35
+          minLength: 1
+          type: string
+        customData:
+          $ref: '#/components/schemas/SupplementaryData'
+    Branches:
       required:
         - branches
       properties:
         branches:
           type: array
           items:
-            $ref: '#/components/schemas/BranchJson400'
-    BranchJson400:
+            $ref: '#/components/schemas/Branch'
+    Branch:
       type: object
       properties:
         encodedKey:
@@ -1532,10 +1885,17 @@ components:
       required: true
       schema:
         $ref: '#/components/schemas/Id'
-    partyId:
-      name: partyId
+    personId:
+      name: personId
       in: path
-      description: Party Identification
+      description: Person Identification
+      required: true
+      schema:
+        $ref: '#/components/schemas/Id'
+    organizationId:
+      name: organizationId
+      in: path
+      description: Organization Identification
       required: true
       schema:
         $ref: '#/components/schemas/Id'

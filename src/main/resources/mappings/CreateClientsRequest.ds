@@ -4,7 +4,7 @@ output application/json
 input payload application/json
 */
 {
-  "lastName": payload.lastName,
-  "firstName": payload.firstName,
+  "lastName": payload.structuredName.lastName,
+  "firstName": payload.structuredName.firstName,
   "state": payload.status
 }
