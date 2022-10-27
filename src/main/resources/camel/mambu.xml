@@ -370,10 +370,15 @@
         </setProperty>
         <setProperty name="initialAmount">
             <datasonnet bodyMediaType="application/json" outputMediaType="text/plain" resultType="java.lang.String">
-                ds.select(body,"initialAmount")
+                local selector(obj,key,dValue = null) = ds.or(ds.select(obj,key), dValue);
+                std.prune(selector(payload, "initialAmount", "0"))
             </datasonnet>
         </setProperty>
         <log message="initialAmount: ${exchangeProperty.initialAmount}"/>
+        <setProperty name="originalBody">
+            <simple>${body}</simple>
+        </setProperty>
+        <log message="originalBody: ${exchangeProperty.originalBody}"/>
 <!--        <to uri="direct:startRoute"/>-->
         <log message="== openBankingAccount Route"/>
 
@@ -396,7 +401,10 @@
         </setBody>
         <log message="POST deposits with request: ${body}"/>
         <toD uri="https://{{mambu.host}}/api/deposits?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
-        <log message="POST deposits response is ${body}"/>
+        <setProperty name="postDepositResponse">
+            <simple>${body}</simple>
+        </setProperty>
+        <log message="POST deposits response is ${exchangeProperty.postDepositResponse}"/>
         <setProperty name="id">
             <datasonnet bodyMediaType="application/json" outputMediaType="text/plain" resultType="java.lang.String">
                 ds.select(body,"id")
@@ -416,6 +424,31 @@
         <log message="POST deposits change state with request: ${body}"/>
         <toD uri="https://{{mambu.host}}/api/deposits/${exchangeProperty.id}:changeState?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
         <log message="POST deposits change state response is ${body}"/>
+        <setProperty name="accountState">
+            <datasonnet bodyMediaType="application/json" outputMediaType="text/plain" resultType="java.lang.String">
+                ds.select(body,"accountState")
+            </datasonnet>
+        </setProperty>
+        <log message="ds accountState: ${exchangeProperty.accountState}"/>
+
+        <setBody>
+            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                resource:classpath:mappings/GatherDepositsResponse.ds
+            </datasonnet>
+        </setBody>
+        <log message="GatherDepositsResponse output: ${body}"/>
+
+        <log message="originalBody: ${exchangeProperty.originalBody}"/>
+
+        <setBody>
+            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                resource:classpath:mappings/CreateDepositsResponse.ds
+            </datasonnet>
+        </setBody>
+        <log message="CreateDepositsResponse output: ${body}"/>
+        <setProperty name="finalResponse">
+            <simple>${body}</simple>
+        </setProperty>
 
         <choice>
             <when>
@@ -438,6 +471,11 @@
                 <log message="no deposit performed due to initialAmount not > 0"/>
             </otherwise>
         </choice>
+
+        <setBody>
+            <simple>${exchangeProperty.finalResponse}</simple>
+        </setBody>
+        <log message="POST /accounts response: ${body}"/>
 
 <!--        <to uri="direct:endRoute"/>-->
     </route>
