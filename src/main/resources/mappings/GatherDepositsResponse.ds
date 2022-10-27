@@ -1,0 +1,12 @@
+/** DataSonnet
+version=2.0
+output application/json
+input payload application/json
+*/
+{
+  "status": payload.accountState,
+  "statusDateAndTime": payload.approvedDate,
+  "openDate": payload.creationDate,
+  "accountNumber": payload.id,
+  "accountId": payload.encodedKey
+}
