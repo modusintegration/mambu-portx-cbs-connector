@@ -1,0 +1,21 @@
+/** DataSonnet
+version=2.0
+output application/json
+input payload application/json
+*/
+{
+  "accountType": payload.accountType,
+  "name": payload.name,
+  "initialAmount": payload.initialAmount,
+  "parties": [
+    {
+      "partyType": payload.parties[0].partyType,
+      "partyId": payload.parties[0].partyId
+    }
+  ],
+  "status": cml.exchangeProperty("accountState"),
+  "statusDateAndTime": cml.exchangeProperty("approvedDate"),
+  "openDate": cml.exchangeProperty("creationDate"),
+  "accountNumber": cml.exchangeProperty("id"),
+  "accountId": cml.exchangeProperty("encodedKey")
+}

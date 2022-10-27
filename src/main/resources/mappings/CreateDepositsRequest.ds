@@ -4,8 +4,8 @@ output application/json
 input payload application/json
 */
 {
-  "accountHolderKey": payload.relatedAccounts[0].accountId,
-  "accountHolderType": payload.accountType,
+  "accountHolderKey": payload.parties[0].partyId,
+  "accountHolderType": if payload.parties[0].partyType=="Person" then "CLIENT" else "GROUP",
   "name": payload.name,
   "productTypeKey": payload.productId
 }
