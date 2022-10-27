@@ -1,0 +1,16 @@
+/** DataSonnet
+version=2.0
+output application/json
+input payload application/json
+*/
+{
+  "accountId": payload.encodedKey,
+  "accountNumber": payload.id,
+  "parties": [
+    {
+      "partyId": payload.accountHolderKey,
+      "partyType": if payload.accountHolderType=="GROUP" then "Organization" else "Person",
+      "partyRelationType": "Owner"
+    }
+  ]
+}
