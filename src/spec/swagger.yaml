@@ -164,7 +164,7 @@ paths:
     get:
       tags:
         - Accounts
-      summary: Retrieves an account balance ammounts
+      summary: Retrieves an account balance amounts
       operationId: findAccountBalances
       parameters:
         - name: accountId
@@ -186,6 +186,50 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountBalanceResponse'
+        "400":
+          description: Bad Request. Account Id could not be processed due to format errors.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: No matching accounts have found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /accounts/{accountId}/transactions:
+    get:
+      tags:
+        - Accounts
+      summary: Retrieves the account transactions
+      operationId: findAccountTransactions
+      parameters:
+        - name: accountId
+          in: path
+          description: Account Identification
+          required: true
+          schema:
+            $ref: '#/components/schemas/AccountId'
+        - name: bankId
+          in: header
+          description: Bank Identification
+#          required: true
+          schema:
+            $ref: '#/components/schemas/Id'
+      responses:
+        "200":
+          description: Matching account was found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountTransactionsResponse'
         "400":
           description: Bad Request. Account Id could not be processed due to format errors.
           content:
@@ -1148,7 +1192,7 @@ components:
       properties:
         balanceName:
           $ref: '#/components/schemas/BalanceName'
-        ammount:
+        amount:
           $ref: '#/components/schemas/AmountInCents'
         currency:
           $ref: '#/components/schemas/CurrencyCode'
@@ -1173,6 +1217,153 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Balance'
+    AccountTransactionsResponse:
+      type: object
+      properties:
+        accountId:
+          $ref: '#/components/schemas/AccountId'
+        accountNumber:
+          $ref: '#/components/schemas/AccountNumber'
+        accountType:
+          $ref: '#/components/schemas/AccountType'
+        currency:
+          $ref: '#/components/schemas/CurrencyCode'
+        currentBalance:
+          $ref: '#/components/schemas/AmountInCents'
+        availableBalance:
+          $ref: '#/components/schemas/AmountInCents'
+        transactions:
+          type: array
+          description: Account Transactions
+          items:
+            $ref: '#/components/schemas/Transaction'
+    Transaction:
+      type: object
+      properties:
+        transactionId:
+          $ref: '#/components/schemas/TransactionId'
+        amount:
+          $ref: '#/components/schemas/AmountInCents'
+        creditDebitIndicator:
+          $ref: '#/components/schemas/CreditDebitIndicator'
+        bankTransactionDomain:
+          $ref: '#/components/schemas/BankTransactionDomain'
+        bankTransactionFamily:
+          $ref: '#/components/schemas/BankTransactionFamily'
+        status:
+          $ref: '#/components/schemas/TransactionStatus'
+        reversalIndicator:
+          $ref: '#/components/schemas/ReversalIndicator'
+        creationDate:
+          $ref: '#/components/schemas/DateAndTime'
+        dateValue:
+          $ref: '#/components/schemas/DateAndTime'
+        bookingDate:
+          $ref: '#/components/schemas/DateAndTime'
+        availabilityDate:
+          $ref: '#/components/schemas/DateAndTime'
+        charges:
+          $ref: '#/components/schemas/AmountInCents'
+        interest:
+          $ref: '#/components/schemas/AmountInCents'
+        currentBalance:
+          $ref: '#/components/schemas/AmountInCents'
+        availableBalance:
+          $ref: '#/components/schemas/AmountInCents'
+        details:
+          $ref: '#/components/schemas/TransactionDetails'
+        supplementaryData:
+          $ref: '#/components/schemas/SupplementaryData'
+    TransactionId:
+      maxLength: 36
+      minLength: 1
+      type: string
+      description: Identification of the Transaction.
+      example: 0dd926fe-1ca2-11ed-861d-0242ac120002
+    CreditDebitIndicator:
+      maxLength: 17
+      minLength: 1
+      type: string
+      description: |
+        Specifies if an operation is an increase or a decrease. Possible ISO 20022 compliant values names are:
+        Credit,
+        Debit.
+      example: Credit
+    BankTransactionDomain:
+      maxLength: 35
+      minLength: 1
+      type: string
+      description: "Specifies the bank transaction code domain. Some possible ISO 20022 compliant values are: \n Payments,\n AccountManagement.\n"
+      example: Payments
+    BankTransactionFamily:
+      maxLength: 35
+      minLength: 1
+      type: string
+      description: "Tpecifies the bank transaction code family. Some possible ISO 20022 compliant values are: \n For Payments: CounterCashDeposit, CounterCashWithdrawal, IssuedTransfers, BookTransfer\n For AccountManagement: AccountClosing, AccountOpening, AccountTransfer, FloatAdjustment.\n"
+      example: CounterCashDeposit
+    TransactionStatus:
+      maxLength: 35
+      minLength: 1
+      type: string
+      description: "Specifies the status of an entry on the books of the account servicer. Some possible ISO 20022 compliant values are: \n Booked, Future, Information, Pending.\n"
+      example: Booked
+    ReversalIndicator:
+      type: boolean
+      description: "Indicates whether or not the transaction is the result of a reversal.\nUsage: This element should only be present if the entry is the result of a reversal.\nIf the CreditDebitIndicator is Credit and ReversalIndicator is Yes, the original operation was a debit entry.\nIf the CreditDebitIndicator is Debit and ReversalIndicator is Yes, the original operation was a credit entry.\n   \n"
+    TransactionDetails:
+      type: object
+      properties:
+        counterpartAccount:
+          $ref: '#/components/schemas/AccountIdentifiersResponse'
+        payment:
+          $ref: '#/components/schemas/PaymentIdentifiers'
+        check:
+          $ref: '#/components/schemas/Check'
+    AccountIdentifiersResponse:
+      type: object
+      properties:
+        iBAN:
+          $ref: '#/components/schemas/IBAN'
+        accountNumber:
+          $ref: '#/components/schemas/AccountNumber'
+        routingNumber:
+          $ref: '#/components/schemas/RoutingNumber'
+        identifiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountIdentification'
+        accountId:
+          $ref: '#/components/schemas/AccountId'
+        accountType:
+          $ref: '#/components/schemas/AccountType'
+    PaymentIdentifiers:
+      type: object
+      properties:
+        paymentNumber:
+          $ref: '#/components/schemas/PaymentNumber'
+        clearingSystemType:
+          $ref: '#/components/schemas/ClearingSystemType'
+    PaymentNumber:
+      maxLength: 35
+      type: string
+      description: |
+        Unique identification, as assigned by the first instructing agent, to unambiguously identify the payment that is passed on, unchanged, throughout the chain.
+      example: "12345678"
+    ClearingSystemType:
+      type: string
+      description: "External cash clearing system. Possible ISO compliant values are: \nUSFedACH, FedNet, USFedwire.\n"
+    Check:
+      type: object
+      properties:
+        checkType:
+          type: string
+          description: "Specifies the type of the check. Possible ISO compliant values are: \nCustomerCheque, CertifiedCustomerCheque, BankCheque, Draft, ElectronicDraft.\n"
+        checkNumber:
+          maxLength: 35
+          type: string
+          description: |
+            The number on the face of the check indicating the id of that check in a series.
+      description: Characteristics of a check
     AccountPartyResponse:
       type: object
       properties:
