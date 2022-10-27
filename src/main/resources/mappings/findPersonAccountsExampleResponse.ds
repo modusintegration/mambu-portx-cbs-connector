@@ -1,61 +1,15 @@
+/** DataSonnet
+version=2.0
+output application/json
+input payload application/json
+*/
+
+local getAccounts(person) = std.objectHas(person, "accountHolderKey") &&
+                          person.accountHolderKey == "8a44d6d97c81ddbe017ca40798266956";
+                          
+                          
 {
-  "personId": "5fb9d4d6-1a3c-11ed-861d-0242ac120002",
-  "personName": "Jane Birkin",
-  "accounts": [
-    {
-      "iBAN": "AL35202111090000000001234567",
-      "accountNumber": "12345678",
-      "routingNumber": "12345678",
-      "identifiers": [
-        {
-          "identification": "string",
-          "schemeName": "BBANIdentifier",
-          "issuer": "string"
-        }
-      ],
-      "servicerBranchId": "SEA_1",
-      "accountType": "Current",
-      "accountOwnershipType": "Owner",
-      "productId": "PD_CA_0002",
-      "name": "Hermes PD_CA 0002",
-      "accountPurpose": "string",
-      "currency": "USD",
-      "initialAmount": "100",
-      "contract": {
-        "documentReference": "string",
-        "signOffDate": "2022-04-17"
-      },
-      "parties": [
-        {
-          "partyId": "5fb9d4d6-1a3c-11ed-861d-0242ac120002",
-          "partyType": "Person",
-          "partyAccountRole": "PaymentManager"
-        }
-      ],
-      "relatedAccounts": [
-        {
-          "accountRelationType": "string",
-          "accountId": "0dd926fe-1ca2-11ed-861d-0242ac120002"
-        }
-      ],
-      "supplementaryData": [
-        {}
-      ],
-      "status": "Pending",
-      "statusDateAndTime": "2022-04-17T08:00:00Z",
-      "substatus": "string",
-      "openDate": "2022-04-17",
-      "closeDate": "2022-04-17",
-      "maturityDate": "2022-04-17",
-      "balances": [
-        {
-          "balanceName": "Available",
-          "ammount": "100",
-          "currency": "USD",
-          "calculationDate": "2022-04-17T08:00:00Z"
-        }
-      ],
-      "accountId": "0dd926fe-1ca2-11ed-861d-0242ac120002"
-    }
-  ]
+    "personId": "8a44d6d97c81ddbe017ca40798266956",
+    "personName": "Jane Birkin",
+    "accounts" : std.filter(function(person) getAccounts(person), payload)
 }
