@@ -3,17 +3,11 @@ version=2.0
 output application/json
 input payload application/json
 */
-
-local getAccounts(person) = std.objectHas(person, "accountHolderKey") &&
-                          person.accountHolderKey == cml.header('personId') && 
-                          std.objectHas(person, "accountHolderType") &&
-                          person.accountHolderType == "CLIENT";
-local result = std.filter(function(person) getAccounts(person), payload);
                           
 local clientName = cml.exchangeProperty('clientName');
 local selector(obj,key,dValue = null) = ds.or(ds.select(obj,key), dValue);
 
-if (std.length(result) > 0) then                          
+if (std.length(payload) > 0) then                          
   std.prune({
       "personId": cml.header('personId'),
       "personName": clientName,
@@ -47,7 +41,7 @@ if (std.length(result) > 0) then
         ],
 
         "accountId": selector(x, "encodedKey")
-      } for x in result
+      } for x in payload
     ]
   })
 else

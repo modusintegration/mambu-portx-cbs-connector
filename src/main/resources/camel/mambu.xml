@@ -330,7 +330,7 @@
         </setProperty>
 
         <log message="GET deposits with id: ${header.personId}"/>
-        <toD uri="https://{{mambu.host}}/api/deposits?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
+        <toD uri="https://{{mambu.host}}/api/deposits?accountHolderType=CLIENT&amp;accountHolderId=${header.personId}&amp;throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
         <log message="GET deposits response is ${body}"/>
         <setBody>
             <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
@@ -371,7 +371,7 @@
         </setProperty>
 
         <log message="GET deposits with id: ${header.organizationId}"/>
-        <toD uri="https://{{mambu.host}}/api/deposits?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
+        <toD uri="https://{{mambu.host}}/api/deposits?accountHolderType=GROUP&amp;accountHolderId=${header.organizationId}&amp;throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
         <log message="GET deposits response is ${body}"/>
         <setBody>
             <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
