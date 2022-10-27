@@ -362,13 +362,13 @@
         </setProperty>
         <process ref="encodeAuthHeader" />
 
-        <log message="GET clients with id: ${header.organizationId}"/>
-        <toD uri="https://{{mambu.host}}/api/clients/${header.organizationId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
-        <log message="GET clients response is ${body}"/>
+        <log message="GET groups with id: ${header.organizationId}"/>
+        <toD uri="https://{{mambu.host}}/api/groups/${header.organizationId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
+        <log message="GET groups response is ${body}"/>
 
         <setProperty name="clientName">
             <datasonnet bodyMediaType="application/json" outputMediaType="text/plain" resultType="java.lang.String">
-                ds.select(body,"firstName") + " " + ds.select(body,"lastName")
+                ds.select(body,"groupName")
             </datasonnet>
         </setProperty>
 
