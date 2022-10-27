@@ -319,12 +319,22 @@
         </setProperty>
         <process ref="encodeAuthHeader" />
 
-        <!--        <log message="GET deposits with id: ${header.accountId}"/>-->
-        <!--        <toD uri="https://{{mambu.host}}/api/deposits/${header.accountId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>-->
-        <!--        <log message="GET deposits response is ${body}"/>-->
+        <log message="GET clients with id: ${header.personId}"/>
+        <toD uri="https://{{mambu.host}}/api/clients/${header.personId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
+        <log message="GET clients response is ${body}"/>
+
+        <setProperty name="clientName">
+            <datasonnet bodyMediaType="application/json" outputMediaType="text/plain" resultType="java.lang.String">
+                ds.select(body,"firstName") + " " + ds.select(body,"lastName")
+            </datasonnet>
+        </setProperty>
+
+        <log message="GET deposits with id: ${header.personId}"/>
+        <toD uri="https://{{mambu.host}}/api/deposits?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
+        <log message="GET deposits response is ${body}"/>
         <setBody>
             <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
-                resource:classpath:mappings/findPersonAccountsExampleResponse.ds
+                resource:classpath:mappings/findPersonAccountsResponse.ds
             </datasonnet>
         </setBody>
         <log message="findPersonAccounts example response is: ${body}"/>
@@ -350,12 +360,22 @@
         </setProperty>
         <process ref="encodeAuthHeader" />
 
-        <!--        <log message="GET deposits with id: ${header.accountId}"/>-->
-        <!--        <toD uri="https://{{mambu.host}}/api/deposits/${header.accountId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>-->
-        <!--        <log message="GET deposits response is ${body}"/>-->
+        <log message="GET groups with id: ${header.organizationId}"/>
+        <toD uri="https://{{mambu.host}}/api/groups/${header.organizationId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
+        <log message="GET groups response is ${body}"/>
+
+        <setProperty name="clientName">
+            <datasonnet bodyMediaType="application/json" outputMediaType="text/plain" resultType="java.lang.String">
+                ds.select(body,"groupName")
+            </datasonnet>
+        </setProperty>
+
+        <log message="GET deposits with id: ${header.organizationId}"/>
+        <toD uri="https://{{mambu.host}}/api/deposits?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
+        <log message="GET deposits response is ${body}"/>
         <setBody>
             <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
-                resource:classpath:mappings/findOrganizationAccountsExampleResponse.ds
+                resource:classpath:mappings/findOrganizationAccountsResponse.ds
             </datasonnet>
         </setBody>
         <log message="findOrganizationAccounts example response is: ${body}"/>

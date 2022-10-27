@@ -1,0 +1,54 @@
+/** DataSonnet
+version=2.0
+output application/json
+input payload application/json
+*/
+
+local getAccounts(organization) = std.objectHas(organization, "accountHolderKey") &&
+                          organization.accountHolderKey == cml.header('organizationId') && 
+                          std.objectHas(organization, "accountHolderType") &&
+                          organization.accountHolderType == "GROUP";
+local result = std.filter(function(organization) getAccounts(organization), payload);
+                          
+local clientName = cml.exchangeProperty('clientName');
+local selector(obj,key,dValue = null) = ds.or(ds.select(obj,key), dValue);
+
+if (std.length(result) > 0) then                                                    
+  std.prune({
+      "organizationId": cml.header('organizationId'),
+      "organizationName": clientName,
+    "accounts": [
+      {
+        "accountNumber": selector(x, "id"),
+        "servicerBranchId": selector(x, "assignedBranchKey"),
+        "accountType": selector(x, "accountType"),
+        "accountOwnershipType": "Owner",
+        "productId": selector(x, "productTypeKey"),
+        "name": selector(x, "name"),
+        "currency": selector(x, "currencyCode"),
+        "parties": [
+          {
+            "partyId": selector(x, "accountHolderKey"),
+            "partyType": "Organization",
+            "partyAccountRole": "AccountOwner"
+          }
+        ],
+        "status": selector(x, "accountState"),
+        "statusDateAndTime": selector(x, "lastModifiedDate"),
+        "openDate": selector(x, "creationDate"),
+        "closeDate": selector(x, "closeDate"),
+        "maturityDate": selector(x, "maturityDate"),
+        "balances": [
+          {
+            "balanceName": "Available",
+            "amount": x.balances.availableBalance,
+            "currency": selector(x, "currencyCode"),
+          }
+        ],
+
+        "accountId": selector(x, "encodedKey")
+      } for x in result
+    ]
+  })
+else
+  []
