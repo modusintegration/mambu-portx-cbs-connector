@@ -448,22 +448,55 @@
             </datasonnet>
         </setProperty>
         <log message="ds accountState: ${exchangeProperty.accountState}"/>
+        <setProperty name="approvedDate">
+            <datasonnet bodyMediaType="application/json" outputMediaType="text/plain" resultType="java.lang.String">
+                ds.select(body,"approvedDate")
+            </datasonnet>
+        </setProperty>
+        <log message="ds approvedDate: ${exchangeProperty.approvedDate}"/>
+        <setProperty name="creationDate">
+            <datasonnet bodyMediaType="application/json" outputMediaType="text/plain" resultType="java.lang.String">
+                ds.select(body,"creationDate")
+            </datasonnet>
+        </setProperty>
+        <log message="ds creationDate: ${exchangeProperty.creationDate}"/>
+        <setProperty name="encodedKey">
+            <datasonnet bodyMediaType="application/json" outputMediaType="text/plain" resultType="java.lang.String">
+                ds.select(body,"encodedKey")
+            </datasonnet>
+        </setProperty>
+        <log message="ds encodedKey: ${exchangeProperty.encodedKey}"/>
+
+<!--        <setBody>-->
+<!--            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">-->
+<!--                resource:classpath:mappings/GatherDepositsResponse.ds-->
+<!--            </datasonnet>-->
+<!--        </setBody>-->
+<!--        <log message="GatherDepositsResponse output: ${body}"/>-->
+
+<!--        <log message="originalBody: ${exchangeProperty.originalBody}"/>-->
+
+<!--        <setBody>-->
+<!--            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">-->
+<!--                resource:classpath:mappings/CreateDepositsResponse.ds-->
+<!--            </datasonnet>-->
+<!--        </setBody>-->
+<!--        <log message="CreateDepositsResponse output: ${body}"/>-->
 
         <setBody>
-            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
-                resource:classpath:mappings/GatherDepositsResponse.ds
-            </datasonnet>
+            <simple>${exchangeProperty.originalBody}</simple>
         </setBody>
-        <log message="GatherDepositsResponse output: ${body}"/>
 
         <log message="originalBody: ${exchangeProperty.originalBody}"/>
+        <log message="body: ${body}"/>
 
-        <setBody>
-            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
-                resource:classpath:mappings/CreateDepositsResponse.ds
-            </datasonnet>
-        </setBody>
-        <log message="CreateDepositsResponse output: ${body}"/>
+                <setBody>
+                    <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                        resource:classpath:mappings/CreateFinalDepositsResponse.ds
+                    </datasonnet>
+                </setBody>
+                <log message="GatherDepositsResponse output: ${body}"/>
+
         <setProperty name="finalResponse">
             <simple>${body}</simple>
         </setProperty>
