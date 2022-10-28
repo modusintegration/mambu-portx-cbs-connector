@@ -42,7 +42,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"status\": \"INACTIVE\",\n    \"structuredName\": {\n        \"firstName\": \"Demo12\",\n        \"lastName\": \"Smith\"\n    }\n}",
+					"raw": "{\n    \"status\": \"INACTIVE\",\n    \"structuredName\": {\n        \"firstName\": \"Demo\",\n        \"lastName\": \"Smith1\"\n    }\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -78,7 +78,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"status\": \"INACTIVE\",\n    \"structuredName\": {\n        \"firstName\": \"Demo6\",\n        \"lastName\": \"Smith\"\n    }\n}",
+							"raw": "{\n    \"status\": \"INACTIVE\",\n    \"structuredName\": {\n        \"firstName\": \"Demo\",\n        \"lastName\": \"Smith1\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -86,19 +86,13 @@
 							}
 						},
 						"url": {
-							"raw": "https://demos.dev.custom.demos.tenant-1.portx.io/mambu-portx-cbs-connector/mambu-portx-cbs-connector/1.0/persons",
+							"raw": "https://{{host}}/{{demoApp}}/mambu-portx-cbs-connector/1.0/persons",
 							"protocol": "https",
 							"host": [
-								"demos",
-								"dev",
-								"custom",
-								"demos",
-								"tenant-1",
-								"portx",
-								"io"
+								"{{host}}"
 							],
 							"path": [
-								"mambu-portx-cbs-connector",
+								"{{demoApp}}",
 								"mambu-portx-cbs-connector",
 								"1.0",
 								"persons"
@@ -111,7 +105,7 @@
 					"header": [
 						{
 							"key": "Date",
-							"value": "Wed, 26 Oct 2022 16:30:40 GMT"
+							"value": "Fri, 28 Oct 2022 16:52:00 GMT"
 						},
 						{
 							"key": "Content-Type",
@@ -143,7 +137,7 @@
 						},
 						{
 							"key": "cookie",
-							"value": "AWSALB=Nx8g0sP0nj2pA6iMXuwtescBdZsGHWHhtGi6oOBAs8myR8rjjnANnVGaQNsTvJX0EmC583Z73uhSn2BiDydzlkU2zRsY81ca+Dxn4huL+0uYB9ibzvN0LwljRy8Y; AWSALBCORS=Nx8g0sP0nj2pA6iMXuwtescBdZsGHWHhtGi6oOBAs8myR8rjjnANnVGaQNsTvJX0EmC583Z73uhSn2BiDydzlkU2zRsY81ca+Dxn4huL+0uYB9ibzvN0LwljRy8Y"
+							"value": "AWSALB=1dsr/ZqojoQZOVsiudndSKvGg+a70ur2GUKEshKQ9mu8j/vJz7GSvuDq2YAjBmY7zgSxVxLSDfpu3dQRL8ycW6uP7Kneb0BaAsOfrwPlpC+fWBcf6QTyxMfLUFGv; AWSALBCORS=1dsr/ZqojoQZOVsiudndSKvGg+a70ur2GUKEshKQ9mu8j/vJz7GSvuDq2YAjBmY7zgSxVxLSDfpu3dQRL8ycW6uP7Kneb0BaAsOfrwPlpC+fWBcf6QTyxMfLUFGv"
 						},
 						{
 							"key": "feature-policy",
@@ -151,7 +145,7 @@
 						},
 						{
 							"key": "postman-token",
-							"value": "b5102b9a-ed89-4d9d-94b7-152f9812457c"
+							"value": "c344816e-d40c-4cbd-a0ea-97701c0f2089"
 						},
 						{
 							"key": "referrer-policy",
@@ -167,11 +161,11 @@
 						},
 						{
 							"key": "set-cookie",
-							"value": "AWSALB=SUEEYLBe5SnCdvY7sL77kIxQDPqk90tjQr1iyQHoQwm/40c9OMYIeY5D6lXJb0lG5rNQ7/nRpIlXo5CCSNl5zT/tRpaf9nGGGd9+R1mRcTizsffmLGURqJN9EBOw; Expires=Wed, 02 Nov 2022 16:30:39 GMT; Path=/"
+							"value": "AWSALB=sW3MNStYBxpZIwRuE5QItHe1qK6bbnU0INWBZkN+/ckrliHFXAsxblH0t6oVvtQkJKWo/K+628yFcBx7jOxmJ1WboQOPBrzVoyBYKCmmIjyld56cwNere9qouvKx; Expires=Fri, 04 Nov 2022 16:52:00 GMT; Path=/"
 						},
 						{
 							"key": "set-cookie",
-							"value": "AWSALBCORS=SUEEYLBe5SnCdvY7sL77kIxQDPqk90tjQr1iyQHoQwm/40c9OMYIeY5D6lXJb0lG5rNQ7/nRpIlXo5CCSNl5zT/tRpaf9nGGGd9+R1mRcTizsffmLGURqJN9EBOw; Expires=Wed, 02 Nov 2022 16:30:39 GMT; Path=/; SameSite=None; Secure"
+							"value": "AWSALBCORS=sW3MNStYBxpZIwRuE5QItHe1qK6bbnU0INWBZkN+/ckrliHFXAsxblH0t6oVvtQkJKWo/K+628yFcBx7jOxmJ1WboQOPBrzVoyBYKCmmIjyld56cwNere9qouvKx; Expires=Fri, 04 Nov 2022 16:52:00 GMT; Path=/; SameSite=None; Secure"
 						},
 						{
 							"key": "strict-transport-security",
@@ -179,7 +173,7 @@
 						},
 						{
 							"key": "x-amzn-trace-id",
-							"value": "Root=1-635960af-544a4ce93d635c335c981918"
+							"value": "Root=1-635c08af-37200fb92db98c145abdae89"
 						},
 						{
 							"key": "x-content-type-options",
@@ -211,7 +205,7 @@
 						},
 						{
 							"key": "x-request-id",
-							"value": "0364f567-2456-4190-af69-26d9894cf838"
+							"value": "ecf14bac-68fb-47ca-a88e-1b163c81c8c9"
 						},
 						{
 							"key": "x-xss-protection",
@@ -219,11 +213,11 @@
 						},
 						{
 							"key": "x-envoy-upstream-service-time",
-							"value": "1142"
+							"value": "632"
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"encodedKey\": \"8a44da1884101ae90184126a8a696255\",\n    \"id\": \"140314426\",\n    \"state\": \"INACTIVE\",\n    \"creationDate\": \"2022-10-26T09:30:40-07:00\",\n    \"lastModifiedDate\": \"2022-10-26T09:30:40-07:00\",\n    \"approvedDate\": \"2022-10-26T09:30:39-07:00\",\n    \"firstName\": \"Demo6\",\n    \"lastName\": \"Smith\",\n    \"preferredLanguage\": \"ENGLISH\",\n    \"clientRoleKey\": \"8a44cde37b592d63017b5fac6e400518\",\n    \"loanCycle\": 0,\n    \"groupLoanCycle\": 0,\n    \"addresses\": [],\n    \"idDocuments\": []\n}"
+					"body": "{\n    \"encodedKey\": \"8a44deec841953a201841f7da87922fc\",\n    \"id\": \"299848040\",\n    \"state\": \"INACTIVE\",\n    \"creationDate\": \"2022-10-28T09:52:00-07:00\",\n    \"lastModifiedDate\": \"2022-10-28T09:52:00-07:00\",\n    \"approvedDate\": \"2022-10-28T09:52:00-07:00\",\n    \"firstName\": \"Demo\",\n    \"lastName\": \"Smith1\",\n    \"preferredLanguage\": \"ENGLISH\",\n    \"clientRoleKey\": \"8a44cde37b592d63017b5fac6e400518\",\n    \"loanCycle\": 0,\n    \"groupLoanCycle\": 0,\n    \"addresses\": [],\n    \"idDocuments\": []\n}"
 				}
 			]
 		},
@@ -456,9 +450,6 @@
 				"disabledSystemHeaders": {}
 			},
 			"request": {
-				"auth": {
-					"type": "noauth"
-				},
 				"method": "POST",
 				"header": [
 					{
@@ -470,7 +461,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"accountType\": \"CLIENT\",\n  \"name\": \"JosephSmitDepositSavingsAccount22\",\n  \"productId\": \"{{productId}}\",\n  \"initialAmount\": \"15\",\n  \"relatedAccounts\": [\n    {\n      \"accountRelationType\": \"Parent\",\n      \"accountId\": \"{{personId}}\"\n    }\n  ]\n}",
+					"raw": "{\n    \"accountType\": \"Savings\",\n    \"name\": \"DemoSmit1DepositSavingsAccount1\",\n    \"productId\": \"{{productId}}\",\n    \"initialAmount\": \"15\",\n    \"parties\": [\n        {\n            \"partyId\": \"{{personId}}\",\n            \"partyType\": \"Person\"\n        }\n    ]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1405,28 +1396,22 @@
 			},
 			"response": [
 				{
-					"name": "Get Persons Accounts - example swagger response",
+					"name": "Get Persons Accounts - example response",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://demos.dev.custom.demos.tenant-1.portx.io/mambu-portx-cbs-connector/mambu-portx-cbs-connector/1.0/persons/140314426/accounts",
+							"raw": "https://{{host}}/{{demoApp}}/mambu-portx-cbs-connector/1.0/persons/{{personId}}/accounts",
 							"protocol": "https",
 							"host": [
-								"demos",
-								"dev",
-								"custom",
-								"demos",
-								"tenant-1",
-								"portx",
-								"io"
+								"{{host}}"
 							],
 							"path": [
-								"mambu-portx-cbs-connector",
+								"{{demoApp}}",
 								"mambu-portx-cbs-connector",
 								"1.0",
 								"persons",
-								"140314426",
+								"{{personId}}",
 								"accounts"
 							]
 						}
@@ -1437,11 +1422,11 @@
 					"header": [
 						{
 							"key": "Date",
-							"value": "Wed, 26 Oct 2022 17:25:34 GMT"
+							"value": "Thu, 27 Oct 2022 23:09:45 GMT"
 						},
 						{
 							"key": "Content-Type",
-							"value": "application/json"
+							"value": "application/vnd.mambu.v2+json"
 						},
 						{
 							"key": "Transfer-Encoding",
@@ -1464,24 +1449,64 @@
 							"value": "Basic c2hhc2hpOk1vZHVzYm94QDEyMw=="
 						},
 						{
+							"key": "content-security-policy",
+							"value": "object-src 'none'; upgrade-insecure-requests;"
+						},
+						{
 							"key": "cookie",
-							"value": "AWSALB=bzlc4EoNBZ43aVcV9/fvqF2pGjnOhzXscbdD+ytFelwx/fI2IHzYtcYKoOcEJNVbZGqKV2kAQM7MY4tI7WJCf8SvA53BsS4zebH+Y0ISjRjN897zgUELqyZ2qEfM; AWSALBCORS=bzlc4EoNBZ43aVcV9/fvqF2pGjnOhzXscbdD+ytFelwx/fI2IHzYtcYKoOcEJNVbZGqKV2kAQM7MY4tI7WJCf8SvA53BsS4zebH+Y0ISjRjN897zgUELqyZ2qEfM"
+							"value": "AWSALB=ImjyQ4OpkZUpRATiWC6bnoHf/YSbfNH/T77Hof8234l4N+pe3SmkJp1so54tTapjq44DY98vH/MA6RhQIDSLsBN3vP1OeZkX6rMx+Jjx29UmpVAJSiBi8PGoLP73; AWSALBCORS=ImjyQ4OpkZUpRATiWC6bnoHf/YSbfNH/T77Hof8234l4N+pe3SmkJp1so54tTapjq44DY98vH/MA6RhQIDSLsBN3vP1OeZkX6rMx+Jjx29UmpVAJSiBi8PGoLP73"
+						},
+						{
+							"key": "feature-policy",
+							"value": "oversized-images 'none'; unsized-media 'none';"
+						},
+						{
+							"key": "items-limit",
+							"value": "50"
+						},
+						{
+							"key": "items-offset",
+							"value": "0"
 						},
 						{
 							"key": "personid",
-							"value": "140314426"
+							"value": "8a44b01c8419531701841baffc0d77ff"
 						},
 						{
 							"key": "postman-token",
-							"value": "b97fa4c5-96da-4868-93e8-7f4b35f45695"
+							"value": "6362c0f7-0bf6-4b2e-a035-f4389bb0f650"
 						},
 						{
-							"key": "user-agent",
-							"value": "PostmanRuntime/7.29.2"
+							"key": "referrer-policy",
+							"value": "no-referrer"
+						},
+						{
+							"key": "server",
+							"value": "envoy"
+						},
+						{
+							"key": "session-id",
+							"value": "no-session-id"
+						},
+						{
+							"key": "set-cookie",
+							"value": "AWSALB=TpeyMejnTfI+ebDWMELSkMQauo2rlxtSoHq4N9QAmN4Jcb26A31TdupYyeNB4qZ1WhOap8WZ0I4kFCnxgfANP2vaSXR4f5oucgFEBDp/qgLPIs8BYv2wEYs0WH+g; Expires=Thu, 03 Nov 2022 23:09:45 GMT; Path=/"
+						},
+						{
+							"key": "set-cookie",
+							"value": "AWSALBCORS=TpeyMejnTfI+ebDWMELSkMQauo2rlxtSoHq4N9QAmN4Jcb26A31TdupYyeNB4qZ1WhOap8WZ0I4kFCnxgfANP2vaSXR4f5oucgFEBDp/qgLPIs8BYv2wEYs0WH+g; Expires=Thu, 03 Nov 2022 23:09:45 GMT; Path=/; SameSite=None; Secure"
+						},
+						{
+							"key": "strict-transport-security",
+							"value": "max-age=63072001; includeSubDomains; preload"
 						},
 						{
 							"key": "x-amzn-trace-id",
-							"value": "Root=1-63596d8e-3902d49c250ba63d726af9ef"
+							"value": "Root=1-635b0fb9-2a80acba7828bfc81ea56da7"
+						},
+						{
+							"key": "x-content-type-options",
+							"value": "nosniff"
 						},
 						{
 							"key": "x-envoy-expected-rq-timeout-ms",
@@ -1489,15 +1514,15 @@
 						},
 						{
 							"key": "x-envoy-external-address",
-							"value": "192.168.111.129"
+							"value": "172.16.17.70"
 						},
 						{
 							"key": "x-envoy-original-path",
-							"value": "/mambu-portx-cbs-connector/mambu-portx-cbs-connector/1.0/persons/140314426/accounts"
+							"value": "/mambu-portx-cbs-connector/mambu-portx-cbs-connector/1.0/persons/8a44b01c8419531701841baffc0d77ff/accounts"
 						},
 						{
 							"key": "x-forwarded-for",
-							"value": "107.201.177.71,192.168.111.129"
+							"value": "107.201.177.71,172.16.17.70"
 						},
 						{
 							"key": "x-forwarded-port",
@@ -1509,19 +1534,19 @@
 						},
 						{
 							"key": "x-request-id",
-							"value": "2b37c45e-323e-4788-b487-e8be33bc163a"
+							"value": "b53335c9-6ca2-48de-9d97-0258977cb9b9"
+						},
+						{
+							"key": "x-xss-protection",
+							"value": "1"
 						},
 						{
 							"key": "x-envoy-upstream-service-time",
-							"value": "6"
-						},
-						{
-							"key": "server",
-							"value": "envoy"
+							"value": "193"
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"personId\": \"5fb9d4d6-1a3c-11ed-861d-0242ac120002\",\n    \"personName\": \"Jane Birkin\",\n    \"accounts\": [\n        {\n            \"iBAN\": \"AL35202111090000000001234567\",\n            \"accountNumber\": \"12345678\",\n            \"routingNumber\": \"12345678\",\n            \"identifiers\": [\n                {\n                    \"identification\": \"string\",\n                    \"schemeName\": \"BBANIdentifier\",\n                    \"issuer\": \"string\"\n                }\n            ],\n            \"servicerBranchId\": \"SEA_1\",\n            \"accountType\": \"Current\",\n            \"accountOwnershipType\": \"Owner\",\n            \"productId\": \"PD_CA_0002\",\n            \"name\": \"Hermes PD_CA 0002\",\n            \"accountPurpose\": \"string\",\n            \"currency\": \"USD\",\n            \"initialAmount\": \"100\",\n            \"contract\": {\n                \"documentReference\": \"string\",\n                \"signOffDate\": \"2022-04-17\"\n            },\n            \"parties\": [\n                {\n                    \"partyId\": \"5fb9d4d6-1a3c-11ed-861d-0242ac120002\",\n                    \"partyType\": \"Person\",\n                    \"partyAccountRole\": \"PaymentManager\"\n                }\n            ],\n            \"relatedAccounts\": [\n                {\n                    \"accountRelationType\": \"string\",\n                    \"accountId\": \"0dd926fe-1ca2-11ed-861d-0242ac120002\"\n                }\n            ],\n            \"supplementaryData\": [\n                {}\n            ],\n            \"status\": \"Pending\",\n            \"statusDateAndTime\": \"2022-04-17T08:00:00Z\",\n            \"substatus\": \"string\",\n            \"openDate\": \"2022-04-17\",\n            \"closeDate\": \"2022-04-17\",\n            \"maturityDate\": \"2022-04-17\",\n            \"balances\": [\n                {\n                    \"balanceName\": \"Available\",\n                    \"ammount\": \"100\",\n                    \"currency\": \"USD\",\n                    \"calculationDate\": \"2022-04-17T08:00:00Z\"\n                }\n            ],\n            \"accountId\": \"0dd926fe-1ca2-11ed-861d-0242ac120002\"\n        }\n    ]\n}"
+					"body": "{\n    \"personId\": \"8a44b01c8419531701841baffc0d77ff\",\n    \"personName\": \"Demo12 Smith\",\n    \"accounts\": [\n        {\n            \"accountNumber\": \"BIAD161\",\n            \"accountType\": \"REGULAR_SAVINGS\",\n            \"accountOwnershipType\": \"Owner\",\n            \"productId\": \"8a44d6d97c81ddbe017ca39738446161\",\n            \"name\": \"JosephSmitDepositSavingsAccount22\",\n            \"currency\": \"USD\",\n            \"parties\": [\n                {\n                    \"partyId\": \"8a44b01c8419531701841baffc0d77ff\",\n                    \"partyType\": \"Person\",\n                    \"partyAccountRole\": \"AccountOwner\"\n                }\n            ],\n            \"status\": \"ACTIVE\",\n            \"statusDateAndTime\": \"2022-10-27T16:09:22-07:00\",\n            \"openDate\": \"2022-10-27T16:09:21-07:00\",\n            \"balances\": [\n                {\n                    \"balanceName\": \"Available\",\n                    \"amount\": 15,\n                    \"currency\": \"USD\"\n                }\n            ],\n            \"accountId\": \"8a44b01c8419531701841bb4e0467811\"\n        }\n    ]\n}"
 				}
 			]
 		},
@@ -2282,28 +2307,22 @@
 			},
 			"response": [
 				{
-					"name": "Get Account Parties - example swagger response",
+					"name": "Get Account Parties - example response",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://demos.dev.custom.demos.tenant-1.portx.io/mambu-portx-cbs-connector/mambu-portx-cbs-connector/1.0/accounts/ZKJR010/parties",
+							"raw": "https://{{host}}/{{demoApp}}/mambu-portx-cbs-connector/1.0/accounts/{{accountId}}/parties",
 							"protocol": "https",
 							"host": [
-								"demos",
-								"dev",
-								"custom",
-								"demos",
-								"tenant-1",
-								"portx",
-								"io"
+								"{{host}}"
 							],
 							"path": [
-								"mambu-portx-cbs-connector",
+								"{{demoApp}}",
 								"mambu-portx-cbs-connector",
 								"1.0",
 								"accounts",
-								"ZKJR010",
+								"{{accountId}}",
 								"parties"
 							]
 						}
@@ -2314,11 +2333,11 @@
 					"header": [
 						{
 							"key": "Date",
-							"value": "Wed, 26 Oct 2022 17:22:26 GMT"
+							"value": "Thu, 27 Oct 2022 23:10:02 GMT"
 						},
 						{
 							"key": "Content-Type",
-							"value": "application/json"
+							"value": "application/vnd.mambu.v2+json"
 						},
 						{
 							"key": "Transfer-Encoding",
@@ -2338,27 +2357,59 @@
 						},
 						{
 							"key": "accountid",
-							"value": "ZKJR010"
+							"value": "8a44b01c8419531701841bb4e0467811"
 						},
 						{
 							"key": "authorization",
 							"value": "Basic c2hhc2hpOk1vZHVzYm94QDEyMw=="
 						},
 						{
+							"key": "content-security-policy",
+							"value": "object-src 'none'; upgrade-insecure-requests;"
+						},
+						{
 							"key": "cookie",
-							"value": "AWSALB=bzlc4EoNBZ43aVcV9/fvqF2pGjnOhzXscbdD+ytFelwx/fI2IHzYtcYKoOcEJNVbZGqKV2kAQM7MY4tI7WJCf8SvA53BsS4zebH+Y0ISjRjN897zgUELqyZ2qEfM; AWSALBCORS=bzlc4EoNBZ43aVcV9/fvqF2pGjnOhzXscbdD+ytFelwx/fI2IHzYtcYKoOcEJNVbZGqKV2kAQM7MY4tI7WJCf8SvA53BsS4zebH+Y0ISjRjN897zgUELqyZ2qEfM"
+							"value": "AWSALB=mSBY00AfbH3Omn4UPkaeT1V/8oMfA7SAy67yF8O7Z0FQUCzlN9UHvSj+cMdUjqTAAeaEF/T5RVa9YmuKy+yMImQbymE6y327HigDsfugK20j9Ux8NCt10B6B8Q1J; AWSALBCORS=mSBY00AfbH3Omn4UPkaeT1V/8oMfA7SAy67yF8O7Z0FQUCzlN9UHvSj+cMdUjqTAAeaEF/T5RVa9YmuKy+yMImQbymE6y327HigDsfugK20j9Ux8NCt10B6B8Q1J"
+						},
+						{
+							"key": "feature-policy",
+							"value": "oversized-images 'none'; unsized-media 'none';"
 						},
 						{
 							"key": "postman-token",
-							"value": "82aeed32-20e2-4172-ad82-1b44275f3013"
+							"value": "9c636931-86f1-4c82-ba83-7771151c6aad"
 						},
 						{
-							"key": "user-agent",
-							"value": "PostmanRuntime/7.29.2"
+							"key": "referrer-policy",
+							"value": "no-referrer"
+						},
+						{
+							"key": "server",
+							"value": "envoy"
+						},
+						{
+							"key": "session-id",
+							"value": "no-session-id"
+						},
+						{
+							"key": "set-cookie",
+							"value": "AWSALB=UtkUEYr61/8Vba2L7HJS1iyiZKQajiz8M5/DMegcSWfCzR0KQTK9t1rPcP99u9J5TtKTYVNJLyl7v9W5NEnCohgs4k9sZGfuTQYPrYisCxyOpw+LJmc+ti2zGJhH; Expires=Thu, 03 Nov 2022 23:10:02 GMT; Path=/"
+						},
+						{
+							"key": "set-cookie",
+							"value": "AWSALBCORS=UtkUEYr61/8Vba2L7HJS1iyiZKQajiz8M5/DMegcSWfCzR0KQTK9t1rPcP99u9J5TtKTYVNJLyl7v9W5NEnCohgs4k9sZGfuTQYPrYisCxyOpw+LJmc+ti2zGJhH; Expires=Thu, 03 Nov 2022 23:10:02 GMT; Path=/; SameSite=None; Secure"
+						},
+						{
+							"key": "strict-transport-security",
+							"value": "max-age=63072001; includeSubDomains; preload"
 						},
 						{
 							"key": "x-amzn-trace-id",
-							"value": "Root=1-63596cd2-351499a12531baca72c9bc08"
+							"value": "Root=1-635b0fca-510fbf5366ab6b7b48814626"
+						},
+						{
+							"key": "x-content-type-options",
+							"value": "nosniff"
 						},
 						{
 							"key": "x-envoy-expected-rq-timeout-ms",
@@ -2366,15 +2417,15 @@
 						},
 						{
 							"key": "x-envoy-external-address",
-							"value": "192.168.100.0"
+							"value": "172.16.17.70"
 						},
 						{
 							"key": "x-envoy-original-path",
-							"value": "/mambu-portx-cbs-connector/mambu-portx-cbs-connector/1.0/accounts/ZKJR010/parties"
+							"value": "/mambu-portx-cbs-connector/mambu-portx-cbs-connector/1.0/accounts/8a44b01c8419531701841bb4e0467811/parties"
 						},
 						{
 							"key": "x-forwarded-for",
-							"value": "107.201.177.71,192.168.100.0"
+							"value": "107.201.177.71,172.16.17.70"
 						},
 						{
 							"key": "x-forwarded-port",
@@ -2386,19 +2437,19 @@
 						},
 						{
 							"key": "x-request-id",
-							"value": "d73af379-19c8-440d-a43e-ee045797e9a9"
+							"value": "75c2619c-e739-4290-9271-ab4955a1f586"
+						},
+						{
+							"key": "x-xss-protection",
+							"value": "1"
 						},
 						{
 							"key": "x-envoy-upstream-service-time",
-							"value": "6"
-						},
-						{
-							"key": "server",
-							"value": "envoy"
+							"value": "154"
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"accountId\": \"0dd926fe-1ca2-11ed-861d-0242ac120002\",\n    \"accountNumber\": \"12345678\",\n    \"parties\": [\n        {\n            \"partyId\": \"5fb9d4d6-1a3c-11ed-861d-0242ac120002\",\n            \"partyType\": \"Person\",\n            \"partyRelationType\": \"Owner\"\n        }\n    ]\n}"
+					"body": "{\n    \"accountId\": \"8a44b01c8419531701841bb4e0467811\",\n    \"accountNumber\": \"BIAD161\",\n    \"parties\": [\n        {\n            \"partyId\": \"8a44b01c8419531701841baffc0d77ff\",\n            \"partyType\": \"Person\",\n            \"partyRelationType\": \"Owner\"\n        }\n    ]\n}"
 				}
 			]
 		},
@@ -2413,11 +2464,7 @@
 							"",
 							"pm.test(\"Find account identifiers response http status code = 200\", function(){",
 							"    pm.response.to.have.status(200);",
-							"})",
-							"",
-							"pm.test(\"found at least 1 identifier\", function () {",
-							"    pm.expect(jsonData.identifiers[0].identification).not.eql(undefined);",
-							"});"
+							"})"
 						],
 						"type": "text/javascript"
 					}
@@ -2606,7 +2653,7 @@
 			},
 			"response": [
 				{
-					"name": "Get Account Owners - example swagger response",
+					"name": "Get Account Owners - example response",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
@@ -2725,6 +2772,66 @@
 					"body": "{\n    \"accountId\": \"0dd926fe-1ca2-11ed-861d-0242ac120002\",\n    \"accountNumber\": \"12345678\",\n    \"owners\": [\n        {\n            \"partyId\": \"5fb9d4d6-1a3c-11ed-861d-0242ac120002\",\n            \"partyType\": \"Person\",\n            \"partyRelationType\": \"Owner\"\n        }\n    ]\n}"
 				}
 			]
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "client_authentication",
+				"value": "body",
+				"type": "string"
+			},
+			{
+				"key": "challengeAlgorithm",
+				"value": "S256",
+				"type": "string"
+			},
+			{
+				"key": "grant_type",
+				"value": "client_credentials",
+				"type": "string"
+			},
+			{
+				"key": "clientSecret",
+				"value": "uFG+j2!226@iPJ)9&$O:]k0^7uj!zB]N",
+				"type": "string"
+			},
+			{
+				"key": "clientId",
+				"value": "oba-demos",
+				"type": "string"
+			},
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			},
+			{
+				"key": "accessTokenUrl",
+				"value": "https://auth.dev.custom.demos.tenant-1.portx.io/oauth2/token",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }
