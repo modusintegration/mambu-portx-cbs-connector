@@ -227,16 +227,15 @@
             <simple>{{mambu.username}}:{{mambu.password}}</simple>
         </setProperty>
         <process ref="encodeAuthHeader" />
-
-<!--        <log message="GET deposits with id: ${header.accountId}"/>-->
-<!--        <toD uri="https://{{mambu.host}}/api/deposits/${header.accountId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>-->
-<!--        <log message="GET deposits response is ${body}"/>-->
+        <log message="GET deposits with id: ${header.accountId}"/>
+        <toD uri="https://{{mambu.host}}/api/deposits/${header.accountId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
+        <log message="GET deposits response is ${body}"/>
         <setBody>
             <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
-                resource:classpath:mappings/findAccountIdentifiersExampleResponse.ds
+                resource:classpath:mappings/findAccountIdentifiersResponse.ds
             </datasonnet>
         </setBody>
-        <log message="findAccountIdentifiers example response is: ${body}"/>
+        <log message="findAccountIdentifiers response is: ${body}"/>
         <!--        <to uri="direct:endRoute"/>-->
     </route>
     <route id="findAccountRelatedPartiesRoute" routeConfigurationId="*">
@@ -266,7 +265,7 @@
                 resource:classpath:mappings/findAccountRelatedPartiesResponse.ds
             </datasonnet>
         </setBody>
-        <log message="findAccountRelatedParties example response is: ${body}"/>
+        <log message="findAccountRelatedParties response is: ${body}"/>
         <!--        <to uri="direct:endRoute"/>-->
     </route>
     <route id="findAccountOwnersRoute" routeConfigurationId="*">
@@ -296,7 +295,7 @@
                 resource:classpath:mappings/findAccountOwnersResponse.ds
             </datasonnet>
         </setBody>
-        <log message="findAccountOwners example response is: ${body}"/>
+        <log message="findAccountOwners response is: ${body}"/>
         <!--        <to uri="direct:endRoute"/>-->
     </route>
     <route id="findPersonAccountsRoute" routeConfigurationId="*">
