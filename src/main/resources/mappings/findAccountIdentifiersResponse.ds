@@ -1,0 +1,15 @@
+/** DataSonnet
+version=2.0
+output application/json
+input payload application/json
+*/
+
+local selector(obj,key,dValue = null) = ds.or(ds.select(obj,key), dValue);
+
+std.prune({
+  "iBAN": selector(payload, "iban"),
+  "accountNumber": payload.id,
+  "accountId": payload.encodedKey,
+  "routingNumber": selector(payload, "routingNumber"),
+  "identifiers": selector(payload, "identifiers")
+})
