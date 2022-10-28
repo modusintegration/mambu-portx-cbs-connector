@@ -1,0 +1,12 @@
+/** DataSonnet
+version=2.0
+output application/json
+input payload application/json
+*/
+{
+  "iBAN": "",
+  "accountNumber": payload.id,
+  "accountId": payload.encodedKey,
+  "routingNumber": "",
+  "identifiers": []
+}
