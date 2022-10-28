@@ -1,0 +1,27 @@
+/** DataSonnet
+version=2.0
+output application/json
+input payload application/json
+*/
+local selector(obj,key,dValue = null) = ds.or(ds.select(obj,key), dValue);
+
+std.prune({
+  "lastName": payload.structuredName.lastName,
+  "middleName": selector(payload, "structuredName.middleName"),
+  "firstName": payload.structuredName.firstName,
+  "encodedKey": selector(payload, "personId"),
+  "addresses": [
+    {
+      "country": selector(payload, "postalAddress.country"),
+      "city": selector(payload, "postalAddress.townName"),
+      "postcode": selector(payload, "postalAddress.postCode"),
+      "line2": selector(payload, "postalAddress.streetName"),
+      "line1": selector(payload, "postalAddress.buildingNumber") + " " + selector(payload, "postalAddress.buildingName"),
+    }
+  ],
+  "emailAddress": selector(payload, "contact.emailAddress"),
+  "id": "691445899",
+  "state": selector(payload, "status"),
+  "birthDate": selector(payload, "placeAndDateOfBirth.birthDate"),
+  "mobilePhone": selector(payload, "contact.mobileNumber")
+})

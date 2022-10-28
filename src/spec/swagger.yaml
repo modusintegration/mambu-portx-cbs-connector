@@ -491,58 +491,47 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-#    patch:
-#      tags:
-#        - Parties
-#      summary: Updates a person
-#      description: Use the JSON Merge Patch standard https://tools.ietf.org/html/rfc7396
-#      operationId: updatePerson
-#      parameters:
-#        - name: personId
-#          in: path
-#          description: Person Identification
-#          required: true
-#          schema:
-#            $ref: '#/components/schemas/Id'
-#        - name: servicerId
-#          in: header
-#          description: Account Servicer Identification (Bank)
-#          required: false
-#          schema:
-#            maxLength: 36
-#            minLength: 1
-#            type: string
-#      requestBody:
-#        content:
-#          application/merge-patch+json:
-#            schema:
-#              $ref: '#/components/schemas/Person'
-#        required: true
-#      responses:
-#        "200":
-#          description: Person Updated.
-#          content:
-#            application/json:
-#              schema:
-#                $ref: '#/components/schemas/Person'
-#        "400":
-#          description: Bad Request. Person Id could not be processed due to format errors.
-#          content:
-#            application/json:
-#              schema:
-#                $ref: '#/components/schemas/Error'
-#        "404":
-#          description: No matching persons have found.
-#          content:
-#            application/json:
-#              schema:
-#                $ref: '#/components/schemas/Error'
-#        "500":
-#          description: Internal server error.
-#          content:
-#            application/json:
-#              schema:
-#                $ref: '#/components/schemas/Error'
+    patch:
+      tags:
+        - Parties
+      summary: Updates a person.
+      operationId: updatePerson
+      description: Use the JSON Merge Patch standard https://tools.ietf.org/html/rfc7396
+      parameters:
+        - $ref: "#/components/parameters/personId"
+        - $ref: "#/components/parameters/bankId"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Person'
+        required: true
+      responses:
+        '200':
+          description: Updated person
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Person'
+        '400':
+          description: Bad Request. Person Id could not be processed due to format errors.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: No matching persons have found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
   /persons/{personId}/accounts:
     get:
       tags:
