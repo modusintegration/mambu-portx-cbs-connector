@@ -194,7 +194,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://demos.dev.custom.demos.tenant-1.portx.io/mambu-portx-cbs-connector/mambu-portx-cbs-connector/1.0/persons/140314426/accounts",
+							"raw": "https://demos.dev.custom.demos.tenant-1.portx.io/mambu-portx-cbs-connector/mambu-portx-cbs-connector/1.0/persons/8a44d6d97c81ddbe017ca40798266956/accounts",
 							"protocol": "https",
 							"host": [
 								"demos",
@@ -210,7 +210,7 @@
 								"mambu-portx-cbs-connector",
 								"1.0",
 								"persons",
-								"140314426",
+								"8a44d6d97c81ddbe017ca40798266956",
 								"accounts"
 							]
 						}
@@ -553,7 +553,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://demos.dev.custom.demos.tenant-1.portx.io/mambu-portx-cbs-connector/mambu-portx-cbs-connector/1.0/accounts/ZKJR010",
+							"raw": "https://demos.dev.custom.demos.tenant-1.portx.io/mambu-portx-cbs-connector/mambu-portx-cbs-connector/1.0/accounts/8a44b01c8419531701841b710e86764a",
 							"protocol": "https",
 							"host": [
 								"demos",
@@ -569,7 +569,7 @@
 								"mambu-portx-cbs-connector",
 								"1.0",
 								"accounts",
-								"ZKJR010"
+								"8a44b01c8419531701841b710e86764a"
 							]
 						}
 					},
@@ -1867,9 +1867,6 @@
 						"disabledSystemHeaders": {}
 					},
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
 						"method": "POST",
 						"header": [
 							{
@@ -1881,7 +1878,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"accountType\": \"CLIENT\",\n  \"name\": \"JosephSmitDepositSavingsAccount12\",\n  \"productId\": \"8a44d6d97c81ddbe017ca39738446161\",\n  \"initialAmount\": \"0\",\n  \"relatedAccounts\": [\n    {\n      \"accountRelationType\": \"Parent\",\n      \"accountId\": \"8a44d76a83cdeef00183cf510e053d61\"\n    }\n  ]\n}",
+							"raw": "{\n  \"accountType\": \"CLIENT\",\n  \"name\": \"JosephSmitDepositSavingsAccount17\",\n  \"productId\": \"8a44d6d97c81ddbe017ca39738446161\",\n  \"relatedAccounts\": [\n    {\n      \"accountRelationType\": \"Parent\",\n      \"accountId\": \"8a44d76a83cdeef00183cf510e053d61\"\n    }\n  ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1910,7 +1907,7 @@
 					},
 					"response": [
 						{
-							"name": "Create a new deposit account - example response with initial amount > 0",
+							"name": "Create a new deposit account - example response with initial value > 0",
 							"originalRequest": {
 								"method": "POST",
 								"header": [
@@ -1923,7 +1920,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"accountType\": \"CLIENT\",\n  \"name\": \"JosephSmitDepositSavingsAccount9\",\n  \"productId\": \"8a44d6d97c81ddbe017ca39738446161\",\n  \"initialAmount\": \"11\",\n  \"relatedAccounts\": [\n    {\n      \"accountRelationType\": \"Parent\",\n      \"accountId\": \"8a44d76a83cdeef00183cf510e053d61\"\n    }\n  ]\n}",
+									"raw": "{\n  \"accountType\": \"CLIENT\",\n  \"name\": \"JosephSmitDepositSavingsAccount15\",\n  \"productId\": \"8a44d6d97c81ddbe017ca39738446161\",\n  \"initialAmount\": \"15\",\n  \"relatedAccounts\": [\n    {\n      \"accountRelationType\": \"Parent\",\n      \"accountId\": \"8a44d76a83cdeef00183cf510e053d61\"\n    }\n  ]\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1956,7 +1953,7 @@
 							"header": [
 								{
 									"key": "Date",
-									"value": "Wed, 26 Oct 2022 03:51:24 GMT"
+									"value": "Thu, 27 Oct 2022 04:12:29 GMT"
 								},
 								{
 									"key": "Content-Type",
@@ -1988,7 +1985,7 @@
 								},
 								{
 									"key": "cookie",
-									"value": "AWSALB=pjsmgw/f+L0nRXZwGiYejr1CLY7/BDF2LYhCb9pyXXZDosVd+CntHAuUs/YwOLPLoEXOIa3k/6bG8CXPD3dcY8SpUL5yD6VTi1KTIP1ZplKFNTF++L7tmQPWgWjx; AWSALBCORS=pjsmgw/f+L0nRXZwGiYejr1CLY7/BDF2LYhCb9pyXXZDosVd+CntHAuUs/YwOLPLoEXOIa3k/6bG8CXPD3dcY8SpUL5yD6VTi1KTIP1ZplKFNTF++L7tmQPWgWjx"
+									"value": "AWSALB=hiYwqwuJq+xCu2+EDWoQonOLRYDe07IvJj11W35xGgNIn1zepeTu5QpgxAh0NlGV797ZVjmEhTDYC7+AolTETG+fxd6bR18eR6247IQLLMRUW8gvbNleO4el+L8d; AWSALBCORS=hiYwqwuJq+xCu2+EDWoQonOLRYDe07IvJj11W35xGgNIn1zepeTu5QpgxAh0NlGV797ZVjmEhTDYC7+AolTETG+fxd6bR18eR6247IQLLMRUW8gvbNleO4el+L8d"
 								},
 								{
 									"key": "feature-policy",
@@ -1996,7 +1993,7 @@
 								},
 								{
 									"key": "postman-token",
-									"value": "62cc6448-4914-4256-a0c1-eb8408f2cbdd"
+									"value": "ff73cffd-8f1d-452b-bf41-177d859cbe20"
 								},
 								{
 									"key": "referrer-policy",
@@ -2012,11 +2009,11 @@
 								},
 								{
 									"key": "set-cookie",
-									"value": "AWSALB=FxGJVmuskLAFomfMZg4D9QdHPN7OmwkYgcMgsGcROnEAS4kY8dlnZkfmpN6KuQlyD6ZgEhwFtfneuwZqzSbJwyQ9CnwBHBXiO6dpOWdvoFVOcgQvBJUZzoV1+0ka; Expires=Wed, 02 Nov 2022 03:51:21 GMT; Path=/"
+									"value": "AWSALB=uDr1e6/7uv/1Z/PMDl31sgiLQWO5nbucMuOXhe4LO5wnGNVZ5LzuQA4BbulJblV2VlWOlMVQoT8dT9ZiI9y5eCSMsqZB0wZ2gaANJlqWXvSkFtEDMbbjKCTDtLfb; Expires=Thu, 03 Nov 2022 04:12:27 GMT; Path=/"
 								},
 								{
 									"key": "set-cookie",
-									"value": "AWSALBCORS=FxGJVmuskLAFomfMZg4D9QdHPN7OmwkYgcMgsGcROnEAS4kY8dlnZkfmpN6KuQlyD6ZgEhwFtfneuwZqzSbJwyQ9CnwBHBXiO6dpOWdvoFVOcgQvBJUZzoV1+0ka; Expires=Wed, 02 Nov 2022 03:51:21 GMT; Path=/; SameSite=None; Secure"
+									"value": "AWSALBCORS=uDr1e6/7uv/1Z/PMDl31sgiLQWO5nbucMuOXhe4LO5wnGNVZ5LzuQA4BbulJblV2VlWOlMVQoT8dT9ZiI9y5eCSMsqZB0wZ2gaANJlqWXvSkFtEDMbbjKCTDtLfb; Expires=Thu, 03 Nov 2022 04:12:27 GMT; Path=/; SameSite=None; Secure"
 								},
 								{
 									"key": "strict-transport-security",
@@ -2024,7 +2021,7 @@
 								},
 								{
 									"key": "x-amzn-trace-id",
-									"value": "Root=1-6358aeb5-293e688c4a7cea5a1a3b8abc"
+									"value": "Root=1-635a052b-3bdacbd80150e6395ba63689"
 								},
 								{
 									"key": "x-content-type-options",
@@ -2036,7 +2033,7 @@
 								},
 								{
 									"key": "x-envoy-external-address",
-									"value": "172.16.17.70"
+									"value": "192.168.100.0"
 								},
 								{
 									"key": "x-envoy-original-path",
@@ -2044,7 +2041,7 @@
 								},
 								{
 									"key": "x-forwarded-for",
-									"value": "107.201.177.71,172.16.17.70"
+									"value": "107.201.177.71,192.168.100.0"
 								},
 								{
 									"key": "x-forwarded-port",
@@ -2056,7 +2053,7 @@
 								},
 								{
 									"key": "x-request-id",
-									"value": "88976197-7b98-415a-b47e-217642c2b338"
+									"value": "ce19ee1c-8dd8-4d4a-8333-204229a3eea4"
 								},
 								{
 									"key": "x-xss-protection",
@@ -2064,11 +2061,11 @@
 								},
 								{
 									"key": "x-envoy-upstream-service-time",
-									"value": "6366"
+									"value": "1911"
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"encodedKey\": \"8a44da1884101ae90184126a82d86251\",\n    \"id\": \"303\",\n    \"creationDate\": \"2022-10-25T20:51:22-07:00\",\n    \"valueDate\": \"2022-10-25T20:51:22-07:00\",\n    \"bookingDate\": \"2022-10-25T20:51:22-07:00\",\n    \"parentAccountKey\": \"8a44da1884101ae90184126a82d8624d\",\n    \"type\": \"DEPOSIT\",\n    \"amount\": 11,\n    \"currencyCode\": \"USD\",\n    \"affectedAmounts\": {\n        \"fundsAmount\": 11,\n        \"interestAmount\": 0,\n        \"feesAmount\": 0,\n        \"overdraftAmount\": 0,\n        \"overdraftFeesAmount\": 0,\n        \"overdraftInterestAmount\": 0,\n        \"technicalOverdraftAmount\": 0,\n        \"technicalOverdraftInterestAmount\": 0,\n        \"fractionAmount\": 0\n    },\n    \"taxes\": {},\n    \"accountBalances\": {\n        \"totalBalance\": 11\n    },\n    \"userKey\": \"8a44b03a820b76c1018211b799693e87\",\n    \"terms\": {\n        \"interestSettings\": {},\n        \"overdraftInterestSettings\": {},\n        \"overdraftSettings\": {}\n    },\n    \"transactionDetails\": {\n        \"transactionChannelKey\": \"8a44cde37b592d63017b5fac6e400514\",\n        \"transactionChannelId\": \"cash\"\n    },\n    \"transferDetails\": {},\n    \"fees\": []\n}"
+							"body": "{\n    \"status\": \"APPROVED\",\n    \"statusDateAndTime\": \"2022-10-26T21:12:28-07:00\",\n    \"openDate\": \"2022-10-26T21:12:27-07:00\",\n    \"accountNumber\": \"FWRV775\",\n    \"accountId\": \"8a44bf1984162821018417a32a8855ea\"\n}"
 						},
 						{
 							"name": "Create a new deposit account - example response with initial amount = 0",
@@ -2084,7 +2081,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"accountType\": \"CLIENT\",\n  \"name\": \"JosephSmitDepositSavingsAccount12\",\n  \"productId\": \"8a44d6d97c81ddbe017ca39738446161\",\n  \"initialAmount\": \"0\",\n  \"relatedAccounts\": [\n    {\n      \"accountRelationType\": \"Parent\",\n      \"accountId\": \"8a44d76a83cdeef00183cf510e053d61\"\n    }\n  ]\n}",
+									"raw": "{\n  \"accountType\": \"CLIENT\",\n  \"name\": \"JosephSmitDepositSavingsAccount16\",\n  \"productId\": \"8a44d6d97c81ddbe017ca39738446161\",\n  \"initialAmount\": \"0\",\n  \"relatedAccounts\": [\n    {\n      \"accountRelationType\": \"Parent\",\n      \"accountId\": \"8a44d76a83cdeef00183cf510e053d61\"\n    }\n  ]\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2117,7 +2114,7 @@
 							"header": [
 								{
 									"key": "Date",
-									"value": "Wed, 26 Oct 2022 16:48:07 GMT"
+									"value": "Thu, 27 Oct 2022 04:13:45 GMT"
 								},
 								{
 									"key": "Content-Type",
@@ -2149,7 +2146,7 @@
 								},
 								{
 									"key": "cookie",
-									"value": "AWSALB=gIMYYfzAej5JaZcKs3SY4t0RjzHF9fZ98dMHEdtm9t54mQTPYVh7RS421JdSa6pMZlXUEk1+E0VbhIXcL3L++2UDUvps85rbnvFluTyhIU2qBAY/eub5CZVUypsh; AWSALBCORS=gIMYYfzAej5JaZcKs3SY4t0RjzHF9fZ98dMHEdtm9t54mQTPYVh7RS421JdSa6pMZlXUEk1+E0VbhIXcL3L++2UDUvps85rbnvFluTyhIU2qBAY/eub5CZVUypsh"
+									"value": "AWSALB=uDr1e6/7uv/1Z/PMDl31sgiLQWO5nbucMuOXhe4LO5wnGNVZ5LzuQA4BbulJblV2VlWOlMVQoT8dT9ZiI9y5eCSMsqZB0wZ2gaANJlqWXvSkFtEDMbbjKCTDtLfb; AWSALBCORS=uDr1e6/7uv/1Z/PMDl31sgiLQWO5nbucMuOXhe4LO5wnGNVZ5LzuQA4BbulJblV2VlWOlMVQoT8dT9ZiI9y5eCSMsqZB0wZ2gaANJlqWXvSkFtEDMbbjKCTDtLfb"
 								},
 								{
 									"key": "feature-policy",
@@ -2157,7 +2154,7 @@
 								},
 								{
 									"key": "postman-token",
-									"value": "64b5a448-29bc-4dbd-8dc3-28f9f606671a"
+									"value": "e17b043f-a826-497c-ad91-b2f8780df822"
 								},
 								{
 									"key": "referrer-policy",
@@ -2173,11 +2170,11 @@
 								},
 								{
 									"key": "set-cookie",
-									"value": "AWSALB=gaAK4AOgNhKbl+qtQUBHpgvJ4MBZEUXhNgpGREFu0LyqHO0mmZuedgVa5RK0RlRXwdHLMi9NNSP7tlUNMXnRNQ0RvVVIrudCNQ4M0QJuYmZqy49VyFZjwFb13ZD0; Expires=Wed, 02 Nov 2022 16:48:07 GMT; Path=/"
+									"value": "AWSALB=Gp/aO1RnlWHve6gbnD54QSphNW5gJAu04CT+oLYATUwQGTgjeezfL2E8dFtk67bNGERefLyHhZdd3+hKXZzDZPiZKypSjyicGIP++qEOLgyoocgFyuBCksjtFdjU; Expires=Thu, 03 Nov 2022 04:13:45 GMT; Path=/"
 								},
 								{
 									"key": "set-cookie",
-									"value": "AWSALBCORS=gaAK4AOgNhKbl+qtQUBHpgvJ4MBZEUXhNgpGREFu0LyqHO0mmZuedgVa5RK0RlRXwdHLMi9NNSP7tlUNMXnRNQ0RvVVIrudCNQ4M0QJuYmZqy49VyFZjwFb13ZD0; Expires=Wed, 02 Nov 2022 16:48:07 GMT; Path=/; SameSite=None; Secure"
+									"value": "AWSALBCORS=Gp/aO1RnlWHve6gbnD54QSphNW5gJAu04CT+oLYATUwQGTgjeezfL2E8dFtk67bNGERefLyHhZdd3+hKXZzDZPiZKypSjyicGIP++qEOLgyoocgFyuBCksjtFdjU; Expires=Thu, 03 Nov 2022 04:13:45 GMT; Path=/; SameSite=None; Secure"
 								},
 								{
 									"key": "strict-transport-security",
@@ -2185,7 +2182,7 @@
 								},
 								{
 									"key": "x-amzn-trace-id",
-									"value": "Root=1-635964c6-30ac4c84776263fa4b78ca70"
+									"value": "Root=1-635a0578-27ad51257b1eee7a46d2c22a"
 								},
 								{
 									"key": "x-content-type-options",
@@ -2197,7 +2194,7 @@
 								},
 								{
 									"key": "x-envoy-external-address",
-									"value": "172.16.17.70"
+									"value": "192.168.100.0"
 								},
 								{
 									"key": "x-envoy-original-path",
@@ -2205,7 +2202,7 @@
 								},
 								{
 									"key": "x-forwarded-for",
-									"value": "107.201.177.71,172.16.17.70"
+									"value": "107.201.177.71,192.168.100.0"
 								},
 								{
 									"key": "x-forwarded-port",
@@ -2217,7 +2214,7 @@
 								},
 								{
 									"key": "x-request-id",
-									"value": "8554ef0e-9e92-4135-b969-9c06c36a1601"
+									"value": "e510b6fd-69d8-4397-b362-e98d23e98f0d"
 								},
 								{
 									"key": "x-xss-protection",
@@ -2225,11 +2222,172 @@
 								},
 								{
 									"key": "x-envoy-upstream-service-time",
-									"value": "363"
+									"value": "570"
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"encodedKey\": \"8a44da1884101ae9018415312d131401\",\n    \"creationDate\": \"2022-10-26T09:48:07-07:00\",\n    \"lastModifiedDate\": \"2022-10-26T09:48:07-07:00\",\n    \"id\": \"GFPU091\",\n    \"name\": \"JosephSmitDepositSavingsAccount12\",\n    \"accountHolderType\": \"CLIENT\",\n    \"accountHolderKey\": \"8a44d76a83cdeef00183cf510e053d61\",\n    \"accountState\": \"APPROVED\",\n    \"productTypeKey\": \"8a44d6d97c81ddbe017ca39738446161\",\n    \"accountType\": \"REGULAR_SAVINGS\",\n    \"approvedDate\": \"2022-10-26T09:48:07-07:00\",\n    \"currencyCode\": \"USD\",\n    \"internalControls\": {},\n    \"overdraftSettings\": {\n        \"allowOverdraft\": false,\n        \"overdraftLimit\": 0\n    },\n    \"interestSettings\": {\n        \"interestPaymentSettings\": {\n            \"interestPaymentDates\": []\n        }\n    },\n    \"overdraftInterestSettings\": {},\n    \"balances\": {\n        \"totalBalance\": 0,\n        \"overdraftAmount\": 0,\n        \"technicalOverdraftAmount\": 0,\n        \"lockedBalance\": 0,\n        \"availableBalance\": 0,\n        \"holdBalance\": 0,\n        \"overdraftInterestDue\": 0,\n        \"technicalOverdraftInterestDue\": 0,\n        \"feesDue\": 0,\n        \"blockedBalance\": 0,\n        \"forwardAvailableBalance\": 0\n    },\n    \"accruedAmounts\": {\n        \"interestAccrued\": 0,\n        \"overdraftInterestAccrued\": 0,\n        \"technicalOverdraftInterestAccrued\": 0,\n        \"negativeInterestAccrued\": 0\n    }\n}"
+							"body": "{\n    \"status\": \"APPROVED\",\n    \"statusDateAndTime\": \"2022-10-26T21:13:45-07:00\",\n    \"openDate\": \"2022-10-26T21:13:45-07:00\",\n    \"accountNumber\": \"FKDE261\",\n    \"accountId\": \"8a44bf1984162821018417a437c655f7\"\n}"
+						},
+						{
+							"name": "Create a new deposit account - example response without initial amount field",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/vnd.mambu.v2+json",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"accountType\": \"CLIENT\",\n  \"name\": \"JosephSmitDepositSavingsAccount17\",\n  \"productId\": \"8a44d6d97c81ddbe017ca39738446161\",\n  \"relatedAccounts\": [\n    {\n      \"accountRelationType\": \"Parent\",\n      \"accountId\": \"8a44d76a83cdeef00183cf510e053d61\"\n    }\n  ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://demos.dev.custom.demos.tenant-1.portx.io/mambu-portx-cbs-connector/mambu-portx-cbs-connector/1.0/accounts",
+									"protocol": "https",
+									"host": [
+										"demos",
+										"dev",
+										"custom",
+										"demos",
+										"tenant-1",
+										"portx",
+										"io"
+									],
+									"path": [
+										"mambu-portx-cbs-connector",
+										"mambu-portx-cbs-connector",
+										"1.0",
+										"accounts"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Thu, 27 Oct 2022 04:14:15 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/vnd.mambu.v2+json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "accept",
+									"value": "application/vnd.mambu.v2+json"
+								},
+								{
+									"key": "accept-encoding",
+									"value": "gzip, deflate, br"
+								},
+								{
+									"key": "authorization",
+									"value": "Basic c2hhc2hpOk1vZHVzYm94QDEyMw=="
+								},
+								{
+									"key": "content-security-policy",
+									"value": "object-src 'none'; upgrade-insecure-requests;"
+								},
+								{
+									"key": "cookie",
+									"value": "AWSALB=Gp/aO1RnlWHve6gbnD54QSphNW5gJAu04CT+oLYATUwQGTgjeezfL2E8dFtk67bNGERefLyHhZdd3+hKXZzDZPiZKypSjyicGIP++qEOLgyoocgFyuBCksjtFdjU; AWSALBCORS=Gp/aO1RnlWHve6gbnD54QSphNW5gJAu04CT+oLYATUwQGTgjeezfL2E8dFtk67bNGERefLyHhZdd3+hKXZzDZPiZKypSjyicGIP++qEOLgyoocgFyuBCksjtFdjU"
+								},
+								{
+									"key": "feature-policy",
+									"value": "oversized-images 'none'; unsized-media 'none';"
+								},
+								{
+									"key": "postman-token",
+									"value": "0b27edc9-0f6c-487a-95a3-472146b9e721"
+								},
+								{
+									"key": "referrer-policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "server",
+									"value": "envoy"
+								},
+								{
+									"key": "session-id",
+									"value": "no-session-id"
+								},
+								{
+									"key": "set-cookie",
+									"value": "AWSALB=m92LsBpypjBW7XAUJ4r883+OhJwNIGapuVOkLIKYri5/zw/rXbZwGUlQ91j36GQKxUxRf72vLt3tdpB+2UIJfKWGjqVrz8ejygIRM70qVuqywEYgWuErzwltgozm; Expires=Thu, 03 Nov 2022 04:14:15 GMT; Path=/"
+								},
+								{
+									"key": "set-cookie",
+									"value": "AWSALBCORS=m92LsBpypjBW7XAUJ4r883+OhJwNIGapuVOkLIKYri5/zw/rXbZwGUlQ91j36GQKxUxRf72vLt3tdpB+2UIJfKWGjqVrz8ejygIRM70qVuqywEYgWuErzwltgozm; Expires=Thu, 03 Nov 2022 04:14:15 GMT; Path=/; SameSite=None; Secure"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=63072001; includeSubDomains; preload"
+								},
+								{
+									"key": "x-amzn-trace-id",
+									"value": "Root=1-635a0597-1317d2920caf29cd2504fa26"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-envoy-expected-rq-timeout-ms",
+									"value": "10000"
+								},
+								{
+									"key": "x-envoy-external-address",
+									"value": "192.168.111.129"
+								},
+								{
+									"key": "x-envoy-original-path",
+									"value": "/mambu-portx-cbs-connector/mambu-portx-cbs-connector/1.0/accounts"
+								},
+								{
+									"key": "x-forwarded-for",
+									"value": "107.201.177.71,192.168.111.129"
+								},
+								{
+									"key": "x-forwarded-port",
+									"value": "443"
+								},
+								{
+									"key": "x-forwarded-proto",
+									"value": "https"
+								},
+								{
+									"key": "x-request-id",
+									"value": "c611b4c6-7dac-4f9c-8e2d-4417ebd631eb"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1"
+								},
+								{
+									"key": "x-envoy-upstream-service-time",
+									"value": "309"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"APPROVED\",\n    \"statusDateAndTime\": \"2022-10-26T21:14:16-07:00\",\n    \"openDate\": \"2022-10-26T21:14:15-07:00\",\n    \"accountNumber\": \"NZOP554\",\n    \"accountId\": \"8a44bf1984162821018417a5d77555fa\"\n}"
 						}
 					]
 				}
@@ -3000,6 +3158,59 @@
 							],
 							"cookie": [],
 							"body": "[\n    {\n        \"encodedKey\": \"8a44d6d97c81ddbe017ca39738446161\",\n        \"id\": \"ID_DEPOSIT_PRODU\",\n        \"creationDate\": \"2021-10-21T09:05:38-07:00\",\n        \"lastModifiedDate\": \"2021-10-21T09:16:11-07:00\",\n        \"name\": \"DEPOSIT PRODUCT\",\n        \"notes\": \"\",\n        \"type\": \"REGULAR_SAVINGS\",\n        \"category\": \"PERSONAL_DEPOSIT\",\n        \"state\": \"ACTIVE\",\n        \"newAccountSettings\": {\n            \"idGeneratorType\": \"RANDOM_PATTERN\",\n            \"idPattern\": \"@@@@###\"\n        },\n        \"interestSettings\": {\n            \"interestPaidIntoAccount\": false,\n            \"interestPaymentSettings\": {\n                \"interestPaymentDates\": []\n            },\n            \"collectInterestWhenLocked\": true\n        },\n        \"overdraftInterestSettings\": {},\n        \"overdraftSettings\": {\n            \"allowOverdraft\": false,\n            \"maxOverdraftLimit\": 0,\n            \"allowTechnicalOverdraft\": false\n        },\n        \"feesSettings\": {\n            \"allowArbitraryFees\": false\n        },\n        \"accountingSettings\": {\n            \"accountingMethod\": \"ACCRUAL\",\n            \"interestAccruedAccountingMethod\": \"NONE\",\n            \"accountingRules\": [\n                {\n                    \"encodedKey\": \"8a44d6d97c81ddbe017ca39738446162\",\n                    \"glAccountKey\": \"8a44d6d97c81ddbe017ca335c7fd5b8b\",\n                    \"financialResource\": \"DEPOSIT_REFERENCE\"\n                },\n                {\n                    \"encodedKey\": \"8a44d6d97c81ddbe017ca399cd6661d1\",\n                    \"glAccountKey\": \"8a44d6d97c81ddbe017ca391ed256134\",\n                    \"financialResource\": \"SAVINGS_CONTROL\"\n                },\n                {\n                    \"encodedKey\": \"8a44d6d97c81ddbe017ca399cd6661d2\",\n                    \"glAccountKey\": \"8a44d6d97c81ddbe017ca3973844615f\",\n                    \"financialResource\": \"INTEREST_EXPENSE\"\n                },\n                {\n                    \"encodedKey\": \"8a44d6d97c81ddbe017ca399cd6661d3\",\n                    \"glAccountKey\": \"8a44d6d97c81ddbe017ca3965ec7615d\",\n                    \"financialResource\": \"FEE_INCOME\"\n                }\n            ]\n        },\n        \"internalControls\": {\n            \"openingBalance\": {}\n        },\n        \"maturitySettings\": {\n            \"maturityPeriod\": {},\n            \"maturityPeriodUnit\": \"MONTHS\"\n        },\n        \"creditArrangementSettings\": {},\n        \"availabilitySettings\": {\n            \"branchSettings\": {\n                \"forAllBranches\": true,\n                \"availableProductBranches\": []\n            },\n            \"availableFor\": [\n                \"PURE_GROUPS\",\n                \"INDIVIDUALS\"\n            ]\n        },\n        \"offsetSettings\": {\n            \"allowOffset\": false\n        },\n        \"taxSettings\": {\n            \"withholdingTaxEnabled\": false\n        },\n        \"currencySettings\": {\n            \"currencies\": [\n                {\n                    \"currencyCode\": \"USD\",\n                    \"code\": \"USD\"\n                }\n            ]\n        },\n        \"templates\": []\n    },\n    {\n        \"encodedKey\": \"8a44b0687f6d1c2c017f6f27f3841561\",\n        \"id\": \"ID_DEPOSIT_ARS\",\n        \"creationDate\": \"2022-03-09T07:20:21-08:00\",\n        \"lastModifiedDate\": \"2022-03-09T07:20:21-08:00\",\n        \"name\": \"DEPOSIT PRODUCT ARS\",\n        \"notes\": \"\",\n        \"type\": \"REGULAR_SAVINGS\",\n        \"category\": \"PERSONAL_DEPOSIT\",\n        \"state\": \"ACTIVE\",\n        \"newAccountSettings\": {\n            \"idGeneratorType\": \"RANDOM_PATTERN\",\n            \"idPattern\": \"@@@@###\"\n        },\n        \"interestSettings\": {\n            \"interestPaidIntoAccount\": false,\n            \"interestPaymentSettings\": {\n                \"interestPaymentDates\": []\n            },\n            \"collectInterestWhenLocked\": true\n        },\n        \"overdraftInterestSettings\": {},\n        \"overdraftSettings\": {\n            \"allowOverdraft\": false,\n            \"maxOverdraftLimit\": 0,\n            \"allowTechnicalOverdraft\": false\n        },\n        \"feesSettings\": {\n            \"allowArbitraryFees\": false\n        },\n        \"accountingSettings\": {\n            \"accountingMethod\": \"NONE\",\n            \"interestAccruedAccountingMethod\": \"NONE\",\n            \"accountingRules\": []\n        },\n        \"internalControls\": {\n            \"openingBalance\": {}\n        },\n        \"maturitySettings\": {\n            \"maturityPeriod\": {},\n            \"maturityPeriodUnit\": \"MONTHS\"\n        },\n        \"creditArrangementSettings\": {},\n        \"availabilitySettings\": {\n            \"branchSettings\": {\n                \"forAllBranches\": true,\n                \"availableProductBranches\": []\n            },\n            \"availableFor\": [\n                \"PURE_GROUPS\",\n                \"INDIVIDUALS\"\n            ]\n        },\n        \"offsetSettings\": {\n            \"allowOffset\": false\n        },\n        \"taxSettings\": {\n            \"withholdingTaxEnabled\": false\n        },\n        \"currencySettings\": {\n            \"currencies\": [\n                {\n                    \"currencyCode\": \"ARS\",\n                    \"code\": \"ARS\"\n                }\n            ]\n        },\n        \"templates\": []\n    },\n    {\n        \"encodedKey\": \"8a44b0687f6d1c2c017f71bd2c9a3b4c\",\n        \"id\": \"ACH_STLMT_OUT\",\n        \"creationDate\": \"2022-03-09T18:51:37-08:00\",\n        \"lastModifiedDate\": \"2022-03-09T18:51:37-08:00\",\n        \"name\": \"ACH_SETTLEMENT_OUTGOING\",\n        \"notes\": \"\",\n        \"type\": \"CURRENT_ACCOUNT\",\n        \"category\": \"DAILY_BANKING_ACCOUNTS\",\n        \"state\": \"ACTIVE\",\n        \"newAccountSettings\": {\n            \"idGeneratorType\": \"RANDOM_PATTERN\",\n            \"idPattern\": \"@@@@###\"\n        },\n        \"interestSettings\": {\n            \"interestPaidIntoAccount\": false,\n            \"interestPaymentSettings\": {\n                \"interestPaymentDates\": []\n            },\n            \"collectInterestWhenLocked\": true\n        },\n        \"overdraftInterestSettings\": {},\n        \"overdraftSettings\": {\n            \"allowOverdraft\": false,\n            \"maxOverdraftLimit\": 0,\n            \"allowTechnicalOverdraft\": false\n        },\n        \"feesSettings\": {\n            \"allowArbitraryFees\": false\n        },\n        \"accountingSettings\": {\n            \"accountingMethod\": \"NONE\",\n            \"interestAccruedAccountingMethod\": \"NONE\",\n            \"accountingRules\": []\n        },\n        \"internalControls\": {\n            \"openingBalance\": {\n                \"minValue\": 0\n            }\n        },\n        \"maturitySettings\": {\n            \"maturityPeriod\": {},\n            \"maturityPeriodUnit\": \"MONTHS\"\n        },\n        \"creditArrangementSettings\": {},\n        \"availabilitySettings\": {\n            \"branchSettings\": {\n                \"forAllBranches\": true,\n                \"availableProductBranches\": []\n            },\n            \"availableFor\": [\n                \"PURE_GROUPS\",\n                \"INDIVIDUALS\"\n            ]\n        },\n        \"offsetSettings\": {\n            \"allowOffset\": false\n        },\n        \"taxSettings\": {\n            \"withholdingTaxEnabled\": false\n        },\n        \"currencySettings\": {\n            \"currencies\": [\n                {\n                    \"currencyCode\": \"USD\",\n                    \"code\": \"USD\"\n                }\n            ]\n        },\n        \"templates\": []\n    },\n    {\n        \"encodedKey\": \"8a44a0bf8215fe5c01821b87ba1d0539\",\n        \"id\": \"PD_CA_0001\",\n        \"creationDate\": \"2022-07-20T05:14:16-07:00\",\n        \"lastModifiedDate\": \"2022-07-20T05:14:16-07:00\",\n        \"name\": \"PD_CA_0001\",\n        \"notes\": \"\",\n        \"type\": \"CURRENT_ACCOUNT\",\n        \"category\": \"PERSONAL_DEPOSIT\",\n        \"state\": \"INACTIVE\",\n        \"newAccountSettings\": {\n            \"idGeneratorType\": \"RANDOM_PATTERN\",\n            \"idPattern\": \"@@@@###\"\n        },\n        \"interestSettings\": {\n            \"interestPaidIntoAccount\": false,\n            \"interestPaymentSettings\": {\n                \"interestPaymentDates\": []\n            },\n            \"collectInterestWhenLocked\": true\n        },\n        \"overdraftInterestSettings\": {},\n        \"overdraftSettings\": {\n            \"allowOverdraft\": false,\n            \"maxOverdraftLimit\": 0,\n            \"allowTechnicalOverdraft\": false\n        },\n        \"feesSettings\": {\n            \"allowArbitraryFees\": false\n        },\n        \"accountingSettings\": {\n            \"accountingMethod\": \"NONE\",\n            \"interestAccruedAccountingMethod\": \"NONE\",\n            \"accountingRules\": []\n        },\n        \"internalControls\": {\n            \"openingBalance\": {\n                \"minValue\": 0\n            }\n        },\n        \"maturitySettings\": {\n            \"maturityPeriod\": {},\n            \"maturityPeriodUnit\": \"MONTHS\"\n        },\n        \"creditArrangementSettings\": {},\n        \"availabilitySettings\": {\n            \"branchSettings\": {\n                \"forAllBranches\": true,\n                \"availableProductBranches\": []\n            },\n            \"availableFor\": [\n                \"PURE_GROUPS\",\n                \"INDIVIDUALS\"\n            ]\n        },\n        \"offsetSettings\": {\n            \"allowOffset\": false\n        },\n        \"taxSettings\": {\n            \"withholdingTaxEnabled\": false\n        },\n        \"currencySettings\": {\n            \"currencies\": [\n                {\n                    \"currencyCode\": \"USD\",\n                    \"code\": \"USD\"\n                }\n            ]\n        },\n        \"templates\": []\n    },\n    {\n        \"encodedKey\": \"8a44a0bf8215fe5c01821b87ba1d053b\",\n        \"id\": \"PD_CA_0002\",\n        \"creationDate\": \"2022-07-20T05:19:20-07:00\",\n        \"lastModifiedDate\": \"2022-07-20T05:19:20-07:00\",\n        \"name\": \"PD_CA 0002\",\n        \"notes\": \"\",\n        \"type\": \"CURRENT_ACCOUNT\",\n        \"category\": \"PERSONAL_DEPOSIT\",\n        \"state\": \"ACTIVE\",\n        \"newAccountSettings\": {\n            \"idGeneratorType\": \"RANDOM_PATTERN\",\n            \"idPattern\": \"@@@@###\"\n        },\n        \"interestSettings\": {\n            \"interestPaidIntoAccount\": false,\n            \"interestPaymentSettings\": {\n                \"interestPaymentDates\": []\n            },\n            \"collectInterestWhenLocked\": true\n        },\n        \"overdraftInterestSettings\": {},\n        \"overdraftSettings\": {\n            \"allowOverdraft\": false,\n            \"maxOverdraftLimit\": 0,\n            \"allowTechnicalOverdraft\": false\n        },\n        \"feesSettings\": {\n            \"allowArbitraryFees\": false\n        },\n        \"accountingSettings\": {\n            \"accountingMethod\": \"NONE\",\n            \"interestAccruedAccountingMethod\": \"NONE\",\n            \"accountingRules\": []\n        },\n        \"internalControls\": {\n            \"openingBalance\": {\n                \"minValue\": 0\n            }\n        },\n        \"maturitySettings\": {\n            \"maturityPeriod\": {},\n            \"maturityPeriodUnit\": \"MONTHS\"\n        },\n        \"creditArrangementSettings\": {},\n        \"availabilitySettings\": {\n            \"branchSettings\": {\n                \"forAllBranches\": true,\n                \"availableProductBranches\": []\n            },\n            \"availableFor\": [\n                \"PURE_GROUPS\",\n                \"INDIVIDUALS\"\n            ]\n        },\n        \"offsetSettings\": {\n            \"allowOffset\": false\n        },\n        \"taxSettings\": {\n            \"withholdingTaxEnabled\": false\n        },\n        \"currencySettings\": {\n            \"currencies\": [\n                {\n                    \"currencyCode\": \"USD\",\n                    \"code\": \"USD\"\n                }\n            ]\n        },\n        \"templates\": []\n    }\n]"
+						},
+						{
+							"name": "Get Deposit Products - Unauthorized",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://demos.dev.custom.demos.tenant-1.portx.io/mambu-portx-cbs-connector/mambu-portx-cbs-connector/1.0/products",
+									"protocol": "https",
+									"host": [
+										"demos",
+										"dev",
+										"custom",
+										"demos",
+										"tenant-1",
+										"portx",
+										"io"
+									],
+									"path": [
+										"mambu-portx-cbs-connector",
+										"mambu-portx-cbs-connector",
+										"1.0",
+										"products"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 16:17:33 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								},
+								{
+									"key": "Content-Length",
+									"value": "90"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "server",
+									"value": "envoy"
+								}
+							],
+							"cookie": [],
+							"body": "{\"error\":{\"code\":401,\"status\":\"Unauthorized\",\"message\":\"Access credentials are invalid\"}}\n"
 						}
 					]
 				}
@@ -3186,6 +3397,66 @@
 					]
 				}
 			]
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "client_authentication",
+				"value": "body",
+				"type": "string"
+			},
+			{
+				"key": "challengeAlgorithm",
+				"value": "S256",
+				"type": "string"
+			},
+			{
+				"key": "grant_type",
+				"value": "client_credentials",
+				"type": "string"
+			},
+			{
+				"key": "clientSecret",
+				"value": "uFG+j2!226@iPJ)9&$O:]k0^7uj!zB]N",
+				"type": "string"
+			},
+			{
+				"key": "clientId",
+				"value": "oba-demos",
+				"type": "string"
+			},
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			},
+			{
+				"key": "accessTokenUrl",
+				"value": "https://auth.dev.custom.demos.tenant-1.portx.io/oauth2/token",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }
