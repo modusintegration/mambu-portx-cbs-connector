@@ -20,7 +20,6 @@ std.prune({
     }
   ],
   "emailAddress": selector(payload, "contact.emailAddress"),
-  "id": "691445899",
   "state": selector(payload, "status"),
   "birthDate": selector(payload, "placeAndDateOfBirth.birthDate"),
   "mobilePhone": selector(payload, "contact.mobileNumber")
