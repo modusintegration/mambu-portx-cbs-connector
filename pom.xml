@@ -14,7 +14,7 @@
 
     <artifactId>mambu-portx-cbs-connector</artifactId>
     <groupId>io.portx.cbs.connector</groupId>
-    <version>1.0.26-SNAPSHOT</version>
+    <version>1.0.26</version>
 
     <build>
         <pluginManagement>
@@ -393,7 +393,7 @@
         <connection>scm:git:https://github.com/modusintegration/${project.artifactId}.git</connection>
         <developerConnection>scm:git:https://github.com/modusintegration/${project.artifactId}.git</developerConnection>
         <url>https://github.com/modusintegration/${project.artifactId}.git</url>
-        <tag>HEAD</tag>
+        <tag>mambu-portx-cbs-connector-1.0.26</tag>
     </scm>
 
     <distributionManagement>
