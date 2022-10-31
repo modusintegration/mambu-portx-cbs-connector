@@ -4,10 +4,23 @@ output application/json
 input payload application/json
 */
 local selector(obj,key,dValue = null) = ds.or(ds.select(obj,key), dValue);
+local addressLines = selector(payload, "postalAddress.addressLine");
 
 std.prune({
   "lastName": payload.structuredName.lastName,
   "middleName": selector(payload, "structuredName.middleName"),
   "firstName": payload.structuredName.firstName,
-  "state": selector(payload, "status")
+  "addresses": [
+    {
+      "country": selector(payload, "postalAddress.country"),
+      "city": selector(payload, "postalAddress.townName"),
+      "postcode": selector(payload, "postalAddress.postCode"),
+      "line2": if ds.isArray(addressLines) && std.length(addressLines) > 1 then addressLines[1] else "",
+      "line1": if ds.isArray(addressLines) && std.length(addressLines) > 0 then addressLines[0] else ""
+    }
+  ],
+  "emailAddress": selector(payload, "contact.emailAddress"),
+  "state": selector(payload, "status"),
+  "birthDate": selector(payload, "placeAndDateOfBirth.birthDate"),
+  "mobilePhone": selector(payload, "contact.mobileNumber")
 })
