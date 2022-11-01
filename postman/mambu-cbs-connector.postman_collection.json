@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "5824814b-9c84-4a78-9569-fe2ec74d68d9",
+		"_postman_id": "51d87ecf-9746-41d0-9d70-e5a88cd6672e",
 		"name": "mambu-cbs-connector",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "5382217"
@@ -15,7 +15,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:7777/mambu-portx-cbs-connector/1.0/persons/8a44d6d97c81ddbe017ca40798266956",
+							"raw": "http://localhost:7777/mambu-portx-cbs-connector/1.0/persons/8a44cd4f842e79db0184344bfe60474a",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -25,7 +25,7 @@
 								"mambu-portx-cbs-connector",
 								"1.0",
 								"persons",
-								"8a44d6d97c81ddbe017ca40798266956"
+								"8a44cd4f842e79db0184344bfe60474a"
 							]
 						}
 					},
@@ -1034,6 +1034,34 @@
 				},
 				{
 					"name": "Create Person",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"personId\", jsonData.personId);",
+									"",
+									"let clientIdentifier = jsonData.genericIdentifiers.find( x => x.schemeName == 'clientId' );",
+									"postman.setEnvironmentVariable(\"clientId\", clientIdentifier.number);",
+									"",
+									"pm.test(\"Create person response http status code = 201\", function(){",
+									"    pm.response.to.have.status(201);",
+									"})",
+									"",
+									"pm.test(\"personId assigned\", function () {",
+									"    pm.expect(pm.environment.get(\"personId\")).not.eql(undefined);",
+									"});",
+									"",
+									"pm.test(\"client id assigned\", function () {",
+									"    pm.expect(pm.environment.get(\"clientId\")).not.eql(undefined);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [
@@ -1045,7 +1073,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"bIC\": \"AAAABBCCXXX\",\n  \"lEI\": \"2ZCNRR8UK83OBTEK2170\",\n  \"genericIdentifiers\": [\n    {\n      \"number\": \"123-45-6789\",\n      \"schemeName\": \"SocialSecurityNumber\",\n      \"issuer\": \"string\"\n    }\n  ],\n  \"name\": \"Jane Birkin\",\n  \"shortName\": \"Jane Birkin\",\n  \"relatedParties\": [\n    {\n      \"partyId\": \"5fb9d4d6-1a3c-11ed-861d-0242ac120002\",\n      \"partyType\": \"Person\",\n      \"partyRelationType\": \"Owner\"\n    }\n  ],\n  \"countryOfResidence\": \"OE\",\n  \"postalAddress\": {\n    \"addressType\": \"string\",\n    \"department\": \"string\",\n    \"subDepartment\": \"string\",\n    \"streetName\": \"string\",\n    \"buildingNumber\": \"string\",\n    \"buildingName\": \"string\",\n    \"floor\": \"string\",\n    \"postBox\": \"string\",\n    \"room\": \"string\",\n    \"postCode\": \"string\",\n    \"townName\": \"string\",\n    \"townLocationName\": \"string\",\n    \"districtName\": \"string\",\n    \"countrySubDivision\": \"string\",\n    \"country\": \"VM\",\n    \"addressLine\": [\n      \"string\"\n    ]\n  },\n  \"residenceType\": \"string\",\n  \"status\": \"Queued\",\n  \"taxInformation\": {\n    \"tIN\": \"string\",\n    \"taxIdType\": \"stri\",\n    \"reportingFlag\": true,\n    \"tinStatus\": \"string\",\n    \"suplementaryData\": {}\n  },\n  \"supplementaryData\": {},\n  \"placeAndDateOfBirth\": {\n    \"birthDate\": \"2022-04-17\",\n    \"provinceOfBirth\": \"string\",\n    \"cityOfBirth\": \"string\",\n    \"countryOfBirth\": \"WO\"\n  },\n  \"signature\": \"ZXhhbXBsZQ==\",\n  \"contact\": {\n    \"namePrefix\": \"string\",\n    \"name\": \"string\",\n    \"phoneNumber\": \"+1-415-731359\",\n    \"mobileNumber\": \"+1-415-731359\",\n    \"faxNumber\": \"+1-415-731359\",\n    \"emailAddress\": \"string\",\n    \"emailPurpose\": \"string\",\n    \"jobTitle\": \"string\",\n    \"responsibility\": \"string\",\n    \"department\": \"string\",\n    \"otherContact\": {\n      \"channelType\": \"stri\",\n      \"identification\": \"string\"\n    },\n    \"preferredMethod\": \"string\"\n  },\n  \"headOfHousehold\": true,\n  \"civilStatus\": \"Single\"\n}",
+							"raw": "{\n  \"postalAddress\": {\n    \"postCode\": \"45090\",\n    \"townName\": \"Zapopan\",\n    \"country\": \"VM\",\n    \"addressLine\": [\n      \"Nature\",\n      \"Valley \"\n    ]\n  },\n  \"status\": \"INACTIVE\",\n  \"placeAndDateOfBirth\": {\n    \"birthDate\": \"2022-04-17\"\n  },\n  \"contact\": {\n    \"mobileNumber\": \"+1-415-731359\",\n    \"emailAddress\": \"email@gmail.com\"\n  },\n  \"structuredName\": {\n    \"firstName\": \"Copi\",\n    \"middleName\": \"Joe\",\n    \"lastName\": \"Copito\"\n  }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1244,7 +1272,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"lEI\": \"2ZCNRR8UK83OBTEK2170\",\n  \"name\": \"Allen Soley\",\n  \"shortName\": \"Allen Soley\",\n  \"relatedParties\": [\n    {\n      \"partyId\": \"8a44d6d97c81ddbe017ca40798266956\",\n      \"partyType\": \"Person\",\n      \"partyRelationType\": \"Owner\"\n    }\n  ],\n  \"countryOfResidence\": \"UK\",\n  \"postalAddress\": {\n    \"addressType\": \"Residence\",\n    \"department\": \"string\",\n    \"subDepartment\": \"string\",\n    \"streetName\": \"Downing\",\n    \"buildingNumber\": \"10\",\n    \"buildingName\": \"Upper\",\n    \"floor\": \"6\",\n    \"postBox\": \"1035\",\n    \"room\": \"string\",\n    \"postCode\": \"45070\",\n    \"townName\": \"London\",\n    \"townLocationName\": \"string\",\n    \"districtName\": \"string\",\n    \"countrySubDivision\": \"string\",\n    \"country\": \"VM\",\n    \"addressLine\": [\n      \"string\"\n    ]\n  },\n  \"residenceType\": \"string\",\n  \"status\": \"ACTIVE\",\n  \"taxInformation\": {\n    \"tIN\": \"string\",\n    \"taxIdType\": \"stri\",\n    \"reportingFlag\": true,\n    \"tinStatus\": \"string\",\n    \"suplementaryData\": {}\n  },\n  \"supplementaryData\": {},\n  \"placeAndDateOfBirth\": {\n    \"birthDate\": \"1986-04-17\",\n    \"provinceOfBirth\": \"string\",\n    \"cityOfBirth\": \"string\",\n    \"countryOfBirth\": \"WO\"\n  },\n  \"signature\": \"ZXhhbXBsZQ==\",\n  \"contact\": {\n    \"namePrefix\": \"string\",\n    \"name\": \"string\",\n    \"phoneNumber\": \"+1-415-731359\",\n    \"mobileNumber\": \"+1-415-731359\",\n    \"faxNumber\": \"+1-415-731359\",\n    \"emailAddress\": \"allen.soley@gmail.com\",\n    \"emailPurpose\": \"string\",\n    \"jobTitle\": \"string\",\n    \"responsibility\": \"string\",\n    \"department\": \"string\",\n    \"otherContact\": {\n      \"channelType\": \"stri\",\n      \"identification\": \"string\"\n    },\n    \"preferredMethod\": \"string\"\n  },\n  \"headOfHousehold\": true,\n  \"civilStatus\": \"Single\",\n  \"structuredName\": {\n    \"firstName\": \"Allen\",\n    \"middleName\": \"Joe\",\n    \"lastName\": \"Soley\"\n  },\n  \"personId\": \"8a44d6d97c81ddbe017ca40798266956\"\n}",
+							"raw": "{\n  \"genericIdentifiers\": [\n    {\n      \"number\": \"388760650\",\n      \"schemeName\": \"clientId\",\n      \"issuer\": \"Mambu\"\n    }\n  ],\n  \"postalAddress\": {\n    \"postCode\": \"45070\",\n    \"townName\": \"London\",\n    \"country\": \"VM\",\n    \"addressLine\": [\n      \"Nature\",\n      \"New Valley\"\n    ]\n  },\n  \"status\": \"ACTIVE\",\n  \"placeAndDateOfBirth\": {\n    \"birthDate\": \"1986-04-17\"\n  },\n  \"contact\": {\n    \"mobileNumber\": \"+1-415-731359\",\n    \"emailAddress\": \"allen.soley@gmail.com\"\n  },\n  \"structuredName\": {\n    \"firstName\": \"Allen\",\n    \"middleName\": \"Joe\",\n    \"lastName\": \"Soley\"\n  },\n  \"personId\": \"8a44cd4f842e79db0184344bfe60474a\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1252,7 +1280,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:7777/mambu-portx-cbs-connector/1.0/persons/8a44d6d97c81ddbe017ca40798266956",
+							"raw": "http://localhost:7777/mambu-portx-cbs-connector/1.0/persons/8a44cd4f842e79db0184344bfe60474a",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1262,7 +1290,7 @@
 								"mambu-portx-cbs-connector",
 								"1.0",
 								"persons",
-								"8a44d6d97c81ddbe017ca40798266956"
+								"8a44cd4f842e79db0184344bfe60474a"
 							]
 						}
 					},
@@ -1703,7 +1731,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"accountType\": \"CLIENT\",\n  \"name\": \"JosephSmitDepositSavingsAccount1\",\n  \"productId\": \"8a44d6d97c81ddbe017ca39738446161\",\n  \"relatedAccounts\": [\n    {\n      \"accountRelationType\": \"Parent\",\n      \"accountId\": \"8a44d76a83cdeef00183cf510e053d61\"\n    }\n  ]\n}",
+							"raw": "{\n    \"accountType\": \"Savings\",\n    \"name\": \"DemoSmit1DepositSavingsAccount1\",\n    \"productId\": \"8a44d6d97c81ddbe017ca39738446161\",\n    \"initialAmount\": \"15\",\n    \"parties\": [\n        {\n            \"partyId\": \"8a44cd4f842e79db0184303f01c61b5f\",\n            \"partyType\": \"Person\"\n        }\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2343,6 +2371,225 @@
 						}
 					},
 					"response": []
+				}
+			]
+		},
+		{
+			"name": "Update Person Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"Patch accounts response http status code = 200\", function(){",
+							"    pm.response.to.have.status(200);",
+							"})",
+							"",
+							"pm.test(\"name is changed\", function () {",
+							"    pm.expect(jsonData.name).eql(\"Allen Joe Soley\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "bankId",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"genericIdentifiers\": [\n    {\n      \"number\": \"{{clientId}}\",\n      \"schemeName\": \"clientId\",\n      \"issuer\": \"Mambu\"\n    }\n  ],\n\n  \"postalAddress\": {\n    \"postCode\": \"45070\",\n    \"townName\": \"London\",\n    \"country\": \"VM\",\n    \"addressLine\": [\n      \"Nature\",\n      \"New Valley\"\n    ]\n  },\n  \"status\": \"ACTIVE\",\n  \"placeAndDateOfBirth\": {\n    \"birthDate\": \"1986-04-17\"\n  },\n  \"contact\": {\n    \"mobileNumber\": \"+1-415-731359\",\n    \"emailAddress\": \"allen.soley@gmail.com\"\n  },\n  \"structuredName\": {\n    \"firstName\": \"Allen\",\n    \"middleName\": \"Joe\",\n    \"lastName\": \"Soley\"\n  },\n  \"personId\": \"{{personId}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{host}}/{{demoApp}}/mambu-portx-cbs-connector/1.0/persons/{{personId}}",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{demoApp}}",
+						"mambu-portx-cbs-connector",
+						"1.0",
+						"persons",
+						"{{personId}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create Person - Jane Birkin",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "bankId",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"bIC\": \"AAAABBCCXXX\",\n  \"lEI\": \"2ZCNRR8UK83OBTEK2170\",\n  \"genericIdentifiers\": [\n    {\n      \"number\": \"123-45-6789\",\n      \"schemeName\": \"SocialSecurityNumber\",\n      \"issuer\": \"string\"\n    }\n  ],\n  \"name\": \"Jane Birkin\",\n  \"shortName\": \"Jane Birkin\",\n  \"relatedParties\": [\n    {\n      \"partyId\": \"5fb9d4d6-1a3c-11ed-861d-0242ac120002\",\n      \"partyType\": \"Person\",\n      \"partyRelationType\": \"Owner\"\n    }\n  ],\n  \"countryOfResidence\": \"OE\",\n  \"postalAddress\": {\n    \"addressType\": \"string\",\n    \"department\": \"string\",\n    \"subDepartment\": \"string\",\n    \"streetName\": \"string\",\n    \"buildingNumber\": \"string\",\n    \"buildingName\": \"string\",\n    \"floor\": \"string\",\n    \"postBox\": \"string\",\n    \"room\": \"string\",\n    \"postCode\": \"string\",\n    \"townName\": \"string\",\n    \"townLocationName\": \"string\",\n    \"districtName\": \"string\",\n    \"countrySubDivision\": \"string\",\n    \"country\": \"VM\",\n    \"addressLine\": [\n      \"string\"\n    ]\n  },\n  \"residenceType\": \"string\",\n  \"status\": \"Queued\",\n  \"taxInformation\": {\n    \"tIN\": \"string\",\n    \"taxIdType\": \"stri\",\n    \"reportingFlag\": true,\n    \"tinStatus\": \"string\",\n    \"suplementaryData\": {}\n  },\n  \"supplementaryData\": {},\n  \"placeAndDateOfBirth\": {\n    \"birthDate\": \"2022-04-17\",\n    \"provinceOfBirth\": \"string\",\n    \"cityOfBirth\": \"string\",\n    \"countryOfBirth\": \"WO\"\n  },\n  \"signature\": \"ZXhhbXBsZQ==\",\n  \"contact\": {\n    \"namePrefix\": \"string\",\n    \"name\": \"string\",\n    \"phoneNumber\": \"+1-415-731359\",\n    \"mobileNumber\": \"+1-415-731359\",\n    \"faxNumber\": \"+1-415-731359\",\n    \"emailAddress\": \"string\",\n    \"emailPurpose\": \"string\",\n    \"jobTitle\": \"string\",\n    \"responsibility\": \"string\",\n    \"department\": \"string\",\n    \"otherContact\": {\n      \"channelType\": \"stri\",\n      \"identification\": \"string\"\n    },\n    \"preferredMethod\": \"string\"\n  },\n  \"headOfHousehold\": true,\n  \"civilStatus\": \"Single\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:7777/fis-horizon-core-sys-api/1.0/persons",
+							"host": [
+								"localhost"
+							],
+							"port": "7777",
+							"path": [
+								"fis-horizon-core-sys-api",
+								"1.0",
+								"persons"
+							]
+						}
+					},
+					"status": "Accepted",
+					"code": 202,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 11 Oct 2022 21:59:05 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/xml; charset=UTF-8"
+						},
+						{
+							"key": "Accept",
+							"value": "*/*"
+						},
+						{
+							"key": "Accept-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Horizon-Authorization,organization-id,uuid,authorization,Content-Type,Authorization"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "POST"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Expose-Headers",
+							"value": "ETag"
+						},
+						{
+							"key": "activityid",
+							"value": "ef0781fa-0c64-4d9f-a188-62afab021bf9"
+						},
+						{
+							"key": "Akamai-Origin-Hop",
+							"value": "2"
+						},
+						{
+							"key": "Authorization",
+							"value": "{\"code\":\"FIS_HORIZON_AUTH_ERROR\",\"message\":\"An error happened during authentication\",\"details\":\"<ams:fault xmlns:ams=\\\"http://wso2.org/apimanager/security\\\"><ams:code>900901</ams:code><ams:message>Invalid Credentials</ams:message><ams:description>Invalid Credentials. Make sure you have provided the correct security credentials</ams:description></ams:fault>\"}"
+						},
+						{
+							"key": "bankId",
+							"value": "1"
+						},
+						{
+							"key": "nnCoection",
+							"value": "close"
+						},
+						{
+							"key": "Postman-Token",
+							"value": "82adb873-798c-4901-9c3d-94285e23f011"
+						},
+						{
+							"key": "Server",
+							"value": "Apache"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "ak_bmsc=8FEFE995AAB6F1714A83A4AB9C924CAC~000000000000000000000000000000~YAAQ8Tg3F8A1RK2DAQAAWhYPyRFRiNjZ4PCrBVN+tmUeY1tMIQuPyecPB+7juOl2W7P6L3KPCWnLb7+sZiR64cEuLajYSopZTfSGVvSuNMfwGSNFs5fkCCPn9I1GfNju7QVWwQJBAwDxMP2oRVXlpIlWSVLRSZuggvRYxkAM4JKALfyWQT9vEwAlxI1spQeFJEKQcMF679EbnRTU0wL/64n2Bo+EH6soBiOOAlMWz4+lURN7ofWFFFc3YvUOJtTpljKRficcuu8Ame05+glGf/56hlPkw3OckSX8OJ1UKY9Ti4IVtpisnwE2GqOsw9NRlAU33K+QgbRYKwq77yEQCOOo0hAoNSkniUdnWVtXrfXbvRb51J2okdq7Mt2y64Oh; Domain=.fisglobal.com; Path=/; Expires=Tue, 11 Oct 2022 23:59:10 GMT; Max-Age=7198; HttpOnly"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000 ; includeSubDomains"
+						},
+						{
+							"key": "traceparent",
+							"value": "00-05e1dd2f306fc94c433d8afc8a433390-c9889ae8ed0e10f3-01"
+						},
+						{
+							"key": "tracestate",
+							"value": "9848f37c-ce0e2925@dt=fw4;3;c5e323db;180045;0;0;0;261;b3f1;2h01;3hc5e323db;4h180045;5h01;7hc9889ae8ed0e10f3"
+						},
+						{
+							"key": "True-Client-IP",
+							"value": "107.201.177.71"
+						},
+						{
+							"key": "WWW-Authenticate",
+							"value": "OAuth2 realm=\"WSO2 API Manager\", error=\"invalid_token\", error_description=\"The access token expired\""
+						},
+						{
+							"key": "X-Akamai-CONFIG-LOG-DETAIL",
+							"value": "true"
+						},
+						{
+							"key": "X-dynaTrace",
+							"value": "FW4;-837932763;3;-974969893;1572933;0;-1740049540;609;9f81;2h01;3hc5e323db;4h180045;5h01;6h05e1dd2f306fc94c433d8afc8a433390;7hc9889ae8ed0e10f3"
+						},
+						{
+							"key": "X-Forwarded-For",
+							"value": "10.236.127.23"
+						},
+						{
+							"key": "X-Forwarded-For",
+							"value": "107.201.177.71"
+						},
+						{
+							"key": "X-Forwarded-Host",
+							"value": "api-gw-uat.fisglobal.com"
+						},
+						{
+							"key": "X-Forwarded-Server",
+							"value": "api-gw-uat.fisglobal.com"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"bIC\": \"AAAABBCCXXX\",\n  \"lEI\": \"2ZCNRR8UK83OBTEK2170\",\n  \"genericIdentifiers\": [\n    {\n      \"number\": \"123-45-6789\",\n      \"schemeName\": \"SocialSecurityNumber\",\n      \"issuer\": \"string\"\n    }\n  ],\n  \"name\": \"Jane Birkin\",\n  \"shortName\": \"Jane Birkin\",\n  \"relatedParties\": [\n    {\n      \"partyId\": \"5fb9d4d6-1a3c-11ed-861d-0242ac120002\",\n      \"partyType\": \"Person\",\n      \"partyRelationType\": \"Owner\"\n    }\n  ],\n  \"countryOfResidence\": \"OE\",\n  \"postalAddress\": {\n    \"addressType\": \"string\",\n    \"department\": \"string\",\n    \"subDepartment\": \"string\",\n    \"streetName\": \"string\",\n    \"buildingNumber\": \"string\",\n    \"buildingName\": \"string\",\n    \"floor\": \"string\",\n    \"postBox\": \"string\",\n    \"room\": \"string\",\n    \"postCode\": \"string\",\n    \"townName\": \"string\",\n    \"townLocationName\": \"string\",\n    \"districtName\": \"string\",\n    \"countrySubDivision\": \"string\",\n    \"country\": \"VM\",\n    \"addressLine\": [\n      \"string\"\n    ]\n  },\n  \"residenceType\": \"string\",\n  \"status\": \"Queued\",\n  \"taxInformation\": {\n    \"tIN\": \"string\",\n    \"taxIdType\": \"stri\",\n    \"reportingFlag\": true,\n    \"tinStatus\": \"string\",\n    \"suplementaryData\": {}\n  },\n  \"supplementaryData\": {},\n  \"placeAndDateOfBirth\": {\n    \"birthDate\": \"2022-04-17\",\n    \"provinceOfBirth\": \"string\",\n    \"cityOfBirth\": \"string\",\n    \"countryOfBirth\": \"WO\"\n  },\n  \"signature\": \"ZXhhbXBsZQ==\",\n  \"contact\": {\n    \"namePrefix\": \"string\",\n    \"name\": \"string\",\n    \"phoneNumber\": \"+1-415-731359\",\n    \"mobileNumber\": \"+1-415-731359\",\n    \"faxNumber\": \"+1-415-731359\",\n    \"emailAddress\": \"string\",\n    \"emailPurpose\": \"string\",\n    \"jobTitle\": \"string\",\n    \"responsibility\": \"string\",\n    \"department\": \"string\",\n    \"otherContact\": {\n      \"channelType\": \"stri\",\n      \"identification\": \"string\"\n    },\n    \"preferredMethod\": \"string\"\n  },\n  \"headOfHousehold\": true,\n  \"civilStatus\": \"Single\"\n}"
 				}
 			]
 		}
