@@ -11,7 +11,7 @@ std.prune({
   "middleName": selector(payload, "structuredName.middleName"),
   "firstName": payload.structuredName.firstName,
   "encodedKey": selector(payload, "personId"),
-  "id": "449514739",
+  "id": (ds.filter(payload.genericIdentifiers, function(value, index) value.schemeName ==  "clientId"))[0].number,
   "addresses": [
     {
       "country": selector(payload, "postalAddress.country"),

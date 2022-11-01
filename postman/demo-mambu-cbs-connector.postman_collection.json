@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "c5063c36-ce61-41d3-a22a-b74e96e9d2ab",
+		"_postman_id": "966c3673-5a60-489f-941b-1f972bf18b9a",
 		"name": "demo-mambu-cbs-connector",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "503705"
+		"_exporter_id": "5382217"
 	},
 	"item": [
 		{
@@ -14,7 +14,10 @@
 					"script": {
 						"exec": [
 							"var jsonData = JSON.parse(responseBody);",
-							"postman.setEnvironmentVariable(\"personId\", jsonData.encodedKey);",
+							"postman.setEnvironmentVariable(\"personId\", jsonData.personId);",
+							"",
+							"let clientIdentifier = jsonData.genericIdentifiers.find( x => x.schemeName == 'clientId' );",
+							"postman.setEnvironmentVariable(\"clientId\", clientIdentifier.number);",
 							"",
 							"pm.test(\"Create person response http status code = 201\", function(){",
 							"    pm.response.to.have.status(201);",
@@ -24,6 +27,9 @@
 							"    pm.expect(pm.environment.get(\"personId\")).not.eql(undefined);",
 							"});",
 							"",
+							"pm.test(\"clientId assigned\", function () {",
+							"    pm.expect(pm.environment.get(\"clientId\")).not.eql(undefined);",
+							"});",
 							""
 						],
 						"type": "text/javascript"
@@ -42,7 +48,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"status\": \"INACTIVE\",\n    \"structuredName\": {\n        \"firstName\": \"Demo\",\n        \"lastName\": \"Smith1\"\n    }\n}",
+					"raw": "{\n  \"postalAddress\": {\n    \"postCode\": \"45090\",\n    \"townName\": \"Zapopan\",\n    \"country\": \"VM\",\n    \"addressLine\": [\n      \"Nature\",\n      \"Valley \"\n    ]\n  },\n  \"status\": \"INACTIVE\",\n  \"placeAndDateOfBirth\": {\n    \"birthDate\": \"2022-04-17\"\n  },\n  \"contact\": {\n    \"mobileNumber\": \"+1-415-731359\",\n    \"emailAddress\": \"email@gmail.com\"\n  },\n  \"structuredName\": {\n    \"firstName\": \"Copi\",\n    \"middleName\": \"Joe\",\n    \"lastName\": \"Copito\"\n  }\n}",
 					"options": {
 						"raw": {
 							"language": "json"

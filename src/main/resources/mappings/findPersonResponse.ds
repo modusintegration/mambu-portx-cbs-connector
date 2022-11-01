@@ -7,6 +7,13 @@ local selector(obj,key,dValue = null) = ds.or(ds.select(obj,key), dValue);
 local address = selector(payload, "addresses");
 
 std.prune({
+  "genericIdentifiers": [
+    {
+      "number": payload.id,
+      "schemeName": "clientId",
+      "issuer": "Mambu"
+    }
+  ],
   "name": selector(payload, "firstName") + " " + selector(payload, "middleName")+ " " + selector(payload, "lastName"),
   "shortName": selector(payload, "firstName") + " " + selector(payload, "lastName"),
   "relatedParties": [
@@ -16,11 +23,14 @@ std.prune({
       "partyRelationType": "Owner"
     }
   ],
-  "countryOfResidence": if ds.isArray(address) then selector(address[0], "country") else "",
   "postalAddress": {
     "postCode": if ds.isArray(address) then selector(address[0], "postcode") else "",
     "townName": if ds.isArray(address) then selector(address[0], "city") else "",
     "country": if ds.isArray(address) then selector(address[0], "country") else "",
+    "addressLine": [
+      if ds.isArray(address) then selector(address[0], "line1"),
+      if ds.isArray(address) then selector(address[0], "line2")
+    ]
   },
   "status": selector(payload, "state"),
   "placeAndDateOfBirth": {
