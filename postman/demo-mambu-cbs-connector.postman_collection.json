@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "966c3673-5a60-489f-941b-1f972bf18b9a",
+		"_postman_id": "eae91ea3-e996-4ccf-a12f-1044c1d07a38",
 		"name": "demo-mambu-cbs-connector",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "5382217"
@@ -84,7 +84,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"status\": \"INACTIVE\",\n    \"structuredName\": {\n        \"firstName\": \"Demo\",\n        \"lastName\": \"Smith1\"\n    }\n}",
+							"raw": "{\n  \"postalAddress\": {\n    \"postCode\": \"45090\",\n    \"townName\": \"Zapopan\",\n    \"country\": \"VM\",\n    \"addressLine\": [\n      \"Nature\",\n      \"Valley \"\n    ]\n  },\n  \"status\": \"INACTIVE\",\n  \"placeAndDateOfBirth\": {\n    \"birthDate\": \"2022-04-17\"\n  },\n  \"contact\": {\n    \"mobileNumber\": \"+1-415-731359\",\n    \"emailAddress\": \"email@gmail.com\"\n  },\n  \"structuredName\": {\n    \"firstName\": \"Copi\",\n    \"middleName\": \"Joe\",\n    \"lastName\": \"Copito\"\n  }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -111,7 +111,7 @@
 					"header": [
 						{
 							"key": "Date",
-							"value": "Fri, 28 Oct 2022 16:52:00 GMT"
+							"value": "Wed, 02 Nov 2022 04:56:02 GMT"
 						},
 						{
 							"key": "Content-Type",
@@ -143,7 +143,7 @@
 						},
 						{
 							"key": "cookie",
-							"value": "AWSALB=1dsr/ZqojoQZOVsiudndSKvGg+a70ur2GUKEshKQ9mu8j/vJz7GSvuDq2YAjBmY7zgSxVxLSDfpu3dQRL8ycW6uP7Kneb0BaAsOfrwPlpC+fWBcf6QTyxMfLUFGv; AWSALBCORS=1dsr/ZqojoQZOVsiudndSKvGg+a70ur2GUKEshKQ9mu8j/vJz7GSvuDq2YAjBmY7zgSxVxLSDfpu3dQRL8ycW6uP7Kneb0BaAsOfrwPlpC+fWBcf6QTyxMfLUFGv"
+							"value": "AWSALB=oKLEUkZm86E9+8fvmJgZ2fneGU3RuJCy/EkR6/hIkQImAnLDhpdqZhgyPRU3a3DV1OA2NKXKjjIp3Nqpje3Dg8oteglMH58isptrNc3NuGMhoPtWsYYFXrBY3okw; AWSALBCORS=oKLEUkZm86E9+8fvmJgZ2fneGU3RuJCy/EkR6/hIkQImAnLDhpdqZhgyPRU3a3DV1OA2NKXKjjIp3Nqpje3Dg8oteglMH58isptrNc3NuGMhoPtWsYYFXrBY3okw"
 						},
 						{
 							"key": "feature-policy",
@@ -151,7 +151,7 @@
 						},
 						{
 							"key": "postman-token",
-							"value": "c344816e-d40c-4cbd-a0ea-97701c0f2089"
+							"value": "aa294886-eef6-4b88-a3e7-099c2a56d6cb"
 						},
 						{
 							"key": "referrer-policy",
@@ -167,11 +167,11 @@
 						},
 						{
 							"key": "set-cookie",
-							"value": "AWSALB=sW3MNStYBxpZIwRuE5QItHe1qK6bbnU0INWBZkN+/ckrliHFXAsxblH0t6oVvtQkJKWo/K+628yFcBx7jOxmJ1WboQOPBrzVoyBYKCmmIjyld56cwNere9qouvKx; Expires=Fri, 04 Nov 2022 16:52:00 GMT; Path=/"
+							"value": "AWSALB=hnm4coD0QiCV97A2a/wiLPkQl5GpO/gKatzMhWCTrmdEOPNYmWast5tqvK907XO8R+IL/3El7BIUm1xAiEUDipngWEm4LRbk56euGb6XVj53YBqrtDt2hPYYvZvP; Expires=Wed, 09 Nov 2022 04:56:02 GMT; Path=/"
 						},
 						{
 							"key": "set-cookie",
-							"value": "AWSALBCORS=sW3MNStYBxpZIwRuE5QItHe1qK6bbnU0INWBZkN+/ckrliHFXAsxblH0t6oVvtQkJKWo/K+628yFcBx7jOxmJ1WboQOPBrzVoyBYKCmmIjyld56cwNere9qouvKx; Expires=Fri, 04 Nov 2022 16:52:00 GMT; Path=/; SameSite=None; Secure"
+							"value": "AWSALBCORS=hnm4coD0QiCV97A2a/wiLPkQl5GpO/gKatzMhWCTrmdEOPNYmWast5tqvK907XO8R+IL/3El7BIUm1xAiEUDipngWEm4LRbk56euGb6XVj53YBqrtDt2hPYYvZvP; Expires=Wed, 09 Nov 2022 04:56:02 GMT; Path=/; SameSite=None; Secure"
 						},
 						{
 							"key": "strict-transport-security",
@@ -179,7 +179,7 @@
 						},
 						{
 							"key": "x-amzn-trace-id",
-							"value": "Root=1-635c08af-37200fb92db98c145abdae89"
+							"value": "Root=1-6361f862-47159ee371d6668e59825afe"
 						},
 						{
 							"key": "x-content-type-options",
@@ -191,7 +191,7 @@
 						},
 						{
 							"key": "x-envoy-external-address",
-							"value": "192.168.111.129"
+							"value": "192.168.175.128"
 						},
 						{
 							"key": "x-envoy-original-path",
@@ -199,7 +199,7 @@
 						},
 						{
 							"key": "x-forwarded-for",
-							"value": "107.201.177.71,192.168.111.129"
+							"value": "143.244.49.211,192.168.175.128"
 						},
 						{
 							"key": "x-forwarded-port",
@@ -211,7 +211,7 @@
 						},
 						{
 							"key": "x-request-id",
-							"value": "ecf14bac-68fb-47ca-a88e-1b163c81c8c9"
+							"value": "9b49f9b7-48b5-420b-a31f-0d69b777ce86"
 						},
 						{
 							"key": "x-xss-protection",
@@ -219,11 +219,11 @@
 						},
 						{
 							"key": "x-envoy-upstream-service-time",
-							"value": "632"
+							"value": "197"
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"encodedKey\": \"8a44deec841953a201841f7da87922fc\",\n    \"id\": \"299848040\",\n    \"state\": \"INACTIVE\",\n    \"creationDate\": \"2022-10-28T09:52:00-07:00\",\n    \"lastModifiedDate\": \"2022-10-28T09:52:00-07:00\",\n    \"approvedDate\": \"2022-10-28T09:52:00-07:00\",\n    \"firstName\": \"Demo\",\n    \"lastName\": \"Smith1\",\n    \"preferredLanguage\": \"ENGLISH\",\n    \"clientRoleKey\": \"8a44cde37b592d63017b5fac6e400518\",\n    \"loanCycle\": 0,\n    \"groupLoanCycle\": 0,\n    \"addresses\": [],\n    \"idDocuments\": []\n}"
+					"body": "{\n    \"genericIdentifiers\": [\n        {\n            \"number\": \"182645234\",\n            \"schemeName\": \"clientId\",\n            \"issuer\": \"Mambu\"\n        }\n    ],\n    \"name\": \"Copi Joe Copito\",\n    \"shortName\": \"Copi Copito\",\n    \"relatedParties\": [\n        {\n            \"partyId\": \"8a44b1a8842d4d99018436b1a4ab59cb\",\n            \"partyType\": \"Person\",\n            \"partyRelationType\": \"Owner\"\n        }\n    ],\n    \"postalAddress\": {\n        \"postCode\": \"45090\",\n        \"townName\": \"Zapopan\",\n        \"country\": \"VM\",\n        \"addressLine\": [\n            \"Nature\",\n            \"Valley \"\n        ]\n    },\n    \"status\": \"INACTIVE\",\n    \"placeAndDateOfBirth\": {\n        \"birthDate\": \"2022-04-17\"\n    },\n    \"contact\": {\n        \"mobileNumber\": \"+1-415-731359\",\n        \"emailAddress\": \"email@gmail.com\"\n    },\n    \"structuredName\": {\n        \"firstName\": \"Copi\",\n        \"middleName\": \"Joe\",\n        \"lastName\": \"Copito\"\n    },\n    \"personId\": \"8a44b1a8842d4d99018436b1a4ab59cb\"\n}"
 				}
 			]
 		},
@@ -988,8 +988,8 @@
 							"})",
 							"",
 							"pm.test(\"firstName and lastName retrieved\", function () {",
-							"    pm.expect(jsonData.firstName).not.eql(undefined);",
-							"    pm.expect(jsonData.lastName).not.eql(undefined);",
+							"    pm.expect(jsonData.structuredName.firstName).not.eql(undefined);",
+							"    pm.expect(jsonData.structuredName.lastName).not.eql(undefined);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -2778,6 +2778,57 @@
 					"body": "{\n    \"accountId\": \"0dd926fe-1ca2-11ed-861d-0242ac120002\",\n    \"accountNumber\": \"12345678\",\n    \"owners\": [\n        {\n            \"partyId\": \"5fb9d4d6-1a3c-11ed-861d-0242ac120002\",\n            \"partyType\": \"Person\",\n            \"partyRelationType\": \"Owner\"\n        }\n    ]\n}"
 				}
 			]
+		},
+		{
+			"name": "demos oauth2 token endpoint",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cache-Control",
+						"value": "no-cache",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "oba-demos",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "uFG+j2!226@iPJ)9&$O:]k0^7uj!zB]N",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://auth.dev.custom.demos.tenant-1.portx.io/oauth2/token",
+					"protocol": "https",
+					"host": [
+						"auth",
+						"dev",
+						"custom",
+						"demos",
+						"tenant-1",
+						"portx",
+						"io"
+					],
+					"path": [
+						"oauth2",
+						"token"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"auth": {
