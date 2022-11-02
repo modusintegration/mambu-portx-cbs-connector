@@ -6,7 +6,7 @@ input payload application/json
 {
   "accountId": payload.encodedKey,
   "accountNumber": payload.id,
-  "parties": [
+  "owners": [
     {
       "partyId": payload.accountHolderKey,
       "partyType": if payload.accountHolderType=="GROUP" then "Organization" else "Person",
