@@ -802,6 +802,689 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /perf/accounts:
+    post:
+      tags:
+        - Accounts
+      summary: Opens a Banking account
+      operationId: perfOpenBankingAccount
+      parameters:
+        - name: idempotencyId
+          in: header
+          description: Idempotency identifier used by the client when making repeated calls
+          required: false
+          schema:
+            maxLength: 36
+            minLength: 1
+            type: string
+        - name: servicerId
+          in: header
+          description: Account Servicer Identification (Bank)
+          required: false
+          schema:
+            maxLength: 36
+            minLength: 1
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountRequest'
+        required: true
+      responses:
+        "202":
+          description: Account information was received and will be processed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountResponse'
+        "400":
+          description: Bad Request. The account could not be processed due to format errors.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /perf/accounts/{accountId}:
+    get:
+      tags:
+        - Accounts
+      summary: Retrieves an account
+      operationId: perfFindAccount
+      parameters:
+        - name: accountId
+          in: path
+          description: Account Identification
+          required: true
+          schema:
+            $ref: '#/components/schemas/AccountId'
+        - name: bankId
+          in: header
+          description: Bank Identification
+          #          required: true
+          schema:
+            $ref: '#/components/schemas/Id'
+      responses:
+        "200":
+          description: Matching account was found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+        "400":
+          description: Bad Request. Account Id could not be processed due to format errors.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: No matching accounts have found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /perf/accounts/{accountId}/balances:
+    get:
+      tags:
+        - Accounts
+      summary: Retrieves an account balance amounts
+      operationId: perfFindAccountBalances
+      parameters:
+        - name: accountId
+          in: path
+          description: Account Identification
+          required: true
+          schema:
+            $ref: '#/components/schemas/AccountId'
+        - name: bankId
+          in: header
+          description: Bank Identification
+          #          required: true
+          schema:
+            $ref: '#/components/schemas/Id'
+      responses:
+        "200":
+          description: Matching account was found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountBalanceResponse'
+        "400":
+          description: Bad Request. Account Id could not be processed due to format errors.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: No matching accounts have found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /perf/accounts/{accountId}/transactions:
+    get:
+      tags:
+        - Accounts
+      summary: Retrieves the account transactions
+      operationId: perfFindAccountTransactions
+      parameters:
+        - name: accountId
+          in: path
+          description: Account Identification
+          required: true
+          schema:
+            $ref: '#/components/schemas/AccountId'
+        - name: bankId
+          in: header
+          description: Bank Identification
+#          required: true
+          schema:
+            $ref: '#/components/schemas/Id'
+      responses:
+        "200":
+          description: Matching account was found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountTransactionsResponse'
+        "400":
+          description: Bad Request. Account Id could not be processed due to format errors.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: No matching accounts have found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /perf/accounts/{accountId}/identifiers:
+    get:
+      tags:
+        - Accounts
+      summary: Retrieves all the identifiers of an account
+      operationId: perfFindAccountIdentifiers
+      parameters:
+        - name: accountId
+          in: path
+          description: Account Identification
+          required: true
+          schema:
+            $ref: '#/components/schemas/AccountId'
+        - name: bankId
+          in: header
+          description: Bank Identification
+          #        required: true
+          schema:
+            $ref: '#/components/schemas/Id'
+      responses:
+        "200":
+          description: Matching account was found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountIdentifiers'
+        "400":
+          description: Bad Request. Account Id could not be processed due to format errors.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: No matching accounts have found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /perf/accounts/{accountId}/parties:
+    get:
+      tags:
+        - Accounts
+      summary: Retrieves all the identifiers of an account
+      operationId: perfFindAccountRelatedParties
+      parameters:
+        - name: accountId
+          in: path
+          description: Account Identification
+          required: true
+          schema:
+            $ref: '#/components/schemas/AccountId'
+        - name: bankId
+          in: header
+          description: Bank Identification
+          #        required: true
+          schema:
+            $ref: '#/components/schemas/Id'
+      responses:
+        "200":
+          description: Matching account was found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountPartyResponse'
+        "400":
+          description: Bad Request. Account Id could not be processed due to format errors.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: No matching accounts have found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /perf/accounts/{accountId}/owners:
+    get:
+      tags:
+        - Accounts
+      summary: Retrieves all the identifiers of an account
+      operationId: perfFindAccountOwners
+      parameters:
+        - name: accountId
+          in: path
+          description: Account Identification
+          required: true
+          schema:
+            $ref: '#/components/schemas/AccountId'
+        - name: bankId
+          in: header
+          description: Bank Identification
+#          required: true
+          schema:
+            $ref: '#/components/schemas/Id'
+      responses:
+        "200":
+          description: Matching account was found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountOwnerResponse'
+        "400":
+          description: Bad Request. Account Id could not be processed due to format errors.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: No matching accounts have found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /perf/branches:
+    get:
+      tags:
+        - Branches
+      summary: Retrieves branches
+      operationId: perfFindBranches
+      responses:
+        '200':
+          description: Branches
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Branches'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /perf/persons:
+    post:
+      tags:
+        - Parties
+      summary: Creates a Person
+      operationId: perfCreatePerson
+      parameters:
+        - name: idempotencyId
+          in: header
+          description: Idempotency identifier used by the client when making repeated calls
+          required: false
+          schema:
+            maxLength: 36
+            minLength: 1
+            type: string
+        - name: bankId
+          in: header
+          description: Bank Identification
+          #          required: true
+          schema:
+            $ref: '#/components/schemas/Id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PersonRequest'
+        required: true
+      responses:
+        "202":
+          description: Person information was received
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Person'
+        "400":
+          description: Bad Request. The person information could not be processed due to format errors.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /perf/persons/{personId}:
+    get:
+      tags:
+        - Parties
+      summary: Retrieves a person
+      operationId: perfFindPerson
+      parameters:
+        - name: personId
+          in: path
+          description: Person Identification
+          required: true
+          schema:
+            $ref: '#/components/schemas/Id'
+        - name: servicerId
+          in: header
+          description: Account Servicer Identification (Bank)
+          required: false
+          schema:
+            maxLength: 36
+            minLength: 1
+            type: string
+      responses:
+        "200":
+          description: Matching person was found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Person'
+        "400":
+          description: Bad Request. Person Id could not be processed due to format errors.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: No matching persons have found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    patch:
+      tags:
+        - Parties
+      summary: Updates a person.
+      operationId: perfUpdatePerson
+      description: Use the JSON Merge Patch standard https://tools.ietf.org/html/rfc7396
+      parameters:
+        - $ref: "#/components/parameters/personId"
+        - $ref: "#/components/parameters/bankId"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Person'
+        required: true
+      responses:
+        '200':
+          description: Updated person
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Person'
+        '400':
+          description: Bad Request. Person Id could not be processed due to format errors.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: No matching persons have found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /perf/persons/{personId}/accounts:
+    get:
+      tags:
+        - Parties
+      summary: Retrieves a person
+      operationId: perfFindPersonAccounts
+      parameters:
+        - name: personId
+          in: path
+          description: Person Identification
+          required: true
+          schema:
+            $ref: '#/components/schemas/Id'
+        - name: servicerId
+          in: header
+          description: Account Servicer Identification (Bank)
+          required: false
+          schema:
+            maxLength: 36
+            minLength: 1
+            type: string
+      responses:
+        "200":
+          description: Matching person was found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PersonAccountResponse'
+        "400":
+          description: Bad Request. Person Id could not be processed due to format errors.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: No matching persons have found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /perf/organizations:
+    post:
+      tags:
+        - Parties
+      summary: Creates an Organization
+      operationId: perfCreateOrganization
+      parameters:
+        - name: idempotencyId
+          in: header
+          description: Idempotency identifier used by the client when making repeated calls
+          required: false
+          schema:
+            maxLength: 36
+            minLength: 1
+            type: string
+        - name: bankId
+          in: header
+          description: Bank Identification
+          required: true
+          schema:
+            $ref: '#/components/schemas/Id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrganizationRequest'
+        required: true
+      responses:
+        "202":
+          description: Organization information was received
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organization'
+        "400":
+          description: Bad Request. The organization information could not be processed due to format errors.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /perf/organizations/{organizationId}:
+    get:
+      tags:
+        - Parties
+      summary: Retrieves an organizations
+      operationId: perfFindOrganization
+      parameters:
+        - name: organizationId
+          in: path
+          description: Organization Identification
+          required: true
+          schema:
+            $ref: '#/components/schemas/Id'
+        - name: servicerId
+          in: header
+          description: Account Servicer Identification (Bank)
+          required: false
+          schema:
+            maxLength: 36
+            minLength: 1
+            type: string
+      responses:
+        "200":
+          description: Matching organization was found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organization'
+        "400":
+          description: Bad Request. Organization Id could not be processed due to format errors.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: No matching persons have found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /perf/organizations/{organizationId}/accounts:
+    get:
+      tags:
+        - Parties
+      summary: Retrieves an organizations
+      operationId: perfFindOrganizationAccounts
+      parameters:
+        - name: organizationId
+          in: path
+          description: Organization Identification
+          required: true
+          schema:
+            $ref: '#/components/schemas/Id'
+        - name: servicerId
+          in: header
+          description: Account Servicer Identification (Bank)
+          required: false
+          schema:
+            maxLength: 36
+            minLength: 1
+            type: string
+      responses:
+        "200":
+          description: Matching organization was found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationAccountResponse'
+        "400":
+          description: Bad Request. Organization Id could not be processed due to format errors.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: No matching persons have found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /perf/products:
+    get:
+      tags:
+        - Products
+      summary: Retrieves a financial product
+      operationId: perfFindProduct
+      parameters:
+        - name: servicerId
+          in: header
+          description: Account Servicer Identification (Bank)
+          required: false
+          schema:
+            maxLength: 36
+            minLength: 1
+            type: string
+      responses:
+        "200":
+          description: Matching product was found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        "404":
+          description: No matching product have found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
 components:
   schemas:
     AccountRequest:

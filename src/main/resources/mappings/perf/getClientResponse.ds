@@ -1,0 +1,37 @@
+{
+   "encodedKey":"8a44cd4f842e79db0184344bfe60474a",
+   "id":"388760650",
+   "state":"ACTIVE",
+   "creationDate":"2022-11-01T11:01:51-07:00",
+   "lastModifiedDate":"2022-11-01T11:02:59-07:00",
+   "activationDate":"2022-11-01T11:02:13-07:00",
+   "approvedDate":"2022-11-01T11:01:52-07:00",
+   "firstName":"Allen",
+   "lastName":"Soley",
+   "middleName":"Joe",
+   "mobilePhone":"+1-415-731359",
+   "emailAddress":"allen.soley@gmail.com",
+   "preferredLanguage":"ENGLISH",
+   "birthDate":"1986-04-17",
+   "clientRoleKey":"8a44cde37b592d63017b5fac6e400518",
+   "loanCycle":0,
+   "groupLoanCycle":0,
+   "groupKeys":[
+      
+   ],
+   "addresses":[
+      {
+         "encodedKey":"8a44cd4f842e79db0184344bfe60474b",
+         "parentKey":"8a44cd4f842e79db0184344bfe60474a",
+         "line1":"Nature",
+         "line2":"New Valley",
+         "city":"London",
+         "postcode":"45070",
+         "country":"VM",
+         "indexInList":0
+      }
+   ],
+   "idDocuments":[
+      
+   ]
+}
