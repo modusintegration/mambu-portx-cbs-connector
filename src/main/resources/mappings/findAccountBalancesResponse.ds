@@ -1,0 +1,30 @@
+{
+    "accountId": payload.encodedKey,
+    "accountNumber": payload.id,
+    "balances": [
+        {
+            "balanceName": "Available",
+            "amount": payload.balances.availableBalance,
+            "currency": payload.currencyCode,
+            "calculationDate": payload.lastModifiedDate
+        },
+        {
+            "balanceName": "Blocked",
+            "amount": payload.balances.blockedBalance,
+            "currency": payload.currencyCode,
+            "calculationDate": payload.lastModifiedDate
+        },
+        {
+            "balanceName": "Pending",
+            "amount": payload.balances.holdBalance,
+            "currency": payload.currencyCode,
+            "calculationDate": payload.lastModifiedDate
+        },
+        {
+            "balanceName": "Current",
+            "amount": payload.balances.totalBalance,
+            "currency": payload.currencyCode,
+            "calculationDate": payload.lastModifiedDate
+        },
+    ]
+}
