@@ -503,7 +503,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"accountType\": \"CLIENT\",\n  \"name\": \"JosephSmitDepositSavingsAccount16\",\n  \"productId\": \"8a44d6d97c81ddbe017ca39738446161\",\n  \"initialAmount\": \"0\",\n  \"relatedAccounts\": [\n    {\n      \"accountRelationType\": \"Parent\",\n      \"accountId\": \"8a44d76a83cdeef00183cf510e053d61\"\n    }\n  ]\n}",
+							"raw": "{\n    \"accountType\": \"Savings\",\n    \"name\": \"DemoSmit1DepositSavingsAccount1\",\n    \"productId\": \"{{productId}}\",\n    \"initialAmount\": \"0\",\n    \"parties\": [\n        {\n            \"partyId\": \"{{personId}}\",\n            \"partyType\": \"Person\"\n        }\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -664,7 +664,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"accountType\": \"Savings\",\n    \"name\": \"DemoSmit1DepositSavingsAccount1\",\n    \"productId\": \"{{productId}}\",\n    \"initialAmount\": \"0\",\n    \"parties\": [\n        {\n            \"partyId\": \"{{personId}}\",\n            \"partyType\": \"Person\"\n        }\n    ]\n}",
+							"raw": "{\n    \"accountType\": \"Savings\",\n    \"name\": \"DemoSmit1DepositSavingsAccount1\",\n    \"productId\": \"{{productId}}\",\n    \"initialAmount\": \"15\",\n    \"parties\": [\n        {\n            \"partyId\": \"{{personId}}\",\n            \"partyType\": \"Person\"\n        }\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
