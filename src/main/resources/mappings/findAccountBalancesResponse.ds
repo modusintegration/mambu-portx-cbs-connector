@@ -1,5 +1,6 @@
 {
-    "accountId": cml.exchangeProperty("accountId"),
+    "accountId": payload.encodedKey,
+    "accountNumber": payload.id,
     "balances": [
         {
             "balanceName": "Available",
