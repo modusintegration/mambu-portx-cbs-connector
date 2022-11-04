@@ -49,6 +49,11 @@
         <log message="GET depositproducts request is ${body}"/>
         <to uri="https://{{mambu.host}}/api/depositproducts?detailsLevel=FULL&amp;throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
         <log message="GET depositproducts response is ${body}"/>
+        <setBody>
+            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                    resource:classpath:mappings/findProductsResponse.ds
+            </datasonnet>
+       </setBody>        
 <!--        <to uri="direct:endRoute"/>-->
     </route>
     <route id="findPersonRoute" routeConfigurationId="*">
