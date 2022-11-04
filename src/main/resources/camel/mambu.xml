@@ -767,7 +767,11 @@
             </datasonnet>
         </setBody>
         <!-- <log message="GET depositproducts response is ${body}"/> -->
-    
+        <setBody>
+            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                    resource:classpath:mappings/findProductsResponse.ds
+            </datasonnet>
+       </setBody>    
     </route>
     <route id="perfFindPersonRoute" routeConfigurationId="*">
         <from uri="direct:perfFindPerson"/>
@@ -913,6 +917,12 @@
         <!-- <log message="GET deposits with id: ${header.accountId}"/> -->
         <!-- <toD uri="https://{{mambu.host}}/api/deposits/${header.accountId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
         <!-- <log message="GET deposits response is ${body}"/> -->
+        <setBody>
+            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                    resource:classpath:mappings/findAccountResponse.ds
+            </datasonnet>
+        </setBody>
+
     
     </route>
     <route id="perfFindAccountBalancesRoute" routeConfigurationId="*">
