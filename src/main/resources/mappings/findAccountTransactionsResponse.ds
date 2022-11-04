@@ -1,0 +1,46 @@
+/** DataSonnet
+version=2.0
+output application/json
+input payload application/json
+*/
+local selector(obj,key,dValue = null) = ds.or(ds.select(obj,key), dValue);
+local id = cml.exchangeProperty("id");
+local encodedKey = cml.exchangeProperty("encodedKey");
+local accountType = cml.exchangeProperty("accountType");
+local currencyCode = cml.exchangeProperty("currencyCode");
+local currentBal = cml.exchangeProperty("currentBal");
+local availableBal = cml.exchangeProperty("availableBal");
+
+std.prune(
+    {
+        "accountId": encodedKey,
+        "accountNumber": id,
+        "accountType": accountType,
+        "currency": currencyCode,
+        "currentBalance": currentBal,
+        "availableBalance": availableBal,
+        "transactions": if (std.length(payload) > 0) then
+        [
+            { 
+                "transactionId": selector(txn, "encodedKey"),
+                "amount": txn.amount,
+                "creditDebitIndicator": if txn.amount > 0 then "Credit" else "Debit",
+                "bankTransactionDomain": "AccountManagement",
+                "bankTransactionFamily": txn.type,
+                "status": "Booked",
+                "reversalIndicator": if ds.select(txn, "adjustmentTransactionKey") == null then false else true,
+                "creationDate": txn.creationDate,
+                "bookingDate": selector(txn, "bookingDate"),
+                "dateValue": selector(txn, "dateValue"),
+                "availabilityDate": selector(txn, "dateValue"),
+                "charges": selector(txn, "affectedAmounts.feesAmount"),
+                "interest": selector(txn, "affectedAmounts.interestAmount"),
+                "currentBalance": txn.accountBalances.totalBalance,
+                "details": if ds.isObject(txn.transferDetails) then {
+                    "counterpartAccount": selector(txn, "tranferDetails.linkedDepositTransactionKey")
+                } else null
+            } for txn in payload
+        ]
+        else []
+    }
+)
