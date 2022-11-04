@@ -1,0 +1,58 @@
+/** DataSonnet
+version=2.0
+output application/json
+input payload application/json
+*/
+                          
+local selector(obj,key,dValue = null) = ds.or(ds.select(obj,key), dValue);
+
+std.prune(
+  {
+    "accountNumber": payload.id,
+    "servicerBranchId": selector(payload, "assignedBranchKey"),
+    "accountType": selector(payload, "accountType"),
+    "accountOwnershipType": "Owner",
+    "productId": payload.productTypeKey,
+    "name": payload.name,
+    "currency": selector(payload, "currencyCode"),
+    "parties": [
+      {
+        "partyId": payload.accountHolderKey,
+        "partyType": if payload.accountHolderType=="GROUP" then "Organization" else "Person",
+        "partyAccountRole": "Owner"
+      }
+    ],
+    "status": selector(payload, "accountState"),
+    "statusDateAndTime": selector(payload, "lastModifiedDate"),
+    "openDate": if ds.select(payload, "creationDate") !=null then ds.datetime.toLocalDate(payload.creationDate) else null,
+    "closeDate": if ds.select(payload, "closeDate") !=null then ds.datetime.toLocalDate(payload.closeDate) else null,
+    "maturityDate": if ds.select(payload, "maturityDate") !=null then ds.datetime.toLocalDate(payload.maturityDate) else null,
+    "balances": [
+        {
+            "balanceName": "Available",
+            "amount": payload.balances.availableBalance,
+            "currency": payload.currencyCode,
+            "calculationDate": payload.lastModifiedDate
+        },
+        {
+            "balanceName": "Blocked",
+            "amount": payload.balances.blockedBalance,
+            "currency": payload.currencyCode,
+            "calculationDate": payload.lastModifiedDate
+        },
+        {
+            "balanceName": "Pending",
+            "amount": payload.balances.holdBalance,
+            "currency": payload.currencyCode,
+            "calculationDate": payload.lastModifiedDate
+        },
+        {
+            "balanceName": "Current",
+            "amount": payload.balances.totalBalance,
+            "currency": payload.currencyCode,
+            "calculationDate": payload.lastModifiedDate
+        },
+    ],
+    "accountId": payload.encodedKey
+  }
+)

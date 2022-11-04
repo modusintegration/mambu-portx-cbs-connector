@@ -173,6 +173,11 @@
         <log message="GET deposits with id: ${header.accountId}"/>
         <toD uri="https://{{mambu.host}}/api/deposits/${header.accountId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
         <log message="GET deposits response is ${body}"/>
+        <setBody>
+            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                    resource:classpath:mappings/findAccountResponse.ds
+            </datasonnet>
+       </setBody>
 <!--        <to uri="direct:endRoute"/>-->
     </route>
     <route id="findAccountBalancesRoute" routeConfigurationId="*">
