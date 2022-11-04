@@ -177,6 +177,9 @@
     </route>
     <route id="findAccountBalancesRoute" routeConfigurationId="*">
         <from uri="direct:findAccountBalances"/>
+        <setProperty name="accountId">
+            <simple>${header.accountId}</simple>
+        </setProperty>
         <setProperty name="flowId">
             <simple>${routeId}:${id}</simple>
         </setProperty>
@@ -200,7 +203,7 @@
         <log message="GET deposits response is ${body}"/>
         <setBody>
             <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
-                body.balances
+                resource:classpath:mappings/findAccountBalancesResponse.ds
             </datasonnet>
         </setBody>
         <!--        <to uri="direct:endRoute"/>-->
