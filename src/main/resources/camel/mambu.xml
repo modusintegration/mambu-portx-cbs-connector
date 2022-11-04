@@ -797,7 +797,7 @@
         
         <setBody>
             <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
-                resource:classpath:mappings/perf/getclientResponse.ds
+                resource:classpath:mappings/perf/getClientResponse.ds
             </datasonnet>
         </setBody>
     
