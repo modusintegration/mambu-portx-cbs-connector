@@ -1,0 +1,37 @@
+[
+    {
+        "productId": "ID_DEPOSIT_PRODU",
+        "name": "DEPOSIT PRODUCT",
+        "description": "",
+        "acccountType": "REGULAR_SAVINGS",
+        "productType": "PERSONAL_DEPOSIT"
+    },
+    {
+        "productId": "ID_DEPOSIT_ARS",
+        "name": "DEPOSIT PRODUCT ARS",
+        "description": "",
+        "acccountType": "REGULAR_SAVINGS",
+        "productType": "PERSONAL_DEPOSIT"
+    },
+    {
+        "productId": "ACH_STLMT_OUT",
+        "name": "ACH_SETTLEMENT_OUTGOING",
+        "description": "",
+        "acccountType": "CURRENT_ACCOUNT",
+        "productType": "DAILY_BANKING_ACCOUNTS"
+    },
+    {
+        "productId": "PD_CA_0001",
+        "name": "PD_CA_0001",
+        "description": "",
+        "acccountType": "CURRENT_ACCOUNT",
+        "productType": "PERSONAL_DEPOSIT"
+    },
+    {
+        "productId": "PD_CA_0002",
+        "name": "PD_CA 0002",
+        "description": "",
+        "acccountType": "CURRENT_ACCOUNT",
+        "productType": "PERSONAL_DEPOSIT"
+    }
+]
