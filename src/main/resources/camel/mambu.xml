@@ -49,6 +49,11 @@
         <log message="GET depositproducts request is ${body}"/>
         <to uri="https://{{mambu.host}}/api/depositproducts?detailsLevel=FULL&amp;throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
         <log message="GET depositproducts response is ${body}"/>
+        <setBody>
+            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                    resource:classpath:mappings/findProductsResponse.ds
+            </datasonnet>
+       </setBody>        
 <!--        <to uri="direct:endRoute"/>-->
     </route>
     <route id="findPersonRoute" routeConfigurationId="*">
@@ -173,6 +178,11 @@
         <log message="GET deposits with id: ${header.accountId}"/>
         <toD uri="https://{{mambu.host}}/api/deposits/${header.accountId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
         <log message="GET deposits response is ${body}"/>
+        <setBody>
+            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                    resource:classpath:mappings/findAccountResponse.ds
+            </datasonnet>
+       </setBody>
 <!--        <to uri="direct:endRoute"/>-->
     </route>
     <route id="findAccountBalancesRoute" routeConfigurationId="*">
@@ -229,9 +239,47 @@
         <process ref="encodeAuthHeader" />
 
         <log message="GET all transactions for deposit account with id: ${header.accountId}"/>
-        <toD uri="https://{{mambu.host}}/api/deposits/${header.accountId}/transactions?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
+        <toD uri="https://{{mambu.host}}/api/deposits/${header.accountId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
         <log message="GET all transactions for deposit account with id: ${header.accountId} response is ${body}"/>
-        <!--        <to uri="direct:endRoute"/>-->
+        <setProperty name="id">
+            <datasonnet bodyMediaType="application/json" outputMediaType="text/plain" resultType="java.lang.String">
+                ds.select(body,"id")
+            </datasonnet>
+        </setProperty>
+        <setProperty name="encodedKey">
+            <datasonnet bodyMediaType="application/json" outputMediaType="text/plain" resultType="java.lang.String">
+                ds.select(body,"encodedKey")
+            </datasonnet>
+        </setProperty>
+        <setProperty name="accountType">
+            <datasonnet bodyMediaType="application/json" outputMediaType="text/plain" resultType="java.lang.String">
+                ds.select(body,"accountType")
+            </datasonnet>
+        </setProperty>
+        <setProperty name="currencyCode">
+            <datasonnet bodyMediaType="application/json" outputMediaType="text/plain" resultType="java.lang.String">
+                ds.select(body,"currencyCode")
+            </datasonnet>
+        </setProperty>
+        <setProperty name="currentBal">
+            <datasonnet bodyMediaType="application/json" outputMediaType="text/plain" resultType="java.lang.String">
+                ds.select(body,"balances.totalBalance")
+            </datasonnet>
+        </setProperty>
+        <setProperty name="availableBal">
+            <datasonnet bodyMediaType="application/json" outputMediaType="text/plain" resultType="java.lang.String">
+                ds.select(body,"balances.availableBalance")
+            </datasonnet>
+        </setProperty>
+        <log message="GET all transactions for deposit account with id: ${header.accountId}"/>
+        <toD uri="https://{{mambu.host}}/api/deposits/${header.accountId}/transactions?detailsLevel=FULL&amp;throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
+        <log message="GET all transactions for deposit account with id: ${header.accountId} response is ${body}"/>
+        <setBody>
+            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                resource:classpath:mappings/findAccountTransactionsResponse.ds
+            </datasonnet>
+        </setBody>
+         <!--        <to uri="direct:endRoute"/>-->
     </route>
     <route id="findAccountIdentifiersRoute" routeConfigurationId="*">
         <from uri="direct:findAccountIdentifiers"/>
@@ -702,4 +750,709 @@
         <to uri="sql:select count(*) as cnt from person where last_name=# and status='A'?dataSource=#myDataSource"/>
         <log message="Result: ${body}:"/> 
     </route> -->
+
+    <route id="perfFindBranchesRoute" routeConfigurationId="*">
+        <from uri="direct:perfFindBranches"/>
+        <setProperty name="flowId">
+            <simple>${routeId}:${id}</simple>
+        </setProperty>
+        <setBody><constant>{}</constant></setBody>
+    
+        <log message="== findBranches Route"/>
+        <setHeader name="CamelHttpMethod">
+            <constant>GET</constant>
+        </setHeader>
+         <!-- Use processor to set the auth header  -->
+        <setProperty name="authHeader">
+            <simple>{{mambu.username}}:{{mambu.password}}</simple>
+        </setProperty>
+        <process ref="encodeAuthHeader" />
+    
+        <!-- <log message="GET branches request is ${body}"/> -->
+        <setBody>
+            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                resource:classpath:mappings/perf/getBranchesResponse.ds
+            </datasonnet>
+        </setBody>
+        <!-- <log message="GET branches response is ${body}"/> -->
+    
+    </route>
+    <route id="perfFindProductRoute" routeConfigurationId="*">
+        <from uri="direct:perfFindProduct"/>
+        <setProperty name="flowId">
+            <simple>${routeId}:${id}</simple>
+        </setProperty>
+        <setBody><constant>{}</constant></setBody>
+    
+        <log message="== findProduct Route"/>
+        <setHeader name="CamelHttpMethod">
+            <constant>GET</constant>
+        </setHeader>
+        <setHeader name="Accept">
+            <constant>application/vnd.mambu.v2+json</constant>
+        </setHeader>
+         <!-- Use processor to set the auth header  -->
+        <setProperty name="authHeader">
+            <simple>{{mambu.username}}:{{mambu.password}}</simple>
+        </setProperty>
+        <process ref="encodeAuthHeader" />
+    
+        <!-- <log message="GET depositproducts request is ${body}"/> -->
+        <!-- <to uri="https://{{mambu.host}}/api/depositproducts?detailsLevel=FULL&amp;throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
+        <setBody>
+            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                resource:classpath:mappings/perf/getProductResponse.ds
+            </datasonnet>
+        </setBody>
+        <!-- <log message="GET depositproducts response is ${body}"/> -->
+        <setBody>
+            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                    resource:classpath:mappings/findProductsResponse.ds
+            </datasonnet>
+       </setBody>    
+    </route>
+    <route id="perfFindPersonRoute" routeConfigurationId="*">
+        <from uri="direct:perfFindPerson"/>
+        <setProperty name="flowId">
+            <simple>${routeId}:${id}</simple>
+        </setProperty>
+        <setBody><constant>{}</constant></setBody>
+    
+        <log message="== findPerson Route"/>
+        <setHeader name="CamelHttpMethod">
+            <constant>GET</constant>
+        </setHeader>
+        <setHeader name="Accept">
+            <constant>application/vnd.mambu.v2+json</constant>
+        </setHeader>
+        <!-- Use processor to set the auth header  -->
+        <setProperty name="authHeader">
+            <simple>{{mambu.username}}:{{mambu.password}}</simple>
+        </setProperty>
+        <process ref="encodeAuthHeader" />
+    
+        <!-- <log message="GET clients with id: ${header.personId}"/> -->
+        
+        <setBody>
+            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                resource:classpath:mappings/perf/getClientResponse.ds
+            </datasonnet>
+        </setBody>
+    
+        <!-- <toD uri="https://{{mambu.host}}/api/clients/${header.personId}?detailsLevel=FULL&amp;throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
+        <!-- <log message="GET clients response is ${body}"/> -->
+        <setBody>
+            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                    resource:classpath:mappings/findPersonResponse.ds
+            </datasonnet>
+       </setBody>        
+    
+    
+    </route>
+    <route id="perfCreatePersonRoute" routeConfigurationId="*">
+        <from uri="direct:perfCreatePerson"/>
+        <setProperty name="flowId">
+            <simple>${routeId}:${id}</simple>
+        </setProperty>
+    
+        <log message="== createPerson Route"/>
+        <setHeader name="CamelHttpMethod">
+            <constant>POST</constant>
+        </setHeader>
+        <setHeader name="Accept">
+            <constant>application/vnd.mambu.v2+json</constant>
+        </setHeader>
+        <!-- Use processor to set the auth header  -->
+        <setProperty name="authHeader">
+            <simple>{{mambu.username}}:{{mambu.password}}</simple>
+        </setProperty>
+        <process ref="encodeAuthHeader" />
+        <setBody>
+            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                resource:classpath:mappings/CreateClientsRequest.ds
+            </datasonnet>
+        </setBody>
+        <!-- <log message="POST clients with request: ${body}"/> -->
+        <setBody>
+            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                resource:classpath:mappings/perf/getClientResponse.ds
+            </datasonnet>
+        </setBody>
+    
+        <!-- <toD uri="https://{{mambu.host}}/api/clients?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
+        <!-- <log message="POST clients response is ${body}"/> -->
+        <setBody>
+            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                    resource:classpath:mappings/findPersonResponse.ds
+            </datasonnet>
+       </setBody>        
+    
+    </route>
+    <route id="perfUpdatePersonRoute" routeConfigurationId="*">
+       <from uri="direct:perfUpdatePerson"/>
+       <setProperty name="flowId">
+           <simple>${routeId}:${id}</simple>
+       </setProperty>
+       <log message="== updatePerson Route"/>
+       <setHeader name="CamelHttpMethod">
+           <constant>PUT</constant>
+       </setHeader>
+       <setHeader name="Accept">
+            <constant>application/vnd.mambu.v2+json</constant>
+       </setHeader>
+       <!-- Use processor to set the auth header -->
+       <setProperty name="authHeader">
+           <simple>{{mambu.username}}:{{mambu.password}}</simple>
+       </setProperty>
+       <process ref="encodeAuthHeader" />
+       <setBody>
+           <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                    resource:classpath:mappings/UpdateClientsRequest.ds
+           </datasonnet>
+       </setBody>
+    
+       <!-- <log message="PUT clients with request: ${body}"/> -->
+       <setBody>
+        <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+            resource:classpath:mappings/perf/getClientResponse.ds
+        </datasonnet>
+       </setBody>
+    
+       <!-- <toD uri="https://{{mambu.host}}/api/clients/${header.personId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
+       <!-- <log message="PUT clients response is ${body}"/> -->
+       <setBody>
+            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                    resource:classpath:mappings/findPersonResponse.ds
+            </datasonnet>
+       </setBody>
+    
+    </route>
+    <route id="perfFindAccountRoute" routeConfigurationId="*">
+        <from uri="direct:perfFindAccount"/>
+        <setProperty name="flowId">
+            <simple>${routeId}:${id}</simple>
+        </setProperty>
+        <setBody><constant>{}</constant></setBody>
+    
+        <log message="== findAccount Route"/>
+        <setHeader name="CamelHttpMethod">
+            <constant>GET</constant>
+        </setHeader>
+        <setHeader name="Accept">
+            <constant>application/vnd.mambu.v2+json</constant>
+        </setHeader>
+        <!-- Use processor to set the auth header  -->
+        <setProperty name="authHeader">
+            <simple>{{mambu.username}}:{{mambu.password}}</simple>
+        </setProperty>
+        <process ref="encodeAuthHeader" />
+        <setBody>
+            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                resource:classpath:mappings/perf/getDepositsResponse.ds
+            </datasonnet>
+        </setBody>
+        
+        <!-- <log message="GET deposits with id: ${header.accountId}"/> -->
+        <!-- <toD uri="https://{{mambu.host}}/api/deposits/${header.accountId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
+        <!-- <log message="GET deposits response is ${body}"/> -->
+        <setBody>
+            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                    resource:classpath:mappings/findAccountResponse.ds
+            </datasonnet>
+        </setBody>
+
+    
+    </route>
+    <route id="perfFindAccountBalancesRoute" routeConfigurationId="*">
+        <from uri="direct:perfFindAccountBalances"/>
+        <setProperty name="accountId">
+            <simple>${header.accountId}</simple>
+        </setProperty>
+        <setProperty name="flowId">
+            <simple>${routeId}:${id}</simple>
+        </setProperty>
+        <setBody><constant>{}</constant></setBody>
+        
+        <log message="== findAccountBalances Route"/>
+        <setHeader name="CamelHttpMethod">
+            <constant>GET</constant>
+        </setHeader>
+        <setHeader name="Accept">
+            <constant>application/vnd.mambu.v2+json</constant>
+        </setHeader>
+        <!-- Use processor to set the auth header  -->
+        <setProperty name="authHeader">
+            <simple>{{mambu.username}}:{{mambu.password}}</simple>
+        </setProperty>
+        <process ref="encodeAuthHeader" />
+    
+        <!-- <log message="GET deposits with id: ${header.accountId}"/> -->
+        <setBody>
+            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                resource:classpath:mappings/perf/getDepositResponse.ds
+            </datasonnet>
+        </setBody>
+        
+        <!-- <toD uri="https://{{mambu.host}}/api/deposits/${header.accountId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
+        <!-- <log message="GET deposits response is ${body}"/> -->
+        <setBody>
+            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                resource:classpath:mappings/findAccountBalancesResponse.ds
+            </datasonnet>
+        </setBody>
+        
+    </route>
+    <route id="perfFindAccountTransactionsRoute" routeConfigurationId="*">
+        <from uri="direct:perfFindAccountTransactions"/>
+        <setProperty name="flowId">
+            <simple>${routeId}:${id}</simple>
+        </setProperty>
+        <setBody><constant>{}</constant></setBody>
+        
+        <log message="== findAccountTransactions Route"/>
+        <setHeader name="CamelHttpMethod">
+            <constant>GET</constant>
+        </setHeader>
+        <setHeader name="Accept">
+            <constant>application/vnd.mambu.v2+json</constant>
+        </setHeader>
+        <!-- Use processor to set the auth header  -->
+        <setProperty name="authHeader">
+            <simple>{{mambu.username}}:{{mambu.password}}</simple>
+        </setProperty>
+        <process ref="encodeAuthHeader" />
+    
+        <!-- <log message="GET all transactions for deposit account with id: ${header.accountId}"/> -->
+        <setBody>
+            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                resource:classpath:mappings/perf/getAccountTransactions.ds
+            </datasonnet>
+        </setBody>
+    
+        <!-- <toD uri="https://{{mambu.host}}/api/deposits/${header.accountId}/transactions?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
+        <!-- <log message="GET all transactions for deposit account with id: ${header.accountId} response is ${body}"/> -->
+        
+    </route>
+    <route id="perfFindAccountIdentifiersRoute" routeConfigurationId="*">
+        <from uri="direct:perfFindAccountIdentifiers"/>
+        <setProperty name="flowId">
+            <simple>${routeId}:${id}</simple>
+        </setProperty>
+        <setBody><constant>{}</constant></setBody>
+        
+        <log message="== findAccountIdentifiers Route"/>
+        <setHeader name="CamelHttpMethod">
+            <constant>GET</constant>
+        </setHeader>
+        <setHeader name="Accept">
+            <constant>application/vnd.mambu.v2+json</constant>
+        </setHeader>
+        <!-- Use processor to set the auth header  -->
+        <setProperty name="authHeader">
+            <simple>{{mambu.username}}:{{mambu.password}}</simple>
+        </setProperty>
+        <process ref="encodeAuthHeader" />
+        <!-- <log message="GET deposits with id: ${header.accountId}"/> -->
+        <setBody>
+            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                resource:classpath:mappings/perf/getDepositResponse.ds
+            </datasonnet>
+        </setBody>    
+        <!-- <toD uri="https://{{mambu.host}}/api/deposits/${header.accountId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
+        <!-- <log message="GET deposits response is ${body}"/> -->
+        <setBody>
+            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                resource:classpath:mappings/findAccountIdentifiersResponse.ds
+            </datasonnet>
+        </setBody>
+        <log message="findAccountIdentifiers response is: ${body}"/>
+        
+    </route>
+    <route id="perfFindAccountRelatedPartiesRoute" routeConfigurationId="*">
+        <from uri="direct:perfFindAccountRelatedParties"/>
+        <setProperty name="flowId">
+            <simple>${routeId}:${id}</simple>
+        </setProperty>
+        <setBody><constant>{}</constant></setBody>
+        
+        <log message="== findAccountRelatedParties Route"/>
+        <setHeader name="CamelHttpMethod">
+            <constant>GET</constant>
+        </setHeader>
+        <setHeader name="Accept">
+            <constant>application/vnd.mambu.v2+json</constant>
+        </setHeader>
+        <!-- Use processor to set the auth header  -->
+        <setProperty name="authHeader">
+            <simple>{{mambu.username}}:{{mambu.password}}</simple>
+        </setProperty>
+        <process ref="encodeAuthHeader" />
+        <!-- <log message="GET deposits with id: ${header.accountId}"/> -->
+        <setBody>
+            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                resource:classpath:mappings/perf/getDepositResponse.ds
+            </datasonnet>
+        </setBody>    
+    
+        <!-- <toD uri="https://{{mambu.host}}/api/deposits/${header.accountId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
+        <!-- <log message="GET deposits response is ${body}"/> -->
+        <setBody>
+            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                resource:classpath:mappings/findAccountRelatedPartiesResponse.ds
+            </datasonnet>
+        </setBody>
+        <log message="findAccountRelatedParties response is: ${body}"/>
+        
+    </route>
+    <route id="perfFindAccountOwnersRoute" routeConfigurationId="*">
+        <from uri="direct:perfFindAccountOwners"/>
+        <setProperty name="flowId">
+            <simple>${routeId}:${id}</simple>
+        </setProperty>
+        <setBody><constant>{}</constant></setBody>
+        
+        <log message="== findAccountOwners Route"/>
+        <setHeader name="CamelHttpMethod">
+            <constant>GET</constant>
+        </setHeader>
+        <setHeader name="Accept">
+            <constant>application/vnd.mambu.v2+json</constant>
+        </setHeader>
+        <!-- Use processor to set the auth header  -->
+        <setProperty name="authHeader">
+            <simple>{{mambu.username}}:{{mambu.password}}</simple>
+        </setProperty>
+        <process ref="encodeAuthHeader" />
+        <!-- <log message="GET deposits with id: ${header.accountId}"/> -->
+        <setBody>
+            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                resource:classpath:mappings/perf/getDepositResponse.ds
+            </datasonnet>
+        </setBody>    
+    
+        <!-- <toD uri="https://{{mambu.host}}/api/deposits/${header.accountId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
+        <!-- <log message="GET deposits response is ${body}"/> -->
+        <setBody>
+            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                resource:classpath:mappings/findAccountOwnersResponse.ds
+            </datasonnet>
+        </setBody>
+        <log message="findAccountOwners response is: ${body}"/>
+        
+    </route>
+    <route id="perfFindPersonAccountsRoute" routeConfigurationId="*">
+        <from uri="direct:perfFindPersonAccounts"/>
+        <setProperty name="flowId">
+            <simple>${routeId}:${id}</simple>
+        </setProperty>
+        <setBody><constant>{}</constant></setBody>
+        
+        <log message="== findPersonAccounts Route"/>
+        <setHeader name="CamelHttpMethod">
+            <constant>GET</constant>
+        </setHeader>
+        <setHeader name="Accept">
+            <constant>application/vnd.mambu.v2+json</constant>
+        </setHeader>
+        <!-- Use processor to set the auth header  -->
+        <setProperty name="authHeader">
+            <simple>{{mambu.username}}:{{mambu.password}}</simple>
+        </setProperty>
+        <process ref="encodeAuthHeader" />
+    
+        <!-- <log message="GET clients with id: ${header.personId}"/> -->
+        <setBody>
+            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                resource:classpath:mappings/perf/getClientResponse.ds
+            </datasonnet>
+        </setBody>    
+    
+        <!-- <toD uri="https://{{mambu.host}}/api/clients/${header.personId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
+        <!-- <log message="GET clients response is ${body}"/> -->
+    
+        <setProperty name="clientName">
+            <datasonnet bodyMediaType="application/json" outputMediaType="text/plain" resultType="java.lang.String">
+                ds.select(body,"firstName") + " " + ds.select(body,"lastName")
+            </datasonnet>
+        </setProperty>
+    
+        <!-- <log message="GET deposits with id: ${header.personId}"/> -->
+        <setBody>
+            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                resource:classpath:mappings/perf/getDepositsForClientResponse.ds
+            </datasonnet>
+        </setBody>    
+    
+        <!-- <toD uri="https://{{mambu.host}}/api/deposits?accountHolderType=CLIENT&amp;accountHolderId=${header.personId}&amp;throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
+        <!-- <log message="GET deposits response is ${body}"/> -->
+        <setBody>
+            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                resource:classpath:mappings/findPersonAccountsResponse.ds
+            </datasonnet>
+        </setBody>
+        <log message="findPersonAccounts example response is: ${body}"/>
+        
+    </route>
+    <route id="perfFindOrganizationAccountsRoute" routeConfigurationId="*">
+        <from uri="direct:perfFindOrganizationAccounts"/>
+        <setProperty name="flowId">
+            <simple>${routeId}:${id}</simple>
+        </setProperty>
+        <setBody><constant>{}</constant></setBody>
+        
+        <log message="== findOrganizationAccounts Route"/>
+        <setHeader name="CamelHttpMethod">
+            <constant>GET</constant>
+        </setHeader>
+        <setHeader name="Accept">
+            <constant>application/vnd.mambu.v2+json</constant>
+        </setHeader>
+        <!-- Use processor to set the auth header  -->
+        <setProperty name="authHeader">
+            <simple>{{mambu.username}}:{{mambu.password}}</simple>
+        </setProperty>
+        <process ref="encodeAuthHeader" />
+    
+        <!-- <log message="GET groups with id: ${header.organizationId}"/> -->
+        <setBody>
+            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                resource:classpath:mappings/perf/getGroupResponse.ds
+            </datasonnet>
+        </setBody>   
+        <!-- <toD uri="https://{{mambu.host}}/api/groups/${header.organizationId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
+        <!-- <log message="GET groups response is ${body}"/> -->
+    
+        <setProperty name="clientName">
+            <datasonnet bodyMediaType="application/json" outputMediaType="text/plain" resultType="java.lang.String">
+                ds.select(body,"groupName")
+            </datasonnet>
+        </setProperty>
+    
+        <!-- <log message="GET deposits with id: ${header.organizationId}"/> -->
+        <setBody>
+            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                resource:classpath:mappings/perf/getDepositsResponse.ds
+            </datasonnet>
+        </setBody>  
+        <!-- <toD uri="https://{{mambu.host}}/api/deposits?accountHolderType=GROUP&amp;accountHolderId=${header.organizationId}&amp;throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
+        <!-- <log message="GET deposits response is ${body}"/> -->
+        <setBody>
+            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                resource:classpath:mappings/findOrganizationAccountsResponse.ds
+            </datasonnet>
+        </setBody>
+        <log message="findOrganizationAccounts example response is: ${body}"/>
+        
+    </route>
+    <route id="perfOpenBankingAccountRoute" routeConfigurationId="*">
+        <from uri="direct:perfOpenBankingAccount"/>
+        <setProperty name="flowId">
+            <simple>${routeId}:${id}</simple>
+        </setProperty>
+        <setProperty name="initialAmount">
+            <datasonnet bodyMediaType="application/json" outputMediaType="text/plain" resultType="java.lang.String">
+                local selector(obj,key,dValue = null) = ds.or(ds.select(obj,key), dValue);
+                std.prune(selector(payload, "initialAmount", "0"))
+            </datasonnet>
+        </setProperty>
+        <log message="initialAmount: ${exchangeProperty.initialAmount}"/>
+        <setProperty name="originalBody">
+            <simple>${body}</simple>
+        </setProperty>
+        <log message="originalBody: ${exchangeProperty.originalBody}"/>
+    
+        <log message="== openBankingAccount Route"/>
+    
+    <!--        Create deposit account -->
+        <setHeader name="CamelHttpMethod">
+            <constant>POST</constant>
+        </setHeader>
+        <setHeader name="Accept">
+            <constant>application/vnd.mambu.v2+json</constant>
+        </setHeader>
+        <!-- Use processor to set the auth header  -->
+        <setProperty name="authHeader">
+            <simple>{{mambu.username}}:{{mambu.password}}</simple>
+        </setProperty>
+        <process ref="encodeAuthHeader" />
+        <setBody>
+            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                resource:classpath:mappings/CreateDepositsRequest.ds
+            </datasonnet>
+        </setBody>
+        <!-- <log message="POST deposits with request: ${body}"/> -->
+        <setBody>
+            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                resource:classpath:mappings/perf/createClientResponse.ds
+            </datasonnet>
+        </setBody>  
+        <!-- <toD uri="https://{{mambu.host}}/api/deposits?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
+        <setProperty name="postDepositResponse">
+            <simple>${body}</simple>
+        </setProperty>
+        <!-- <log message="POST deposits response is ${exchangeProperty.postDepositResponse}"/> -->
+        <setProperty name="id">
+            <datasonnet bodyMediaType="application/json" outputMediaType="text/plain" resultType="java.lang.String">
+                ds.select(body,"id")
+            </datasonnet>
+        </setProperty>
+        <log message="ds id: ${exchangeProperty.id}"/>
+    
+    <!--        APPROVE Account -->
+        <setBody>
+            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                resource:classpath:mappings/CreateDepositChangeStateRequest.ds
+            </datasonnet>
+        </setBody>
+        <setHeader name="Content-Type">
+            <constant>application/json</constant>
+        </setHeader>
+        <!-- <log message="POST deposits change state with request: ${body}"/> -->
+        <setBody>
+            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                resource:classpath:mappings/perf/getDepositResponse.ds
+            </datasonnet>
+        </setBody>  
+        <!-- <toD uri="https://{{mambu.host}}/api/deposits/${exchangeProperty.id}:changeState?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
+        <!-- <log message="POST deposits change state response is ${body}"/> -->
+        <setProperty name="accountState">
+            <datasonnet bodyMediaType="application/json" outputMediaType="text/plain" resultType="java.lang.String">
+                ds.select(body,"accountState")
+            </datasonnet>
+        </setProperty>
+        <log message="ds accountState: ${exchangeProperty.accountState}"/>
+        <setProperty name="approvedDate">
+            <datasonnet bodyMediaType="application/json" outputMediaType="text/plain" resultType="java.lang.String">
+                ds.select(body,"approvedDate")
+            </datasonnet>
+        </setProperty>
+        <log message="ds approvedDate: ${exchangeProperty.approvedDate}"/>
+        <setProperty name="creationDate">
+            <datasonnet bodyMediaType="application/json" outputMediaType="text/plain" resultType="java.lang.String">
+                ds.select(body,"creationDate")
+            </datasonnet>
+        </setProperty>
+        <log message="ds creationDate: ${exchangeProperty.creationDate}"/>
+        <setProperty name="encodedKey">
+            <datasonnet bodyMediaType="application/json" outputMediaType="text/plain" resultType="java.lang.String">
+                ds.select(body,"encodedKey")
+            </datasonnet>
+        </setProperty>
+        <log message="ds encodedKey: ${exchangeProperty.encodedKey}"/>
+    
+        <setBody>
+            <simple>${exchangeProperty.originalBody}</simple>
+        </setBody>
+    
+        <log message="originalBody: ${exchangeProperty.originalBody}"/>
+        <log message="body: ${body}"/>
+    
+                <setBody>
+                    <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                        resource:classpath:mappings/CreateFinalDepositsResponse.ds
+                    </datasonnet>
+                </setBody>
+                <log message="GatherDepositsResponse output: ${body}"/>
+    
+        <setProperty name="finalResponse">
+            <simple>${body}</simple>
+        </setProperty>
+    
+        <choice>
+            <when>
+                <simple>${exchangeProperty.initialAmount} > 0</simple>
+                <!--        Make deposit if initial amount provided -->
+                <log message="initialAmount before ds: ${exchangeProperty.initialAmount}"/>
+                <setBody>
+                    <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                        resource:classpath:mappings/CreateDepositTransactionRequest.ds
+                    </datasonnet>
+                </setBody>
+                <setHeader name="Content-Type">
+                    <constant>application/json</constant>
+                </setHeader>
+                <!-- <log message="POST deposits deposit-transaction for account ${exchangeProperty.id} with request: ${body}"/> -->
+                <setBody>
+                    <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                        resource:classpath:mappings/perf/postDepositTransactionResponse.ds
+                    </datasonnet>
+                </setBody>  
+                <!-- <toD uri="https://{{mambu.host}}/api/deposits/${exchangeProperty.id}/deposit-transactions?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
+                <!-- <log message="POST deposits deposit-transaction response is ${body}"/> -->
+            </when>
+            <otherwise>
+                <log message="no deposit performed due to initialAmount not > 0"/>
+            </otherwise>
+        </choice>
+    
+        <setBody>
+            <simple>${exchangeProperty.finalResponse}</simple>
+        </setBody>
+        <log message="POST /accounts response: ${body}"/>
+    
+    
+    </route>
+    <route id="perfFindOrganizationRoute" routeConfigurationId="*">
+        <from uri="direct:perfFindOrganization"/>
+        <setProperty name="flowId">
+            <simple>${routeId}:${id}</simple>
+        </setProperty>
+        <setBody><constant>{}</constant></setBody>
+    
+        <log message="== findOrganization Route"/>
+        <setHeader name="CamelHttpMethod">
+            <constant>GET</constant>
+        </setHeader>
+        <!-- Use processor to set the auth header  -->
+        <setProperty name="authHeader">
+            <simple>{{mambu.username}}:{{mambu.password}}</simple>
+        </setProperty>
+        <process ref="encodeAuthHeader" />
+    
+        <!-- <log message="GET groups with id: ${header.organizationId}"/> -->
+        <setBody>
+            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                resource:classpath:mappings/perf/getGroupResponse.ds
+            </datasonnet>
+        </setBody>   
+    
+        <!-- <toD uri="https://{{mambu.host}}/api/groups/${header.organizationId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
+        <!-- <log message="GET groups response is ${body}"/> -->
+    
+    </route>
+    <route id="perfCreateOrganizationRoute" routeConfigurationId="*">
+        <from uri="direct:perfCreateOrganization"/>
+        <setProperty name="flowId">
+            <simple>${routeId}:${id}</simple>
+        </setProperty>
+        
+        <log message="== createOrganization Route"/>
+        <setHeader name="CamelHttpMethod">
+            <constant>POST</constant>
+        </setHeader>
+        <setHeader name="Accept">
+            <constant>application/vnd.mambu.v2+json</constant>
+        </setHeader>
+        <!-- Use processor to set the auth header  -->
+        <setProperty name="authHeader">
+            <simple>{{mambu.username}}:{{mambu.password}}</simple>
+        </setProperty>
+        <process ref="encodeAuthHeader" />
+        <setBody>
+            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                resource:classpath:mappings/CreateGroupsRequest.ds
+            </datasonnet>
+        </setBody>
+        <!-- <log message="POST groups with request: ${body}"/> -->
+        <setBody>
+            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                resource:classpath:mappings/perf/getGroupResponse.ds
+            </datasonnet>
+        </setBody>   
+    
+        <!-- <toD uri="https://{{mambu.host}}/api/groups?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
+        <!-- <log message="POST groups response is ${body}"/> -->
+        
+    </route>
+
 </routes>

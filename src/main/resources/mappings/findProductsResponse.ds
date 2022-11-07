@@ -1,0 +1,18 @@
+/** DataSonnet
+version=2.0
+output application/json
+input payload application/json
+*/
+                          
+local selector(obj,key,dValue = null) = ds.or(ds.select(obj,key), dValue);
+
+[
+    {
+        productId: selector(product, "id"),
+        name: selector(product, "name"),
+        description: selector(product, "notes"),
+        acccountType: selector(product,"type"),
+        productType: selector(product,"category")
+    }
+    for product in payload
+]
