@@ -66,6 +66,118 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /accounts/{accountId}/deposits:
+    post:
+      tags:
+        - Transactions
+      summary: Creates a Credit Transaction on the Account
+      operationId: createDeposit
+      parameters:
+        - name: idempotencyId
+          in: header
+          description: Idempotency identifier used by the client when making repeated calls
+          required: false
+          schema:
+            maxLength: 36
+            minLength: 1
+            type: string
+        - name: servicerId
+          in: header
+          description: Account Servicer Identification (Bank)
+          required: false
+          schema:
+            maxLength: 36
+            minLength: 1
+            type: string
+        - name: accountId
+          in: path
+          description: Account Identification
+          required: true
+          schema:
+            $ref: '#/components/schemas/AccountId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DepositRequest'
+        required: true
+      responses:
+        '202':
+          description: Account information was received and will be processed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+        '400':
+          description: >-
+            Bad Request. The account could not be processed due to format
+            errors.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /accounts/{accountId}/withdrawals:
+    post:
+      tags:
+        - Transactions
+      summary: Creates a Debit Transaction on the Account
+      operationId: createWithdrawal
+      parameters:
+        - name: idempotencyId
+          in: header
+          description: Idempotency identifier used by the client when making repeated calls
+          required: false
+          schema:
+            maxLength: 36
+            minLength: 1
+            type: string
+        - name: servicerId
+          in: header
+          description: Account Servicer Identification (Bank)
+          required: false
+          schema:
+            maxLength: 36
+            minLength: 1
+            type: string
+        - name: accountId
+          in: path
+          description: Account Identification
+          required: true
+          schema:
+            $ref: '#/components/schemas/AccountId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WithdrawalRequest'
+        required: true
+      responses:
+        '202':
+          description: Account information was received and will be processed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+        '400':
+          description: >-
+            Bad Request. The account could not be processed due to format
+            errors.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'  
   /accounts/{accountId}:
     get:
       tags:
@@ -1788,6 +1900,61 @@ components:
           format: int32
         message:
           type: string
+    DepositRequest:
+      type: object
+      properties:
+        transactionType:
+          $ref: '#/components/schemas/DepositTransactionType'
+        amount:
+          $ref: '#/components/schemas/AmountInCents'
+        exchange:
+          $ref: '#/components/schemas/Exchange'
+        check:
+          $ref: '#/components/schemas/Check'
+      description: >
+        Deposit transaction request to an account for cash, check deposits, or
+        merchandise payments.
+    DepositTransactionType:
+      maxLength: 35
+      minLength: 1
+      type: string
+      description: |
+        Type of Credit Transaction: Cash, Check, Merchandise
+      example: Cash
+    Exchange:
+      type: object
+      properties:
+        currency:
+          $ref: '#/components/schemas/CurrencyCode'
+        exchangeFactor:
+          $ref: '#/components/schemas/BaseOneRate'
+    BaseOneRate:
+      maxLength: 35
+      minLength: 1
+      type: string
+      description: |
+        Rate expressed as a decimal, for example, 0.7 is 7/10 and 70%.
+               total number of digits: 11
+               number of digits in fractional part: 10
+               base value: 1
+      example: '0.7'
+    WithdrawalRequest:
+      type: object
+      properties:
+        transactionType:
+          $ref: '#/components/schemas/WithdrawalTransactionType'
+        amount:
+          $ref: '#/components/schemas/AmountInCents'
+      description: >
+        Debit transaction request to an account for cash, check deposits, or
+        merchandise payments.
+    WithdrawalTransactionType:
+      maxLength: 35
+      minLength: 1
+      type: string
+      description: |
+        Type of Debit Transaction: Cash
+      example: Cash
     Account:
       type: object
       properties:
