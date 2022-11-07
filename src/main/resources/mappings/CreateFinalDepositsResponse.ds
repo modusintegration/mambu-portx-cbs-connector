@@ -4,7 +4,6 @@ output application/json
 input payload application/json
 */
 {
-  "accountType": payload.accountType,
   "name": payload.name,
   "initialAmount": payload.initialAmount,
   "parties": [
