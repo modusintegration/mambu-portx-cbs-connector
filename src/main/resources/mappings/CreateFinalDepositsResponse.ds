@@ -15,7 +15,7 @@ input payload application/json
   ],
   "status": cml.exchangeProperty("accountState"),
   "statusDateAndTime": cml.exchangeProperty("approvedDate"),
-  "openDate": cml.exchangeProperty("creationDate"),
+  "openDate": ds.datetime.toLocalDate(cml.exchangeProperty("creationDate")),
   "accountNumber": cml.exchangeProperty("id"),
   "accountId": cml.exchangeProperty("encodedKey")
 }
