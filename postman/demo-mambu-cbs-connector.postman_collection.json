@@ -645,167 +645,6 @@
 			},
 			"response": [
 				{
-					"name": "Create a new deposit account - example response with initial amount = 0",
-					"originalRequest": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/vnd.mambu.v2+json",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"accountType\": \"Savings\",\n    \"name\": \"DemoSmit1DepositSavingsAccount1\",\n    \"productId\": \"{{productId}}\",\n    \"initialAmount\": \"0\",\n    \"parties\": [\n        {\n            \"partyId\": \"{{personId}}\",\n            \"partyType\": \"Person\"\n        }\n    ]\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "https://demos.dev.custom.demos.tenant-1.portx.io/mambu-portx-cbs-connector/mambu-portx-cbs-connector/1.0/accounts",
-							"protocol": "https",
-							"host": [
-								"demos",
-								"dev",
-								"custom",
-								"demos",
-								"tenant-1",
-								"portx",
-								"io"
-							],
-							"path": [
-								"mambu-portx-cbs-connector",
-								"mambu-portx-cbs-connector",
-								"1.0",
-								"accounts"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Date",
-							"value": "Thu, 27 Oct 2022 04:13:45 GMT"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/vnd.mambu.v2+json"
-						},
-						{
-							"key": "Transfer-Encoding",
-							"value": "chunked"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						},
-						{
-							"key": "accept",
-							"value": "application/vnd.mambu.v2+json"
-						},
-						{
-							"key": "accept-encoding",
-							"value": "gzip, deflate, br"
-						},
-						{
-							"key": "authorization",
-							"value": "Basic c2hhc2hpOk1vZHVzYm94QDEyMw=="
-						},
-						{
-							"key": "content-security-policy",
-							"value": "object-src 'none'; upgrade-insecure-requests;"
-						},
-						{
-							"key": "cookie",
-							"value": "AWSALB=uDr1e6/7uv/1Z/PMDl31sgiLQWO5nbucMuOXhe4LO5wnGNVZ5LzuQA4BbulJblV2VlWOlMVQoT8dT9ZiI9y5eCSMsqZB0wZ2gaANJlqWXvSkFtEDMbbjKCTDtLfb; AWSALBCORS=uDr1e6/7uv/1Z/PMDl31sgiLQWO5nbucMuOXhe4LO5wnGNVZ5LzuQA4BbulJblV2VlWOlMVQoT8dT9ZiI9y5eCSMsqZB0wZ2gaANJlqWXvSkFtEDMbbjKCTDtLfb"
-						},
-						{
-							"key": "feature-policy",
-							"value": "oversized-images 'none'; unsized-media 'none';"
-						},
-						{
-							"key": "postman-token",
-							"value": "e17b043f-a826-497c-ad91-b2f8780df822"
-						},
-						{
-							"key": "referrer-policy",
-							"value": "no-referrer"
-						},
-						{
-							"key": "server",
-							"value": "envoy"
-						},
-						{
-							"key": "session-id",
-							"value": "no-session-id"
-						},
-						{
-							"key": "set-cookie",
-							"value": "AWSALB=Gp/aO1RnlWHve6gbnD54QSphNW5gJAu04CT+oLYATUwQGTgjeezfL2E8dFtk67bNGERefLyHhZdd3+hKXZzDZPiZKypSjyicGIP++qEOLgyoocgFyuBCksjtFdjU; Expires=Thu, 03 Nov 2022 04:13:45 GMT; Path=/"
-						},
-						{
-							"key": "set-cookie",
-							"value": "AWSALBCORS=Gp/aO1RnlWHve6gbnD54QSphNW5gJAu04CT+oLYATUwQGTgjeezfL2E8dFtk67bNGERefLyHhZdd3+hKXZzDZPiZKypSjyicGIP++qEOLgyoocgFyuBCksjtFdjU; Expires=Thu, 03 Nov 2022 04:13:45 GMT; Path=/; SameSite=None; Secure"
-						},
-						{
-							"key": "strict-transport-security",
-							"value": "max-age=63072001; includeSubDomains; preload"
-						},
-						{
-							"key": "x-amzn-trace-id",
-							"value": "Root=1-635a0578-27ad51257b1eee7a46d2c22a"
-						},
-						{
-							"key": "x-content-type-options",
-							"value": "nosniff"
-						},
-						{
-							"key": "x-envoy-expected-rq-timeout-ms",
-							"value": "10000"
-						},
-						{
-							"key": "x-envoy-external-address",
-							"value": "192.168.100.0"
-						},
-						{
-							"key": "x-envoy-original-path",
-							"value": "/mambu-portx-cbs-connector/mambu-portx-cbs-connector/1.0/accounts"
-						},
-						{
-							"key": "x-forwarded-for",
-							"value": "107.201.177.71,192.168.100.0"
-						},
-						{
-							"key": "x-forwarded-port",
-							"value": "443"
-						},
-						{
-							"key": "x-forwarded-proto",
-							"value": "https"
-						},
-						{
-							"key": "x-request-id",
-							"value": "e510b6fd-69d8-4397-b362-e98d23e98f0d"
-						},
-						{
-							"key": "x-xss-protection",
-							"value": "1"
-						},
-						{
-							"key": "x-envoy-upstream-service-time",
-							"value": "570"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"accountType\": \"Savings\",\n    \"name\": \"DemoSmit1DepositSavingsAccount1\",\n    \"initialAmount\": \"0\",\n    \"parties\": [\n        {\n            \"partyType\": \"Person\",\n            \"partyId\": \"8a44da8d8438b25901843a0a533668c1\"\n        }\n    ],\n    \"status\": \"APPROVED\",\n    \"statusDateAndTime\": \"2022-11-02T13:54:01-07:00\",\n    \"openDate\": \"2022-11-02T13:54:01-07:00\",\n    \"accountNumber\": \"BTUT728\",\n    \"accountId\": \"8a44da8d8438b25901843a1312ec690e\"\n}"
-				},
-				{
 					"name": "Create a new deposit account - example response with initial value > 0",
 					"originalRequest": {
 						"method": "POST",
@@ -819,7 +658,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"accountType\": \"Savings\",\n    \"name\": \"mj1DepositSavingsAccount1\",\n    \"productId\": \"{{productId}}\",\n    \"initialAmount\": \"1100\",\n    \"parties\": [\n        {\n            \"partyId\": \"{{personId}}\",\n            \"partyType\": \"Person\"\n        }\n    ]\n}",
+							"raw": "{\n    \"accountType\": \"REGULAR_SAVINGS\",\n    \"name\": \"mj1DepositSavingsAccount1\",\n    \"productId\": \"8a44d6d97c81ddbe017ca39738446161\",\n    \"initialAmount\": \"1100\",\n    \"parties\": [\n        {\n            \"partyId\": \"{{personId}}\",\n            \"partyType\": \"Person\"\n        }\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -846,7 +685,7 @@
 					"header": [
 						{
 							"key": "Date",
-							"value": "Fri, 04 Nov 2022 14:47:39 GMT"
+							"value": "Mon, 07 Nov 2022 02:43:19 GMT"
 						},
 						{
 							"key": "Content-Type",
@@ -878,7 +717,7 @@
 						},
 						{
 							"key": "cookie",
-							"value": "AWSALB=bFkMK+oP2Cf4vmCvNObkPtASNbw0LhIH0pLLVTiI8HgnmWgc1XG1wtNkNEeWOl5/2NdsgK26ODQjfDL3WNEyNSwviCAQQpHMc08q+LwnvsDBiCr4ZOvJQrWGOcW8; AWSALBCORS=bFkMK+oP2Cf4vmCvNObkPtASNbw0LhIH0pLLVTiI8HgnmWgc1XG1wtNkNEeWOl5/2NdsgK26ODQjfDL3WNEyNSwviCAQQpHMc08q+LwnvsDBiCr4ZOvJQrWGOcW8"
+							"value": "AWSALB=xGXYhB4tR9pKoTiS7wC31j7NleUz08DUx+V+U9kfYjVxWVKG9+OKzTpKMhv+fnGMMZcqStw4xeQ/GMwmJqiZqkxQG2z2yUMENpeI1gyF3824KMdttnZHbbNn2/P8; AWSALBCORS=xGXYhB4tR9pKoTiS7wC31j7NleUz08DUx+V+U9kfYjVxWVKG9+OKzTpKMhv+fnGMMZcqStw4xeQ/GMwmJqiZqkxQG2z2yUMENpeI1gyF3824KMdttnZHbbNn2/P8"
 						},
 						{
 							"key": "feature-policy",
@@ -886,7 +725,7 @@
 						},
 						{
 							"key": "postman-token",
-							"value": "ae781be3-bc17-4319-945c-742b825d204d"
+							"value": "4074a1bd-d55f-4708-8cfa-88edfddff919"
 						},
 						{
 							"key": "referrer-policy",
@@ -902,11 +741,11 @@
 						},
 						{
 							"key": "set-cookie",
-							"value": "AWSALB=WdVptKeWL1bFpfGXbcXqPScaTO59SCGRt0b9DMfZZhs/xfmGQ+LMMBfwS5WGpqH7/l9k1zpFY13Ck16clhINqeubqayb0ewMNVRZ5cixv/kEHxrnHIP4Z9NUMu0q; Expires=Fri, 11 Nov 2022 14:47:39 GMT; Path=/"
+							"value": "AWSALB=MrATlMwjF91AHWAp+CPmdZ0SgZfw+ZP2iuNvm0Gvi4XgJBwcHlEZBcClshnOF9HKNuxuNgqf5HBit22ikJCV/IUqDF75Z32KwTotvWx8wuOoPCF95Wz6Z/GT8OWn; Expires=Mon, 14 Nov 2022 02:43:19 GMT; Path=/"
 						},
 						{
 							"key": "set-cookie",
-							"value": "AWSALBCORS=WdVptKeWL1bFpfGXbcXqPScaTO59SCGRt0b9DMfZZhs/xfmGQ+LMMBfwS5WGpqH7/l9k1zpFY13Ck16clhINqeubqayb0ewMNVRZ5cixv/kEHxrnHIP4Z9NUMu0q; Expires=Fri, 11 Nov 2022 14:47:39 GMT; Path=/; SameSite=None; Secure"
+							"value": "AWSALBCORS=MrATlMwjF91AHWAp+CPmdZ0SgZfw+ZP2iuNvm0Gvi4XgJBwcHlEZBcClshnOF9HKNuxuNgqf5HBit22ikJCV/IUqDF75Z32KwTotvWx8wuOoPCF95Wz6Z/GT8OWn; Expires=Mon, 14 Nov 2022 02:43:19 GMT; Path=/; SameSite=None; Secure"
 						},
 						{
 							"key": "strict-transport-security",
@@ -914,7 +753,7 @@
 						},
 						{
 							"key": "x-amzn-trace-id",
-							"value": "Root=1-6365260b-20b935576cb8e3fa79d104c9"
+							"value": "Root=1-636870c2-6464df002b04f8f024a15771"
 						},
 						{
 							"key": "x-content-type-options",
@@ -926,7 +765,7 @@
 						},
 						{
 							"key": "x-envoy-external-address",
-							"value": "192.168.175.128"
+							"value": "192.168.246.0"
 						},
 						{
 							"key": "x-envoy-original-path",
@@ -934,7 +773,7 @@
 						},
 						{
 							"key": "x-forwarded-for",
-							"value": "107.201.177.71,192.168.175.128"
+							"value": "143.244.49.211,192.168.246.0"
 						},
 						{
 							"key": "x-forwarded-port",
@@ -946,7 +785,7 @@
 						},
 						{
 							"key": "x-request-id",
-							"value": "be7513ab-4687-4dec-963f-d175d08718af"
+							"value": "d45f3f0b-3233-4d1d-834a-1ca4eb913050"
 						},
 						{
 							"key": "x-xss-protection",
@@ -954,11 +793,166 @@
 						},
 						{
 							"key": "x-envoy-upstream-service-time",
-							"value": "755"
+							"value": "4466"
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"accountType\": \"Savings\",\n    \"name\": \"mj1DepositSavingsAccount1\",\n    \"initialAmount\": \"1100\",\n    \"parties\": [\n        {\n            \"partyType\": \"Person\",\n            \"partyId\": \"8a44c8ef843e3f860184431bde38209d\"\n        }\n    ],\n    \"status\": \"APPROVED\",\n    \"statusDateAndTime\": \"2022-11-04T07:47:40-07:00\",\n    \"openDate\": \"2022-11-04T07:47:39-07:00\",\n    \"accountNumber\": \"WPNS855\",\n    \"accountId\": \"8a44c8ef843e3f860184431bde3820a1\"\n}"
+					"body": "{\n    \"accountType\": \"REGULAR_SAVINGS\",\n    \"name\": \"mj1DepositSavingsAccount1\",\n    \"initialAmount\": \"1100\",\n    \"parties\": [\n        {\n            \"partyType\": \"Person\",\n            \"partyId\": \"8a44b95f8445a0b201844fe43f2a397a\"\n        }\n    ],\n    \"status\": \"APPROVED\",\n    \"statusDateAndTime\": \"2022-11-06T18:43:19-08:00\",\n    \"openDate\": \"2022-11-06\",\n    \"accountNumber\": \"TXCU824\",\n    \"accountId\": \"8a44b95f8445a0b201844fea18ae39a0\"\n}"
+				},
+				{
+					"name": "Create a new deposit account - example response with initial value = 0",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.mambu.v2+json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"accountType\": \"REGULAR_SAVINGS\",\n    \"name\": \"mj1DepositSavingsAccount1\",\n    \"productId\": \"8a44d6d97c81ddbe017ca39738446161\",\n    \"initialAmount\": \"0\",\n    \"parties\": [\n        {\n            \"partyId\": \"{{personId}}\",\n            \"partyType\": \"Person\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{host}}/{{demoApp}}/mambu-portx-cbs-connector/1.0/accounts",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{demoApp}}",
+								"mambu-portx-cbs-connector",
+								"1.0",
+								"accounts"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 07 Nov 2022 02:44:55 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/vnd.mambu.v2+json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "accept",
+							"value": "application/vnd.mambu.v2+json"
+						},
+						{
+							"key": "accept-encoding",
+							"value": "gzip, deflate, br"
+						},
+						{
+							"key": "authorization",
+							"value": "Basic c2hhc2hpOk1vZHVzYm94QDEyMw=="
+						},
+						{
+							"key": "content-security-policy",
+							"value": "object-src 'none'; upgrade-insecure-requests;"
+						},
+						{
+							"key": "cookie",
+							"value": "AWSALB=MrATlMwjF91AHWAp+CPmdZ0SgZfw+ZP2iuNvm0Gvi4XgJBwcHlEZBcClshnOF9HKNuxuNgqf5HBit22ikJCV/IUqDF75Z32KwTotvWx8wuOoPCF95Wz6Z/GT8OWn; AWSALBCORS=MrATlMwjF91AHWAp+CPmdZ0SgZfw+ZP2iuNvm0Gvi4XgJBwcHlEZBcClshnOF9HKNuxuNgqf5HBit22ikJCV/IUqDF75Z32KwTotvWx8wuOoPCF95Wz6Z/GT8OWn"
+						},
+						{
+							"key": "feature-policy",
+							"value": "oversized-images 'none'; unsized-media 'none';"
+						},
+						{
+							"key": "postman-token",
+							"value": "a1ff9051-58a9-47f4-b3d3-ee8629b2588e"
+						},
+						{
+							"key": "referrer-policy",
+							"value": "no-referrer"
+						},
+						{
+							"key": "server",
+							"value": "envoy"
+						},
+						{
+							"key": "session-id",
+							"value": "no-session-id"
+						},
+						{
+							"key": "set-cookie",
+							"value": "AWSALB=G46zCdEgWDLkSRH49ECtvw400nvxIAB0kTLSwAZS8dN4ZLALfH5sKkmJ483e/o2qXkZI3KR8Lg5B3JuKRAsYrDGUMyA6Yb1yHFjcXUq61si/QflO+u/5K7c2+Rql; Expires=Mon, 14 Nov 2022 02:44:54 GMT; Path=/"
+						},
+						{
+							"key": "set-cookie",
+							"value": "AWSALBCORS=G46zCdEgWDLkSRH49ECtvw400nvxIAB0kTLSwAZS8dN4ZLALfH5sKkmJ483e/o2qXkZI3KR8Lg5B3JuKRAsYrDGUMyA6Yb1yHFjcXUq61si/QflO+u/5K7c2+Rql; Expires=Mon, 14 Nov 2022 02:44:54 GMT; Path=/; SameSite=None; Secure"
+						},
+						{
+							"key": "strict-transport-security",
+							"value": "max-age=63072001; includeSubDomains; preload"
+						},
+						{
+							"key": "x-amzn-trace-id",
+							"value": "Root=1-63687126-71256af1055b01d667fe9227"
+						},
+						{
+							"key": "x-content-type-options",
+							"value": "nosniff"
+						},
+						{
+							"key": "x-envoy-expected-rq-timeout-ms",
+							"value": "10000"
+						},
+						{
+							"key": "x-envoy-external-address",
+							"value": "172.16.17.70"
+						},
+						{
+							"key": "x-envoy-original-path",
+							"value": "/mambu-portx-cbs-connector/mambu-portx-cbs-connector/1.0/accounts"
+						},
+						{
+							"key": "x-forwarded-for",
+							"value": "143.244.49.211,172.16.17.70"
+						},
+						{
+							"key": "x-forwarded-port",
+							"value": "443"
+						},
+						{
+							"key": "x-forwarded-proto",
+							"value": "https"
+						},
+						{
+							"key": "x-request-id",
+							"value": "6d2b1100-3769-4e02-93b3-2c4477c5a760"
+						},
+						{
+							"key": "x-xss-protection",
+							"value": "1"
+						},
+						{
+							"key": "x-envoy-upstream-service-time",
+							"value": "544"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"accountType\": \"REGULAR_SAVINGS\",\n    \"name\": \"mj1DepositSavingsAccount1\",\n    \"initialAmount\": \"0\",\n    \"parties\": [\n        {\n            \"partyType\": \"Person\",\n            \"partyId\": \"8a44b95f8445a0b201844fe43f2a397a\"\n        }\n    ],\n    \"status\": \"APPROVED\",\n    \"statusDateAndTime\": \"2022-11-06T18:44:55-08:00\",\n    \"openDate\": \"2022-11-06\",\n    \"accountNumber\": \"PBIJ921\",\n    \"accountId\": \"8a44b95f8445a0b201844ff9ffec3a02\"\n}"
 				}
 			]
 		},
@@ -1196,23 +1190,17 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://demos.dev.custom.demos.tenant-1.portx.io/mambu-portx-cbs-connector/mambu-portx-cbs-connector/1.0/accounts/ZKJR010",
+							"raw": "https://{{host}}/{{demoApp}}/mambu-portx-cbs-connector/1.0/accounts/{{accountId}}",
 							"protocol": "https",
 							"host": [
-								"demos",
-								"dev",
-								"custom",
-								"demos",
-								"tenant-1",
-								"portx",
-								"io"
+								"{{host}}"
 							],
 							"path": [
-								"mambu-portx-cbs-connector",
+								"{{demoApp}}",
 								"mambu-portx-cbs-connector",
 								"1.0",
 								"accounts",
-								"ZKJR010"
+								"{{accountId}}"
 							]
 						}
 					},
@@ -1222,7 +1210,7 @@
 					"header": [
 						{
 							"key": "Date",
-							"value": "Wed, 26 Oct 2022 16:43:05 GMT"
+							"value": "Mon, 07 Nov 2022 01:56:04 GMT"
 						},
 						{
 							"key": "Content-Type",
@@ -1246,7 +1234,7 @@
 						},
 						{
 							"key": "accountid",
-							"value": "ZKJR010"
+							"value": "8a44b95f8445a0b201844fcbde9338ae"
 						},
 						{
 							"key": "authorization",
@@ -1258,7 +1246,7 @@
 						},
 						{
 							"key": "cookie",
-							"value": "AWSALB=ULvfwuVFcep6chFKwDIH+0Zat+ImFcFay3gcOxGz6rWA6alLupO5gdCv2LO072rUO8l23qdIgIx+CTE+2OyDfKEWhYPbjvcRwcs7mmYHpmakVhF/elxKIFQB0iip; AWSALBCORS=ULvfwuVFcep6chFKwDIH+0Zat+ImFcFay3gcOxGz6rWA6alLupO5gdCv2LO072rUO8l23qdIgIx+CTE+2OyDfKEWhYPbjvcRwcs7mmYHpmakVhF/elxKIFQB0iip"
+							"value": "AWSALB=FOqPfAw/UMEnJvOskODs2938aD0zZkeNt5kNhI+m/A0JLzhrKnGpWc5gHRM4MzulS3qTyWMI/bx+xJEuhF9qsGFvjFMF/nN4/PTgWlCkrpb15Phc2FvVbykyTms8; AWSALBCORS=FOqPfAw/UMEnJvOskODs2938aD0zZkeNt5kNhI+m/A0JLzhrKnGpWc5gHRM4MzulS3qTyWMI/bx+xJEuhF9qsGFvjFMF/nN4/PTgWlCkrpb15Phc2FvVbykyTms8"
 						},
 						{
 							"key": "feature-policy",
@@ -1266,7 +1254,7 @@
 						},
 						{
 							"key": "postman-token",
-							"value": "1a8c1279-5049-414e-b35c-c6be505508bf"
+							"value": "011d5662-79d1-4e98-af36-a22f1fa8cd8b"
 						},
 						{
 							"key": "referrer-policy",
@@ -1282,11 +1270,11 @@
 						},
 						{
 							"key": "set-cookie",
-							"value": "AWSALB=lNaD9cziZzJ3pd1fHVOWdFfKcDZviNWXRUVr7O6HgIKfqsHMLVPaCa4bMfg2TLeL0jMBIW2IuJNWue22mNLHcJFyu1wrvSYEftcE6sZZr0KCwcg4FqJZ3fYgUMvU; Expires=Wed, 02 Nov 2022 16:43:05 GMT; Path=/"
+							"value": "AWSALB=Z6RbZQieaCTQggLzEbwYn4+jokwBCdm8GxQhatVq6x/LGQtiW7CbJL+ncgLBDlOFfDeGiyIB+aRAXQi3/JogosddU8durx+40lDJGPetn4VonWqWSR7of5p6/7Ag; Expires=Mon, 14 Nov 2022 01:56:04 GMT; Path=/"
 						},
 						{
 							"key": "set-cookie",
-							"value": "AWSALBCORS=lNaD9cziZzJ3pd1fHVOWdFfKcDZviNWXRUVr7O6HgIKfqsHMLVPaCa4bMfg2TLeL0jMBIW2IuJNWue22mNLHcJFyu1wrvSYEftcE6sZZr0KCwcg4FqJZ3fYgUMvU; Expires=Wed, 02 Nov 2022 16:43:05 GMT; Path=/; SameSite=None; Secure"
+							"value": "AWSALBCORS=Z6RbZQieaCTQggLzEbwYn4+jokwBCdm8GxQhatVq6x/LGQtiW7CbJL+ncgLBDlOFfDeGiyIB+aRAXQi3/JogosddU8durx+40lDJGPetn4VonWqWSR7of5p6/7Ag; Expires=Mon, 14 Nov 2022 01:56:04 GMT; Path=/; SameSite=None; Secure"
 						},
 						{
 							"key": "strict-transport-security",
@@ -1294,7 +1282,7 @@
 						},
 						{
 							"key": "x-amzn-trace-id",
-							"value": "Root=1-63596398-13d8bca63f7d7821262a6c18"
+							"value": "Root=1-636865b4-599145da52cc96a87e8b9c23"
 						},
 						{
 							"key": "x-content-type-options",
@@ -1306,15 +1294,15 @@
 						},
 						{
 							"key": "x-envoy-external-address",
-							"value": "192.168.111.129"
+							"value": "192.168.246.0"
 						},
 						{
 							"key": "x-envoy-original-path",
-							"value": "/mambu-portx-cbs-connector/mambu-portx-cbs-connector/1.0/accounts/ZKJR010"
+							"value": "/mambu-portx-cbs-connector/mambu-portx-cbs-connector/1.0/accounts/8a44b95f8445a0b201844fcbde9338ae"
 						},
 						{
 							"key": "x-forwarded-for",
-							"value": "107.201.177.71,192.168.111.129"
+							"value": "143.244.49.211,192.168.246.0"
 						},
 						{
 							"key": "x-forwarded-port",
@@ -1326,7 +1314,7 @@
 						},
 						{
 							"key": "x-request-id",
-							"value": "76db45c6-2ea9-4e92-b7c2-f69ac72afa08"
+							"value": "a557b2a4-eef0-4cfd-b34d-bb0025441d1f"
 						},
 						{
 							"key": "x-xss-protection",
@@ -1334,11 +1322,11 @@
 						},
 						{
 							"key": "x-envoy-upstream-service-time",
-							"value": "379"
+							"value": "115"
 						}
 					],
 					"cookie": [],
-					"body": "{\n  \"accountNumber\": \"12345678\",\n  \"accountType\": \"Current\",\n  \"accountOwnershipType\": \"Owner\",\n  \"productId\": \"PD_CA_0002\",\n  \"name\": \"Hermes PD_CA 0002\",\n  \"currency\": \"USD\",\n  \"initialAmount\": \"100\",\n  \"parties\": [\n    {\n      \"partyId\": \"5fb9d4d6-1a3c-11ed-861d-0242ac120002\",\n      \"partyType\": \"Person\",\n      \"partyAccountRole\": \"PaymentManager\"\n    }\n  ],\n  \"status\": \"Pending\",\n  \"statusDateAndTime\": \"2022-04-17T08:00:00Z\",\n  \"openDate\": \"2022-04-17\",\n  \"balances\": [\n    {\n      \"balanceName\": \"Available\",\n      \"amount\": \"100\",\n      \"currency\": \"USD\",\n      \"calculationDate\": \"2022-04-17T08:00:00Z\"\n    }\n  ],\n  \"accountId\": \"0dd926fe-1ca2-11ed-861d-0242ac120002\"\n}"
+					"body": "{\n    \"accountNumber\": \"SSRG580\",\n    \"accountType\": \"REGULAR_SAVINGS\",\n    \"accountOwnershipType\": \"Owner\",\n    \"productId\": \"8a44d6d97c81ddbe017ca39738446161\",\n    \"name\": \"mj1DepositSavingsAccount1\",\n    \"currency\": \"USD\",\n    \"parties\": [\n        {\n            \"partyId\": \"8a44b95f8445a0b201844fc7a4b138a0\",\n            \"partyType\": \"Person\",\n            \"partyAccountRole\": \"Owner\"\n        }\n    ],\n    \"status\": \"ACTIVE\",\n    \"statusDateAndTime\": \"2022-11-06T17:54:31-08:00\",\n    \"openDate\": \"2022-11-06\",\n    \"balances\": [\n        {\n            \"balanceName\": \"Available\",\n            \"amount\": 1100,\n            \"currency\": \"USD\",\n            \"calculationDate\": \"2022-11-06T17:54:31-08:00\"\n        },\n        {\n            \"balanceName\": \"Blocked\",\n            \"amount\": 0,\n            \"currency\": \"USD\",\n            \"calculationDate\": \"2022-11-06T17:54:31-08:00\"\n        },\n        {\n            \"balanceName\": \"Pending\",\n            \"amount\": 0,\n            \"currency\": \"USD\",\n            \"calculationDate\": \"2022-11-06T17:54:31-08:00\"\n        },\n        {\n            \"balanceName\": \"Current\",\n            \"amount\": 1100,\n            \"currency\": \"USD\",\n            \"calculationDate\": \"2022-11-06T17:54:31-08:00\"\n        }\n    ],\n    \"accountId\": \"8a44b95f8445a0b201844fcbde9338ae\"\n}"
 				}
 			]
 		},
