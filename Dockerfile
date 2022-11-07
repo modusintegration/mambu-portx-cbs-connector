@@ -5,6 +5,7 @@ WORKDIR /app
 
 COPY ./target/mambu-portx-cbs-connector-1.0.41.jar /app/app.jar
 
+
 EXPOSE 8080 8090
 
 ENTRYPOINT java $JAVA_OPTS -jar /app/app.jar
