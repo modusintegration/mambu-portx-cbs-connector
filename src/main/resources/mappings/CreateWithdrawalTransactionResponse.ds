@@ -1,0 +1,28 @@
+/** DataSonnet
+version=2.0
+output application/json
+input payload application/json
+*/
+local selector(obj,key,dValue = null) = ds.or(ds.select(obj,key), dValue);
+
+std.prune(
+    { 
+        "transactionId": selector(payload, "encodedKey"),
+        "amount": payload.amount,
+        "creditDebitIndicator": if payload.amount > 0 then "Credit" else "Debit",
+        "bankTransactionDomain": "AccountManagement",
+        "bankTransactionFamily": payload.type,
+        "status": "Booked",
+        "reversalIndicator": if ds.select(payload, "adjustmentTransactionKey") == null then false else true,
+        "creationDate": payload.creationDate,
+        "bookingDate": selector(payload, "bookingDate"),
+        "dateValue": selector(payload, "dateValue"),
+        "availabilityDate": selector(payload, "dateValue"),
+        "charges": selector(payload, "affectedAmounts.feesAmount"),
+        "interest": selector(payload, "affectedAmounts.interestAmount"),
+        "currentBalance": payload.accountBalances.totalBalance,
+        "details": if ds.isObject(payload.transferDetails) then {
+            "counterpartAccount": selector(payload, "tranferDetails.linkedDepositTransactionKey")
+        } else null
+    }
+)
