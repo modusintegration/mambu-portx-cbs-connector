@@ -1,0 +1,20 @@
+/** DataSonnet
+version=2.0
+output application/json
+input payload application/json
+*/
+                          
+local selector(obj,key,dValue = null) = ds.or(ds.select(obj,key), dValue);
+local setTransactionChannel(tranType) = if tranType == "ACH" then "ACH_CHANNEL"
+    else if tranType == "Cash" then "Cash"
+    else null;
+
+std.prune(
+    {
+        "amount": selector(payload, "amount", 0.00),
+        "transactionDetails": {
+            "transactionChannelId": if std.objectHas(payload, "transactionType") then setTransactionChannel(payload.transactionType)
+        }
+
+    }
+)

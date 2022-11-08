@@ -120,7 +120,7 @@
        </setBody>        
 <!--        <to uri="direct:endRoute"/>-->
     </route>
-   <route id="updatePersonRoute" routeConfigurationId="*">
+    <route id="updatePersonRoute" routeConfigurationId="*">
        <from uri="direct:updatePerson"/>
        <setProperty name="flowId">
            <simple>${routeId}:${id}</simple>
@@ -154,7 +154,7 @@
        </setBody>
 
        <!-- <to uri="direct:endRoute"/> -->
-   </route>
+    </route>
     <route id="createDepositRoute" routeConfigurationId="*">
         <from uri="direct:createDeposit"/>
         <setProperty name="flowId">
@@ -203,8 +203,56 @@
                     resource:classpath:mappings/CreateDepositTransactionResponse.ds
             </datasonnet>
        </setBody>
-
 <!--        <to uri="direct:endRoute"/>-->
+    </route>
+    <route id="createWithdrawalRoute" routeConfigurationId="*">
+        <from uri="direct:createWithdrawal" />
+        <setProperty name="flowId">
+            <simple>${routeId}:${id}</simple>
+        </setProperty>
+        <!--        <to uri="direct:startRoute"/>-->
+        <log message="== createWithdrawal Route" />
+        <setHeader name="CamelHttpMethod">
+            <constant>POST</constant>
+        </setHeader>
+        <setHeader name="Accept">
+            <constant>application/vnd.mambu.v2+json</constant>
+        </setHeader>
+        <!-- Use processor to set the auth header  -->
+        <setProperty name="authHeader">
+            <simple>{{mambu.username}}:{{mambu.password}}</simple>
+        </setProperty>
+        <process ref="encodeAuthHeader" />
+        <choice>
+            <when>
+                <simple>${header.idempotencyId}</simple>
+                <!-- pass idempotencyId in header if present -->
+                <log message="idempotencyId: ${header.idempotencyId}" />
+                <setHeader name="Idempotency-Key">
+                    <simple>${header.idempotencyId}</simple>
+                </setHeader>
+            </when>
+            <otherwise>
+                <log message="no idempotencyId provided" />
+            </otherwise>
+        </choice>
+        <setHeader name="Content-Type">
+            <constant>application/json</constant>
+        </setHeader>
+        <setBody>
+            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+            resource:classpath:mappings/CreateWithdrawalTransactionRequest.ds
+        </datasonnet>
+        </setBody>
+        <log message="POST withdrawal-transaction for account ${header.accountId} with request: ${body}" />
+        <toD uri="https://{{mambu.host}}/api/deposits/${header.accountId}/withdrawal-transactions?throwExceptionOnFailure=false&amp;bridgeEndpoint=true" />
+        <log message="POST withdrawal-transaction response is ${body}" />
+        <setBody>
+            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                resource:classpath:mappings/CreateWithdrawalTransactionResponse.ds
+        </datasonnet>
+        </setBody>
+        <!--        <to uri="direct:endRoute"/>-->
     </route>
     <route id="findAccountRoute" routeConfigurationId="*">
         <from uri="direct:findAccount"/>
