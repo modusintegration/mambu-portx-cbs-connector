@@ -6,6 +6,7 @@ input payload application/json
                           
 local clientName = cml.exchangeProperty('clientName');
 local selector(obj,key,dValue = null) = ds.or(ds.select(obj,key), dValue);
+local closeDate = selector(x, "closeDate");
 
 if (std.length(payload) > 0) then                          
   std.prune({
@@ -29,7 +30,7 @@ if (std.length(payload) > 0) then
         ],
         "status": selector(x, "accountState"),
         "statusDateAndTime": selector(x, "lastModifiedDate"),
-        "openDate": selector(x, "creationDate"),
+        "openDate": ds.datetime.toLocalDate(selector(x, "creationDate")),
         "closeDate": selector(x, "closeDate"),
         "maturityDate": selector(x, "maturityDate"),
         "balances": [
