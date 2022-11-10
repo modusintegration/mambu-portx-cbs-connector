@@ -323,18 +323,55 @@ paths:
       summary: Retrieves the account transactions
       operationId: findAccountTransactions
       parameters:
-        - name: accountId
-          in: path
-          description: Account Identification
-          required: true
-          schema:
-            $ref: '#/components/schemas/AccountId'
-        - name: bankId
-          in: header
-          description: Bank Identification
+      - name: transactionId.eq
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          $ref: '#/components/schemas/TransactionId'
+      - name: amount.lte
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          $ref: '#/components/schemas/AmountInCents'
+      - name: amount.gte
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          $ref: '#/components/schemas/AmountInCents'
+      - name: creationDate.lte
+        in: query
+        description: Input cycle date less than or equal
+        required: false
+        style: form
+        explode: true
+        schema:
+          $ref: '#/components/schemas/Date'
+      - name: creationDate.gte
+        in: query
+        description: Input cycle date greater than or equal
+        required: false
+        style: form
+        explode: true
+        schema:
+          $ref: '#/components/schemas/Date'
+      - name: accountId
+        in: path
+        description: Account Identification
+        required: true
+        schema:
+          $ref: '#/components/schemas/AccountId'
+      - name: bankId
+        in: header
+        description: Bank Identification
 #          required: true
-          schema:
-            $ref: '#/components/schemas/Id'
+        schema:
+          $ref: '#/components/schemas/Id'
       responses:
         "200":
           description: Matching account was found.
@@ -1854,6 +1891,21 @@ components:
       description: |
         The International Bank Account Number is a code used internationally by financial institutions to uniquely identify the account of a customer at a financial institution. A valid IBAN consists of all three of the following components: Country Code, check digits and BBAN.
       example: AL35202111090000000001234567
+    InstructionPriority:
+      type: string
+      minLength: 1
+      maxLength: 35
+      description: | 
+        Indicator of the urgency or order of importance that the instructing party would like the instructed party to apply to the processing of the instruction. Possible ISO Complaiant values are:
+      example: 123456789  
+    InstructionIdentification:
+      type: string
+      minLength: 1
+      maxLength: 35
+      description: | 
+        Unique identification, as assigned by the first instructing agent, to unambiguously identify the transaction that is passed on, unchanged, throughout the entire interbank chain.
+        Usage: The transaction identification can be used for reconciliation, tracking or to link tasks relating to the transaction on the interbank level. The instructing agent has to make sure that the transaction identification is unique for a pre-agreed period.
+      example: 123456789       
     AccountNumber:
       maxLength: 12
       minLength: 8
@@ -1889,6 +1941,15 @@ components:
           minLength: 1
           type: string
           description: Entity that assigns the identification.
+    EndToEndIdentification:
+      type: string
+      minLength: 1
+      maxLength: 35
+      description: | 
+         Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain.
+
+         Usage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction.
+      example: 12345678912345           
     Error:
       required:
         - code
@@ -1938,6 +1999,10 @@ components:
                number of digits in fractional part: 10
                base value: 1
       example: '0.7'
+    UETR:
+      description: |
+        UETR. Universally unique identifier to provide an end-to-end reference of a payment transaction.
+      $ref: '#/components/schemas/Id'      
     WithdrawalRequest:
       type: object
       properties:
@@ -2095,7 +2160,7 @@ components:
           $ref: '#/components/schemas/ReversalIndicator'
         creationDate:
           $ref: '#/components/schemas/DateAndTime'
-        dateValue:
+        valueDate:
           $ref: '#/components/schemas/DateAndTime'
         bookingDate:
           $ref: '#/components/schemas/DateAndTime'
@@ -2177,20 +2242,18 @@ components:
           $ref: '#/components/schemas/AccountType'
     PaymentIdentifiers:
       type: object
+      description: Set of elements used to reference a payment instruction.
       properties:
-        paymentNumber:
-          $ref: '#/components/schemas/PaymentNumber'
-        clearingSystemType:
-          $ref: '#/components/schemas/ClearingSystemType'
-    PaymentNumber:
-      maxLength: 35
-      type: string
-      description: |
-        Unique identification, as assigned by the first instructing agent, to unambiguously identify the payment that is passed on, unchanged, throughout the chain.
-      example: "12345678"
-    ClearingSystemType:
-      type: string
-      description: "External cash clearing system. Possible ISO compliant values are: \nUSFedACH, FedNet, USFedwire.\n"
+        instructionIdentification: 
+          $ref: '#/components/schemas/InstructionIdentification'
+        endToEndIdentification:
+          $ref: '#/components/schemas/EndToEndIdentification'
+        uETR:
+          $ref: '#/components/schemas/UETR'
+        identifiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/PaymentIdentification'
     Check:
       type: object
       properties:
@@ -2493,6 +2556,26 @@ components:
             'The tax ID has been verified by the IRS as valid. Possible values: Valid, NotValid, NotVerified.'
         suplementaryData:
           $ref: '#/components/schemas/SupplementaryData'
+    PaymentIdentification:
+      type: object
+      properties:
+        number: 
+          type: string
+          description: Unique and unambiguous identification of a payment.
+          minLength: 1
+          maxLength: 35
+        identifierName: 
+          type: string
+          description: | 
+            Name of other payment identificaction. For instance,
+            ISOInitiationMessageIdentifier
+          minLength: 1
+          maxLength: 35
+          example: ISOInitiationMessageIdentifier
+        issuer:
+          type: string
+          description: Entity that assigns the identification.
+          example: Banc of California    
     PlaceAndDateOfBirth:
       type: object
       properties:
