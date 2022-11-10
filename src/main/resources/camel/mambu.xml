@@ -325,6 +325,22 @@
         <setBody><constant>{}</constant></setBody>
         <!--        <to uri="direct:startRoute"/>-->
         <log message="== findAccountTransactions Route"/>
+        <setProperty name="queryTransactionId">
+            <simple>${header.transactionId.eq}</simple>
+        </setProperty>
+        <setProperty name="queryAmountlte">
+            <simple>${header.amount.lte}</simple>
+        </setProperty>
+        <setProperty name="queryAmountgte">
+            <simple>${header.amount.gte}</simple>
+        </setProperty>
+        <setProperty name="queryCreationDatelte">
+            <simple>${header.creationDate.lte}</simple>
+        </setProperty>
+        <setProperty name="queryCreationDategte">
+            <simple>${header.creationDate.gte}</simple>
+        </setProperty>
+        
         <setHeader name="CamelHttpMethod">
             <constant>GET</constant>
         </setHeader>
@@ -1109,6 +1125,22 @@
         <setBody><constant>{}</constant></setBody>
         
         <log message="== findAccountTransactions Route"/>
+        <setProperty name="queryTransactionId">
+            <simple>${header.transactionId.eq}</simple>
+        </setProperty>
+        <setProperty name="queryAmountlte">
+            <simple>${header.amount.lte}</simple>
+        </setProperty>
+        <setProperty name="queryAmountgte">
+            <simple>${header.amount.gte}</simple>
+        </setProperty>
+        <setProperty name="queryCreationDatelte">
+            <simple>${header.creationDate.lte}</simple>
+        </setProperty>
+        <setProperty name="queryCreationDategte">
+            <simple>${header.creationDate.gte}</simple>
+        </setProperty>
+
         <setHeader name="CamelHttpMethod">
             <constant>GET</constant>
         </setHeader>

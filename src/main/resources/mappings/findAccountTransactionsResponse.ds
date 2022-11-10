@@ -11,6 +11,35 @@ local currencyCode = cml.exchangeProperty("currencyCode");
 local currentBal = cml.exchangeProperty("currentBal");
 local availableBal = cml.exchangeProperty("availableBal");
 
+local queryTransactionId = cml.exchangeProperty("queryTransactionId");
+local queryAmountlte = cml.exchangeProperty("queryAmountlte");
+local queryAmountgte = cml.exchangeProperty("queryAmountgte");
+local queryCreationDatelte = cml.exchangeProperty("queryCreationDatelte");
+local queryCreationDategte = cml.exchangeProperty("queryCreationDategte");
+
+
+local filterByTransactionId(data) = std.objectHas(data, "encodedKey") &&
+                          data.encodedKey == queryTransactionId;
+
+local filterByAmountLTE(data) = std.objectHas(data, "amount") &&
+                          data.amount <= ds.parseDouble(queryAmountlte);
+local filterByAmountGTE(data) = std.objectHas(data, "amount") &&
+                          data.amount >= ds.parseDouble(queryAmountgte);
+
+
+
+local filterByCreationDateLTE(data) = std.objectHas(data, "creationDate") &&
+                           data.creationDate <= queryCreationDatelte;
+
+local filterByCreationDateGTE(data) = std.objectHas(data, "creationDate") &&
+                          data.creationDate >= queryCreationDategte;
+
+local filteredData1 = if queryTransactionId != null then std.filter(function(data) filterByTransactionId(data), payload) else payload;
+local filteredData2 = if queryAmountlte != null then std.filter(function(data) filterByAmountLTE(data), filteredData1) else filteredData1;
+local filteredData3 = if queryAmountgte != null then std.filter(function(data) filterByAmountGTE(data), filteredData2) else filteredData2;
+local filteredData4 = if queryCreationDatelte != null then std.filter(function(data) filterByCreationDateLTE(data), filteredData3) else filteredData3;
+local filteredData = if queryCreationDategte != null then std.filter(function(data) filterByCreationDateGTE(data), filteredData4) else filteredData4;
+
 std.prune(
     {
         "accountId": encodedKey,
@@ -19,7 +48,7 @@ std.prune(
         "currency": currencyCode,
         "currentBalance": currentBal,
         "availableBalance": availableBal,
-        "transactions": if (std.length(payload) > 0) then
+        "transactions": if (std.length(filteredData) > 0) then
         [
             { 
                 "transactionId": selector(txn, "encodedKey"),
@@ -31,7 +60,7 @@ std.prune(
                 "reversalIndicator": if ds.select(txn, "adjustmentTransactionKey") == null then false else true,
                 "creationDate": txn.creationDate,
                 "bookingDate": selector(txn, "bookingDate"),
-                "dateValue": selector(txn, "dateValue"),
+                "valueDate": selector(txn, "dateValue"),
                 "availabilityDate": selector(txn, "dateValue"),
                 "charges": selector(txn, "affectedAmounts.feesAmount"),
                 "interest": selector(txn, "affectedAmounts.interestAmount"),
@@ -39,7 +68,7 @@ std.prune(
                 "details": if ds.isObject(txn.transferDetails) then {
                     "counterpartAccount": selector(txn, "tranferDetails.linkedDepositTransactionKey")
                 } else null
-            } for txn in payload
+            } for txn in filteredData
         ]
         else []
     }
