@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "eae91ea3-e996-4ccf-a12f-1044c1d07a38",
+		"_postman_id": "64232250-cd7e-4fe8-9533-aa934771c194",
 		"name": "demo-mambu-cbs-connector",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "503705"
+		"_exporter_id": "5382217"
 	},
 	"item": [
 		{
@@ -1751,6 +1751,732 @@
 						"accounts",
 						"{{accountId}}",
 						"transactions"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Account Transactions - single transaction example reponse",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://demos.dev.custom.demos.tenant-1.portx.io/mambu-portx-cbs-connector/mambu-portx-cbs-connector/1.0/accounts/BJJB114/transactions",
+							"protocol": "https",
+							"host": [
+								"demos",
+								"dev",
+								"custom",
+								"demos",
+								"tenant-1",
+								"portx",
+								"io"
+							],
+							"path": [
+								"mambu-portx-cbs-connector",
+								"mambu-portx-cbs-connector",
+								"1.0",
+								"accounts",
+								"BJJB114",
+								"transactions"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 26 Oct 2022 18:55:06 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/vnd.mambu.v2+json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "accept",
+							"value": "application/vnd.mambu.v2+json"
+						},
+						{
+							"key": "accept-encoding",
+							"value": "gzip, deflate, br"
+						},
+						{
+							"key": "accountid",
+							"value": "BJJB114"
+						},
+						{
+							"key": "authorization",
+							"value": "Basic c2hhc2hpOk1vZHVzYm94QDEyMw=="
+						},
+						{
+							"key": "content-security-policy",
+							"value": "object-src 'none'; upgrade-insecure-requests;"
+						},
+						{
+							"key": "feature-policy",
+							"value": "oversized-images 'none'; unsized-media 'none';"
+						},
+						{
+							"key": "items-limit",
+							"value": "50"
+						},
+						{
+							"key": "items-offset",
+							"value": "0"
+						},
+						{
+							"key": "postman-token",
+							"value": "ea4e5649-c57e-4115-8911-0833b51e520e"
+						},
+						{
+							"key": "referrer-policy",
+							"value": "no-referrer"
+						},
+						{
+							"key": "server",
+							"value": "envoy"
+						},
+						{
+							"key": "session-id",
+							"value": "no-session-id"
+						},
+						{
+							"key": "set-cookie",
+							"value": "AWSALB=oNPs3qZwA1IraN1yifRMQOaHp5y+nc0qIu8C9LxN5xmcn9qms8Z14tfMo1BVNIdVYJ0y8EMfF6c/7QFgNP+Q2SG0U7yRHZAgMnzWhcx9SSTh9m1/URpW16vSXuVl; Expires=Wed, 02 Nov 2022 18:55:06 GMT; Path=/"
+						},
+						{
+							"key": "set-cookie",
+							"value": "AWSALBCORS=oNPs3qZwA1IraN1yifRMQOaHp5y+nc0qIu8C9LxN5xmcn9qms8Z14tfMo1BVNIdVYJ0y8EMfF6c/7QFgNP+Q2SG0U7yRHZAgMnzWhcx9SSTh9m1/URpW16vSXuVl; Expires=Wed, 02 Nov 2022 18:55:06 GMT; Path=/; SameSite=None; Secure"
+						},
+						{
+							"key": "strict-transport-security",
+							"value": "max-age=63072001; includeSubDomains; preload"
+						},
+						{
+							"key": "x-amzn-trace-id",
+							"value": "Root=1-63598288-38669bda1063ea0271a2aa1c"
+						},
+						{
+							"key": "x-content-type-options",
+							"value": "nosniff"
+						},
+						{
+							"key": "x-envoy-expected-rq-timeout-ms",
+							"value": "10000"
+						},
+						{
+							"key": "x-envoy-external-address",
+							"value": "172.16.17.70"
+						},
+						{
+							"key": "x-envoy-original-path",
+							"value": "/mambu-portx-cbs-connector/mambu-portx-cbs-connector/1.0/accounts/BJJB114/transactions"
+						},
+						{
+							"key": "x-forwarded-for",
+							"value": "107.201.177.71,172.16.17.70"
+						},
+						{
+							"key": "x-forwarded-port",
+							"value": "443"
+						},
+						{
+							"key": "x-forwarded-proto",
+							"value": "https"
+						},
+						{
+							"key": "x-request-id",
+							"value": "75196cfd-5f78-4a05-8fcc-f1ae8f57c6eb"
+						},
+						{
+							"key": "x-xss-protection",
+							"value": "1"
+						},
+						{
+							"key": "x-envoy-upstream-service-time",
+							"value": "1750"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"accountId\": \"0dd926fe-1ca2-11ed-861d-0242ac120002\",\n  \"accountNumber\": \"12345678\",\n  \"accountType\": \"Current\",\n  \"currency\": \"USD\",\n  \"currentBalance\": \"100\",\n  \"availableBalance\": \"100\",\n  \"transactions\": [\n    {\n      \"transactionId\": \"0dd926fe-1ca2-11ed-861d-0242ac120002\",\n      \"amount\": \"100\",\n      \"creditDebitIndicator\": \"Credit\",\n      \"bankTransactionDomain\": \"Payments\",\n      \"bankTransactionFamily\": \"CounterCashDeposit\",\n      \"status\": \"Booked\",\n      \"reversalIndicator\": true,\n      \"creationDate\": \"2022-04-17T08:00:00Z\",\n      \"dateValue\": \"2022-04-17T08:00:00Z\",\n      \"bookingDate\": \"2022-04-17T08:00:00Z\",\n      \"availabilityDate\": \"2022-04-17T08:00:00Z\",\n      \"charges\": \"100\",\n      \"interest\": \"100\",\n      \"currentBalance\": \"100\",\n      \"availableBalance\": \"100\",\n      \"details\": {\n        \"counterpartAccount\": {\n          \"iBAN\": \"AL35202111090000000001234567\",\n          \"accountNumber\": \"12345678\",\n          \"routingNumber\": \"12345678\",\n          \"identifiers\": [\n            {\n              \"identification\": \"string\",\n              \"schemeName\": \"BBANIdentifier\",\n              \"issuer\": \"string\"\n            }\n          ],\n          \"accountId\": \"0dd926fe-1ca2-11ed-861d-0242ac120002\",\n          \"accountType\": \"Current\"\n        },\n        \"payment\": {\n          \"paymentNumber\": \"12345678\",\n          \"clearingSystemType\": \"string\"\n        },\n        \"check\": {\n          \"checkType\": \"string\",\n          \"checkNumber\": \"string\"\n        }\n      },\n      \"supplementaryData\": {}\n    }\n  ]\n}"
+				},
+				{
+					"name": "Get Account Transactions - no transactions example response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://demos.dev.custom.demos.tenant-1.portx.io/mambu-portx-cbs-connector/mambu-portx-cbs-connector/1.0/accounts/GFPU091/transactions",
+							"protocol": "https",
+							"host": [
+								"demos",
+								"dev",
+								"custom",
+								"demos",
+								"tenant-1",
+								"portx",
+								"io"
+							],
+							"path": [
+								"mambu-portx-cbs-connector",
+								"mambu-portx-cbs-connector",
+								"1.0",
+								"accounts",
+								"GFPU091",
+								"transactions"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 26 Oct 2022 18:58:36 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/vnd.mambu.v2+json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "accept",
+							"value": "application/vnd.mambu.v2+json"
+						},
+						{
+							"key": "accept-encoding",
+							"value": "gzip, deflate, br"
+						},
+						{
+							"key": "accountid",
+							"value": "GFPU091"
+						},
+						{
+							"key": "authorization",
+							"value": "Basic c2hhc2hpOk1vZHVzYm94QDEyMw=="
+						},
+						{
+							"key": "content-security-policy",
+							"value": "object-src 'none'; upgrade-insecure-requests;"
+						},
+						{
+							"key": "cookie",
+							"value": "AWSALB=GhppOpxvge+t9rZBJyOfVq6kQ33hTYVLsrQpA8AoCNIDdsXgSpgTHqaVdIUSR+FeyyyMVzojtp9MjQ9WqIvV9doe4o54/02JvvDRrxATXVC14RBmh0KV+RVejPr7; AWSALBCORS=GhppOpxvge+t9rZBJyOfVq6kQ33hTYVLsrQpA8AoCNIDdsXgSpgTHqaVdIUSR+FeyyyMVzojtp9MjQ9WqIvV9doe4o54/02JvvDRrxATXVC14RBmh0KV+RVejPr7"
+						},
+						{
+							"key": "feature-policy",
+							"value": "oversized-images 'none'; unsized-media 'none';"
+						},
+						{
+							"key": "items-limit",
+							"value": "50"
+						},
+						{
+							"key": "items-offset",
+							"value": "0"
+						},
+						{
+							"key": "postman-token",
+							"value": "be45ddcf-098d-4089-bc74-4ec3e22bc0c2"
+						},
+						{
+							"key": "referrer-policy",
+							"value": "no-referrer"
+						},
+						{
+							"key": "server",
+							"value": "envoy"
+						},
+						{
+							"key": "session-id",
+							"value": "no-session-id"
+						},
+						{
+							"key": "set-cookie",
+							"value": "AWSALB=w+vJayqe5jekTKiDccC6M3UG4emImEWCSlrHK85MICuIw+DfvLkiFEMSvT9DGVFGE5WmJCR2Y5TTw7d6bwr/N6w45Aym/o8afanB/7U0leCigRWTyLE+9Oo0t0x+; Expires=Wed, 02 Nov 2022 18:58:36 GMT; Path=/"
+						},
+						{
+							"key": "set-cookie",
+							"value": "AWSALBCORS=w+vJayqe5jekTKiDccC6M3UG4emImEWCSlrHK85MICuIw+DfvLkiFEMSvT9DGVFGE5WmJCR2Y5TTw7d6bwr/N6w45Aym/o8afanB/7U0leCigRWTyLE+9Oo0t0x+; Expires=Wed, 02 Nov 2022 18:58:36 GMT; Path=/; SameSite=None; Secure"
+						},
+						{
+							"key": "strict-transport-security",
+							"value": "max-age=63072001; includeSubDomains; preload"
+						},
+						{
+							"key": "x-amzn-trace-id",
+							"value": "Root=1-6359835b-1359840a45cc0a1612e80dc2"
+						},
+						{
+							"key": "x-content-type-options",
+							"value": "nosniff"
+						},
+						{
+							"key": "x-envoy-expected-rq-timeout-ms",
+							"value": "10000"
+						},
+						{
+							"key": "x-envoy-external-address",
+							"value": "192.168.111.129"
+						},
+						{
+							"key": "x-envoy-original-path",
+							"value": "/mambu-portx-cbs-connector/mambu-portx-cbs-connector/1.0/accounts/GFPU091/transactions"
+						},
+						{
+							"key": "x-forwarded-for",
+							"value": "107.201.177.71,192.168.111.129"
+						},
+						{
+							"key": "x-forwarded-port",
+							"value": "443"
+						},
+						{
+							"key": "x-forwarded-proto",
+							"value": "https"
+						},
+						{
+							"key": "x-request-id",
+							"value": "e65ab4b1-d748-41e1-8afd-2174d5e9d502"
+						},
+						{
+							"key": "x-xss-protection",
+							"value": "1"
+						},
+						{
+							"key": "x-envoy-upstream-service-time",
+							"value": "324"
+						}
+					],
+					"cookie": [],
+					"body": "[]"
+				}
+			]
+		},
+		{
+			"name": "Get Account Transactions by date ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"Find account transactions response http status code = 200\", function(){",
+							"    pm.response.to.have.status(200);",
+							"})",
+							"",
+							"pm.test(\"found at least 1 transaction\", function () {",
+							"    pm.expect(jsonData.transactions[0].amount).not.eql(undefined);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{host}}/{{demoApp}}/mambu-portx-cbs-connector/1.0/accounts/{{accountId}}/transactions?creationDate.gte=2021-10-20",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{demoApp}}",
+						"mambu-portx-cbs-connector",
+						"1.0",
+						"accounts",
+						"{{accountId}}",
+						"transactions"
+					],
+					"query": [
+						{
+							"key": "creationDate.gte",
+							"value": "2021-10-20"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Account Transactions - single transaction example reponse",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://demos.dev.custom.demos.tenant-1.portx.io/mambu-portx-cbs-connector/mambu-portx-cbs-connector/1.0/accounts/BJJB114/transactions",
+							"protocol": "https",
+							"host": [
+								"demos",
+								"dev",
+								"custom",
+								"demos",
+								"tenant-1",
+								"portx",
+								"io"
+							],
+							"path": [
+								"mambu-portx-cbs-connector",
+								"mambu-portx-cbs-connector",
+								"1.0",
+								"accounts",
+								"BJJB114",
+								"transactions"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 26 Oct 2022 18:55:06 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/vnd.mambu.v2+json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "accept",
+							"value": "application/vnd.mambu.v2+json"
+						},
+						{
+							"key": "accept-encoding",
+							"value": "gzip, deflate, br"
+						},
+						{
+							"key": "accountid",
+							"value": "BJJB114"
+						},
+						{
+							"key": "authorization",
+							"value": "Basic c2hhc2hpOk1vZHVzYm94QDEyMw=="
+						},
+						{
+							"key": "content-security-policy",
+							"value": "object-src 'none'; upgrade-insecure-requests;"
+						},
+						{
+							"key": "feature-policy",
+							"value": "oversized-images 'none'; unsized-media 'none';"
+						},
+						{
+							"key": "items-limit",
+							"value": "50"
+						},
+						{
+							"key": "items-offset",
+							"value": "0"
+						},
+						{
+							"key": "postman-token",
+							"value": "ea4e5649-c57e-4115-8911-0833b51e520e"
+						},
+						{
+							"key": "referrer-policy",
+							"value": "no-referrer"
+						},
+						{
+							"key": "server",
+							"value": "envoy"
+						},
+						{
+							"key": "session-id",
+							"value": "no-session-id"
+						},
+						{
+							"key": "set-cookie",
+							"value": "AWSALB=oNPs3qZwA1IraN1yifRMQOaHp5y+nc0qIu8C9LxN5xmcn9qms8Z14tfMo1BVNIdVYJ0y8EMfF6c/7QFgNP+Q2SG0U7yRHZAgMnzWhcx9SSTh9m1/URpW16vSXuVl; Expires=Wed, 02 Nov 2022 18:55:06 GMT; Path=/"
+						},
+						{
+							"key": "set-cookie",
+							"value": "AWSALBCORS=oNPs3qZwA1IraN1yifRMQOaHp5y+nc0qIu8C9LxN5xmcn9qms8Z14tfMo1BVNIdVYJ0y8EMfF6c/7QFgNP+Q2SG0U7yRHZAgMnzWhcx9SSTh9m1/URpW16vSXuVl; Expires=Wed, 02 Nov 2022 18:55:06 GMT; Path=/; SameSite=None; Secure"
+						},
+						{
+							"key": "strict-transport-security",
+							"value": "max-age=63072001; includeSubDomains; preload"
+						},
+						{
+							"key": "x-amzn-trace-id",
+							"value": "Root=1-63598288-38669bda1063ea0271a2aa1c"
+						},
+						{
+							"key": "x-content-type-options",
+							"value": "nosniff"
+						},
+						{
+							"key": "x-envoy-expected-rq-timeout-ms",
+							"value": "10000"
+						},
+						{
+							"key": "x-envoy-external-address",
+							"value": "172.16.17.70"
+						},
+						{
+							"key": "x-envoy-original-path",
+							"value": "/mambu-portx-cbs-connector/mambu-portx-cbs-connector/1.0/accounts/BJJB114/transactions"
+						},
+						{
+							"key": "x-forwarded-for",
+							"value": "107.201.177.71,172.16.17.70"
+						},
+						{
+							"key": "x-forwarded-port",
+							"value": "443"
+						},
+						{
+							"key": "x-forwarded-proto",
+							"value": "https"
+						},
+						{
+							"key": "x-request-id",
+							"value": "75196cfd-5f78-4a05-8fcc-f1ae8f57c6eb"
+						},
+						{
+							"key": "x-xss-protection",
+							"value": "1"
+						},
+						{
+							"key": "x-envoy-upstream-service-time",
+							"value": "1750"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"accountId\": \"0dd926fe-1ca2-11ed-861d-0242ac120002\",\n  \"accountNumber\": \"12345678\",\n  \"accountType\": \"Current\",\n  \"currency\": \"USD\",\n  \"currentBalance\": \"100\",\n  \"availableBalance\": \"100\",\n  \"transactions\": [\n    {\n      \"transactionId\": \"0dd926fe-1ca2-11ed-861d-0242ac120002\",\n      \"amount\": \"100\",\n      \"creditDebitIndicator\": \"Credit\",\n      \"bankTransactionDomain\": \"Payments\",\n      \"bankTransactionFamily\": \"CounterCashDeposit\",\n      \"status\": \"Booked\",\n      \"reversalIndicator\": true,\n      \"creationDate\": \"2022-04-17T08:00:00Z\",\n      \"dateValue\": \"2022-04-17T08:00:00Z\",\n      \"bookingDate\": \"2022-04-17T08:00:00Z\",\n      \"availabilityDate\": \"2022-04-17T08:00:00Z\",\n      \"charges\": \"100\",\n      \"interest\": \"100\",\n      \"currentBalance\": \"100\",\n      \"availableBalance\": \"100\",\n      \"details\": {\n        \"counterpartAccount\": {\n          \"iBAN\": \"AL35202111090000000001234567\",\n          \"accountNumber\": \"12345678\",\n          \"routingNumber\": \"12345678\",\n          \"identifiers\": [\n            {\n              \"identification\": \"string\",\n              \"schemeName\": \"BBANIdentifier\",\n              \"issuer\": \"string\"\n            }\n          ],\n          \"accountId\": \"0dd926fe-1ca2-11ed-861d-0242ac120002\",\n          \"accountType\": \"Current\"\n        },\n        \"payment\": {\n          \"paymentNumber\": \"12345678\",\n          \"clearingSystemType\": \"string\"\n        },\n        \"check\": {\n          \"checkType\": \"string\",\n          \"checkNumber\": \"string\"\n        }\n      },\n      \"supplementaryData\": {}\n    }\n  ]\n}"
+				},
+				{
+					"name": "Get Account Transactions - no transactions example response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://demos.dev.custom.demos.tenant-1.portx.io/mambu-portx-cbs-connector/mambu-portx-cbs-connector/1.0/accounts/GFPU091/transactions",
+							"protocol": "https",
+							"host": [
+								"demos",
+								"dev",
+								"custom",
+								"demos",
+								"tenant-1",
+								"portx",
+								"io"
+							],
+							"path": [
+								"mambu-portx-cbs-connector",
+								"mambu-portx-cbs-connector",
+								"1.0",
+								"accounts",
+								"GFPU091",
+								"transactions"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 26 Oct 2022 18:58:36 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/vnd.mambu.v2+json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "accept",
+							"value": "application/vnd.mambu.v2+json"
+						},
+						{
+							"key": "accept-encoding",
+							"value": "gzip, deflate, br"
+						},
+						{
+							"key": "accountid",
+							"value": "GFPU091"
+						},
+						{
+							"key": "authorization",
+							"value": "Basic c2hhc2hpOk1vZHVzYm94QDEyMw=="
+						},
+						{
+							"key": "content-security-policy",
+							"value": "object-src 'none'; upgrade-insecure-requests;"
+						},
+						{
+							"key": "cookie",
+							"value": "AWSALB=GhppOpxvge+t9rZBJyOfVq6kQ33hTYVLsrQpA8AoCNIDdsXgSpgTHqaVdIUSR+FeyyyMVzojtp9MjQ9WqIvV9doe4o54/02JvvDRrxATXVC14RBmh0KV+RVejPr7; AWSALBCORS=GhppOpxvge+t9rZBJyOfVq6kQ33hTYVLsrQpA8AoCNIDdsXgSpgTHqaVdIUSR+FeyyyMVzojtp9MjQ9WqIvV9doe4o54/02JvvDRrxATXVC14RBmh0KV+RVejPr7"
+						},
+						{
+							"key": "feature-policy",
+							"value": "oversized-images 'none'; unsized-media 'none';"
+						},
+						{
+							"key": "items-limit",
+							"value": "50"
+						},
+						{
+							"key": "items-offset",
+							"value": "0"
+						},
+						{
+							"key": "postman-token",
+							"value": "be45ddcf-098d-4089-bc74-4ec3e22bc0c2"
+						},
+						{
+							"key": "referrer-policy",
+							"value": "no-referrer"
+						},
+						{
+							"key": "server",
+							"value": "envoy"
+						},
+						{
+							"key": "session-id",
+							"value": "no-session-id"
+						},
+						{
+							"key": "set-cookie",
+							"value": "AWSALB=w+vJayqe5jekTKiDccC6M3UG4emImEWCSlrHK85MICuIw+DfvLkiFEMSvT9DGVFGE5WmJCR2Y5TTw7d6bwr/N6w45Aym/o8afanB/7U0leCigRWTyLE+9Oo0t0x+; Expires=Wed, 02 Nov 2022 18:58:36 GMT; Path=/"
+						},
+						{
+							"key": "set-cookie",
+							"value": "AWSALBCORS=w+vJayqe5jekTKiDccC6M3UG4emImEWCSlrHK85MICuIw+DfvLkiFEMSvT9DGVFGE5WmJCR2Y5TTw7d6bwr/N6w45Aym/o8afanB/7U0leCigRWTyLE+9Oo0t0x+; Expires=Wed, 02 Nov 2022 18:58:36 GMT; Path=/; SameSite=None; Secure"
+						},
+						{
+							"key": "strict-transport-security",
+							"value": "max-age=63072001; includeSubDomains; preload"
+						},
+						{
+							"key": "x-amzn-trace-id",
+							"value": "Root=1-6359835b-1359840a45cc0a1612e80dc2"
+						},
+						{
+							"key": "x-content-type-options",
+							"value": "nosniff"
+						},
+						{
+							"key": "x-envoy-expected-rq-timeout-ms",
+							"value": "10000"
+						},
+						{
+							"key": "x-envoy-external-address",
+							"value": "192.168.111.129"
+						},
+						{
+							"key": "x-envoy-original-path",
+							"value": "/mambu-portx-cbs-connector/mambu-portx-cbs-connector/1.0/accounts/GFPU091/transactions"
+						},
+						{
+							"key": "x-forwarded-for",
+							"value": "107.201.177.71,192.168.111.129"
+						},
+						{
+							"key": "x-forwarded-port",
+							"value": "443"
+						},
+						{
+							"key": "x-forwarded-proto",
+							"value": "https"
+						},
+						{
+							"key": "x-request-id",
+							"value": "e65ab4b1-d748-41e1-8afd-2174d5e9d502"
+						},
+						{
+							"key": "x-xss-protection",
+							"value": "1"
+						},
+						{
+							"key": "x-envoy-upstream-service-time",
+							"value": "324"
+						}
+					],
+					"cookie": [],
+					"body": "[]"
+				}
+			]
+		},
+		{
+			"name": "Get Account Transactions by transactionId",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"Find account transactions response http status code = 200\", function(){",
+							"    pm.response.to.have.status(200);",
+							"})",
+							"",
+							"pm.test(\"found at least 1 transaction\", function () {",
+							"    pm.expect(jsonData.transactions[0].amount).not.eql(undefined);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{host}}/{{demoApp}}/mambu-portx-cbs-connector/1.0/accounts/{{accountId}}/transactions?transactionId.eq=8a44bec07ca7b3f3017ca8b276b00408",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{demoApp}}",
+						"mambu-portx-cbs-connector",
+						"1.0",
+						"accounts",
+						"{{accountId}}",
+						"transactions"
+					],
+					"query": [
+						{
+							"key": "transactionId.eq",
+							"value": "8a44bec07ca7b3f3017ca8b276b00408"
+						}
 					]
 				}
 			},
