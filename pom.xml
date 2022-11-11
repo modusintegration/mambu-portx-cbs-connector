@@ -14,7 +14,7 @@
 
     <artifactId>mambu-portx-cbs-connector</artifactId>
     <groupId>io.portx.cbs.connector</groupId>
-    <version>1.0.46-SNAPSHOT</version>
+    <version>1.0.47-SNAPSHOT</version>
 
     <build>
         <pluginManagement>
