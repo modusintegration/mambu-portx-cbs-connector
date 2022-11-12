@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<routes id="paymentsRoutes"
+        xmlns="http://camel.apache.org/schema/spring"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+            http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+            <route id="initiateCreditTransferRoute" routeConfigurationId="*">
+                <from uri="direct:initiateCreditTransfer"/>
+                <setProperty name="flowId">
+                    <simple>${routeId}:${id}</simple>
+                </setProperty>
+        <!--        <to uri="direct:startRoute"/>-->
+                <log message="== initiateCreditTransfer Route"/>
+               
+        <!--        <to uri="direct:endRoute"/>-->
+            </route>
+            <route id="findCreditTransferRoute" routeConfigurationId="*">
+                <from uri="direct:findCreditTransfer"/>
+                <setProperty name="flowId">
+                    <simple>${routeId}:${id}</simple>
+                </setProperty>
+        <!--        <to uri="direct:startRoute"/>-->
+                <log message="== findCreditTransfer Route"/>
+               
+        <!--        <to uri="direct:endRoute"/>-->
+            </route>
+        
+        
+</routes>

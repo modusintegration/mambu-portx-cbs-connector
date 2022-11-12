@@ -18,6 +18,58 @@ tags:
   - name: Parties
     description: Party Management
 paths:
+  /credit-transfers:
+    post:
+      tags:
+        - Payments
+      summary: Instruction to pay an amount of money to an ultimate beneficiary, on behalf of an originator.
+      operationId: initiateCreditTransfer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreditTransferInitiationRequest'
+        required: true
+      responses:
+        "202":
+          description: Payment was received and will be processed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreditTransfer'
+        "400":
+          description: BadRequest. See the payload for specific validation or other errors
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /credit-transfers/{paymentId}:
+    get:
+      tags:
+      - Payments
+      summary: Return the status report of a credit transfer initiation, process and excecution.
+      operationId: findCreditTransfer
+      parameters:
+        - name: paymentId
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/PaymentId'
+      responses:
+        "200":
+          description: Matching Payment
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreditTransfer'
   /accounts:
     post:
       tags:
@@ -1636,6 +1688,35 @@ paths:
 
 components:
   schemas:
+    CreditTransferInitiationRequest:
+      $ref: '#/components/schemas/PaymentInitiationRequest'
+    PaymentInitiationRequest:
+      type: object
+      properties:
+        paymentMethod:
+          $ref: '#/components/schemas/PaymentMethod'
+        paymentType:
+          $ref: '#/components/schemas/PaymentType'
+        amount:
+          description: |
+              Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party.
+          $ref: '#/components/schemas/AmountInCents'
+        debtorAccountId:
+          $ref: '#/components/schemas/AccountId'
+        creditorAccountId:
+          $ref: '#/components/schemas/AccountId'
+        currency:
+          description: |
+              Specifies the currency of the amount to be transferred which may be different from the currency of the debtor's account.
+          $ref: '#/components/schemas/CurrencyCode'
+        purpose:
+          $ref: '#/components/schemas/Description'
+        paymentDetail:
+          $ref: '#/components/schemas/PaymentDetail'
+        valueDate:
+          description: |
+              Date on which a payment must be executed
+          $ref: '#/components/schemas/DateAndTime'  
     AccountRequest:
       type: object
       properties:
@@ -2965,6 +3046,197 @@ components:
       properties:
         encodedKey:
           type: string
+    PaymentId:
+      maxLength: 36
+      minLength: 1
+      type: string
+      description: Identification of the Payment.
+      example: 0dd926fe-1ca2-11ed-861d-0242ac120002
+    CreditTransfer:
+      $ref: '#/components/schemas/CreditTransferInitiation'
+    CreditTransferInitiation:
+      $ref: '#/components/schemas/PaymentInitiation'
+    PaymentInitiation:
+      type: object
+      properties:
+        paymentMethod:
+          $ref: '#/components/schemas/PaymentMethod'
+        paymentType:
+          $ref: '#/components/schemas/PaymentType'
+        amount:
+          description: |
+              Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party.
+          $ref: '#/components/schemas/AmountInCents'
+        debtorAccountId:
+          $ref: '#/components/schemas/AccountId'
+        creditorAccountId:
+          $ref: '#/components/schemas/AccountId'
+        currency:
+          description: |
+              Specifies the currency of the amount to be transferred which may be different from the currency of the debtor's account.
+          $ref: '#/components/schemas/CurrencyCode'
+        purpose:
+          $ref: '#/components/schemas/Description'
+        paymentDetail:
+          $ref: '#/components/schemas/PaymentDetail'
+        valueDate:
+          description: |
+              Date on which a payment must be executed
+          $ref: '#/components/schemas/DateAndTime'
+        paymentId:
+          $ref: '#/components/schemas/PaymentId'
+        status:
+          $ref: '#/components/schemas/PaymentStatus'
+        date:
+          description: |
+                Date and time on which assets become available.
+          $ref: '#/components/schemas/Date' 
+    PaymentMethod:
+      maxLength: 35
+      minLength: 1
+      type: string
+      description: |
+        Specifies the means of payment that will be used to move the amount of money. Possible ISO 20022 compliant values are:  Check, CreditTransfer,TransferAdvice
+      example: CreditTransfer
+    PaymentType:
+      maxLength: 35
+      minLength: 1
+      type: string
+      description: "Specifies the type of Payment. Posible values: On-Us, ACH, Wire    \n"
+      example: On-Us
+    PaymentDetail:
+      type: object
+      properties:
+        identifiers:
+          $ref: '#/components/schemas/PaymentIdentifiers'
+        paymentProcessing:
+          $ref: '#/components/schemas/PaymentProcessingDetail'
+        exchangeDetail:
+          $ref: '#/components/schemas/Exchange'
+        chargeBearerType:
+          $ref: '#/components/schemas/ChargeBearerType'
+        checkDetail:
+          $ref: '#/components/schemas/Check'
+        creditor:
+          $ref: '#/components/schemas/Creditor'          
+    PaymentStatus:
+      maxLength: 60
+      minLength: 1
+      type: string
+      description: |
+        Indicates the status of a payment. ISO Complaiant values:
+        AcceptedTechnicalValidation, Received, Rejected, Pending, AcceptedCustomerProfile, AcceptedSettlementInProcess, AcceptedSettlementCompleted, Accepted, AcceptedCancellationRequest, RejectedCancellationRequest, AcceptedWithChange, PendingCancellationRequest, AcceptedCreditSettlementCompleted, PaymentCancelled
+      example: AcceptedSettlementCompleted
+    PaymentProcessingDetail:
+      type: object
+      properties:
+        instructionPriority:
+          $ref: '#/components/schemas/InstructionPriority'
+        serviceLevel:
+          $ref: '#/components/schemas/ServiceLevel'
+        clearingChannel:
+          $ref: '#/components/schemas/ClearingSystem'
+        localInstrument:
+          $ref: '#/components/schemas/LocalInstrument'
+        categoryPurpose:
+          $ref: '#/components/schemas/CategoryPurpose'
+      description: Provides further details of the type of payment.
+    ChargeBearerType:
+      maxLength: 35
+      minLength: 1
+      type: string
+      description: |
+        Specifies which party(ies) will pay charges due for processing of the instruction.
+        BorneByDebtor, BorneByCreditor,  Shared, FollowingServiceLevel
+      example: Shared
+    Creditor:
+      type: object
+      properties:
+        party:
+          $ref: '#/components/schemas/Party'
+        account:
+          $ref: '#/components/schemas/AccountIdentifiers'
+        agent:
+          $ref: '#/components/schemas/FinancialInstitution'
+    ServiceLevel:
+      maxLength: 35
+      minLength: 1
+      type: string
+      description: |
+        Specifies a pre-agreed service between the parties. Some ISO complaiant values from ExternalServiceLevel1Code are:
+        BookTransaction, TrackedCustomerCreditTransfer, TrackedStopAndRecall, TrackedOutboundCorporateTransfer, TrackedFinancialInstitutionTransfe, NonurgentPriorityPayment, NonurgentPayment, EBAPriorityService, SameDayValue, DomesticChequeClearingAndSettlement, UrgentPayment, UrgentPaymentNetSettlement, InstantCreditTransferOrInstantDirectDebit, ServiceRequestToPay, ScheckVerarbeitungAustria, TrackedCaseManagement, TrackedInboundCustomerCreditTransfer, TrackedInstantCustomerCreditTransfer, TrackedLowValueCrossBorderCustomerCreditTransfer.
+      example: BookTransaction
+    ClearingSystem:
+      maxLength: 35
+      minLength: 1
+      type: string
+      description: |
+        Specifies the clearing system identification. Some ISO complaiant values from ExternalCashClearingSystem1Code are:
+         USFedACH, USFedNow, USFedwireFunds, ACH, EBAEuro1Step1, CanadaACSS, Albania, Austrian, NewZealand, Azerbaijan, BosniaHerzegovina, SwedenBGC, Ecuador, Barbados, Belgium, Bulgaria, Bahamas, Botswana, Finland, BankOfJapanNet, Italy, Philippines, CanadaCAD, SpainCAM, CentralBankOfArubaCSM, CentraleBankVanCuraçaoEnSintMaartenCSM, Ireland, Peru, USTCHChips,UnitedKingdom, China, CentralInteroperabilityService, ColumbiaCEDEC, ColumbiaCENIT, ColumbiaCUD, DenmarkDDK,Denmark, EBAEuro1, GermanyELS, Germany, ECB, USTCHEPN, EBAStep1, ForeignExchangeYenClearing, FasterPaymentsServices, Ghana, HongKongCHAT, HongKongFPS, Croatia, Greece, Hungary, SpainIberpayInstantPayments, DEandNLEquens, IndiaImmediatePaymentService, Jordan, Kenya, Luxemburg, SriLanka, Latvia, CanadaLVTS, LynxCanada, Singapore, SouthAfrica, MacaoRTGS, Malta, Mauritius, Namibia, Norway, NorwayNICSReal, AustraliaNPP, USNSS, NewZealandRTGS, Switzerland, AustraliaPDS, Egypt, FrancePNS, AustrianCSM, Angola, Venezuela, RomaniaEPO, RomaniaGSRS, RTGS, GermanyRTGSPlus, RTRCanada, RPSAndSEPAClearer, Chili, SwedenSEC, euroSIC, SIC, SICIP, Slovania, SpainES, Portugal, SwedenSSK, EBAClearingSTEP2, UnitedKingdomGBP, FranceFR, USTCHRealTime, Target, Thailand, Thailand-NITMX, Tanzania, Netherlands, TrinidadAndTobago, CanadaUSBE, Uganda, IndiaUnifiedPaymentsInterface, VocaLink, EBASTEP2XCT, Zengin, Zimbabwe, Zambia, Iceland, NorwayRTGS, NGInterswitch, P27RealTime, P27, UnitedKingdomUKD, SingaporeSCRIPS, RIXRTGSSverigesRiksbank
+      example: ACH
+    LocalInstrument:
+      maxLength: 35
+      minLength: 1
+      description: |
+        This element is used to specify a local clearing option and/or qualify the service or service level. CreditTransfers, ReturnedCreditTransfers, TruncatedCreditTransfers, TruncatedChecks, RevokedCreditTransfers, RevokedReturnedCreditTransfers, RevokedTruncatedChecks, RevokedTruncatedCreditTransfers, CardClearing, FedNowAccount.
+      example: CreditTransfers      
+    CategoryPurpose:
+      maxLength: 35
+      minLength: 1
+      description: "Specifies the high level purpose of the instruction based on a set of pre-defined categories.\nUsage: This is used by the initiating party to provide information concerning the processing of the payment. It is likely to trigger special processing by any of the agents involved in the payment chain. Some ISO complaiant values are from ExternalCategoryPurpose1Code: \n BonusPayment, CashManagementTransfer, CardBulkClearing, CreditCardPayment, TradeSettlementPayment, DebitCardPayment, Dividend, DeliverAgainstPayment, Epayment,FeeCollectionAndInterest, FeeCollection,PersontoPersonPayment, GovernmentPayment, Hedging, IrrevocableCreditCardPayment, IrrevocableDebitCardPayment, IntraCompanyPayment, Interest, LockboxTransactions, Loan, Commercial, Consumer, OtherPayment, PensionPayment, Represented, ReimbursementReceivedCreditTransfer, ReceiveAgainstPayment, SalaryPayment, Securities, SocialSecurityBenefit, SupplierPayment, TaxPayment, Trade, TreasuryPayment, ValueAddedTaxPayment, WithHolding, CashManagementSweepAccount, CashManagementTopAccount, CashManagementZeroBalanceAccount\n"
+      example: SalaryPayment
+    FinancialInstitution:
+      type: object
+      properties:
+        lEI:
+          $ref: '#/components/schemas/LEI'
+      
+        bIC:
+          maxLength: 36
+          minLength: 1
+          pattern: ^[A-Z0-9]{4,4}[A-Z]{2,2}[A-Z0-9]{2,2}([A-Z0-9]{3,3}){0,1}$
+          type: string
+          description: |
+              Business identification code of the organization. Code allocated to a financial or non-financial institution by the ISO 9362 Registration Authority, as described in ISO 9362: 2014 - "Banking - Banking telecommunication messages - Business identifier code (BIC)".
+          example: AAAABBCCXXX
+        genericIdentifiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrganizationIdentification'                
+        clearingSystemMemberIdentification:
+          $ref: '#/components/schemas/ClearingSystemIdentification'
+        memberIdentification:
+          maxLength: 35
+          minLength: 1
+          type: string
+        name:
+          maxLength: 35
+          minLength: 1
+          type: string
+        postalAddress:
+          $ref: '#/components/schemas/PostalAddress'      
+      
+    LEI:
+      maxLength: 36
+      minLength: 1
+      pattern: ^[A-Z0-9]{18,18}[0-9]{2,2}$
+      type: string
+      description: |
+        Legal Entity Identifier is a code allocated to a party as described in ISO 17442 "Financial Services - Legal Entity Identifier (LEI)".
+      example: 2ZCNRR8UK83OBTEK2170
+    ClearingSystemIdentification:
+      maxLength: 60
+      minLength: 1
+      type: string
+      description: "Specifies the clearing system member identification. Some ISO complaiant values from ExternalCashClearingSystem1Code are:\n UnitedStatesRoutingNumberFedwireNACHA, \n AustrianBankleitzahl, AustralianBankStateBranchCodeBSB,CanadianPaymentsAssociationPaymentRoutingNumber,SwissFinancialInstitutionIdentificationShort,SwissFinancialInstitutionIdentificationLong,CNAPSIdentifier, GermanBankleitzahl, SpanishDomesticInterbankingCode, UKDomesticSortCode, HelenicBankIdentificationCode, HongKongBankCode, IrishNationalClearingCode, IndianFinancialSystemCode, ItalianDomesticIdentificationCode, JapanZenginClearingCode, NewZealandNationalClearingCode, PolishNationalClearingCode, PortugueseNationalClearingCode, RussianCentralBankIdentificationCode, SwedenBankgiroClearingCode, IBGSortCode, ThaiCentralBankIdentificationCode, FinancialInstitutionCode, CHIPSParticipantIdentifier, SouthAfricanNationalClearingCode, NewZealandRTGSClearingCode\n"
+      example: UnitedStatesRoutingNumberFedwireNACHA
+      
+      
+      
+      
+      
+      
+      
   parameters:
     idempotencyId:
       name: idempotencyId
