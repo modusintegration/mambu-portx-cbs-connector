@@ -58,11 +58,6 @@
     </route>
     <route id="findPersonRoute" routeConfigurationId="*">
         <from uri="direct:findPerson"/>
-        <log message="=======================ORIGINAL REQUEST==================================================="></log>
-        <log message="headers=${headers}"></log>
-        <log message="body=${body}"></log>
-        <log message="=========================================================================="></log>
-
         <setProperty name="flowId">
             <simple>${routeId}:${id}</simple>
         </setProperty>
@@ -80,10 +75,6 @@
             <simple>{{mambu.username}}:{{mambu.password}}</simple>
         </setProperty>
         <process ref="encodeAuthHeader" />
-        <log message="=======================MAMBU REQUEST==================================================="></log>
-        <log message="headers=${headers}"></log>
-        <log message="body=${body}"></log>
-        <log message="=========================================================================="></log>
 
         <log message="GET clients with id: ${header.personId}"/>
         <toD uri="https://{{mambu.host}}/api/clients/${header.personId}?detailsLevel=FULL&amp;throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
