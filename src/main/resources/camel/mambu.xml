@@ -69,6 +69,37 @@
         <log message="POST deposits transfer-transactions response is ${body}"/>
         <!--        <to uri="direct:endRoute"/>-->
     </route>
+    <route id="findCreditTransferRoute" routeConfigurationId="*">
+        <from uri="direct:findCreditTransfer"/>
+        <setProperty name="flowId">
+            <simple>${routeId}:${id}</simple>
+        </setProperty>
+        <setBody><constant>{}</constant></setBody>
+        <!--        <to uri="direct:startRoute"/>-->
+        <log message="== findCreditTransfer Route"/>
+        <setHeader name="CamelHttpMethod">
+            <constant>GET</constant>
+        </setHeader>
+        <setHeader name="Accept">
+            <constant>application/vnd.mambu.v2+json</constant>
+        </setHeader>
+        <!-- Use processor to set the auth header  -->
+        <setProperty name="authHeader">
+            <simple>{{mambu.username}}:{{mambu.password}}</simple>
+        </setProperty>
+        <process ref="encodeAuthHeader" />
+
+        <log message="GET deposits/transactions with id: ${header.paymentId}"/>
+        <toD uri="https://{{mambu.host}}/api/deposits/transactions/${header.paymentId}?detailsLevel=FULL&amp;throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
+        <log message="GET deposits transactions response is ${body}"/>
+        <setBody>
+            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                resource:classpath:mappings/findCreditTransferResponse.ds
+            </datasonnet>
+        </setBody>
+
+        <!--        <to uri="direct:endRoute"/>-->
+    </route>
     <route id="findBranchesRoute" routeConfigurationId="*">
         <from uri="direct:findBranches"/>
         <setProperty name="flowId">

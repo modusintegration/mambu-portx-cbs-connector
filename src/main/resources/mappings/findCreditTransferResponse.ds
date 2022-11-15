@@ -1,0 +1,22 @@
+/** DataSonnet
+version=2.0
+output application/json
+input payload application/json
+*/
+local selector(obj,key,dValue = null) = ds.or(ds.select(obj,key), dValue);
+local address = selector(payload, "addresses");
+
+std.prune({
+  "paymentMethod": "CreditTransfer",
+  "paymentType": "On-Us",
+  "amount": selector(payload, "affectedAmounts.fundsAmount"),
+  "debtorAccountId": "0dd926fe-1ca2-11ed-861d-0242ac120002",
+  "creditorAccountId": selector(payload, "parentAccountKey"),
+  "currency": selector(payload, "currencyCode"),
+  "purpose": selector(payload, "notes"),
+  "valueDate": selector(payload, "valueDate"),
+  "paymentId": selector(payload, "encodedKey"),
+  "status": "AcceptedSettlementCompleted",
+  "date": selector(payload, "creationDate")
+})
+
