@@ -286,7 +286,7 @@ paths:
           required: true
           schema:
             $ref: '#/components/schemas/AccountId'
-        - name: bankId
+        - name: servicerId
           in: header
           description: Bank Identification
           #          required: true
@@ -380,7 +380,7 @@ paths:
           required: true
           schema:
             $ref: '#/components/schemas/AccountId'
-        - name: bankId
+        - name: servicerId
           in: header
           description: Bank Identification
           #          required: true
@@ -461,7 +461,7 @@ paths:
           required: true
           schema:
             $ref: '#/components/schemas/AccountId'
-        - name: bankId
+        - name: servicerId
           in: header
           description: Bank Identification
           #          required: true
@@ -505,7 +505,7 @@ paths:
           required: true
           schema:
             $ref: '#/components/schemas/AccountId'
-        - name: bankId
+        - name: servicerId
           in: header
           description: Bank Identification
           #        required: true
@@ -549,7 +549,7 @@ paths:
           required: true
           schema:
             $ref: '#/components/schemas/AccountId'
-        - name: bankId
+        - name: servicerId
           in: header
           description: Bank Identification
           #        required: true
@@ -593,7 +593,7 @@ paths:
           required: true
           schema:
             $ref: '#/components/schemas/AccountId'
-        - name: bankId
+        - name: servicerId
           in: header
           description: Bank Identification
           #          required: true
@@ -658,7 +658,7 @@ paths:
             maxLength: 36
             minLength: 1
             type: string
-        - name: bankId
+        - name: servicerId
           in: header
           description: Bank Identification
           #          required: true
@@ -743,7 +743,7 @@ paths:
       description: Use the JSON Merge Patch standard https://tools.ietf.org/html/rfc7396
       parameters:
         - $ref: "#/components/parameters/personId"
-        - $ref: "#/components/parameters/bankId"
+        - $ref: "#/components/parameters/servicerId"
       requestBody:
         content:
           application/json:
@@ -837,10 +837,10 @@ paths:
             maxLength: 36
             minLength: 1
             type: string
-        - name: bankId
+        - name: servicerId
           in: header
           description: Bank Identification
-          required: true
+#          required: true
           schema:
             $ref: '#/components/schemas/Id'
       requestBody:
@@ -884,7 +884,7 @@ paths:
         - name: servicerId
           in: header
           description: Account Servicer Identification (Bank)
-          required: false
+#          required: false
           schema:
             maxLength: 36
             minLength: 1
@@ -982,7 +982,7 @@ paths:
         - name: servicerId
           in: header
           description: Account Servicer Identification (Bank)
-          required: false
+#          required: false
           schema:
             maxLength: 36
             minLength: 1
@@ -1107,7 +1107,7 @@ paths:
           required: true
           schema:
             $ref: '#/components/schemas/AccountId'
-        - name: bankId
+        - name: servicerId
           in: header
           description: Bank Identification
           #          required: true
@@ -1151,7 +1151,7 @@ paths:
           required: true
           schema:
             $ref: '#/components/schemas/AccountId'
-        - name: bankId
+        - name: servicerId
           in: header
           description: Bank Identification
           #          required: true
@@ -1195,7 +1195,7 @@ paths:
           required: true
           schema:
             $ref: '#/components/schemas/AccountId'
-        - name: bankId
+        - name: servicerId
           in: header
           description: Bank Identification
           #          required: true
@@ -1239,7 +1239,7 @@ paths:
           required: true
           schema:
             $ref: '#/components/schemas/AccountId'
-        - name: bankId
+        - name: servicerId
           in: header
           description: Bank Identification
           #        required: true
@@ -1283,7 +1283,7 @@ paths:
           required: true
           schema:
             $ref: '#/components/schemas/AccountId'
-        - name: bankId
+        - name: servicerId
           in: header
           description: Bank Identification
           #        required: true
@@ -1327,7 +1327,7 @@ paths:
           required: true
           schema:
             $ref: '#/components/schemas/AccountId'
-        - name: bankId
+        - name: servicerId
           in: header
           description: Bank Identification
           #          required: true
@@ -1392,7 +1392,7 @@ paths:
             maxLength: 36
             minLength: 1
             type: string
-        - name: bankId
+        - name: servicerId
           in: header
           description: Bank Identification
           #          required: true
@@ -1439,7 +1439,7 @@ paths:
         - name: servicerId
           in: header
           description: Account Servicer Identification (Bank)
-          required: false
+#          required: false
           schema:
             maxLength: 36
             minLength: 1
@@ -1477,7 +1477,7 @@ paths:
       description: Use the JSON Merge Patch standard https://tools.ietf.org/html/rfc7396
       parameters:
         - $ref: "#/components/parameters/personId"
-        - $ref: "#/components/parameters/bankId"
+        - $ref: "#/components/parameters/servicerId"
       requestBody:
         content:
           application/json:
@@ -1526,7 +1526,7 @@ paths:
         - name: servicerId
           in: header
           description: Account Servicer Identification (Bank)
-          required: false
+#          required: false
           schema:
             maxLength: 36
             minLength: 1
@@ -1571,10 +1571,10 @@ paths:
             maxLength: 36
             minLength: 1
             type: string
-        - name: bankId
+        - name: servicerId
           in: header
           description: Bank Identification
-          required: true
+#          required: true
           schema:
             $ref: '#/components/schemas/Id'
       requestBody:
@@ -1618,7 +1618,7 @@ paths:
         - name: servicerId
           in: header
           description: Account Servicer Identification (Bank)
-          required: false
+#          required: false
           schema:
             maxLength: 36
             minLength: 1
@@ -1664,7 +1664,7 @@ paths:
         - name: servicerId
           in: header
           description: Account Servicer Identification (Bank)
-          required: false
+#          required: false
           schema:
             maxLength: 36
             minLength: 1
