@@ -17,7 +17,7 @@
         <setProperty name="depositAccountId">
             <datasonnet bodyMediaType="application/json" outputMediaType="text/plain" resultType="java.lang.String">
                 local selector(obj,key,dValue = null) = ds.or(ds.select(obj,key), dValue);
-                std.prune(selector(payload, "creditorAccountId", "0"))
+                std.prune(selector(payload, "debtorAccountId", "0"))
             </datasonnet>
         </setProperty>
         <setHeader name="CamelHttpMethod">
