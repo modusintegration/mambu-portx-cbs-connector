@@ -1,0 +1,39 @@
+{
+  "encodedKey": "8a44be138476ac2c0184791487fb2f4a",
+  "id": "546",
+  "paymentOrderId": "PAY-J-to-J-1",
+  "creationDate": "2022-11-14T18:24:22-08:00",
+  "valueDate": "2022-11-14T18:24:22-08:00",
+  "bookingDate": "2022-11-14T18:24:22-08:00",
+  "notes": "some notes about this transaction",
+  "parentAccountKey": "8a44c246846942db018477b185e46b88",
+  "type": "TRANSFER",
+  "amount": -2,
+  "currencyCode": "USD",
+  "affectedAmounts": {
+    "fundsAmount": 2.0000000000,
+    "interestAmount": 0,
+    "feesAmount": 0,
+    "overdraftAmount": 0,
+    "overdraftFeesAmount": 0,
+    "overdraftInterestAmount": 0,
+    "technicalOverdraftAmount": 0,
+    "technicalOverdraftInterestAmount": 0,
+    "fractionAmount": 0
+  },
+  "taxes": {},
+  "accountBalances": {
+    "totalBalance": 43.0000000000
+  },
+  "userKey": "8a44b03a820b76c1018211abbc2a3e3b",
+  "terms": {
+    "interestSettings": {},
+    "overdraftInterestSettings": {},
+    "overdraftSettings": {}
+  },
+  "transactionDetails": {},
+  "transferDetails": {
+    "linkedDepositTransactionKey": "8a44be138476ac2c0184791487fb2f4c"
+  },
+  "fees": []
+}
