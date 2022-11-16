@@ -10,7 +10,7 @@ std.prune({
   "paymentMethod": "CreditTransfer",
   "paymentType": "On-Us",
   "amount": selector(payload, "affectedAmounts.fundsAmount"),
-  "creditorAccountId": selector(payload, "parentAccountKey"),
+  "debtorAccountId": selector(payload, "parentAccountKey"),
   "currency": selector(payload, "currencyCode"),
   "purpose": selector(payload, "notes"),
   "valueDate": selector(payload, "valueDate"),

@@ -92,9 +92,41 @@
         <log message="GET deposits/transactions with id: ${header.paymentId}"/>
         <toD uri="https://{{mambu.host}}/api/deposits/transactions/${header.paymentId}?detailsLevel=FULL&amp;throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
         <log message="GET deposits transactions response is ${body}"/>
+        <setProperty name="debtorPaymentId">
+            <datasonnet bodyMediaType="application/json" outputMediaType="text/plain" resultType="java.lang.String">
+                local selector(obj,key,dValue = null) = ds.or(ds.select(obj,key), dValue);
+                std.prune(selector(payload, "transferDetails.linkedDepositTransactionKey", ""))
+            </datasonnet>
+        </setProperty>
+        <log message="debtorPaymentId: ${exchangeProperty.debtorPaymentId}"/>
         <setBody>
             <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
                 resource:classpath:mappings/findCreditTransferResponse.ds
+            </datasonnet>
+        </setBody>
+        <setProperty name="findCreditTransferResponse">
+            <simple>${body}</simple>
+        </setProperty>
+
+        <log message="GET deposits/transactions with id: ${exchangeProperty.debtorPaymentId}"/>
+        <toD uri="https://{{mambu.host}}/api/deposits/transactions/${exchangeProperty.debtorPaymentId}?detailsLevel=FULL&amp;throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
+        <log message="GET deposits transactions response is ${body}"/>
+
+        <setProperty name="creditorAccountId">
+            <datasonnet bodyMediaType="application/json" outputMediaType="text/plain" resultType="java.lang.String">
+                local selector(obj,key,dValue = null) = ds.or(ds.select(obj,key), dValue);
+                std.prune(selector(payload, "parentAccountKey", ""))
+            </datasonnet>
+        </setProperty>
+
+        <setBody>
+            <simple>${exchangeProperty.findCreditTransferResponse}</simple>
+        </setBody>
+        <log message="reset payload to findCreditTransferResponse: ${body}"/>
+
+        <setBody>
+            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                resource:classpath:mappings/finalFindCreditTransferResponse.ds
             </datasonnet>
         </setBody>
 
