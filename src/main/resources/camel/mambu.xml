@@ -404,12 +404,24 @@
 
         <log message="GET deposits with id: ${header.accountId}"/>
         <toD uri="https://{{mambu.host}}/api/deposits/${header.accountId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
+        <log message="Response code: ${header.CamelHttpResponseCode}"/>
+        <to uri="direct:commonAPIResponseValidator"/>
+        <onException>
+            <exception>io.portx.camel.exception.InvalidRequestException</exception>
+            <exception>io.portx.camel.exception.NotFoundException</exception>
+            <exception>io.portx.camel.exception.AlreadyExistsException</exception>
+            <exception>io.portx.camel.exception.APIException</exception>
+            <handled>
+                <constant>true</constant>
+            </handled>
+            <to uri="direct:commonAPIErrorProcessor"/>
+        </onException>
         <log message="GET deposits response is ${body}"/>
         <setBody>
             <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
                     resource:classpath:mappings/findAccountResponse.ds
             </datasonnet>
-       </setBody>
+        </setBody>
 <!--        <to uri="direct:endRoute"/>-->
     </route>
     <route id="findAccountBalancesRoute" routeConfigurationId="*">
@@ -437,6 +449,17 @@
 
         <log message="GET deposits with id: ${header.accountId}"/>
         <toD uri="https://{{mambu.host}}/api/deposits/${header.accountId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
+        <to uri="direct:commonAPIResponseValidator"/>
+        <onException>
+            <exception>io.portx.camel.exception.InvalidRequestException</exception>
+            <exception>io.portx.camel.exception.NotFoundException</exception>
+            <exception>io.portx.camel.exception.AlreadyExistsException</exception>
+            <exception>io.portx.camel.exception.APIException</exception>
+            <handled>
+                <constant>true</constant>
+            </handled>
+            <to uri="direct:commonAPIErrorProcessor"/>
+        </onException>
         <log message="GET deposits response is ${body}"/>
         <setBody>
             <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
