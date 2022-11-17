@@ -206,6 +206,17 @@
 
         <log message="GET clients with id: ${header.personId}"/>
         <toD uri="https://{{mambu.host}}/api/clients/${header.personId}?detailsLevel=FULL&amp;throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
+        <to uri="direct:commonAPIResponseValidator"/>
+        <onException>
+            <exception>io.portx.camel.exception.InvalidRequestException</exception>
+            <exception>io.portx.camel.exception.NotFoundException</exception>
+            <exception>io.portx.camel.exception.AlreadyExistsException</exception>
+            <exception>io.portx.camel.exception.APIException</exception>
+            <handled>
+                <constant>true</constant>
+            </handled>
+            <to uri="direct:commonAPIErrorProcessor"/>
+        </onException>
         <log message="GET clients response is ${body}"/>
         <setBody>
             <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
