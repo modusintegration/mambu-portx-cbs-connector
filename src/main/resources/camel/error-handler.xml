@@ -30,7 +30,7 @@
                                 exceptionType="io.portx.camel.exception.UnauthorizedException"/>
             </when>
             <when>
-                <simple>${header.CamelHttpResponseCode} == '403'</simple>
+                <simple>${header.CamelHttpResponseCode} == 403</simple>
                 <log message="Throwing Exception == io.portx.camel.exception.InvalidRequestException"
                      loggingLevel="DEBUG"/>
                 <throwException message="${exchangeProperty.errorMessage}"
