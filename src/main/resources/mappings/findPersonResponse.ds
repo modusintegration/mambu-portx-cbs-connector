@@ -5,6 +5,17 @@ input payload application/json
 */
 local selector(obj,key,dValue = null) = ds.or(ds.select(obj,key), dValue);
 local address = selector(payload, "addresses");
+local first = selector(payload, "firstName");
+local middle = selector(payload, "middleName");
+local last = selector(payload, "lastName");
+local fullname = (if first!=null then first else "") +
+                 (if first!=null && middle!=null then " " else "") +
+                 (if middle!=null then middle else "") +
+                 (if (first!=null || middle!=null) && last!=null then " " else "") +
+                 if last!=null then last;
+local shortName = (if first!=null then first else "") +
+                  (if first!=null && last!=null then " " else "") +
+                  if last!=null then last;
 
 std.prune({
   "genericIdentifiers": [
@@ -14,8 +25,8 @@ std.prune({
       "issuer": "Mambu"
     }
   ],
-  "name": selector(payload, "firstName") + " " + selector(payload, "middleName")+ " " + selector(payload, "lastName"),
-  "shortName": selector(payload, "firstName") + " " + selector(payload, "lastName"),
+  "name": fullname,
+  "shortName": shortName,
   "relatedParties": [
     {
       "partyId": payload.encodedKey,
