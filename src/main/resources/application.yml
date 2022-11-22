@@ -37,8 +37,20 @@ mambu:
 
 error:
   default:
-    code: BANKACCTMGMT_OBPCOM_ERROR
-    message: An error happened in bankacctmgmt obpcom sys API
+    code: PORTX_OBA_ERROR
+    message: A generic error happened in PortX OBA Proc API
   authentication:
-    code: BANKACCTMGMT_OBPCOM_AUTH_ERROR
-    message: An error happened during authentication
+    code: PORTX_OBA_AUTHENTICATION
+    message: Authentication error
+  createresource:
+    code: PORTX_OBA_CREATERESOURCE
+    message: Unable to create a new record
+  findresource:
+    code: PORTX_OBA_FINDRESOURCE
+    message: Unable to find an existing record
+  updateresource:
+    code: PORTX_OBA_UPDATERESOURCE
+    message: Unable to update a record
+  removesource:
+    code: PORTX_OBA_REMOVERESOURCE
+    message: Unable to remove a record

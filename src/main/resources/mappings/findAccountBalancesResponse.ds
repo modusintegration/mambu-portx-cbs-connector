@@ -4,7 +4,7 @@
     "balances": [
         {
             "balanceName": "Available",
-            "amount": payload.balances.availableBalance,
+            "amount": payload.balances.availableBalance.blah,
             "currency": payload.currencyCode,
             "calculationDate": payload.lastModifiedDate
         },

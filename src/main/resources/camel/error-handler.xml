@@ -85,14 +85,15 @@
                         local errorMessage = if cml.exchangeProperty("errorMessage") != null then cml.exchangeProperty("errorMessage") else
                                              "API Error";
                         local CamelExceptionCaught = cml.exchangeProperty("CamelExceptionCaught");
+                        local dsError = std.startsWith(CamelExceptionCaught.message,"Unable to evaluate DataSonnet expression");
                         local responseErrorMessage = errorMessage +
-                                                     (if CamelExceptionCaught != null && CamelExceptionCaught.message != errorMessage
+                                                     (if CamelExceptionCaught != null && CamelExceptionCaught.message != errorMessage && !dsError
                                                         then " : " + CamelExceptionCaught.message
                                                         else "");
-                        {   
+                       {   
                             code: if errorCode != null then errorCode else cml.properties("error.default.code"),
                             message: responseErrorMessage,
-                            details: cml.exchangeProperty("errorDetails")
+                            details: if dsError then "Unable to Process Request" else cml.exchangeProperty("errorDetails")
                         }
                     ]]>
             </datasonnet>
@@ -137,7 +138,7 @@
             <datasonnet resultType="java.lang.String" outputMediaType="application/json"
                         bodyMediaType="application/x-java-object">
                 <![CDATA[
-                        {
+                        {   
                             code: "BAD_REQUEST",
                             message: std.parseJson(cml.exchangeProperty("CamelExceptionCaught").message)
                         }
