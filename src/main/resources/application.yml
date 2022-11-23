@@ -44,13 +44,13 @@ error:
     message: Authentication error
   createresource:
     code: PORTX_OBA_CREATERESOURCE
-    message: Unable to create a new record
+    message: Unable to create a new resource
   findresource:
     code: PORTX_OBA_FINDRESOURCE
-    message: Unable to find an existing record
+    message: Unable to find an existing resource
   updateresource:
     code: PORTX_OBA_UPDATERESOURCE
-    message: Unable to update a record
+    message: Unable to update a resource
   removesource:
     code: PORTX_OBA_REMOVERESOURCE
-    message: Unable to remove a record
+    message: Unable to remove a resource

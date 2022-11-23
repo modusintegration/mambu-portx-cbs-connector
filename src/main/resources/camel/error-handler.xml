@@ -2,9 +2,7 @@
 <routes id="commonAPIErrorHandler"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns="http://camel.apache.org/schema/spring"
-        xsi:schemaLocation="
-            http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
-">
+        xsi:schemaLocation="http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
     <route id="commonAPIResponseValidator" routeConfigurationId="defaultAPIConfiguration">
         <from uri="direct:commonAPIResponseValidator"/> <!-- Error handler used to validate responses from 3rd party API and trigger errors to be returned -->
 
@@ -63,13 +61,13 @@
             </when>
         </choice>
     </route>
-
+    
     <route id="commonAPIErrorProcessor">
         <from uri="direct:commonAPIErrorProcessor"/>
         <setHeader name="Content-Type">
             <constant>application/json</constant>
         </setHeader>
-        <setBody><!-- In case the body is not supported by DS -->
+        <setBody><!-- In case the body is not supported by DS-->
             <constant/>
         </setBody>
 
@@ -81,19 +79,23 @@
                         resultType="java.lang.String">
                 <![CDATA[
                         local errorCode = if cml.exchangeProperty("errorCode") != null then cml.exchangeProperty("errorCode") else
-                                          "API_ERROR";
+                            cml.properties("error.default.code");
                         local errorMessage = if cml.exchangeProperty("errorMessage") != null then cml.exchangeProperty("errorMessage") else
-                                             "API Error";
+                            cml.properties("error.default.message");
                         local CamelExceptionCaught = cml.exchangeProperty("CamelExceptionCaught");
-                        local dsError = std.startsWith(CamelExceptionCaught.message,"Unable to evaluate DataSonnet expression");
-                        local responseErrorMessage = errorMessage +
-                                                     (if CamelExceptionCaught != null && CamelExceptionCaught.message != errorMessage && !dsError
-                                                        then " : " + CamelExceptionCaught.message
-                                                        else "");
-                       {   
-                            code: if errorCode != null then errorCode else cml.properties("error.default.code"),
+                        local datasonnetError = if CamelExceptionCaught.message != null then 
+                            std.startsWith(CamelExceptionCaught.message,"Unable to evaluate DataSonnet expression") else false;
+                        local errorDetails = if !datasonnetError then std.jsonParse(cml.exchangeProperty("errorDetails")) else null;
+                      
+                        local responseErrorMessage = errorMessage + 
+                            (if CamelExceptionCaught != null && CamelExceptionCaught.message != errorMessage && !datasonnetError
+                                then " : " + CamelExceptionCaught.message 
+                                else "");
+                        
+                        {   
+                            code: errorCode,
                             message: responseErrorMessage,
-                            details: if dsError then "Unable to Process Request" else cml.exchangeProperty("errorDetails")
+                            details: errorDetails
                         }
                     ]]>
             </datasonnet>
