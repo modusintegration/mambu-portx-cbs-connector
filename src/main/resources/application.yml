@@ -37,23 +37,23 @@ mambu:
 
 error:
   default:
-    code: PORTX_OBA_ERROR
-    message: An error occured in PortX OBA Proc API
+    code: PORTX_CBS_ERROR
+    message: An error occured in Mambu PortX CBS Connector
   authentication:
-    code: PORTX_OBA_AUTHENTICATION
+    code: PORTX_CBS_AUTHENTICATION
     message: Authentication error
   badrequest:
-    code: PORTX_OBA_BADREQUEST
+    code: PORTX_CBS_BADREQUEST
     message: Invalid request
   notfound:
-    code: PORTX_OBA_NOTFOUND
+    code: PORTX_CBS_NOTFOUND
     message: Requested Resource Not Found
   alreadyexists:
-    code: PORTX_OBA_ALREADYEXISTS
+    code: PORTX_CBS_ALREADYEXISTS
     message: Resource already exists
   unavailable:
-    code: PORTX_OBA_UNAVAILABLE
+    code: PORTX_CBS_UNAVAILABLE
     message: Resquested service anavailable
-# above are the standard error codes/messages for this app
+# above are the standard error codes/messages for this app, values can change but the entities are expected
 # add any new codes you need and override as props <errorCode> and <errorMessage> in routes
 
