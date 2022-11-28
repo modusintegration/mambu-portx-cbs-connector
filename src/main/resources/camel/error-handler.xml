@@ -15,6 +15,12 @@
         <choice>
             <when>
                 <simple>${header.CamelHttpResponseCode} == 400</simple>
+                <setProperty name="stdErrorCode">
+                    <constant>{{error.badrequest.code}}</constant>
+                </setProperty>
+                <setProperty name="stdErrorMessage">
+                    <constant>{{error.badrequest.message}}</constant>
+                </setProperty>
                 <log message="Throwing Exception == io.portx.camel.exception.InvalidRequestException"
                      loggingLevel="DEBUG"/>
                 <throwException message="${exchangeProperty.errorMessage}"
@@ -22,6 +28,12 @@
             </when>
             <when>
                 <simple>${header.CamelHttpResponseCode} == 401</simple>
+                <setProperty name="stdErrorCode">
+                    <constant>{{error.authentication.code}}</constant>
+                </setProperty>
+                <setProperty name="stdErrorMessage">
+                    <constant>{{error.authentication.message}}</constant>
+                </setProperty>
                 <log message="Throwing Exception == io.portx.camel.exception.UnauthorizedException"
                      loggingLevel="DEBUG"/>
                 <throwException message="${exchangeProperty.errorMessage}"
@@ -29,19 +41,37 @@
             </when>
             <when>
                 <simple>${header.CamelHttpResponseCode} == 403</simple>
-                <log message="Throwing Exception == io.portx.camel.exception.InvalidRequestException"
+                <setProperty name="stdErrorCode">
+                    <constant>{{error.authentication.code}}</constant>
+                </setProperty>
+                <setProperty name="stdErrorMessage">
+                    <constant>{{error.authentication.message}}</constant>
+                </setProperty>
+                <log message="Throwing Exception == io.portx.camel.exception.UnauthorizedException"
                      loggingLevel="DEBUG"/>
                 <throwException message="${exchangeProperty.errorMessage}"
                                 exceptionType="io.portx.camel.exception.UnauthorizedException"/>
             </when>
             <when>
                 <simple>${header.CamelHttpResponseCode} == 404</simple>
+                <setProperty name="stdErrorCode">
+                    <constant>{{error.notfound.code}}</constant>
+                </setProperty>
+                <setProperty name="stdErrorMessage">
+                    <constant>{{error.notfound.message}}</constant>
+                </setProperty>
                 <log message="Throwing Exception == io.portx.camel.exception.NotFoundException" loggingLevel="DEBUG"/>
                 <throwException message="${exchangeProperty.errorMessage}"
                                 exceptionType="io.portx.camel.exception.NotFoundException"/>
             </when>
             <when>
                 <simple>${header.CamelHttpResponseCode} == 409</simple>
+                <setProperty name="stdErrorCode">
+                    <constant>{{error.alreadyexists.code}}</constant>
+                </setProperty>
+                <setProperty name="stdErrorMessage">
+                    <constant>{{error.alreadyexists.message}}</constant>
+                </setProperty>
                 <log message="Throwing Exception == io.portx.camel.exception.AlreadyExistsException"
                      loggingLevel="DEBUG"/>
                 <throwException message="${exchangeProperty.errorMessage}"
@@ -49,12 +79,24 @@
             </when>
             <when>
                 <simple>${header.CamelHttpResponseCode} == 500</simple>
+                <setProperty name="stdErrorCode">
+                    <constant>{{error.default.code}}</constant>
+                </setProperty>
+                <setProperty name="stdErrorMessage">
+                    <constant>{{error.default.message}}</constant>
+                </setProperty>
                 <log message="Throwing Exception == io.portx.camel.exception.APIException" loggingLevel="DEBUG"/>
                 <throwException message="${exchangeProperty.errorMessage}"
                                 exceptionType="io.portx.camel.exception.APIException"/>
             </when>
             <when>
                 <simple>${header.CamelHttpResponseCode} == 503</simple>
+                <setProperty name="stdErrorCode">
+                    <constant>{{error.unavailable.code}}</constant>
+                </setProperty>
+                <setProperty name="stdErrorMessage">
+                    <constant>{{error.unavailable.message}}</constant>
+                </setProperty>
                 <log message="Throwing Exception == io.portx.camel.exception.ServiceUnavailableException" loggingLevel="DEBUG"/>
                 <throwException message="${exchangeProperty.errorMessage}"
                                 exceptionType="io.portx.camel.exception.ServiceUnavailableException"/>
@@ -71,35 +113,6 @@
             <constant/>
         </setBody>
 
-        <log message="In commonAPIErrorProcessor Error Details == ${exchangeProperty.errorDetails}"
-             loggingLevel="DEBUG"/>
-
-        <setBody>
-            <datasonnet bodyMediaType="application/x-java-object" outputMediaType="application/json"
-                        resultType="java.lang.String">
-                <![CDATA[
-                        local errorCode = if cml.exchangeProperty("errorCode") != null then cml.exchangeProperty("errorCode") else
-                            cml.properties("error.default.code");
-                        local errorMessage = if cml.exchangeProperty("errorMessage") != null then cml.exchangeProperty("errorMessage") else
-                            cml.properties("error.default.message");
-                        local CamelExceptionCaught = cml.exchangeProperty("CamelExceptionCaught");
-                        local datasonnetError = if CamelExceptionCaught.message != null then 
-                            std.startsWith(CamelExceptionCaught.message,"Unable to evaluate DataSonnet expression") else false;
-                        local errorDetails = if !datasonnetError then std.jsonParse(cml.exchangeProperty("errorDetails")) else null;
-                      
-                        local responseErrorMessage = errorMessage + 
-                            (if CamelExceptionCaught != null && CamelExceptionCaught.message != errorMessage && !datasonnetError
-                                then " : " + CamelExceptionCaught.message 
-                                else "");
-                        
-                        {   
-                            code: errorCode,
-                            message: responseErrorMessage,
-                            details: errorDetails
-                        }
-                    ]]>
-            </datasonnet>
-        </setBody>
         <setHeader name="CamelHttpResponseCode">
             <datasonnet bodyMediaType="application/x-java-object" outputMediaType="text/plain"
                         resultType="java.lang.String">
@@ -109,6 +122,35 @@
                     ]]>
             </datasonnet>
         </setHeader>
+
+        <setBody>
+            <datasonnet bodyMediaType="application/x-java-object" outputMediaType="application/json"
+                        resultType="java.lang.String">
+                <![CDATA[
+                        local stdErrorCode = if cml.exchangeProperty("stdErrorCode") !=null then cml.exchangeProperty("stdErrorCode") else
+                            cml.properties("error.default.code");
+                        local stdErrorMessage = if cml.exchangeProperty("stdErrorMessage") !=null then cml.exchangeProperty("stdErrorMessage") else
+                            cml.properties("error.default.message");
+                        local errorCode = if cml.exchangeProperty("errorCode") != null then cml.exchangeProperty("errorCode") else stdErrorCode;
+                        local errorMessage = if cml.exchangeProperty("errorMessage") != null then cml.exchangeProperty("errorMessage") else stdErrorMessage;
+                        local CamelExceptionCaught = cml.exchangeProperty("CamelExceptionCaught");
+                        local httpErrorCode = if (CamelExceptionCaught != null && std.objectHas(CamelExceptionCaught, "code")) then CamelExceptionCaught.code else "500";
+                        local errorDetails = if httpErrorCode != "500" && cml.exchangeProperty("errorDetails")!=null then std.parseJson(cml.exchangeProperty("errorDetails")) else null;
+                        local responseErrorMessage = errorMessage + 
+                            (if std.objectHas(CamelExceptionCaught,"message") && 
+                                CamelExceptionCaught.message != errorMessage && 
+                                CamelExceptionCaught.message !=null &&
+                                httpErrorCode != "500" then " : " + CamelExceptionCaught.message 
+                                    else "");
+                        
+                        {   
+                            code: errorCode,
+                            message: responseErrorMessage,
+                            details: errorDetails
+                        }
+                    ]]>
+            </datasonnet>
+        </setBody>
 
         <setProperty name="PortXCamelAPIError">
             <simple>${body}</simple>
@@ -140,9 +182,16 @@
             <datasonnet resultType="java.lang.String" outputMediaType="application/json"
                         bodyMediaType="application/x-java-object">
                 <![CDATA[
+                        local errorCode = cml.properties("error.badrequest.code");
+                        local errorMessage = cml.properties("error.badrequest.message");
+                        local CamelExceptionCaught = cml.exchangeProperty("CamelExceptionCaught");
+                        local errorDetails = if std.objectHas(CamelExceptionCaught,"message") && CamelExceptionCaught.message != errorMessage
+                                then std.parseJson(CamelExceptionCaught.message)
+                                else null;
                         {   
-                            code: "BAD_REQUEST",
-                            message: std.parseJson(cml.exchangeProperty("CamelExceptionCaught").message)
+                            code: errorCode,
+                            message: errorMessage,
+                            details: errorDetails
                         }
                     ]]>
             </datasonnet>
@@ -172,11 +221,14 @@
             <datasonnet bodyMediaType="application/x-java-object" outputMediaType="application/json"
                         resultType="java.lang.String">
                 <![CDATA[
+                        local errorCode = if cml.exchangeProperty("errorCode") != null then cml.exchangeProperty("errorCode") else
+                            cml.properties("error.default.code");
+                        local errorMessage = if cml.exchangeProperty("errorMessage") != null then cml.exchangeProperty("errorMessage") else
+                            cml.properties("error.default.message");
+
                         {
-                            code: if cml.properties("error.default.code") != null then cml.properties("error.default.code") else "SYSTEM_ERROR",
-                            message: if cml.properties("error.default.message") != null then cml.properties("error.default.message") else
-                                     if cml.exchangeProperty("CamelExceptionCaught") != null then cml.exchangeProperty("CamelExceptionCaught").message
-                                     else "System Error"
+                            code: errorCode,
+                            message: errorMessage
                         }
                     ]]>
             </datasonnet>

@@ -38,19 +38,22 @@ mambu:
 error:
   default:
     code: PORTX_OBA_ERROR
-    message: A generic error happened in PortX OBA Proc API
+    message: An error occured in PortX OBA Proc API
   authentication:
     code: PORTX_OBA_AUTHENTICATION
     message: Authentication error
-  createresource:
-    code: PORTX_OBA_CREATERESOURCE
-    message: Unable to create a new resource
-  findresource:
-    code: PORTX_OBA_FINDRESOURCE
-    message: Unable to find an existing resource
-  updateresource:
-    code: PORTX_OBA_UPDATERESOURCE
-    message: Unable to update a resource
-  removesource:
-    code: PORTX_OBA_REMOVERESOURCE
-    message: Unable to remove a resource
+  badrequest:
+    code: PORTX_OBA_BADREQUEST
+    message: Invalid request
+  notfound:
+    code: PORTX_OBA_NOTFOUND
+    message: Requested Resource Not Found
+  alreadyexists:
+    code: PORTX_OBA_ALREADYEXISTS
+    message: Resource already exists
+  unavailable:
+    code: PORTX_OBA_UNAVAILABLE
+    message: Resquested service anavailable
+# above are the standard error codes/messages for this app
+# add any new codes you need and override as props <errorCode> and <errorMessage> in routes
+
