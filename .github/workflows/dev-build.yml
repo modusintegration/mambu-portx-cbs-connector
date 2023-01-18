@@ -6,7 +6,7 @@ on:
 jobs:
   package-gbp-deploy-dr-push:
     env:
-      REGISTRY: 823667448392.dkr.ecr.us-east-1.amazonaws.com
+      REGISTRY: 823667448392.dkr.ecr.us-west-2.amazonaws.com
       APP_NAME: vnext/mambu-portx-cbs-connector
     name: Build API package
     runs-on: ubuntu-latest
@@ -42,7 +42,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_ID }}
           aws-secret-access-key: ${{ secrets.AWS_ACCESS_KEY }}
-          aws-region: us-east-1
+          aws-region: us-west-2
       - name: Log in to ECR
         run: aws ecr get-login-password | docker login --password-stdin --username AWS $REGISTRY
       - name: Build and Push
