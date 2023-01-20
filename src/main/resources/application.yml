@@ -57,3 +57,11 @@ error:
 # above are the standard error codes/messages for this app, values can change but the entities are expected
 # add any new codes you need and override as props <errorCode> and <errorMessage> in routes
 
+opentelemetry:
+  enabled: true
+  tracer:
+    enabled: true
+    exporter:
+      otlp:
+        enabled: true
+        endpoint: http://localhost:55680
