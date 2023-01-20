@@ -3,8 +3,9 @@ VOLUME /tmp
 
 WORKDIR /app
 
-COPY ./target/mambu-portx-cbs-connector-1.0.60.jar /app/app.jar
+COPY ./target/mambu-portx-cbs-connector-1.0.61.jar /app/app.jar
+COPY ./agent/opentelemetry-javaagent.jar /etc/agent/opentelemetry-javaagent.jar
 
 EXPOSE 8080 8090
 
-ENTRYPOINT java $JAVA_OPTS -jar /app/app.jar
+ENTRYPOINT ["java", "-javaagent:/etc/agent/opentelemetry-javaagent.jar" , "-jar", "/app/app.jar"]
