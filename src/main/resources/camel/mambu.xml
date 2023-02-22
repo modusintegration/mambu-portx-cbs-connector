@@ -1004,6 +1004,11 @@
         <choice>
             <when>
                 <simple>${header.CamelHttpResponseCode} == 200</simple>
+                <setProperty name="branchId">
+                    <datasonnet bodyMediaType="application/json" outputMediaType="text/plain" resultType="java.lang.String">
+                        ds.select(body, "id")
+                    </datasonnet>
+                </setProperty>                
                 <setBody><simple>${body}</simple></setBody>
             </when>
             <otherwise>

@@ -22,7 +22,7 @@
                     <simple>${body}</simple>
                 </setProperty>
                 <setBody>
-                    <simple>resource:classpath:test-data/json/mambuAPI/createBranchRequest.json</simple>
+                    <simple>resource:classpath:test-data/json/mambuAPI/createBranchResponse.json</simple>
                 </setBody>
                 <setHeader name="CamelHttpResponseCode">
                     <constant>200</constant>
