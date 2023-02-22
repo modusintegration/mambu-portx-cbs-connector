@@ -14,7 +14,7 @@
 
     <artifactId>mambu-portx-cbs-connector</artifactId>
     <groupId>io.portx.cbs.connector</groupId>
-    <version>1.0.59-SNAPSHOT</version>
+    <version>1.0.62-SNAPSHOT</version>
 
     <build>
         <pluginManagement>
@@ -369,6 +369,11 @@
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-debug</artifactId>
+            <version>${camel-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel.springboot</groupId>
+            <artifactId>camel-opentelemetry-starter</artifactId>
             <version>${camel-version}</version>
         </dependency>
     </dependencies>
