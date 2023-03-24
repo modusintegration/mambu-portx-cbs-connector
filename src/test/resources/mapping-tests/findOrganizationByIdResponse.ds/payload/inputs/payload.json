@@ -1,0 +1,26 @@
+{
+  "addresses": [
+    {
+      "city": "string",
+      "country": "string",
+      "line1": "string",
+      "line2": "string",
+      "postcode": "string",
+      "region": "string"
+    }
+  ],
+  "emailAddress": "string",
+  "groupMembers": [
+    {
+      "clientKey": "string",
+      "roles": [
+        {
+          "roleName": "string"
+        }
+      ]
+    }
+  ],
+  "groupName": "string",
+  "homePhone": "string",
+  "mobilePhone": "string"
+}

@@ -915,7 +915,7 @@
 <!--        <to uri="direct:endRoute"/>-->
 <!--    </route>-->
     <route id="findOrganizationRoute" routeConfigurationId="*">
-        <from uri="direct:findOrganization"/>
+        <from uri="direct:findOrganizationById"/>
         <setProperty name="flowId">
             <simple>${routeId}:${id}</simple>
         </setProperty>
@@ -932,11 +932,16 @@
         <process ref="encodeAuthHeader" />
 
         <log message="GET groups with id: ${header.organizationId}"/>
-        <toD uri="https://{{mambu.host}}/api/groups/${header.organizationId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
+        <toD uri="https://{{mambu.host}}/api/groups/${header.organizationId}?detailsLevel=FULL&amp;throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
         <log message="GET groups response is ${body}"/>
 
         <to uri="direct:commonAPIResponseValidator"/>
-<!--        <to uri="direct:endRoute"/>-->
+        <setBody>
+            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                resource:classpath:mappings/findOrganizationByIdResponse.ds
+            </datasonnet>
+        </setBody>
+        <!--        <to uri="direct:endRoute"/>-->
     </route>
     <route id="createOrganizationRoute" routeConfigurationId="*">
         <from uri="direct:createOrganization"/>
@@ -945,6 +950,9 @@
         </setProperty>
         <!--        <to uri="direct:startRoute"/>-->
         <log message="== createOrganization Route"/>
+        <setProperty name="originalBody">
+            <simple>${body}</simple>
+        </setProperty>
         <setHeader name="CamelHttpMethod">
             <constant>POST</constant>
         </setHeader>
@@ -956,6 +964,19 @@
             <simple>{{mambu.username}}:{{mambu.password}}</simple>
         </setProperty>
         <process ref="encodeAuthHeader" />
+        <choice>
+            <when>
+                <simple>${header.idempotencyId}</simple>
+                <!-- pass idempotencyId in header if present -->
+                <log message="idempotencyId: ${header.idempotencyId}"/>
+                <setHeader name="Idempotency-Key">
+                    <simple>${header.idempotencyId}</simple>
+                </setHeader>
+            </when>
+            <otherwise>
+                <log message="no idempotencyId provided"/>
+            </otherwise>
+        </choice>
         <setBody>
             <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
                 resource:classpath:mappings/CreateGroupsRequest.ds
@@ -963,9 +984,26 @@
         </setBody>
         <log message="POST groups with request: ${body}"/>
         <toD uri="https://{{mambu.host}}/api/groups?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
-
-        <to uri="direct:commonAPIResponseValidator"/>
         <log message="POST groups response is ${body}"/>
+        <to uri="direct:commonAPIResponseValidator"/>
+        <setProperty name="groupCreatedId">
+            <datasonnet bodyMediaType="application/json" outputMediaType="text/plain" resultType="java.lang.String">
+                /*                local selector(obj,key,dValue = null) = ds.or(ds.select(obj,key), dValue);
+                                std.prune(selector(payload, "id", ""))
+                                */
+                ds.select(body,"id")
+            </datasonnet>
+        </setProperty>
+        <setBody>
+            <simple>${exchangeProperty.originalBody}</simple>
+        </setBody>
+        <setBody>
+            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                resource:classpath:mappings/CreateGroupsResponse.ds
+            </datasonnet>
+        </setBody>
+        <log message="POST organizations response is ${body}"/>
+        <log message="Group created with with id: ${exchangeProperty.groupCreatedId}"/>
         <!--        <to uri="direct:endRoute"/>-->
     </route>
 <!--    <route id="updateOrganizationRoute" routeConfigurationId="*">-->
