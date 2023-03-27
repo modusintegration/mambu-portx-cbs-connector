@@ -3,6 +3,31 @@ version=2.0
 output application/json
 input payload application/json
 */
-{
-  "groupName": payload.name
-}
+local selector(obj,key,dValue = null) = ds.or(ds.select(obj,key), dValue);
+local index = cml.exchangeProperty('CamelLoopIndex');
+local postalAddresses = selector(payload, "postalAddresses");
+local addressLines = selector(postalAddresses[0], "addressLine");
+local emails = selector(payload, "emails");
+local relatedParties = selector(payload, "relatedParties");
+local phones = selector(payload, "phones");
+
+local line1 = selector(payload, postalAddresses[0].addressLine[0]);
+local line2 = selector(payload, postalAddresses[0].addressLine[1]);
+
+
+std.prune({
+  "groupName": selector(payload, "name"),
+  "emailAddress": emails[0].emailAddress,
+  "addresses": [
+    {
+    "country": selector(postalAddresses[0], "country"),
+    "city": selector(postalAddresses[0], "townName"),
+    "line1": addressLines[0],
+    "line2": addressLines[1],
+    "postcode": selector(postalAddresses[0], "postCode"),
+    "region": selector(postalAddresses[0], "countrySubDivision")
+    }
+  ],
+  "homePhone": selector(phones[0], "number"),
+  "mobilePhone": selector(phones[1], "number")
+})

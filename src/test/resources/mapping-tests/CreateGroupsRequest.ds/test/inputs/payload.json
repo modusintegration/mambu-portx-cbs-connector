@@ -1,0 +1,28 @@
+{
+  "name": "ViniciusGroup2",
+  "postalAddresses": [
+    {
+      "country": "US",
+      "countrySubDivision": "Oregon",
+      "townName":  "Tualatin",
+      "addressLine": [
+        "11407 Sw Amu st, Suite MY777",
+        "11408 Sw Amu st, Suite MY777"
+      ],
+      "postCode": "97062-6884"
+    }
+  ],
+  "phones": [
+    {
+      "number": "+1-415-731359"
+    },
+    {
+      "number": "+1-918-731359"
+    }
+  ],
+  "emails": [
+    {
+      "emailAddress": "email@email.com"
+    }
+  ]
+}
