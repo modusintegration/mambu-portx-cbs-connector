@@ -1,0 +1,30 @@
+{
+  "encodedKey": "8a44d13487223b7e018723a388ae2eb3",
+  "id": "813267316",
+  "creationDate": "2023-03-27T08:15:32-07:00",
+  "lastModifiedDate": "2023-03-27T08:15:32-07:00",
+  "groupName": "ViniciusGroup4",
+  "notes": "string",
+  "loanCycle": 0,
+  "emailAddress": "vinicius@email.com",
+  "mobilePhone": "string",
+  "homePhone": "string",
+  "preferredLanguage": "ENGLISH",
+  "groupRoleKey": "8a44cde37b592d63017b5fac6e4c0519",
+  "addresses": [
+    {
+      "encodedKey": "8a44d13487223b7e018723a388ae2eb4",
+      "parentKey": "8a44d13487223b7e018723a388ae2eb3",
+      "line1": "string",
+      "line2": "string",
+      "city": "string",
+      "region": "string",
+      "postcode": "string",
+      "country": "string",
+      "indexInList": 0,
+      "latitude": 0,
+      "longitude": 0
+    }
+  ],
+  "groupMembers": []
+}

@@ -10,12 +10,15 @@ local addressLines = selector(postalAddresses[0], "addressLine");
 local emails = selector(payload, "emails");
 local relatedParties = selector(payload, "relatedParties");
 local phones = selector(payload, "phones");
-
+local taxInformation = selector(payload, "taxInformation");
+local tIN = if taxInformation != null then selector(taxInformation, "tIN") else null;
+local tINFormatted = if tIN != null then ds.replace(tIN, '-', '') else null;
 local line1 = selector(payload, postalAddresses[0].addressLine[0]);
 local line2 = selector(payload, postalAddresses[0].addressLine[1]);
 
 
 std.prune({
+  "id": tINFormatted,
   "groupName": selector(payload, "name"),
   "emailAddress": emails[0].emailAddress,
   "addresses": [

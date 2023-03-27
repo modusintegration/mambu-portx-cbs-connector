@@ -17,9 +17,11 @@ local groupMembers = selector(payload, "groupMembers");
 local partyId = if groupMembers != null && std.length(groupMembers) > 0 then selector(groupMembers[0], "clientKey") else null;
 local roles = if groupMembers != null && std.length(groupMembers) > 0 then selector(groupMembers[0], "roles") else null;
 local partyRelationType = if roles != null && std.length(groupMembers) > 0 then selector(roles[0], "roleName") else null;
+local creationDate = selector(payload, "creationDate");
 
 std.prune({
   "name": selector(payload, "groupName"),
+  "registrationDate": ds.datetime.format(creationDate, "yyyy-MM-dd"),
   "postalAddresses": [
     {
       "country": country,

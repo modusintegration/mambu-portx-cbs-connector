@@ -4,6 +4,11 @@ output application/json
 input payload application/json
 */
 local selector(obj,key,dValue = null) = ds.or(ds.select(obj,key), dValue);
+local registrationDate = cml.exchangeProperty("date");
+
 std.prune({
-  "id" : cml.exchangeProperty("groupCreatedId")
-}) + payload
+  "taxInformation": {
+    "tIN": cml.exchangeProperty("groupCreatedId")
+  },
+  "registrationDate": ds.datetime.format(registrationDate, "yyyy-MM-dd")
+}) + ds.remove(payload, "creationDate")
