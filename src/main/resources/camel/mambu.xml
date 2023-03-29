@@ -990,10 +990,14 @@
         <to uri="direct:commonAPIResponseValidator"/>
         <setProperty name="groupCreatedId">
             <datasonnet bodyMediaType="application/json" outputMediaType="text/plain" resultType="java.lang.String">
-                /*                local selector(obj,key,dValue = null) = ds.or(ds.select(obj,key), dValue);
-                                std.prune(selector(payload, "id", ""))
-                                */
-                ds.select(body,"id")
+                local selector(obj,key,dValue = null) = ds.or(ds.select(obj,key), dValue);
+                std.prune(selector(payload, "id", ""))
+            </datasonnet>
+        </setProperty>
+        <setProperty name="date">
+            <datasonnet bodyMediaType="application/json" outputMediaType="text/plain" resultType="java.lang.String">
+                local selector(obj,key,dValue = null) = ds.or(ds.select(obj,key), dValue);
+                std.prune(selector(payload, "creationDate", ""))
             </datasonnet>
         </setProperty>
         <setBody>

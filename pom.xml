@@ -6,7 +6,7 @@
         <version>3.18.0</version>
     </parent>
     <properties>
-        <portx-camel-lib.version>2.0.16</portx-camel-lib.version>
+        <portx-camel-lib.version>2.0.18</portx-camel-lib.version>
         <sentry.version>5.6.1</sentry.version>
         <atlassian.oai.validator.version>2.21.1</atlassian.oai.validator.version>
     </properties>

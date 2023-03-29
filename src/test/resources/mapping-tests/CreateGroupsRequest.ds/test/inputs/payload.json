@@ -24,5 +24,8 @@
     {
       "emailAddress": "email@email.com"
     }
-  ]
+  ],
+  "taxInformation": {
+    "tIN": "778-62-8144"
+  }
 }
