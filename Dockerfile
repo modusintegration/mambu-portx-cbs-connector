@@ -3,7 +3,7 @@ VOLUME /tmp
 
 WORKDIR /app
 
-COPY ./target/mambu-portx-cbs-connector-1.0.70.jar /app/app.jar
+COPY ./target/mambu-portx-cbs-connector-1.0.71.jar /app/app.jar
 COPY ./agent/opentelemetry-javaagent.jar /etc/agent/opentelemetry-javaagent.jar
 
 EXPOSE 8080 8090
