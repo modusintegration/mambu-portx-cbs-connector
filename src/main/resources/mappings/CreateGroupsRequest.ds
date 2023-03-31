@@ -4,33 +4,95 @@ output application/json
 input payload application/json
 */
 local selector(obj,key,dValue = null) = ds.or(ds.select(obj,key), dValue);
-local index = cml.exchangeProperty('CamelLoopIndex');
-local postalAddresses = selector(payload, "postalAddresses");
-local addressLines = selector(postalAddresses[0], "addressLine");
-local emails = selector(payload, "emails");
-local relatedParties = selector(payload, "relatedParties");
-local phones = selector(payload, "phones");
-local taxInformation = selector(payload, "taxInformation");
-local tIN = if taxInformation != null then selector(taxInformation, "tIN") else null;
-local tINFormatted = if tIN != null then ds.replace(tIN, '-', '') else null;
-local line1 = selector(payload, postalAddresses[0].addressLine[0]);
-local line2 = selector(payload, postalAddresses[0].addressLine[1]);
 
+local postalAddresses = selector(payload, "postalAddresses");
+local addressLines =  if ds.isArray(postalAddresses) && std.length(postalAddresses) > 0 then postalAddresses[0].addressLine;
+local addressLine1 = if ds.isArray(addressLines) && std.length(addressLines) > 0 then addressLines[0] else null;
+local addressLine2 = if ds.isArray(addressLines) && std.length(addressLines) > 1 then addressLines[1] else null;
+local country = if ds.isArray(postalAddresses) && std.length(postalAddresses) > 0 then selector(postalAddresses[0], "country") else null;
+local city = if ds.isArray(postalAddresses) && std.length(postalAddresses) > 0 then selector(postalAddresses[0], "townName") else null;
+local postcode = if ds.isArray(postalAddresses) && std.length(postalAddresses) > 0 then selector(postalAddresses[0], "postCode") else null;
+local region = if ds.isArray(postalAddresses) && std.length(postalAddresses) > 0 then selector(postalAddresses[0], "countrySubDivision") else null;
+
+local relatedParties = selector(payload, "relatedParties");
+
+local contact = selector(payload, "contact");
+local phones = selector(contact, "phones");
+local emails = selector(contact, "emails");
+local firstEmails = if emails != null && std.length(emails) > 0 then selector(emails[1], "emailAddress") else null;
+
+local phone1 = if phones != null && std.length(phones) > 0 then selector(phones[0], "number") else null;
+local phone2 = if phones != null && std.length(phones) > 1 then selector(phones[1], "number") else null;
+
+local genericIdentifiers = selector(payload, "genericIdentifiers");
+local id = if genericIdentifiers != null && (std.length(genericIdentifiers) > 0) then selector(genericIdentifiers[0], "number") else null;
+local ein = if genericIdentifiers != null && (std.length(genericIdentifiers) > 1) then selector(genericIdentifiers[1], "number") else null;
+local idFormatted = if id != null then ds.replace(id, '-', '') else null;
+local einFormatted = if ein != null then ds.replace(ein, '-', '') else null;
+
+
+local profileGroups = selector(payload, "_profile_Groups");
+local timeAtCurrentAddress = selector(payload, "_timeAtCurrentAddress_Groups");
+local relatedParties = selector(payload, "relatedParties");
+local groupRoleKey = if relatedParties != null && std.length(relatedParties) > 0 then selector(relatedParties[0], "partyRelationType") else null;
+local organizationProfile = selector(payload, "_organizationProfile_Groups");
+local serviceOrGoodsLocations = selector(payload, "_serviceOrGoodsLocations_Groups");
 
 std.prune({
-  "id": tINFormatted,
+  "id": idFormatted,
   "groupName": selector(payload, "name"),
-  "emailAddress": emails[0].emailAddress,
+  "emailAddress": firstEmails,
   "addresses": [
     {
-    "country": selector(postalAddresses[0], "country"),
-    "city": selector(postalAddresses[0], "townName"),
-    "line1": addressLines[0],
-    "line2": addressLines[1],
-    "postcode": selector(postalAddresses[0], "postCode"),
-    "region": selector(postalAddresses[0], "countrySubDivision")
+    "line1": addressLine1,
+    "line2": addressLine2,
+    "country": country,
+    "city": city,
+    "postcode": postcode,
+    "region": region
     }
   ],
-  "homePhone": selector(phones[0], "number"),
-  "mobilePhone": selector(phones[1], "number")
+  "homePhone": phone1,
+  "mobilePhone": phone2,
+  "groupMembers":
+  if (std.length(relatedParties) > 0) then
+  [
+    {
+      "clientKey": selector(relatedParty, "partyId"),
+      "roles":
+      {
+        "groupRoleNameKey": selector(relatedParty, "partyType"),
+      },
+
+    } for relatedParty in relatedParties
+  ]
+  else [],
+  "groupRoleKey": groupRoleKey,
+  "_profile_Groups": {
+    "tradingName_Groups": selector(profileGroups, "tradingName_Groups"),
+    "organizationType_Groups": selector(profileGroups, "organizationType_Groups"),
+    "alertIndicator_Groups": selector(profileGroups, "alertIndicator_Groups"),
+    "politicalAffiliation_Groups": selector(profileGroups, "politicalAffiliation_Groups"),
+    "webpage_Groups": selector(profileGroups, "webpage_Groups"),
+    "ein_Groups": einFormatted
+  },
+  "_timeAtCurrentAddress_Groups": {
+    "unit_Groups": selector(timeAtCurrentAddress, "unit_Groups"),
+    "value_Groups": selector(timeAtCurrentAddress, "value_Groups")
+  },
+  "_organizationProfile_Groups" : {
+    "goods_Groups": selector(organizationProfile, "goods_Groups"),
+    "services_Groups": selector(organizationProfile, "services_Groups"),
+  },
+  "_serviceOrGoodsLocations_Groups":
+  if (std.length(serviceOrGoodsLocations) > 0) then
+    [
+      {
+        "_index": selector(serviceGoodLocation, "_index"),
+        "countrySubdivision_Groups": selector(serviceGoodLocation, "countrySubdivision_Groups"),
+        "townName_Groups": selector(serviceGoodLocation, "townName_Groups"),
+        "country_Groups": selector(serviceGoodLocation, "country_Groups")
+      } for serviceGoodLocation in serviceOrGoodsLocations
+    ]
+  else [],
 })

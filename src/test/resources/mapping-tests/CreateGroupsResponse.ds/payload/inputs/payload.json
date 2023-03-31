@@ -1,30 +1,70 @@
 {
-  "encodedKey": "8a44d13487223b7e018723a388ae2eb3",
-  "id": "813267316",
-  "creationDate": "2023-03-27T08:15:32-07:00",
-  "lastModifiedDate": "2023-03-27T08:15:32-07:00",
-  "groupName": "ViniciusGroup4",
-  "notes": "string",
-  "loanCycle": 0,
-  "emailAddress": "vinicius@email.com",
-  "mobilePhone": "string",
-  "homePhone": "string",
-  "preferredLanguage": "ENGLISH",
-  "groupRoleKey": "8a44cde37b592d63017b5fac6e4c0519",
-  "addresses": [
-    {
-      "encodedKey": "8a44d13487223b7e018723a388ae2eb4",
-      "parentKey": "8a44d13487223b7e018723a388ae2eb3",
-      "line1": "string",
-      "line2": "string",
-      "city": "string",
-      "region": "string",
-      "postcode": "string",
-      "country": "string",
-      "indexInList": 0,
-      "latitude": 0,
-      "longitude": 0
-    }
-  ],
-  "groupMembers": []
+    "encodedKey": "8a44c56187318f460187334370d7194a",
+    "id": "020312858",
+    "creationDate": "2023-03-30T12:40:20-07:00",
+    "lastModifiedDate": "2023-03-30T12:40:20-07:00",
+    "groupName": "ViniciusGroup4",
+    "notes": "string",
+    "loanCycle": 0,
+    "emailAddress": "vinicius@email.com",
+    "mobilePhone": "string",
+    "homePhone": "string",
+    "preferredLanguage": "ENGLISH",
+    "groupRoleKey": "8a44cde37b592d63017b5fac6e4c0519",
+    "addresses": [
+        {
+            "encodedKey": "8a44c56187318f46018734090a9a228d",
+            "parentKey": "8a44c56187318f460187334370d7194a",
+            "line1": "string",
+            "line2": "string",
+            "city": "string",
+            "region": "string",
+            "postcode": "string",
+            "country": "string",
+            "indexInList": 0,
+            "latitude": 0,
+            "longitude": 0
+        }
+    ],
+    "groupMembers": [],
+    "_profile_Groups": {
+        "politicalAffiliation_Groups": "string",
+        "tradingName_Groups": "Trading Name example",
+        "organizationType_Groups": "Corporation",
+        "alertIndicator_Groups": "string",
+        "webpage_Groups": "string"
+    },
+    "_timeAtCurrentAddress_Groups": {
+        "value_Groups": "999",
+        "unit_Groups": "Months"
+    },
+    "_organizationProfile_Groups": {
+        "goods_Groups": "This is a description.",
+        "services_Groups": "This is a description."
+    },
+    "_supplementaryData_Groups": {
+        "creditBureauReportCode_Groups": "Y",
+        "purgeOption_Groups": "B",
+        "serviceMember_Groups": "N"
+    },
+    "_relatedParties_Groups": [
+        {
+            "_index": "0",
+            "partyType_Groups": "Person 1",
+            "partyName_Groups": "Jane Birkin"
+        },
+        {
+            "_index": "1",
+            "partyType_Groups": "Person 2",
+            "partyName_Groups": "Irson Birkin"
+        }
+    ],
+    "_serviceOrGoodsLocations_Groups": [
+        {
+            "townName_Groups": "Tualatin",
+            "_index": "0",
+            "country_Groups": "US",
+            "countrySubdivision_Groups": "Oregon"
+        }
+    ]
 }

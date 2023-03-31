@@ -1,5 +1,5 @@
 {
-  "name": "ViniciusGroup2",
+  "name": "ViniciusGroup4",
   "postalAddresses": [
     {
       "country": "US",
@@ -9,23 +9,77 @@
         "11407 Sw Amu st, Suite MY777",
         "11408 Sw Amu st, Suite MY777"
       ],
-      "postCode": "97062-6884"
+      "postCode": "97062-6885"
     }
   ],
-  "phones": [
+  "contact": {
+    "namePrefix": "string",
+    "name": "Jane Birkin",
+    "phones": [
+      {
+        "number": "+1-415-731359",
+        "phoneType": "string",
+        "phonePurpose": "string",
+        "primaryIndicator": true
+      },
+      {
+        "number": "+1-415-899009",
+        "phoneType": "string",
+        "phonePurpose": "string",
+        "primaryIndicator": true
+      }
+    ],
+    "emails": [
+      {
+        "emailAddress": "email1@email.com",
+        "emailPurpose": "Statements",
+        "primaryIndicator": true
+      },
+      {
+        "emailAddress": "email2@email.com",
+        "emailPurpose": "Statements",
+        "primaryIndicator": true
+      }
+    ]
+  },
+  "genericIdentifiers": [
     {
-      "number": "+1-415-731359"
+      "number": "123-45-6789"
     },
     {
-      "number": "+1-918-731359"
+      "number": "321-49-6789"
     }
   ],
-  "emails": [
+  "_profile_Groups": {
+    "tradingName_Groups": "Trading Name example",
+    "organizationType_Groups": "Corporation",
+    "alertIndicator_Groups": "string",
+    "politicalAffiliation_Groups": "string",
+    "webpage_Groups": "string"
+  },
+  "_timeAtCurrentAddress_Groups": {
+    "unit_Groups": "Months",
+    "value_Groups": 999
+  },
+  "relatedParties": [
     {
-      "emailAddress": "email@email.com"
+      "partyId": "5fb9d4d6-1a3c-11ed-861d-0242ac120002",
+      "partyType": "Person",
+      "partyName": "Jane Birkin",
+      "partyRelationType": "Owner",
+      "ownershipPercentage": "0.7"
     }
   ],
-  "taxInformation": {
-    "tIN": "778-62-8144"
-  }
+  "_organizationProfile_Groups" : {
+    "goods_Groups": "This is a description.",
+    "services_Groups": "This is a description."
+  },
+  "_serviceOrGoodsLocations_Groups": [
+    {
+      "_index": "1",
+      "countrySubdivision_Groups": "Oregon",
+      "townName_Groups": "Tualatin",
+      "country_Groups": "US"
+    }
+  ]
 }
