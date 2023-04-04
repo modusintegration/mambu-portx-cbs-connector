@@ -1,9 +1,8 @@
 {
 	"info": {
-		"_postman_id": "51d87ecf-9746-41d0-9d70-e5a88cd6672e",
+		"_postman_id": "8b4e1e3d-e8fa-46c9-8b25-5c3be55c1f90",
 		"name": "mambu-cbs-connector",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "5382217"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
@@ -1449,6 +1448,48 @@
 							"body": "{\n  \"bIC\": \"AAAABBCCXXX\",\n  \"lEI\": \"2ZCNRR8UK83OBTEK2170\",\n  \"genericIdentifiers\": [\n    {\n      \"number\": \"123-45-6789\",\n      \"schemeName\": \"SocialSecurityNumber\",\n      \"issuer\": \"string\"\n    }\n  ],\n  \"name\": \"Jane Birkin\",\n  \"shortName\": \"Jane Birkin\",\n  \"relatedParties\": [\n    {\n      \"partyId\": \"5fb9d4d6-1a3c-11ed-861d-0242ac120002\",\n      \"partyType\": \"Person\",\n      \"partyRelationType\": \"Owner\"\n    }\n  ],\n  \"countryOfResidence\": \"OE\",\n  \"postalAddress\": {\n    \"addressType\": \"string\",\n    \"department\": \"string\",\n    \"subDepartment\": \"string\",\n    \"streetName\": \"string\",\n    \"buildingNumber\": \"string\",\n    \"buildingName\": \"string\",\n    \"floor\": \"string\",\n    \"postBox\": \"string\",\n    \"room\": \"string\",\n    \"postCode\": \"string\",\n    \"townName\": \"string\",\n    \"townLocationName\": \"string\",\n    \"districtName\": \"string\",\n    \"countrySubDivision\": \"string\",\n    \"country\": \"VM\",\n    \"addressLine\": [\n      \"string\"\n    ]\n  },\n  \"residenceType\": \"string\",\n  \"status\": \"Queued\",\n  \"taxInformation\": {\n    \"tIN\": \"string\",\n    \"taxIdType\": \"stri\",\n    \"reportingFlag\": true,\n    \"tinStatus\": \"string\",\n    \"suplementaryData\": {}\n  },\n  \"supplementaryData\": {},\n  \"placeAndDateOfBirth\": {\n    \"birthDate\": \"2022-04-17\",\n    \"provinceOfBirth\": \"string\",\n    \"cityOfBirth\": \"string\",\n    \"countryOfBirth\": \"WO\"\n  },\n  \"signature\": \"ZXhhbXBsZQ==\",\n  \"contact\": {\n    \"namePrefix\": \"string\",\n    \"name\": \"string\",\n    \"phoneNumber\": \"+1-415-731359\",\n    \"mobileNumber\": \"+1-415-731359\",\n    \"faxNumber\": \"+1-415-731359\",\n    \"emailAddress\": \"string\",\n    \"emailPurpose\": \"string\",\n    \"jobTitle\": \"string\",\n    \"responsibility\": \"string\",\n    \"department\": \"string\",\n    \"otherContact\": {\n      \"channelType\": \"stri\",\n      \"identification\": \"string\"\n    },\n    \"preferredMethod\": \"string\"\n  },\n  \"headOfHousehold\": true,\n  \"civilStatus\": \"Single\"\n}"
 						}
 					]
+				},
+				{
+					"name": "Get All Clients Mambu",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "Modusbox@123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "shashi",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.mambu.v2+json"
+							}
+						],
+						"url": {
+							"raw": "https://modusbox.sandbox.mambu.com/api/clients",
+							"protocol": "https",
+							"host": [
+								"modusbox",
+								"sandbox",
+								"mambu",
+								"com"
+							],
+							"path": [
+								"api",
+								"clients"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -1876,7 +1917,7 @@
 			"name": "organization",
 			"item": [
 				{
-					"name": "Create Organization - Only Mandatory fields",
+					"name": "Localhost - Create Organization",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -1888,7 +1929,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"DevGroup1\"\n}",
+							"raw": "{\n  \"genericIdentifiers\": [\n    {\n      \"number\": \"1111-11-999\"\n    },\n    {\n      \"number\": \"333-888-4561\"\n    }\n  ],\n  \"name\": \"examplegroup\",\n  \"organizationPurpose\": \"This is a description.\", \n  \"registrationDate\": \"2022-04-17\",\n  \"postalAddresses\": [\n    {\n      \"addressType\": \"Postal\"\n    },\n    {\n      \"addressType\": \"Postal\", \n      \"country\": \"US\", \n      \"addressLine\": [\n        \"11407 Sw Amu st, Suite MY777\" \n      ]\n    }\n  ],\n  \"taxInformation\": {\n    \"tIN\": \"778-62-8144\", \n    \"taxIdType\": \"SSN\"\n  },\n  \"organizationProfile\": {\n    \"previousFinancialInstitution\": \"Jane Birkin\", \n    \"referredByWhom\": \"Jane Birkin\", \n    \"timeAtCurrentAddress\": {\n      \"unit\": \"Months\", \n      \"value\": 999 \n    },\n    \"politicalAffiliation\": \"string\" \n  },\n  \"phones\": [\n    {\n      \"number\": \"+1-415-731359\"\n    },\n    {\n      \"number\": \"+1-415-731359\"\n    }\n  ],\n  \"emails\": [\n    {\n      \"emailAddress\": \"example@email.com\"\n    }\n  ],\n  \"settings\": {\n    \"communicationChannels\": [\n      {\n        \"channel\": \"Email\", \n        \"codeWord\": \"string\"\n      },\n      {\n        \"channel\": \"Email\"\n\n      }\n    ]\n  },\n  \"restrictions\": [\n    {\n      \"name\": \"externalTransferAllowed\" \n    },\n    {\n      \"name\": \"externalTransferAllowed\" \n    },\n    {\n      \"name\": \"externalTransferAllowed\" \n    },\n    {\n      \"name\": \"externalTransferAllowed\" \n    }\n  ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2027,11 +2068,429 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"encodedKey\": \"8a44d44b83ee67fd0183f150508150d7\",\n    \"id\": \"892113038\",\n    \"creationDate\": \"2022-10-19T10:35:16-07:00\",\n    \"lastModifiedDate\": \"2022-10-19T10:35:16-07:00\",\n    \"groupName\": \"DevGroup1\",\n    \"loanCycle\": 0,\n    \"preferredLanguage\": \"ENGLISH\",\n    \"groupRoleKey\": \"8a44cde37b592d63017b5fac6e4c0519\",\n    \"addresses\": [],\n    \"groupMembers\": []\n}"
+						},
+						{
+							"name": "Create Organization - With Custom Fields",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "bankId",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"genericIdentifiers\": [\n    {\n      \"number\": \"1111-11-999\"\n    },\n    {\n      \"number\": \"333-888-4561\"\n    }\n  ],\n  \"name\": \"vribeirogroup\",\n  \"organizationPurpose\": \"This is a description.\", \n  \"registrationDate\": \"2022-04-17\",\n  \"postalAddresses\": [\n    {\n      \"addressType\": \"Postal\"\n    },\n    {\n      \"addressType\": \"Postal\", \n      \"country\": \"US\", \n      \"addressLine\": [\n        \"11407 Sw Amu st, Suite MY777\" \n      ]\n    }\n  ],\n  \"taxInformation\": {\n    \"tIN\": \"778-62-8144\", \n    \"taxIdType\": \"SSN\"\n  },\n  \"organizationProfile\": {\n    \"previousFinancialInstitution\": \"Jane Birkin\", \n    \"referredByWhom\": \"Jane Birkin\", \n    \"timeAtCurrentAddress\": {\n      \"unit\": \"Months\", \n      \"value\": 999 \n    },\n    \"politicalAffiliation\": \"string\" \n  },\n  \"phones\": [\n    {\n      \"number\": \"+1-415-731359\"\n    },\n    {\n      \"number\": \"+1-415-731359\"\n    }\n  ],\n  \"emails\": [\n    {\n      \"emailAddress\": \"vribeiro3@email.com\"\n    }\n  ],\n  \"settings\": {\n    \"communicationChannels\": [\n      {\n        \"channel\": \"Email\", \n        \"codeWord\": \"string\"\n      },\n      {\n        \"channel\": \"Email\"\n\n      }\n    ]\n  },\n  \"restrictions\": [\n    {\n      \"name\": \"externalTransferAllowed\" \n    },\n    {\n      \"name\": \"externalTransferAllowed\" \n    },\n    {\n      \"name\": \"externalTransferAllowed\" \n    },\n    {\n      \"name\": \"externalTransferAllowed\" \n    }\n  ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7777/mambu-portx-cbs-connector/1.0/organizations",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7777",
+									"path": [
+										"mambu-portx-cbs-connector",
+										"1.0",
+										"organizations"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Thu, 06 Apr 2023 20:34:48 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/vnd.mambu.v2+json"
+								},
+								{
+									"key": "Accept",
+									"value": "application/vnd.mambu.v2+json"
+								},
+								{
+									"key": "Accept-Encoding",
+									"value": "gzip, deflate, br"
+								},
+								{
+									"key": "Authorization",
+									"value": "Basic c2hhc2hpOk1vZHVzYm94QDEyMw=="
+								},
+								{
+									"key": "bankId",
+									"value": "1"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "object-src 'none'; upgrade-insecure-requests;"
+								},
+								{
+									"key": "Cookie",
+									"value": "AWSALB=IjXodqfuucGa7lzX85ObcbBZicUy/bHlXCkzQRc/Is4smAI7IQ64TO5zwrw9dKdORYPLH/4IysNUkSRHBd5IZ+gvg00kdGTWKQrd5F3or9+dCWUdiw4V+1ZyFXP2"
+								},
+								{
+									"key": "Feature-Policy",
+									"value": "oversized-images 'none'; unsized-media 'none';"
+								},
+								{
+									"key": "Postman-Token",
+									"value": "b3617ada-701b-434f-8208-54f4d477c20e"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "Server",
+									"value": "Apache"
+								},
+								{
+									"key": "Session-ID",
+									"value": "no-session-id"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "AWSALB=dupTpLhdzIlo6Z48WtTg+Yu1nF381iR7CD4/6QaNogr1VrkEJYlZ/rerML11K8w95Fu18Xnkca0EpizIPU434eifaM1voZ/7KCuTwfdBOf3L1xJeABcf8QKBeXKK; Expires=Thu, 13 Apr 2023 20:34:48 GMT; Path=/"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "AWSALBCORS=dupTpLhdzIlo6Z48WtTg+Yu1nF381iR7CD4/6QaNogr1VrkEJYlZ/rerML11K8w95Fu18Xnkca0EpizIPU434eifaM1voZ/7KCuTwfdBOf3L1xJeABcf8QKBeXKK; Expires=Thu, 13 Apr 2023 20:34:48 GMT; Path=/; SameSite=None; Secure"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=63072001; includeSubDomains; preload"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"taxInformation\": {\n        \"tIN\": \"778-62-8144\",\n        \"taxIdType\": \"SSN\"\n    },\n    \"registrationDate\": \"2022-04-17\",\n    \"emails\": [\n        {\n            \"emailAddress\": \"vribeiro3@email.com\"\n        }\n    ],\n    \"settings\": {\n        \"communicationChannels\": [\n            {\n                \"channel\": \"Email\",\n                \"codeWord\": \"string\"\n            },\n            {\n                \"channel\": \"Email\"\n            }\n        ]\n    },\n    \"name\": \"vribeirogroup\",\n    \"restrictions\": [\n        {\n            \"name\": \"externalTransferAllowed\"\n        },\n        {\n            \"name\": \"externalTransferAllowed\"\n        },\n        {\n            \"name\": \"externalTransferAllowed\"\n        },\n        {\n            \"name\": \"externalTransferAllowed\"\n        }\n    ],\n    \"phones\": [\n        {\n            \"number\": \"+1-415-731359\"\n        },\n        {\n            \"number\": \"+1-415-731359\"\n        }\n    ],\n    \"genericIdentifiers\": [\n        {\n            \"number\": \"1111-11-999\"\n        },\n        {\n            \"number\": \"333-888-4561\"\n        }\n    ],\n    \"organizationPurpose\": \"This is a description.\",\n    \"postalAddresses\": [\n        {\n            \"addressType\": \"Postal\"\n        },\n        {\n            \"addressType\": \"Postal\",\n            \"country\": \"US\",\n            \"addressLine\": [\n                \"11407 Sw Amu st, Suite MY777\"\n            ]\n        }\n    ],\n    \"organizationProfile\": {\n        \"previousFinancialInstitution\": \"Jane Birkin\",\n        \"referredByWhom\": \"Jane Birkin\",\n        \"timeAtCurrentAddress\": {\n            \"unit\": \"Months\",\n            \"value\": 999\n        },\n        \"politicalAffiliation\": \"string\"\n    }\n}"
 						}
 					]
 				},
 				{
-					"name": "GET Organization",
+					"name": "Mambu - Create Organization - Only Mandatory fields",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "Modusbox@123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "shashi",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "bankId",
+								"value": "1",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/vnd.mambu.v2+json",
+								"type": "default"
+							},
+							{
+								"key": "Idempotency-Key",
+								"value": "string",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"addresses\": [\n        {\n            \"city\": \"string\",\n            \"country\": \"string\",\n            \"encodedKey\": \"string\",\n            \"indexInList\": 0,\n            \"latitude\": 0,\n            \"line1\": \"string\",\n            \"line2\": \"string\",\n            \"longitude\": 0,\n            \"parentKey\": \"string\",\n            \"postcode\": \"string\",\n            \"region\": \"string\"\n        }\n    ],\n    \"emailAddress\": \"test@email.com\",\n    \"groupName\": \"testGroup4\",\n    \"homePhone\": \"string\",\n    \"mobilePhone\": \"string\",\n    \"notes\": \"string\",\n    \"preferredLanguage\": \"ENGLISH\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://modusbox.sandbox.mambu.com/api/groups",
+							"protocol": "https",
+							"host": [
+								"modusbox",
+								"sandbox",
+								"mambu",
+								"com"
+							],
+							"path": [
+								"api",
+								"groups"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Organization - Only Mandatory fields - DevGroup1",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "bankId",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"DevGroup1\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7777/mambu-portx-cbs-connector/1.0/organizations",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7777",
+									"path": [
+										"mambu-portx-cbs-connector",
+										"1.0",
+										"organizations"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 19 Oct 2022 17:35:13 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/vnd.mambu.v2+json"
+								},
+								{
+									"key": "Accept",
+									"value": "application/vnd.mambu.v2+json"
+								},
+								{
+									"key": "Accept-Encoding",
+									"value": "gzip, deflate, br"
+								},
+								{
+									"key": "Authorization",
+									"value": "Basic c2hhc2hpOk1vZHVzYm94QDEyMw=="
+								},
+								{
+									"key": "bankId",
+									"value": "1"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "object-src 'none'; upgrade-insecure-requests;"
+								},
+								{
+									"key": "Cookie",
+									"value": "AWSALB=hLbcsYRF3JW3MJ52Os06RZzwcnIdbFYkokDLmMJ3L16DfB4blxjYGQgzhcsXOtXEk2plp1FYIZGg3357wl/iHsUvx3r4UOxJ/VHTPvhbLhpStqCCMZHiJdbNQk4g"
+								},
+								{
+									"key": "Feature-Policy",
+									"value": "oversized-images 'none'; unsized-media 'none';"
+								},
+								{
+									"key": "Postman-Token",
+									"value": "1e6798f3-2fa3-46a7-8f63-d27188a601f8"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "Server",
+									"value": "Apache"
+								},
+								{
+									"key": "Session-ID",
+									"value": "no-session-id"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "AWSALB=Me+CnbVD9eh0n5Df7Sgl0gAdskMSmOoHrkwlul2fos47YMb9zDJt3zq8HfN6Wl4SQPNWNzR/K2fmccw1fn7o/DAVPOAC30CxpLM4leWmFELngXA7vMAcx7d5hYAD; Expires=Wed, 26 Oct 2022 17:35:13 GMT; Path=/"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "AWSALBCORS=Me+CnbVD9eh0n5Df7Sgl0gAdskMSmOoHrkwlul2fos47YMb9zDJt3zq8HfN6Wl4SQPNWNzR/K2fmccw1fn7o/DAVPOAC30CxpLM4leWmFELngXA7vMAcx7d5hYAD; Expires=Wed, 26 Oct 2022 17:35:13 GMT; Path=/; SameSite=None; Secure"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=63072001; includeSubDomains; preload"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"encodedKey\": \"8a44d44b83ee67fd0183f150508150d7\",\n    \"id\": \"892113038\",\n    \"creationDate\": \"2022-10-19T10:35:16-07:00\",\n    \"lastModifiedDate\": \"2022-10-19T10:35:16-07:00\",\n    \"groupName\": \"DevGroup1\",\n    \"loanCycle\": 0,\n    \"preferredLanguage\": \"ENGLISH\",\n    \"groupRoleKey\": \"8a44cde37b592d63017b5fac6e4c0519\",\n    \"addresses\": [],\n    \"groupMembers\": []\n}"
+						},
+						{
+							"name": "Mambu - Create Organization - Only Mandatory fields",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "bankId",
+										"value": "1",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/vnd.mambu.v2+json",
+										"type": "default"
+									},
+									{
+										"key": "Idempotency-Key",
+										"value": "string",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"addresses\": [\n        {\n            \"city\": \"string\",\n            \"country\": \"string\",\n            \"encodedKey\": \"string\",\n            \"indexInList\": 0,\n            \"latitude\": 0,\n            \"line1\": \"string\",\n            \"line2\": \"string\",\n            \"longitude\": 0,\n            \"parentKey\": \"string\",\n            \"postcode\": \"string\",\n            \"region\": \"string\"\n        }\n    ],\n    \"emailAddress\": \"vinicius@email.com\",\n    \"groupName\": \"ViniciusGroup4\",\n    \"homePhone\": \"string\",\n    \"mobilePhone\": \"string\",\n    \"notes\": \"string\",\n    \"id\": \"976543747\",\n    \"preferredLanguage\": \"ENGLISH\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://modusbox.sandbox.mambu.com/api/groups",
+									"protocol": "https",
+									"host": [
+										"modusbox",
+										"sandbox",
+										"mambu",
+										"com"
+									],
+									"path": [
+										"api",
+										"groups"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 24 Mar 2023 20:10:07 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/vnd.mambu.v2+json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "655"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "AWSALB=y0OiSyPx+EV7z8F0K1T43k8yqg+usITd3mmotOB6eU8oniqRk3aP5bJxEtpxiqr86D3n2EbZn2pEjy+SzSv4F1Xqfu2xun+cb6UKWOOFseTM3a5QrH2EgIlZP4tw; Expires=Fri, 31 Mar 2023 20:10:06 GMT; Path=/"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "AWSALBCORS=y0OiSyPx+EV7z8F0K1T43k8yqg+usITd3mmotOB6eU8oniqRk3aP5bJxEtpxiqr86D3n2EbZn2pEjy+SzSv4F1Xqfu2xun+cb6UKWOOFseTM3a5QrH2EgIlZP4tw; Expires=Fri, 31 Mar 2023 20:10:06 GMT; Path=/; SameSite=None; Secure"
+								},
+								{
+									"key": "Server",
+									"value": "Apache"
+								},
+								{
+									"key": "Session-ID",
+									"value": "no-session-id"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=63072001; includeSubDomains; preload"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "object-src 'none'; upgrade-insecure-requests;"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Feature-Policy",
+									"value": "oversized-images 'none'; unsized-media 'none';"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"encodedKey\": \"8a44a6598712e7ef0187142094680ed4\",\n    \"id\": \"976543747\",\n    \"creationDate\": \"2023-03-24T13:10:06-07:00\",\n    \"lastModifiedDate\": \"2023-03-24T13:10:06-07:00\",\n    \"groupName\": \"ViniciusGroup4\",\n    \"notes\": \"string\",\n    \"loanCycle\": 0,\n    \"emailAddress\": \"vinicius@email.com\",\n    \"mobilePhone\": \"string\",\n    \"homePhone\": \"string\",\n    \"preferredLanguage\": \"ENGLISH\",\n    \"groupRoleKey\": \"8a44cde37b592d63017b5fac6e4c0519\",\n    \"addresses\": [\n        {\n            \"encodedKey\": \"8a44a6598712e7ef0187142094680ed5\",\n            \"parentKey\": \"8a44a6598712e7ef0187142094680ed4\",\n            \"line1\": \"string\",\n            \"line2\": \"string\",\n            \"city\": \"string\",\n            \"region\": \"string\",\n            \"postcode\": \"string\",\n            \"country\": \"string\",\n            \"indexInList\": 0,\n            \"latitude\": 0,\n            \"longitude\": 0\n        }\n    ],\n    \"groupMembers\": []\n}"
+						}
+					]
+				},
+				{
+					"name": "Localhost - GET Organization",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -2042,7 +2501,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:7777/mambu-portx-cbs-connector/1.0/organizations/892113038",
+							"raw": "http://localhost:7777/mambu-portx-cbs-connector/1.0/organizations/111111999",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2052,7 +2511,308 @@
 								"mambu-portx-cbs-connector",
 								"1.0",
 								"organizations",
-								"892113038"
+								"111111999"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Organization - Only Mandatory fields - DevGroup1",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "bankId",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"DevGroup1\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7777/mambu-portx-cbs-connector/1.0/organizations",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7777",
+									"path": [
+										"mambu-portx-cbs-connector",
+										"1.0",
+										"organizations"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 19 Oct 2022 17:35:13 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/vnd.mambu.v2+json"
+								},
+								{
+									"key": "Accept",
+									"value": "application/vnd.mambu.v2+json"
+								},
+								{
+									"key": "Accept-Encoding",
+									"value": "gzip, deflate, br"
+								},
+								{
+									"key": "Authorization",
+									"value": "Basic c2hhc2hpOk1vZHVzYm94QDEyMw=="
+								},
+								{
+									"key": "bankId",
+									"value": "1"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "object-src 'none'; upgrade-insecure-requests;"
+								},
+								{
+									"key": "Cookie",
+									"value": "AWSALB=hLbcsYRF3JW3MJ52Os06RZzwcnIdbFYkokDLmMJ3L16DfB4blxjYGQgzhcsXOtXEk2plp1FYIZGg3357wl/iHsUvx3r4UOxJ/VHTPvhbLhpStqCCMZHiJdbNQk4g"
+								},
+								{
+									"key": "Feature-Policy",
+									"value": "oversized-images 'none'; unsized-media 'none';"
+								},
+								{
+									"key": "Postman-Token",
+									"value": "1e6798f3-2fa3-46a7-8f63-d27188a601f8"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "Server",
+									"value": "Apache"
+								},
+								{
+									"key": "Session-ID",
+									"value": "no-session-id"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "AWSALB=Me+CnbVD9eh0n5Df7Sgl0gAdskMSmOoHrkwlul2fos47YMb9zDJt3zq8HfN6Wl4SQPNWNzR/K2fmccw1fn7o/DAVPOAC30CxpLM4leWmFELngXA7vMAcx7d5hYAD; Expires=Wed, 26 Oct 2022 17:35:13 GMT; Path=/"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "AWSALBCORS=Me+CnbVD9eh0n5Df7Sgl0gAdskMSmOoHrkwlul2fos47YMb9zDJt3zq8HfN6Wl4SQPNWNzR/K2fmccw1fn7o/DAVPOAC30CxpLM4leWmFELngXA7vMAcx7d5hYAD; Expires=Wed, 26 Oct 2022 17:35:13 GMT; Path=/; SameSite=None; Secure"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=63072001; includeSubDomains; preload"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"encodedKey\": \"8a44d44b83ee67fd0183f150508150d7\",\n    \"id\": \"892113038\",\n    \"creationDate\": \"2022-10-19T10:35:16-07:00\",\n    \"lastModifiedDate\": \"2022-10-19T10:35:16-07:00\",\n    \"groupName\": \"DevGroup1\",\n    \"loanCycle\": 0,\n    \"preferredLanguage\": \"ENGLISH\",\n    \"groupRoleKey\": \"8a44cde37b592d63017b5fac6e4c0519\",\n    \"addresses\": [],\n    \"groupMembers\": []\n}"
+						},
+						{
+							"name": "GET Organization - With Custom Fields",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "bankId",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:7777/mambu-portx-cbs-connector/1.0/organizations/111111999",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7777",
+									"path": [
+										"mambu-portx-cbs-connector",
+										"1.0",
+										"organizations",
+										"111111999"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Thu, 06 Apr 2023 20:35:38 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/vnd.mambu.v2+json"
+								},
+								{
+									"key": "Accept",
+									"value": "application/vnd.mambu.v2+json"
+								},
+								{
+									"key": "Accept-Encoding",
+									"value": "gzip, deflate, br"
+								},
+								{
+									"key": "Authorization",
+									"value": "Basic c2hhc2hpOk1vZHVzYm94QDEyMw=="
+								},
+								{
+									"key": "bankId",
+									"value": "1"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "object-src 'none'; upgrade-insecure-requests;"
+								},
+								{
+									"key": "Cookie",
+									"value": "AWSALB=dupTpLhdzIlo6Z48WtTg+Yu1nF381iR7CD4/6QaNogr1VrkEJYlZ/rerML11K8w95Fu18Xnkca0EpizIPU434eifaM1voZ/7KCuTwfdBOf3L1xJeABcf8QKBeXKK"
+								},
+								{
+									"key": "Feature-Policy",
+									"value": "oversized-images 'none'; unsized-media 'none';"
+								},
+								{
+									"key": "organizationId",
+									"value": "111111999"
+								},
+								{
+									"key": "Postman-Token",
+									"value": "7e0c0113-d3f6-4e07-a8b4-2ef86fc60930"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "Server",
+									"value": "Apache"
+								},
+								{
+									"key": "Session-ID",
+									"value": "no-session-id"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "AWSALB=hkGT6OOChZ6go63ArGhA9pK7Dh645fOpxWNVuga57qUDT/3PWuLcTgko9wB7Su79EmMh5T7lPYnMuOE7Uk+McNrbmF9suyxz6owDn2eb6wmdnvXgLaQhISGVZA55; Expires=Thu, 13 Apr 2023 20:35:38 GMT; Path=/"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "AWSALBCORS=hkGT6OOChZ6go63ArGhA9pK7Dh645fOpxWNVuga57qUDT/3PWuLcTgko9wB7Su79EmMh5T7lPYnMuOE7Uk+McNrbmF9suyxz6owDn2eb6wmdnvXgLaQhISGVZA55; Expires=Thu, 13 Apr 2023 20:35:38 GMT; Path=/; SameSite=None; Secure"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=63072001; includeSubDomains; preload"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"genericIdentifiers\": [\n        {\n            \"number\": \"111111999\"\n        },\n        {\n            \"number\": \"333-888-4561\"\n        }\n    ],\n    \"name\": \"vribeirogroup\",\n    \"organizationPurpose\": \"This is a description.\",\n    \"registrationDate\": \"2023-04-06\",\n    \"postalAddresses\": [\n        {\n            \"addressType\": \"Postal\"\n        },\n        {\n            \"addressType\": \"Postal\"\n        }\n    ],\n    \"taxInformation\": {\n        \"tIN\": \"778-62-8144\",\n        \"taxIdType\": \"SSN\"\n    },\n    \"organizationProfile\": {\n        \"previousFinancialInstitution\": \"Jane Birkin\",\n        \"referredByWhom\": \"Jane Birkin\",\n        \"timeAtCurrentAddress\": {\n            \"unit\": \"999\",\n            \"value\": \"Months\"\n        },\n        \"politicalAffiliation\": \"string\"\n    },\n    \"phones\": [\n        {\n            \"number\": \"+1-415-731359\"\n        },\n        {\n            \"number\": \"+1-415-731359\"\n        }\n    ],\n    \"emails\": [\n        {\n            \"emailAddress\": \"vribeiro3@email.com\"\n        }\n    ],\n    \"settings\": {\n        \"communicationChannels\": [\n            {\n                \"channel\": \"Email\",\n                \"codeWord\": \"string\"\n            },\n            {\n                \"channel\": \"Email\"\n            }\n        ]\n    },\n    \"restrictions\": [\n        {\n            \"name\": \"externalTransferAllowed\"\n        },\n        {\n            \"name\": \"externalTransferAllowed\"\n        },\n        {\n            \"name\": \"externalTransferAllowed\"\n        },\n        {\n            \"name\": \"externalTransferAllowed\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Mambu - GET Organization",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "Modusbox@123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "shashi",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "authHeader",
+								"value": "c2hhc2hpOk1vZHVzYm94QDEyMw==",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Accept",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							},
+							{
+								"key": "detailLevel",
+								"value": "FULL",
+								"type": "default",
+								"disabled": true
+							},
+							{
+								"key": "Accept",
+								"value": "application/vnd.mambu.v2+json",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "https://modusbox.sandbox.mambu.com/api/groups/813267316?detailsLevel=FULL",
+							"protocol": "https",
+							"host": [
+								"modusbox",
+								"sandbox",
+								"mambu",
+								"com"
+							],
+							"path": [
+								"api",
+								"groups",
+								"813267316"
+							],
+							"query": [
+								{
+									"key": "detailsLevel",
+									"value": "FULL"
+								}
 							]
 						}
 					},
@@ -2324,6 +3084,193 @@
 							"body": "{\n    \"encodedKey\": \"8a44d44b83ee67fd0183f150508150d7\",\n    \"id\": \"892113038\",\n    \"creationDate\": \"2022-10-19T10:35:16-07:00\",\n    \"lastModifiedDate\": \"2022-10-19T10:35:16-07:00\",\n    \"groupName\": \"DevGroup1\",\n    \"loanCycle\": 0,\n    \"preferredLanguage\": \"ENGLISH\",\n    \"groupRoleKey\": \"8a44cde37b592d63017b5fac6e4c0519\",\n    \"addresses\": [],\n    \"groupMembers\": []\n}"
 						}
 					]
+				},
+				{
+					"name": "Patch Organization",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "bankId",
+								"value": "1"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/merge-patch+json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"bIC\": \"AAAABBCCXXX\",\n  \"lEI\": \"2ZCNRR8UK83OBTEK2170\",\n  \"genericIdentifiers\": [\n    {\n      \"number\": \"123-45-6789\",\n      \"schemeName\": \"TaxIdentificationNumber\",\n      \"issuer\": \"UnitedStates\",\n      \"issueDate\": \"2022-04-17\",\n      \"expirationDate\": \"2022-04-17\"\n    }\n  ],\n  \"name\": \"Jane Birkin\",\n  \"shortName\": \"Jane\",\n  \"relatedParties\": [\n    {\n      \"partyId\": \"5fb9d4d6-1a3c-11ed-861d-0242ac120002\",\n      \"partyType\": \"Person\",\n      \"partyName\": \"Jane Birkin\",\n      \"partyRelationType\": \"Owner\",\n      \"ownershipPercentage\": \"0.7\"\n    }\n  ],\n  \"postalAddresses\": [\n    {\n      \"addressType\": \"Postal\",\n      \"addressPurpose\": \"Billing\",\n      \"primaryIndicator\": true,\n      \"department\": \"A\",\n      \"subDepartment\": \"B\",\n      \"streetName\": \"First Street\",\n      \"firstCrossStreetName\": \"string\",\n      \"secondCrossStreetName\": \"Second Street\",\n      \"buildingNumber\": \"11407\",\n      \"buildingName\": \"Tall Tower\",\n      \"floor\": \"20\",\n      \"postBox\": \"MY779\",\n      \"room\": \"22\",\n      \"postCode\": \"97062-6884\",\n      \"townName\": \"Tualatin\",\n      \"townLocationName\": \"Clackamas\",\n      \"districtName\": \"Washington\",\n      \"countrySubDivision\": \"Oregon\",\n      \"countrySubDivisionCode\": \"AR-B\",\n      \"country\": \"US\",\n      \"addressLine\": [\n        \"11407 Sw Amu st, Suite MY777\"\n      ]\n    }\n  ],\n  \"residenceType\": \"Domestic\",\n  \"taxInformation\": {\n    \"tIN\": \"778-62-8144\",\n    \"taxIdType\": \"SSN\",\n    \"reportingIndicator\": true,\n    \"tinStatus\": \"Valid\",\n    \"taxStatus\": \"Valid\",\n    \"forms\": [\n      {\n        \"formName\": \"W-9\",\n        \"cerfiticationDate\": \"2022-04-17\",\n        \"expirationDate\": \"2022-04-17\"\n      }\n    ],\n    \"regulations\": [\n      {\n        \"name\": \"Chapter4\",\n        \"section\": \"1471\"\n      }\n    ],\n    \"withholdings\": [\n      {\n        \"withholdingTaxType\": \"NonResidentAlienTax\",\n        \"withholdingRate\": \"0.7\",\n        \"withholdingAmount\": \"100\"\n      }\n    ],\n    \"nRAIndicator\": true,\n    \"countrySubDivision\": \"Oregon\",\n    \"countrySubDivisionCode\": \"AR-B\",\n    \"country\": \"US\",\n    \"supplementaryData\": {}\n  },\n  \"powerOfAttorney\": {\n    \"documentId\": \"5fb9d4d6-1a3c-11ed-861d-0242ac120002\",\n    \"documentReference\": \"string\",\n    \"version\": \"string\",\n    \"signOffDate\": \"2022-04-17\",\n    \"issueDate\": \"2022-04-17\",\n    \"purpose\": \"string\",\n    \"fromDateTime\": \"2022-04-17\",\n    \"upToDateTime\": \"2022-04-17\",\n    \"jurisdiction\": {\n      \"countrySubdivision\": \"Oregon\",\n      \"townName\": \"Tualatin\",\n      \"country\": \"US\"\n    },\n    \"authorizedPerson\": \"5fb9d4d6-1a3c-11ed-861d-0242ac120002\",\n    \"authorizedAccount\": \"0dd926fe-1ca2-11ed-861d-0242ac120002\"\n  },\n  \"supplementaryData\": {},\n  \"settings\": {\n    \"communicationChannels\": [\n      {\n        \"channel\": \"Email\",\n        \"codeWord\": \"string\",\n        \"alertIndicator\": \"string\"\n      }\n    ]\n  },\n  \"restrictions\": [\n    {\n      \"name\": \"externalTransferAllowed\",\n      \"restrictionPurpose\": \"This is a description.\",\n      \"validFrom\": \"2022-04-17\",\n      \"validUntil\": \"2022-04-17\"\n    }\n  ],\n  \"organizationType\": \"Corporation\",\n  \"organizationPurpose\": \"This is a description.\",\n  \"legalName\": \"Jane\",\n  \"tradingName\": \"Jane\",\n  \"registrationDate\": \"2022-04-17\",\n  \"establishmentDate\": \"2022-04-17\",\n  \"entityExpirationDate\": \"2022-04-17\",\n  \"merchantCategory\": \"742\",\n  \"sector\": \"string\",\n  \"organizationProfile\": {\n    \"riskLevel\": \"Permanent\",\n    \"creditQuality\": \"UpperMediumGrade\",\n    \"previousFinancialInstitution\": \"Jane Birkin\",\n    \"referredByWhom\": \"Jane Birkin\",\n    \"moneyLaunderingCheck\": \"AuthorizedCredit\",\n    \"knowYourCustomerCheck\": \"Ordinary\",\n    \"timeAtCurrentAddress\": {\n      \"unit\": \"Months\",\n      \"value\": 999\n    },\n    \"sourceOfWealth\": \"This is a description.\",\n    \"politicalAffiliation\": \"string\",\n    \"lastContactDate\": \"2022-04-17\",\n    \"lastContactChannel\": \"Email\",\n    \"lostCustomerDate\": \"2022-04-17\",\n    \"lostCustomerReason\": \"Deceased\",\n    \"numberOfEmployees\": 100,\n    \"anualSales\": \"100\",\n    \"services\": \"This is a description.\",\n    \"goods\": \"This is a description.\",\n    \"serviceOrGoodsLocations\": [\n      {\n        \"countrySubdivision\": \"Oregon\",\n        \"townName\": \"Tualatin\",\n        \"country\": \"US\"\n      }\n    ]\n  },\n  \"phones\": [\n    {\n      \"number\": \"+1-415-731359\",\n      \"phoneType\": \"string\",\n      \"phonePurpose\": \"string\",\n      \"primaryIndicator\": true\n    }\n  ],\n  \"emails\": [\n    {\n      \"emailAddress\": \"string\",\n      \"emailPurpose\": \"Statements\",\n      \"primaryIndicator\": true\n    }\n  ],\n  \"webPage\": \"ˆJ/tQ0yWYnBgtk3uIsGa.dgboF@@N?ozUjIKpsVTB#7Dh4fRSroCJHU3d:~4\",\n  \"logo\": \"string\",\n  \"organizationId\": \"5fb9d4d6-1a3c-11ed-861d-0242ac120002\",\n  \"status\": \"Queued\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:7777/mambu-portx-cbs-connector/1.0/organizations/688890779",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7777",
+							"path": [
+								"mambu-portx-cbs-connector",
+								"1.0",
+								"organizations",
+								"688890779"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Group Roles",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "Modusbox@123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "shashi",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.mambu.v2+yaml"
+							}
+						],
+						"url": {
+							"raw": "https://modusbox.sandbox.mambu.com/api/configuration/grouprolenames.yaml",
+							"protocol": "https",
+							"host": [
+								"modusbox",
+								"sandbox",
+								"mambu",
+								"com"
+							],
+							"path": [
+								"api",
+								"configuration",
+								"grouprolenames.yaml"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mambu - GET Custom Fields",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "Modusbox@123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "shashi",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "authHeader",
+								"value": "c2hhc2hpOk1vZHVzYm94QDEyMw==",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Accept",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							},
+							{
+								"key": "detailLevel",
+								"value": "FULL",
+								"type": "default",
+								"disabled": true
+							},
+							{
+								"key": "Accept",
+								"value": "application/vnd.mambu.v2+json",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "https://modusbox.sandbox.mambu.com/api/customfields/tradingName_Groups",
+							"protocol": "https",
+							"host": [
+								"modusbox",
+								"sandbox",
+								"mambu",
+								"com"
+							],
+							"path": [
+								"api",
+								"customfields",
+								"tradingName_Groups"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mambu - Delete Organization",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "Modusbox@123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "shashi",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.mambu.v2+json"
+							}
+						],
+						"url": {
+							"raw": "https://modusbox.sandbox.mambu.com/api/groups/020312858",
+							"protocol": "https",
+							"host": [
+								"modusbox",
+								"sandbox",
+								"mambu",
+								"com"
+							],
+							"path": [
+								"api",
+								"groups",
+								"020312858"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},

@@ -1,70 +1,91 @@
 {
-    "encodedKey": "8a44c56187318f460187334370d7194a",
-    "id": "020312858",
-    "creationDate": "2023-03-30T12:40:20-07:00",
-    "lastModifiedDate": "2023-03-30T12:40:20-07:00",
-    "groupName": "ViniciusGroup4",
-    "notes": "string",
-    "loanCycle": 0,
-    "emailAddress": "vinicius@email.com",
-    "mobilePhone": "string",
-    "homePhone": "string",
-    "preferredLanguage": "ENGLISH",
-    "groupRoleKey": "8a44cde37b592d63017b5fac6e4c0519",
-    "addresses": [
+    "genericIdentifiers": [
         {
-            "encodedKey": "8a44c56187318f46018734090a9a228d",
-            "parentKey": "8a44c56187318f460187334370d7194a",
-            "line1": "string",
-            "line2": "string",
-            "city": "string",
-            "region": "string",
-            "postcode": "string",
-            "country": "string",
-            "indexInList": 0,
-            "latitude": 0,
-            "longitude": 0
-        }
-    ],
-    "groupMembers": [],
-    "_profile_Groups": {
-        "politicalAffiliation_Groups": "string",
-        "tradingName_Groups": "Trading Name example",
-        "organizationType_Groups": "Corporation",
-        "alertIndicator_Groups": "string",
-        "webpage_Groups": "string"
-    },
-    "_timeAtCurrentAddress_Groups": {
-        "value_Groups": "999",
-        "unit_Groups": "Months"
-    },
-    "_organizationProfile_Groups": {
-        "goods_Groups": "This is a description.",
-        "services_Groups": "This is a description."
-    },
-    "_supplementaryData_Groups": {
-        "creditBureauReportCode_Groups": "Y",
-        "purgeOption_Groups": "B",
-        "serviceMember_Groups": "N"
-    },
-    "_relatedParties_Groups": [
-        {
-            "_index": "0",
-            "partyType_Groups": "Person 1",
-            "partyName_Groups": "Jane Birkin"
+            "number": "123-45-6789"
         },
         {
-            "_index": "1",
-            "partyType_Groups": "Person 2",
-            "partyName_Groups": "Irson Birkin"
+            "number": "333-888-4567"
         }
     ],
-    "_serviceOrGoodsLocations_Groups": [
+    "name": "Jane Birkin",
+    "organizationPurpose": "This is a description.",
+    "registrationDate": "2022-04-17",
+    "relatedParties": [
         {
-            "townName_Groups": "Tualatin",
-            "_index": "0",
-            "country_Groups": "US",
-            "countrySubdivision_Groups": "Oregon"
+            "partyId": "5fb9d4d6-1a3c-11ed-861d-0242ac120002",
+            "partyType": "Person",
+            "partyName": "Jane Birkin",
+            "partyRelationType": "Owner"
+        },
+        {
+            "partyId": "5fb9d4d6-1a3c-11ed-861d-0242ac120002",
+            "partyType": "Person",
+            "partyName": "Jane Birkin",
+            "partyRelationType": "Owner"
+        }
+    ],
+    "postalAddresses": [
+        {
+            "addressType": "Postal"
+        },
+        {
+            "addressType": "Postal",
+            "country": "US",
+            "addressLine": [
+                "11407 Sw Amu st, Suite MY777"
+            ]
+        }
+    ],
+    "taxInformation": {
+        "tIN": "778-62-8144",
+        "taxIdType": "SSN"
+    },
+    "organizationProfile": {
+        "previousFinancialInstitution": "Jane Birkin",
+        "referredByWhom": "Jane Birkin",
+        "timeAtCurrentAddress": {
+            "unit": "Months",
+            "value": 999
+        },
+        "politicalAffiliation": "string"
+    },
+    "phones": [
+        {
+            "number": "+1-415-731359"
+        },
+        {
+            "number": "+1-415-731359"
+        }
+    ],
+    "emails": [
+        {
+            "emailAddress": "string"
+        }
+    ],
+    "settings": {
+        "communicationChannels": [
+            {
+                "channel": "Email",
+                "codeWord": "string"
+            },
+            {
+                "channel": "Email"
+
+            }
+        ]
+    },
+    "restrictions": [
+        {
+            "name": "externalTransferAllowed"
+        },
+        {
+            "name": "externalTransferAllowed"
+        },
+        {
+            "name": "externalTransferAllowed"
+        },
+        {
+            "name": "externalTransferAllowed"
         }
     ]
 }

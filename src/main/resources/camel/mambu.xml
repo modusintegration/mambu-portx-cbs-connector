@@ -940,7 +940,7 @@
         <to uri="direct:commonAPIResponseValidator"/>
         <setBody>
             <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
-                resource:classpath:mappings/findOrganizationByIdResponse.ds
+                resource:classpath:mappings/findGroupByIdResponse.ds
             </datasonnet>
         </setBody>
         <!--        <to uri="direct:endRoute"/>-->

@@ -65,3 +65,15 @@ opentelemetry:
       otlp:
         enabled: true
         endpoint: http://localhost:55680
+groupRoles:
+  Treasurer:
+    groupRoleNameKey: 8a44b0f18706d32f01870a7aa66c7f6a
+  President:
+    groupRoleNameKey: 8a44b0f18706d32f01870a7aa66c7f69
+  Secretary:
+    groupRoleNameKey: 8a44b0f18706d32f01870a7aa66c7f68
+  Developer:
+    groupRoleNameKey: 8a44b0f18706d32f01870a879e1e7fc6
+  Assigner:
+    groupRoleNameKey: 8a44b0f18706d32f01870a7aa66c7f6b
+
