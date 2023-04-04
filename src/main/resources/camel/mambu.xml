@@ -193,7 +193,7 @@
 <!--        <to uri="direct:endRoute"/>-->
     </route>
     <route id="findPersonRoute" routeConfigurationId="*">
-        <from uri="direct:findPerson"/>
+        <from uri="direct:findPersonById"/>
         <setProperty name="flowId">
             <simple>${routeId}:${id}</simple>
         </setProperty>
