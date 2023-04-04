@@ -6,14 +6,17 @@ on:
 jobs:
   package-gbp-deploy-dr-push:
     env:
+    # LeaderBank cluster
+      REGISTRY: 314858003196.dkr.ecr.us-west-2.amazonaws.com
+      APP_NAME: mambu-portx-cbs-connector
     # DEMOS cluster
-      REGISTRY: 854173534877.dkr.ecr.us-west-2.amazonaws.com
-      APP_NAME: demos/mambu-portx-cbs-connector
+      # REGISTRY: 854173534877.dkr.ecr.us-west-2.amazonaws.com
+      # APP_NAME: demos/mambu-portx-cbs-connector
     # VNEXT cluster
       # REGISTRY: 823667448392.dkr.ecr.us-west-2.amazonaws.com
       # APP_NAME: vnext/mambu-portx-cbs-connector
     # SoundCU cluster
-      # REGISTRY: 854173534877.dkr.ecr.us-west-2.amazonaws.com
+      # REGISTRY: 117317084632.dkr.ecr.us-west-2.amazonaws.com
       # APP_NAME: mambu-portx-cbs-connector
     name: Build API package
     runs-on: ubuntu-latest
