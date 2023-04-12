@@ -1,4 +1,7 @@
-FROM adoptopenjdk/openjdk11:jdk-11.0.8_10-centos-slim
+FROM maven:3.9.0-eclipse-temurin-11
+
+RUN apt update && \
+    apt install --only-upgrade curl libcurl4 libcurl3-gnutls -y
 VOLUME /tmp
 
 WORKDIR /app

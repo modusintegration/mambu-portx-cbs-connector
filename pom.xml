@@ -3,12 +3,13 @@
     <parent>
         <groupId>org.apache.camel.springboot</groupId>
         <artifactId>spring-boot</artifactId>
-        <version>3.18.0</version>
+        <version>3.20.3</version>
     </parent>
     <properties>
+        <camel-version>3.20.3</camel-version>
         <portx-camel-lib.version>2.0.18</portx-camel-lib.version>
         <sentry.version>5.6.1</sentry.version>
-        <atlassian.oai.validator.version>2.21.1</atlassian.oai.validator.version>
+        <atlassian.oai.validator.version>2.34.0</atlassian.oai.validator.version>
     </properties>
     <modelVersion>4.0.0</modelVersion>
 
@@ -236,7 +237,7 @@
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
-            <version>2.9.0</version>
+            <version>2.10.1</version>
         </dependency>
 
         <dependency>
