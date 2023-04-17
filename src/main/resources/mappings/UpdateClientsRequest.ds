@@ -4,25 +4,36 @@ output application/json
 input payload application/json
 */
 local selector(obj,key,dValue = null) = ds.or(ds.select(obj,key), dValue);
-local addressLines = selector(payload, "postalAddress.addressLine");
+local addresses = selector(payload, "postalAddresses");
+local genericIdentifiers = selector(payload, "genericIdentifiers");
+local firstGenericIdentifier = if ds.isArray(genericIdentifiers) && std.length(genericIdentifiers) > 0 then genericIdentifiers[0] else null;
+local id = if firstGenericIdentifier != null then selector(firstGenericIdentifier,"number") else null;
+local idFormatted = if id != null then ds.replace(id, '-', '') else null;
+local contact = selector(payload, "contact");
+local emails = if contact != null then selector(contact, "emails") else null;
+local mainEmail = if ds.isArray(emails) && std.length(emails) > 0 then selector(emails[0], "emailAddress") else null;
+local phones = if contact != null then selector(contact, "phones") else null;
+local mainPhone = if ds.isArray(phones) && std.length(phones) > 0 then selector(phones[0], "number") else null;
 
 std.prune({
-  "lastName": payload.structuredName.lastName,
+  "lastName": selector(payload, "structuredName.lastName"),
   "middleName": selector(payload, "structuredName.middleName"),
-  "firstName": payload.structuredName.firstName,
+  "firstName": selector(payload, "structuredName.firstName"),
   "encodedKey": selector(payload, "personId"),
-  "id": (ds.filter(payload.genericIdentifiers, function(value, index) value.schemeName ==  "clientId"))[0].number,
-  "addresses": [
+  "id": idFormatted,
+  "addresses":
+  if (addresses != null && std.length(addresses) > 0) then
+  [
     {
-      "country": selector(payload, "postalAddress.country"),
-      "city": selector(payload, "postalAddress.townName"),
-      "postcode": selector(payload, "postalAddress.postCode"),
-      "line2": if ds.isArray(addressLines) && std.length(addressLines) > 1 then addressLines[1] else "",
-      "line1": if ds.isArray(addressLines) && std.length(addressLines) > 0 then addressLines[0] else ""
-    }
+      "country": selector(address, "country"),
+      "city": selector(address, "townName"),
+      "postcode": selector(address, "postCode"),
+      "line2": if ds.isArray(address.addressLine) && std.length(address.addressLine) > 1 then address.addressLine[1] else "",
+      "line1": if ds.isArray(address.addressLine) && std.length(address.addressLine) > 0 then address.addressLine[0] else ""
+    } for address in addresses
   ],
-  "emailAddress": selector(payload, "contact.emailAddress"),
+  "emailAddress": mainEmail,
   "state": selector(payload, "status"),
   "birthDate": selector(payload, "placeAndDateOfBirth.birthDate"),
-  "mobilePhone": selector(payload, "contact.mobileNumber")
+  "mobilePhone": mainPhone
 })
