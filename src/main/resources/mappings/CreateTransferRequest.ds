@@ -7,7 +7,7 @@ local selector(obj,key,dValue = null) = ds.or(ds.select(obj,key), dValue);
 
 std.prune({
 "amount": selector(payload, "amount"),
-"valueDate": selector(payload, "valueDate"),
+"valueDate": selector(payload, "valueDate") + "T00:00:00-07:00",
 "notes": selector(payload, "purpose"),
 "paymentOrderId": selector(payload, "name"),
 "transferDetails": {

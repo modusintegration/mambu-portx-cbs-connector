@@ -1787,7 +1787,7 @@
 					]
 				},
 				{
-					"name": "Create a new deposit account MANDATORY",
+					"name": "Create a new deposit account",
 					"protocolProfileBehavior": {
 						"disabledSystemHeaders": {}
 					},
@@ -1829,7 +1829,7 @@
 					},
 					"response": [
 						{
-							"name": "Create a new deposit account MANDATORY - 2",
+							"name": "Create a new deposit account MANDATORY",
 							"originalRequest": {
 								"method": "POST",
 								"header": [
@@ -1842,7 +1842,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"accountType\": \"CLIENT\",\n  \"name\": \"JosephSmitDepositSavingsAccount2\",\n  \"productId\": \"8a44d6d97c81ddbe017ca39738446161\",\n  \"relatedAccounts\": [\n    {\n      \"accountRelationType\": \"Parent\",\n      \"accountId\": \"8a44d76a83cdeef00183cf510e053d61\"\n    }\n  ]\n}",
+									"raw": "{\n    \"accountType\": \"Savings\",\n    \"name\": \"DemoSmit1DepositSavingsAccount1\",\n    \"productId\": \"8a44d6d97c81ddbe017ca39738446161\",\n    \"initialAmount\": \"15\",\n    \"parties\": [\n        {\n            \"partyId\": \"8a44cd4f842e79db0184303f01c61b5f\",\n            \"partyType\": \"Person\"\n        }\n    ]\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1869,7 +1869,7 @@
 							"header": [
 								{
 									"key": "Date",
-									"value": "Sun, 16 Oct 2022 23:49:06 GMT"
+									"value": "Tue, 18 Apr 2023 17:14:11 GMT"
 								},
 								{
 									"key": "Content-Type",
@@ -1893,7 +1893,7 @@
 								},
 								{
 									"key": "Cookie",
-									"value": "AWSALB=CRnmV6lI8LNNo5vIRNaUKHqpEsXKpa6XhqDECdLTklJ5nDxuRgplb4Fyt2TfdGlviziLMG35jE3iSdzA8/466BSicnZhg0RNh2W8Ss8UzjuR0p+UffwE/IQ/xW8G"
+									"value": "AWSALB=9cuuW8M1GDRQ+tuJk7TFWGgvzEozIuRg5QGDkVk3V8er4Yhw4A2LiZILPa5pvn4Eq0ez7QFpl0fQQuhRsA9CoP+X10Wt/5W/dFE/6Vn5L4C50QeeKMijxoJfFqnt"
 								},
 								{
 									"key": "Feature-Policy",
@@ -1901,7 +1901,7 @@
 								},
 								{
 									"key": "Postman-Token",
-									"value": "81ce817c-f207-42ca-a51f-3e69226408a9"
+									"value": "347e76a5-b043-4238-9192-b47c4505e95e"
 								},
 								{
 									"key": "Referrer-Policy",
@@ -1917,11 +1917,11 @@
 								},
 								{
 									"key": "Set-Cookie",
-									"value": "AWSALB=GQKBjItPb/aCCHBgqzv18O5q0Bbt7RhAEbsuyJjQkSriQOfrgCwG6K/ilHpiQk10eXuR2iwEkAz07F7zU7+xmclPHS+5oqul2RQXFekH3pYrFlgix+5sjjiwP8ET; Expires=Sun, 23 Oct 2022 23:49:06 GMT; Path=/"
+									"value": "AWSALB=z6JlxxDFD3IoRrWgGD+RZA7c0b8p3ljY/pR/g7+Z5MUOVhoB9armSRth7Xkp0Q46evynckWDoWNLl7d6miomCEPYMNdR36z8vBSYf3Bowil2kIjXrVjBfnDBxdGw; Expires=Tue, 25 Apr 2023 17:14:12 GMT; Path=/"
 								},
 								{
 									"key": "Set-Cookie",
-									"value": "AWSALBCORS=GQKBjItPb/aCCHBgqzv18O5q0Bbt7RhAEbsuyJjQkSriQOfrgCwG6K/ilHpiQk10eXuR2iwEkAz07F7zU7+xmclPHS+5oqul2RQXFekH3pYrFlgix+5sjjiwP8ET; Expires=Sun, 23 Oct 2022 23:49:06 GMT; Path=/; SameSite=None; Secure"
+									"value": "AWSALBCORS=z6JlxxDFD3IoRrWgGD+RZA7c0b8p3ljY/pR/g7+Z5MUOVhoB9armSRth7Xkp0Q46evynckWDoWNLl7d6miomCEPYMNdR36z8vBSYf3Bowil2kIjXrVjBfnDBxdGw; Expires=Tue, 25 Apr 2023 17:14:12 GMT; Path=/; SameSite=None; Secure"
 								},
 								{
 									"key": "Strict-Transport-Security",
@@ -1941,7 +1941,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"encodedKey\": \"8a44c61983d75f8e0183e333813c3548\",\n    \"creationDate\": \"2022-10-16T16:49:07-07:00\",\n    \"lastModifiedDate\": \"2022-10-16T16:49:07-07:00\",\n    \"id\": \"XRFI387\",\n    \"name\": \"JosephSmitDepositSavingsAccount2\",\n    \"accountHolderType\": \"CLIENT\",\n    \"accountHolderKey\": \"8a44d76a83cdeef00183cf510e053d61\",\n    \"accountState\": \"PENDING_APPROVAL\",\n    \"productTypeKey\": \"8a44d6d97c81ddbe017ca39738446161\",\n    \"accountType\": \"REGULAR_SAVINGS\",\n    \"currencyCode\": \"USD\",\n    \"internalControls\": {},\n    \"overdraftSettings\": {\n        \"allowOverdraft\": false,\n        \"overdraftLimit\": 0\n    },\n    \"interestSettings\": {\n        \"interestPaymentSettings\": {\n            \"interestPaymentDates\": []\n        }\n    },\n    \"overdraftInterestSettings\": {},\n    \"balances\": {\n        \"totalBalance\": 0,\n        \"overdraftAmount\": 0,\n        \"technicalOverdraftAmount\": 0,\n        \"lockedBalance\": 0,\n        \"availableBalance\": 0,\n        \"holdBalance\": 0,\n        \"overdraftInterestDue\": 0,\n        \"technicalOverdraftInterestDue\": 0,\n        \"feesDue\": 0,\n        \"blockedBalance\": 0,\n        \"forwardAvailableBalance\": 0\n    },\n    \"accruedAmounts\": {\n        \"interestAccrued\": 0,\n        \"overdraftInterestAccrued\": 0,\n        \"technicalOverdraftInterestAccrued\": 0,\n        \"negativeInterestAccrued\": 0\n    }\n}"
+							"body": "{\n    \"accountType\": \"Savings\",\n    \"name\": \"DemoSmit1DepositSavingsAccount1\",\n    \"productId\": \"8a44d6d97c81ddbe017ca39738446161\",\n    \"initialAmount\": \"15\",\n    \"parties\": [\n        {\n            \"partyId\": \"8a44cd4f842e79db0184303f01c61b5f\",\n            \"partyType\": \"Person\"\n        }\n    ],\n    \"status\": \"APPROVED\",\n    \"statusDateAndTime\": \"2023-04-18T10:14:13-07:00\",\n    \"openDate\": \"2023-04-18\",\n    \"accountNumber\": \"DUKG047\",\n    \"accountId\": \"8a44c467879495e3018795556cf4487f\"\n}"
 						}
 					]
 				},
@@ -3343,6 +3343,234 @@
 							"body": "{\n    \"transactionId\": \"8a44d6d58785d87701878f62686142f9\",\n    \"amount\": 100,\n    \"creditDebitIndicator\": \"Credit\",\n    \"bankTransactionDomain\": \"AccountManagement\",\n    \"bankTransactionFamily\": \"DEPOSIT\",\n    \"status\": \"Booked\",\n    \"reversalIndicator\": false,\n    \"creationDate\": \"2023-04-17T06:23:23-07:00\",\n    \"bookingDate\": \"2023-04-17T06:23:23-07:00\",\n    \"charges\": 0,\n    \"interest\": 0,\n    \"currentBalance\": 115\n}"
 						}
 					]
+				},
+				{
+					"name": "Create an Account Transfer",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const moment = require('moment');",
+									"pm.globals.set(\"today\", moment().format(\"YYYY-MM-DD\"));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"paymentMethod\": \"CreditTransfer\",\n  \"paymentType\": \"On-Us\",\n  \"amount\": \"10\",\n  \"debtorAccountId\": \"8a44a23d8419531901841a5b3bca5cc1\",\n  \"creditorAccountId\": \"8a44a23d8419531901841a4dae5a5ad9\",\n  \"purpose\": \"This is a description.\",\n  \"identifiers\": {\n    \"instructionIdentification\": \"123456789\",\n    \"endToEndIdentification\": \"12345678912345\",\n    \"uETR\": \"5fb9d4d6-1a3c-11ed-861d-0242ac120002\",\n    \"identifiers\": [\n      {\n        \"number\": \"string\",\n        \"identifierName\": \"ISOInitiationMessageIdentifier\",\n        \"issuer\": \"Banc of California\"\n      }\n    ]\n  },\n  \"paymentProcessing\": {\n    \"instructionPriority\": \"123456789\",\n    \"serviceLevel\": \"BookTransaction\",\n    \"clearingChannel\": \"ACH\",\n    \"localInstrument\": \"CreditTransfers\",\n    \"categoryPurpose\": \"SalaryPayment\"\n  },\n  \"chargeBearerType\": \"Shared\",\n  \"currency\": \"USD\",\n  \"exchangeDetail\": {\n    \"currency\": \"string\",\n    \"exchangeFactor\": \"0.7\"\n  },\n  \"checkDetail\": {\n    \"checkType\": \"string\",\n    \"checkNumber\": \"string\",\n    \"availabilityDate\": \"2023-04-17T08:00:00Z\"\n  },\n  \"valueDate\": \"{{today}}\",\n  \"creditor\": {\n    \"name\": {\n      \"name\": \"Jane Birkin\",\n      \"shortName\": \"Jane\",\n      \"relatedParties\": [\n        {\n          \"partyId\": \"5fb9d4d6-1a3c-11ed-861d-0242ac120002\",\n          \"partyType\": \"Person\",\n          \"partyName\": \"Jane Birkin\",\n          \"partyRelationType\": \"Owner\",\n          \"ownershipPercentage\": \"0.7\"\n        }\n      ],\n      \"postalAddresses\": [\n        {\n          \"addressType\": \"Postal\",\n          \"addressPurpose\": \"Billing\",\n          \"primaryIndicator\": true,\n          \"department\": \"A\",\n          \"subDepartment\": \"B\",\n          \"streetName\": \"First Street\",\n          \"firstCrossStreetName\": \"string\",\n          \"secondCrossStreetName\": \"Second Street\",\n          \"buildingNumber\": \"11407\",\n          \"buildingName\": \"Tall Tower\",\n          \"floor\": \"20\",\n          \"postBox\": \"MY779\",\n          \"room\": \"22\",\n          \"postCode\": \"97062-6884\",\n          \"townName\": \"Tualatin\",\n          \"townLocationName\": \"Clackamas\",\n          \"districtName\": \"Washington\",\n          \"countrySubDivision\": \"Oregon\",\n          \"countrySubDivisionCode\": \"AR-B\",\n          \"country\": \"US\",\n          \"addressLine\": [\n            \"11407 Sw Amu st, Suite MY777\"\n          ]\n        }\n      ],\n      \"residenceType\": \"Domestic\",\n      \"taxInformation\": {\n        \"tIN\": \"778-62-8144\",\n        \"taxIdType\": \"SSN\",\n        \"reportingIndicator\": true,\n        \"tinStatus\": \"Valid\",\n        \"taxStatus\": \"Valid\",\n        \"forms\": [\n          {\n            \"formName\": \"W-9\",\n            \"cerfiticationDate\": \"2022-04-17\",\n            \"expirationDate\": \"2022-04-17\"\n          }\n        ],\n        \"regulations\": [\n          {\n            \"name\": \"Chapter4\",\n            \"section\": \"1471\"\n          }\n        ],\n        \"withholdings\": [\n          {\n            \"withholdingTaxType\": \"NonResidentAlienTax\",\n            \"withholdingRate\": \"0.7\",\n            \"withholdingAmount\": \"100\"\n          }\n        ],\n        \"nRAIndicator\": true,\n        \"countrySubDivision\": \"Oregon\",\n        \"countrySubDivisionCode\": \"AR-B\",\n        \"country\": \"US\",\n        \"supplementaryData\": {}\n      },\n      \"powerOfAttorney\": {\n        \"jurisdiction\": {\n          \"countrySubdivision\": \"Oregon\",\n          \"townName\": \"Tualatin\",\n          \"country\": \"US\"\n        },\n        \"documentId\": \"5fb9d4d6-1a3c-11ed-861d-0242ac120002\",\n        \"documentReference\": \"string\",\n        \"version\": \"string\",\n        \"signOffDate\": \"2022-04-17\",\n        \"issueDate\": \"2022-04-17\",\n        \"purpose\": \"string\",\n        \"fromDateTime\": \"2022-04-17\",\n        \"upToDateTime\": \"2022-04-17\",\n        \"authorizedPerson\": \"5fb9d4d6-1a3c-11ed-861d-0242ac120002\",\n        \"authorizedAccount\": \"0dd926fe-1ca2-11ed-861d-0242ac120002\"\n      },\n      \"supplementaryData\": {},\n      \"settings\": {\n        \"communicationChannels\": [\n          {\n            \"channel\": \"Email\",\n            \"channelIdentification\": \"011-02010020202\",\n            \"codeWord\": \"string\",\n            \"alertIndicator\": \"string\"\n          }\n        ]\n      },\n      \"restrictions\": [\n        {\n          \"name\": \"externalTransferAllowed\",\n          \"restrictionPurpose\": \"This is a description.\",\n          \"validFrom\": \"2022-04-17\",\n          \"validUntil\": \"2022-04-17\"\n        }\n      ]\n    },\n    \"postalAddress\": {\n      \"iBAN\": \"AL35202111090000000001234567\",\n      \"accountNumber\": \"012345678\",\n      \"identifiers\": [\n        {\n          \"identification\": \"string\",\n          \"schemeName\": \"BBANIdentifier\",\n          \"issuer\": \"string\"\n        }\n      ]\n    },\n    \"agent\": {\n      \"clearingSystemMemberIdentification\": \"UnitedStatesRoutingNumberFedwireNACHA\",\n      \"memberIdentification\": \"string\",\n      \"name\": \"string\",\n      \"postalAddress\": {\n        \"addressType\": \"Postal\",\n        \"addressPurpose\": \"Billing\",\n        \"primaryIndicator\": true,\n        \"department\": \"A\",\n        \"subDepartment\": \"B\",\n        \"streetName\": \"First Street\",\n        \"firstCrossStreetName\": \"string\",\n        \"secondCrossStreetName\": \"Second Street\",\n        \"buildingNumber\": \"11407\",\n        \"buildingName\": \"Tall Tower\",\n        \"floor\": \"20\",\n        \"postBox\": \"MY779\",\n        \"room\": \"22\",\n        \"postCode\": \"97062-6884\",\n        \"townName\": \"Tualatin\",\n        \"townLocationName\": \"Clackamas\",\n        \"districtName\": \"Washington\",\n        \"countrySubDivision\": \"Oregon\",\n        \"countrySubDivisionCode\": \"AR-B\",\n        \"country\": \"US\",\n        \"addressLine\": [\n          \"11407 Sw Amu st, Suite MY777\"\n        ]\n      },\n      \"bIC\": \"AAAABBCCXXX\",\n      \"lEI\": \"2ZCNRR8UK83OBTEK2170\",\n      \"genericIdentifiers\": [\n        {\n          \"number\": \"123-45-6789\",\n          \"schemeName\": \"TaxIdentificationNumber\",\n          \"issuer\": \"UnitedStates\",\n          \"issueDate\": \"2022-04-17\",\n          \"expirationDate\": \"2022-04-17\"\n        }\n      ]\n    },\n    \"bIC\": \"AAAABBCCXXX\",\n    \"lEI\": \"2ZCNRR8UK83OBTEK2170\",\n    \"placeAndDateOfBirth\": {\n      \"countrySubdivision\": \"Oregon\",\n      \"townName\": \"Tualatin\",\n      \"country\": \"US\",\n      \"birthDate\": \"2022-04-17\"\n    },\n    \"contact\": {\n      \"namePrefix\": \"string\",\n      \"name\": \"Jane Birkin\",\n      \"phones\": [\n        {\n          \"number\": \"+1-415-731359\",\n          \"extension\": \"strin\",\n          \"phoneType\": \"string\",\n          \"phonePurpose\": \"string\",\n          \"primaryIndicator\": true,\n          \"preferredHourOfDay\": {\n            \"hour\": \"12\",\n            \"timeZone\": \"Pacific\"\n          }\n        }\n      ],\n      \"emails\": [\n        {\n          \"emailAddress\": \"string\",\n          \"emailPurpose\": \"Statements\",\n          \"primaryIndicator\": true\n        }\n      ],\n      \"jobTitle\": \"Head of Documentation\",\n      \"department\": \"Sales\",\n      \"otherContactMethods\": [\n        {\n          \"channelType\": \"Email\",\n          \"identification\": \"011-02010020202\"\n        }\n      ],\n      \"preferredMethod\": \"Email\",\n      \"preferredLanguage\": \"English\"\n    },\n    \"genericIdentifiers\": [\n      {\n        \"number\": \"123-45-6789\",\n        \"schemeName\": \"TaxIdentificationNumber\",\n        \"issuer\": \"UnitedStates\",\n        \"issueDate\": \"2022-04-17\",\n        \"expirationDate\": \"2022-04-17\"\n      }\n    ],\n    \"countryOfResidence\": \"US\"\n  }\n}"
+						},
+						"url": {
+							"raw": "http://localhost:7777/mambu-portx-cbs-connector/1.0/credit-transfers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7777",
+							"path": [
+								"mambu-portx-cbs-connector",
+								"1.0",
+								"credit-transfers"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create an Account Transfer",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"paymentMethod\": \"CreditTransfer\",\n  \"paymentType\": \"On-Us\",\n  \"amount\": \"10\",\n  \"debtorAccountId\": \"8a44a23d8419531901841a5b3bca5cc1\",\n  \"creditorAccountId\": \"8a44a23d8419531901841a4dae5a5ad9\",\n  \"purpose\": \"This is a description.\",\n  \"identifiers\": {\n    \"instructionIdentification\": \"123456789\",\n    \"endToEndIdentification\": \"12345678912345\",\n    \"uETR\": \"5fb9d4d6-1a3c-11ed-861d-0242ac120002\",\n    \"identifiers\": [\n      {\n        \"number\": \"string\",\n        \"identifierName\": \"ISOInitiationMessageIdentifier\",\n        \"issuer\": \"Banc of California\"\n      }\n    ]\n  },\n  \"paymentProcessing\": {\n    \"instructionPriority\": \"123456789\",\n    \"serviceLevel\": \"BookTransaction\",\n    \"clearingChannel\": \"ACH\",\n    \"localInstrument\": \"CreditTransfers\",\n    \"categoryPurpose\": \"SalaryPayment\"\n  },\n  \"chargeBearerType\": \"Shared\",\n  \"currency\": \"USD\",\n  \"exchangeDetail\": {\n    \"currency\": \"string\",\n    \"exchangeFactor\": \"0.7\"\n  },\n  \"checkDetail\": {\n    \"checkType\": \"string\",\n    \"checkNumber\": \"string\",\n    \"availabilityDate\": \"2023-04-17T08:00:00Z\"\n  },\n  \"valueDate\": \"2023-04-18\",\n  \"creditor\": {\n    \"name\": {\n      \"name\": \"Jane Birkin\",\n      \"shortName\": \"Jane\",\n      \"relatedParties\": [\n        {\n          \"partyId\": \"5fb9d4d6-1a3c-11ed-861d-0242ac120002\",\n          \"partyType\": \"Person\",\n          \"partyName\": \"Jane Birkin\",\n          \"partyRelationType\": \"Owner\",\n          \"ownershipPercentage\": \"0.7\"\n        }\n      ],\n      \"postalAddresses\": [\n        {\n          \"addressType\": \"Postal\",\n          \"addressPurpose\": \"Billing\",\n          \"primaryIndicator\": true,\n          \"department\": \"A\",\n          \"subDepartment\": \"B\",\n          \"streetName\": \"First Street\",\n          \"firstCrossStreetName\": \"string\",\n          \"secondCrossStreetName\": \"Second Street\",\n          \"buildingNumber\": \"11407\",\n          \"buildingName\": \"Tall Tower\",\n          \"floor\": \"20\",\n          \"postBox\": \"MY779\",\n          \"room\": \"22\",\n          \"postCode\": \"97062-6884\",\n          \"townName\": \"Tualatin\",\n          \"townLocationName\": \"Clackamas\",\n          \"districtName\": \"Washington\",\n          \"countrySubDivision\": \"Oregon\",\n          \"countrySubDivisionCode\": \"AR-B\",\n          \"country\": \"US\",\n          \"addressLine\": [\n            \"11407 Sw Amu st, Suite MY777\"\n          ]\n        }\n      ],\n      \"residenceType\": \"Domestic\",\n      \"taxInformation\": {\n        \"tIN\": \"778-62-8144\",\n        \"taxIdType\": \"SSN\",\n        \"reportingIndicator\": true,\n        \"tinStatus\": \"Valid\",\n        \"taxStatus\": \"Valid\",\n        \"forms\": [\n          {\n            \"formName\": \"W-9\",\n            \"cerfiticationDate\": \"2022-04-17\",\n            \"expirationDate\": \"2022-04-17\"\n          }\n        ],\n        \"regulations\": [\n          {\n            \"name\": \"Chapter4\",\n            \"section\": \"1471\"\n          }\n        ],\n        \"withholdings\": [\n          {\n            \"withholdingTaxType\": \"NonResidentAlienTax\",\n            \"withholdingRate\": \"0.7\",\n            \"withholdingAmount\": \"100\"\n          }\n        ],\n        \"nRAIndicator\": true,\n        \"countrySubDivision\": \"Oregon\",\n        \"countrySubDivisionCode\": \"AR-B\",\n        \"country\": \"US\",\n        \"supplementaryData\": {}\n      },\n      \"powerOfAttorney\": {\n        \"jurisdiction\": {\n          \"countrySubdivision\": \"Oregon\",\n          \"townName\": \"Tualatin\",\n          \"country\": \"US\"\n        },\n        \"documentId\": \"5fb9d4d6-1a3c-11ed-861d-0242ac120002\",\n        \"documentReference\": \"string\",\n        \"version\": \"string\",\n        \"signOffDate\": \"2022-04-17\",\n        \"issueDate\": \"2022-04-17\",\n        \"purpose\": \"string\",\n        \"fromDateTime\": \"2022-04-17\",\n        \"upToDateTime\": \"2022-04-17\",\n        \"authorizedPerson\": \"5fb9d4d6-1a3c-11ed-861d-0242ac120002\",\n        \"authorizedAccount\": \"0dd926fe-1ca2-11ed-861d-0242ac120002\"\n      },\n      \"supplementaryData\": {},\n      \"settings\": {\n        \"communicationChannels\": [\n          {\n            \"channel\": \"Email\",\n            \"channelIdentification\": \"011-02010020202\",\n            \"codeWord\": \"string\",\n            \"alertIndicator\": \"string\"\n          }\n        ]\n      },\n      \"restrictions\": [\n        {\n          \"name\": \"externalTransferAllowed\",\n          \"restrictionPurpose\": \"This is a description.\",\n          \"validFrom\": \"2022-04-17\",\n          \"validUntil\": \"2022-04-17\"\n        }\n      ]\n    },\n    \"postalAddress\": {\n      \"iBAN\": \"AL35202111090000000001234567\",\n      \"accountNumber\": \"012345678\",\n      \"identifiers\": [\n        {\n          \"identification\": \"string\",\n          \"schemeName\": \"BBANIdentifier\",\n          \"issuer\": \"string\"\n        }\n      ]\n    },\n    \"agent\": {\n      \"clearingSystemMemberIdentification\": \"UnitedStatesRoutingNumberFedwireNACHA\",\n      \"memberIdentification\": \"string\",\n      \"name\": \"string\",\n      \"postalAddress\": {\n        \"addressType\": \"Postal\",\n        \"addressPurpose\": \"Billing\",\n        \"primaryIndicator\": true,\n        \"department\": \"A\",\n        \"subDepartment\": \"B\",\n        \"streetName\": \"First Street\",\n        \"firstCrossStreetName\": \"string\",\n        \"secondCrossStreetName\": \"Second Street\",\n        \"buildingNumber\": \"11407\",\n        \"buildingName\": \"Tall Tower\",\n        \"floor\": \"20\",\n        \"postBox\": \"MY779\",\n        \"room\": \"22\",\n        \"postCode\": \"97062-6884\",\n        \"townName\": \"Tualatin\",\n        \"townLocationName\": \"Clackamas\",\n        \"districtName\": \"Washington\",\n        \"countrySubDivision\": \"Oregon\",\n        \"countrySubDivisionCode\": \"AR-B\",\n        \"country\": \"US\",\n        \"addressLine\": [\n          \"11407 Sw Amu st, Suite MY777\"\n        ]\n      },\n      \"bIC\": \"AAAABBCCXXX\",\n      \"lEI\": \"2ZCNRR8UK83OBTEK2170\",\n      \"genericIdentifiers\": [\n        {\n          \"number\": \"123-45-6789\",\n          \"schemeName\": \"TaxIdentificationNumber\",\n          \"issuer\": \"UnitedStates\",\n          \"issueDate\": \"2022-04-17\",\n          \"expirationDate\": \"2022-04-17\"\n        }\n      ]\n    },\n    \"bIC\": \"AAAABBCCXXX\",\n    \"lEI\": \"2ZCNRR8UK83OBTEK2170\",\n    \"placeAndDateOfBirth\": {\n      \"countrySubdivision\": \"Oregon\",\n      \"townName\": \"Tualatin\",\n      \"country\": \"US\",\n      \"birthDate\": \"2022-04-17\"\n    },\n    \"contact\": {\n      \"namePrefix\": \"string\",\n      \"name\": \"Jane Birkin\",\n      \"phones\": [\n        {\n          \"number\": \"+1-415-731359\",\n          \"extension\": \"strin\",\n          \"phoneType\": \"string\",\n          \"phonePurpose\": \"string\",\n          \"primaryIndicator\": true,\n          \"preferredHourOfDay\": {\n            \"hour\": \"12\",\n            \"timeZone\": \"Pacific\"\n          }\n        }\n      ],\n      \"emails\": [\n        {\n          \"emailAddress\": \"string\",\n          \"emailPurpose\": \"Statements\",\n          \"primaryIndicator\": true\n        }\n      ],\n      \"jobTitle\": \"Head of Documentation\",\n      \"department\": \"Sales\",\n      \"otherContactMethods\": [\n        {\n          \"channelType\": \"Email\",\n          \"identification\": \"011-02010020202\"\n        }\n      ],\n      \"preferredMethod\": \"Email\",\n      \"preferredLanguage\": \"English\"\n    },\n    \"genericIdentifiers\": [\n      {\n        \"number\": \"123-45-6789\",\n        \"schemeName\": \"TaxIdentificationNumber\",\n        \"issuer\": \"UnitedStates\",\n        \"issueDate\": \"2022-04-17\",\n        \"expirationDate\": \"2022-04-17\"\n      }\n    ],\n    \"countryOfResidence\": \"US\"\n  }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7777/mambu-portx-cbs-connector/1.0/credit-transfers",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7777",
+									"path": [
+										"mambu-portx-cbs-connector",
+										"1.0",
+										"credit-transfers"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"paymentMethod\": \"CreditTransfer\",\n    \"paymentType\": \"On-Us\",\n    \"amount\": \"10\",\n    \"debtorAccountId\": \"8a44a23d8419531901841a5b3bca5cc1\",\n    \"creditorAccountId\": \"8a44a23d8419531901841a4dae5a5ad9\",\n    \"purpose\": \"This is a description.\",\n    \"identifiers\": {\n        \"instructionIdentification\": \"123456789\",\n        \"endToEndIdentification\": \"12345678912345\",\n        \"uETR\": \"5fb9d4d6-1a3c-11ed-861d-0242ac120002\",\n        \"identifiers\": [\n            {\n                \"number\": \"string\",\n                \"identifierName\": \"ISOInitiationMessageIdentifier\",\n                \"issuer\": \"Banc of California\"\n            }\n        ]\n    },\n    \"paymentProcessing\": {\n        \"instructionPriority\": \"123456789\",\n        \"serviceLevel\": \"BookTransaction\",\n        \"clearingChannel\": \"ACH\",\n        \"localInstrument\": \"CreditTransfers\",\n        \"categoryPurpose\": \"SalaryPayment\"\n    },\n    \"chargeBearerType\": \"Shared\",\n    \"currency\": \"USD\",\n    \"exchangeDetail\": {\n        \"currency\": \"string\",\n        \"exchangeFactor\": \"0.7\"\n    },\n    \"checkDetail\": {\n        \"checkType\": \"string\",\n        \"checkNumber\": \"string\",\n        \"availabilityDate\": \"2023-04-17T08:00:00Z\"\n    },\n    \"valueDate\": \"2023-04-18\",\n    \"creditor\": {\n        \"name\": {\n            \"name\": \"Jane Birkin\",\n            \"shortName\": \"Jane\",\n            \"relatedParties\": [\n                {\n                    \"partyId\": \"5fb9d4d6-1a3c-11ed-861d-0242ac120002\",\n                    \"partyType\": \"Person\",\n                    \"partyName\": \"Jane Birkin\",\n                    \"partyRelationType\": \"Owner\",\n                    \"ownershipPercentage\": \"0.7\"\n                }\n            ],\n            \"postalAddresses\": [\n                {\n                    \"addressType\": \"Postal\",\n                    \"addressPurpose\": \"Billing\",\n                    \"primaryIndicator\": true,\n                    \"department\": \"A\",\n                    \"subDepartment\": \"B\",\n                    \"streetName\": \"First Street\",\n                    \"firstCrossStreetName\": \"string\",\n                    \"secondCrossStreetName\": \"Second Street\",\n                    \"buildingNumber\": \"11407\",\n                    \"buildingName\": \"Tall Tower\",\n                    \"floor\": \"20\",\n                    \"postBox\": \"MY779\",\n                    \"room\": \"22\",\n                    \"postCode\": \"97062-6884\",\n                    \"townName\": \"Tualatin\",\n                    \"townLocationName\": \"Clackamas\",\n                    \"districtName\": \"Washington\",\n                    \"countrySubDivision\": \"Oregon\",\n                    \"countrySubDivisionCode\": \"AR-B\",\n                    \"country\": \"US\",\n                    \"addressLine\": [\n                        \"11407 Sw Amu st, Suite MY777\"\n                    ]\n                }\n            ],\n            \"residenceType\": \"Domestic\",\n            \"taxInformation\": {\n                \"tIN\": \"778-62-8144\",\n                \"taxIdType\": \"SSN\",\n                \"reportingIndicator\": true,\n                \"tinStatus\": \"Valid\",\n                \"taxStatus\": \"Valid\",\n                \"forms\": [\n                    {\n                        \"formName\": \"W-9\",\n                        \"cerfiticationDate\": \"2022-04-17\",\n                        \"expirationDate\": \"2022-04-17\"\n                    }\n                ],\n                \"regulations\": [\n                    {\n                        \"name\": \"Chapter4\",\n                        \"section\": \"1471\"\n                    }\n                ],\n                \"withholdings\": [\n                    {\n                        \"withholdingTaxType\": \"NonResidentAlienTax\",\n                        \"withholdingRate\": \"0.7\",\n                        \"withholdingAmount\": \"100\"\n                    }\n                ],\n                \"nRAIndicator\": true,\n                \"countrySubDivision\": \"Oregon\",\n                \"countrySubDivisionCode\": \"AR-B\",\n                \"country\": \"US\",\n                \"supplementaryData\": {}\n            },\n            \"powerOfAttorney\": {\n                \"jurisdiction\": {\n                    \"countrySubdivision\": \"Oregon\",\n                    \"townName\": \"Tualatin\",\n                    \"country\": \"US\"\n                },\n                \"documentId\": \"5fb9d4d6-1a3c-11ed-861d-0242ac120002\",\n                \"documentReference\": \"string\",\n                \"version\": \"string\",\n                \"signOffDate\": \"2022-04-17\",\n                \"issueDate\": \"2022-04-17\",\n                \"purpose\": \"string\",\n                \"fromDateTime\": \"2022-04-17\",\n                \"upToDateTime\": \"2022-04-17\",\n                \"authorizedPerson\": \"5fb9d4d6-1a3c-11ed-861d-0242ac120002\",\n                \"authorizedAccount\": \"0dd926fe-1ca2-11ed-861d-0242ac120002\"\n            },\n            \"supplementaryData\": {},\n            \"settings\": {\n                \"communicationChannels\": [\n                    {\n                        \"channel\": \"Email\",\n                        \"channelIdentification\": \"011-02010020202\",\n                        \"codeWord\": \"string\",\n                        \"alertIndicator\": \"string\"\n                    }\n                ]\n            },\n            \"restrictions\": [\n                {\n                    \"name\": \"externalTransferAllowed\",\n                    \"restrictionPurpose\": \"This is a description.\",\n                    \"validFrom\": \"2022-04-17\",\n                    \"validUntil\": \"2022-04-17\"\n                }\n            ]\n        },\n        \"postalAddress\": {\n            \"iBAN\": \"AL35202111090000000001234567\",\n            \"accountNumber\": \"012345678\",\n            \"identifiers\": [\n                {\n                    \"identification\": \"string\",\n                    \"schemeName\": \"BBANIdentifier\",\n                    \"issuer\": \"string\"\n                }\n            ]\n        },\n        \"agent\": {\n            \"clearingSystemMemberIdentification\": \"UnitedStatesRoutingNumberFedwireNACHA\",\n            \"memberIdentification\": \"string\",\n            \"name\": \"string\",\n            \"postalAddress\": {\n                \"addressType\": \"Postal\",\n                \"addressPurpose\": \"Billing\",\n                \"primaryIndicator\": true,\n                \"department\": \"A\",\n                \"subDepartment\": \"B\",\n                \"streetName\": \"First Street\",\n                \"firstCrossStreetName\": \"string\",\n                \"secondCrossStreetName\": \"Second Street\",\n                \"buildingNumber\": \"11407\",\n                \"buildingName\": \"Tall Tower\",\n                \"floor\": \"20\",\n                \"postBox\": \"MY779\",\n                \"room\": \"22\",\n                \"postCode\": \"97062-6884\",\n                \"townName\": \"Tualatin\",\n                \"townLocationName\": \"Clackamas\",\n                \"districtName\": \"Washington\",\n                \"countrySubDivision\": \"Oregon\",\n                \"countrySubDivisionCode\": \"AR-B\",\n                \"country\": \"US\",\n                \"addressLine\": [\n                    \"11407 Sw Amu st, Suite MY777\"\n                ]\n            },\n            \"bIC\": \"AAAABBCCXXX\",\n            \"lEI\": \"2ZCNRR8UK83OBTEK2170\",\n            \"genericIdentifiers\": [\n                {\n                    \"number\": \"123-45-6789\",\n                    \"schemeName\": \"TaxIdentificationNumber\",\n                    \"issuer\": \"UnitedStates\",\n                    \"issueDate\": \"2022-04-17\",\n                    \"expirationDate\": \"2022-04-17\"\n                }\n            ]\n        },\n        \"bIC\": \"AAAABBCCXXX\",\n        \"lEI\": \"2ZCNRR8UK83OBTEK2170\",\n        \"placeAndDateOfBirth\": {\n            \"countrySubdivision\": \"Oregon\",\n            \"townName\": \"Tualatin\",\n            \"country\": \"US\",\n            \"birthDate\": \"2022-04-17\"\n        },\n        \"contact\": {\n            \"namePrefix\": \"string\",\n            \"name\": \"Jane Birkin\",\n            \"phones\": [\n                {\n                    \"number\": \"+1-415-731359\",\n                    \"extension\": \"strin\",\n                    \"phoneType\": \"string\",\n                    \"phonePurpose\": \"string\",\n                    \"primaryIndicator\": true,\n                    \"preferredHourOfDay\": {\n                        \"hour\": \"12\",\n                        \"timeZone\": \"Pacific\"\n                    }\n                }\n            ],\n            \"emails\": [\n                {\n                    \"emailAddress\": \"string\",\n                    \"emailPurpose\": \"Statements\",\n                    \"primaryIndicator\": true\n                }\n            ],\n            \"jobTitle\": \"Head of Documentation\",\n            \"department\": \"Sales\",\n            \"otherContactMethods\": [\n                {\n                    \"channelType\": \"Email\",\n                    \"identification\": \"011-02010020202\"\n                }\n            ],\n            \"preferredMethod\": \"Email\",\n            \"preferredLanguage\": \"English\"\n        },\n        \"genericIdentifiers\": [\n            {\n                \"number\": \"123-45-6789\",\n                \"schemeName\": \"TaxIdentificationNumber\",\n                \"issuer\": \"UnitedStates\",\n                \"issueDate\": \"2022-04-17\",\n                \"expirationDate\": \"2022-04-17\"\n            }\n        ],\n        \"countryOfResidence\": \"US\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "FindAccount Credit Transfer",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:7777/mambu-portx-cbs-connector/1.0/credit-transfers/662",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7777",
+							"path": [
+								"mambu-portx-cbs-connector",
+								"1.0",
+								"credit-transfers",
+								"662"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "FindAccount Credit Transfer",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:7777/mambu-portx-cbs-connector/1.0/credit-transfers/662",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7777",
+									"path": [
+										"mambu-portx-cbs-connector",
+										"1.0",
+										"credit-transfers",
+										"662"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 18 Apr 2023 17:04:02 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/vnd.mambu.v2+json"
+								},
+								{
+									"key": "Accept",
+									"value": "application/vnd.mambu.v2+json"
+								},
+								{
+									"key": "Accept-Encoding",
+									"value": "gzip, deflate, br"
+								},
+								{
+									"key": "Authorization",
+									"value": "Basic c2hhc2hpOk1vZHVzYm94QDEyMw=="
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "object-src 'none'; upgrade-insecure-requests;"
+								},
+								{
+									"key": "Cookie",
+									"value": "AWSALB=KQrNdIrbS71cvb7zvolr3IbQ+87rfwZ4NS/zhh4haiPKkMg0GkF6tr749rXEyyPBBTECAUq4oSIeBVWmsqVlKtBeyxl1aoXw0tBCGdOj+lxqKfnGImoKVIFpdAj0"
+								},
+								{
+									"key": "Feature-Policy",
+									"value": "oversized-images 'none'; unsized-media 'none';"
+								},
+								{
+									"key": "paymentId",
+									"value": "662"
+								},
+								{
+									"key": "Postman-Token",
+									"value": "de6db340-0286-47f2-911b-88fe45d19db5"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "Server",
+									"value": "Apache"
+								},
+								{
+									"key": "Session-ID",
+									"value": "no-session-id"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "AWSALB=zeCLJEmd8BS1icOmGjOKLJdCp6JiyHgZHjA1q72NGHLsGp8Xk+uNFBVZ+xyH9/7G+TmCpTXYVi00a5dWcNVfpTae7QJLIcBqNYCFWiLg6ifOrTOZZoZacqRYb/qF; Expires=Tue, 25 Apr 2023 17:04:04 GMT; Path=/"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "AWSALBCORS=zeCLJEmd8BS1icOmGjOKLJdCp6JiyHgZHjA1q72NGHLsGp8Xk+uNFBVZ+xyH9/7G+TmCpTXYVi00a5dWcNVfpTae7QJLIcBqNYCFWiLg6ifOrTOZZoZacqRYb/qF; Expires=Tue, 25 Apr 2023 17:04:04 GMT; Path=/; SameSite=None; Secure"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=63072001; includeSubDomains; preload"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"paymentMethod\": \"CreditTransfer\",\n    \"paymentType\": \"On-Us\",\n    \"amount\": 10,\n    \"debtorAccountId\": \"8a44a23d8419531901841a4dae5a5ad9\",\n    \"creditorAccountId\": \"8a44a23d8419531901841a5b3bca5cc1\",\n    \"currency\": \"USD\",\n    \"purpose\": \"This is a description.\",\n    \"valueDate\": \"2023-04-18T00:00:00-07:00\",\n    \"paymentId\": \"8a44c467879495e3018795480e3d485a\",\n    \"status\": \"AcceptedSettlementCompleted\",\n    \"date\": \"2023-04-18T09:52:22-07:00\"\n}"
+						}
+					]
 				}
 			]
 		},
@@ -4382,7 +4610,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:7777/mambu-portx-cbs-connector/1.0/organizations/5fb9d4d6-1a3c-11ed-861d-0242ac120002/accounts",
+							"raw": "http://localhost:7777/mambu-portx-cbs-connector/1.0/organizations/8a44d44b83ee67fd0183f150508150d7/accounts",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -4392,16 +4620,16 @@
 								"mambu-portx-cbs-connector",
 								"1.0",
 								"organizations",
-								"5fb9d4d6-1a3c-11ed-861d-0242ac120002",
+								"8a44d44b83ee67fd0183f150508150d7",
 								"accounts"
 							]
 						}
 					},
 					"response": [
 						{
-							"name": "Create Organization - Only Mandatory fields - DevGroup1",
+							"name": "GET Organization Accounts",
 							"originalRequest": {
-								"method": "POST",
+								"method": "GET",
 								"header": [
 									{
 										"key": "bankId",
@@ -4409,17 +4637,8 @@
 										"type": "text"
 									}
 								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n  \"name\": \"DevGroup1\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
 								"url": {
-									"raw": "http://localhost:7777/mambu-portx-cbs-connector/1.0/organizations",
+									"raw": "http://localhost:7777/mambu-portx-cbs-connector/1.0/organizations/8a44d44b83ee67fd0183f150508150d7/accounts",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -4428,17 +4647,19 @@
 									"path": [
 										"mambu-portx-cbs-connector",
 										"1.0",
-										"organizations"
+										"organizations",
+										"8a44d44b83ee67fd0183f150508150d7",
+										"accounts"
 									]
 								}
 							},
-							"status": "Created",
-							"code": 201,
+							"status": "OK",
+							"code": 200,
 							"_postman_previewlanguage": "json",
 							"header": [
 								{
 									"key": "Date",
-									"value": "Wed, 19 Oct 2022 17:35:13 GMT"
+									"value": "Tue, 18 Apr 2023 17:12:41 GMT"
 								},
 								{
 									"key": "Content-Type",
@@ -4466,15 +4687,27 @@
 								},
 								{
 									"key": "Cookie",
-									"value": "AWSALB=hLbcsYRF3JW3MJ52Os06RZzwcnIdbFYkokDLmMJ3L16DfB4blxjYGQgzhcsXOtXEk2plp1FYIZGg3357wl/iHsUvx3r4UOxJ/VHTPvhbLhpStqCCMZHiJdbNQk4g"
+									"value": "AWSALB=eePK6O4l0r8cCxf7H3R/DxxlfpapGPdbEky9rqbfd8seQfCjHQsrjrN8A0aRJizhkig6wveTd7QKrEEknXK2yhLxPfjlclb5wllawD4CC8rx8KrXHeGLkGlgbGLC"
 								},
 								{
 									"key": "Feature-Policy",
 									"value": "oversized-images 'none'; unsized-media 'none';"
 								},
 								{
+									"key": "Items-Limit",
+									"value": "50"
+								},
+								{
+									"key": "Items-Offset",
+									"value": "0"
+								},
+								{
+									"key": "organizationId",
+									"value": "8a44d44b83ee67fd0183f150508150d7"
+								},
+								{
 									"key": "Postman-Token",
-									"value": "1e6798f3-2fa3-46a7-8f63-d27188a601f8"
+									"value": "87f9da96-758f-460f-b6dd-a1ba23d8d63a"
 								},
 								{
 									"key": "Referrer-Policy",
@@ -4490,11 +4723,11 @@
 								},
 								{
 									"key": "Set-Cookie",
-									"value": "AWSALB=Me+CnbVD9eh0n5Df7Sgl0gAdskMSmOoHrkwlul2fos47YMb9zDJt3zq8HfN6Wl4SQPNWNzR/K2fmccw1fn7o/DAVPOAC30CxpLM4leWmFELngXA7vMAcx7d5hYAD; Expires=Wed, 26 Oct 2022 17:35:13 GMT; Path=/"
+									"value": "AWSALB=9cuuW8M1GDRQ+tuJk7TFWGgvzEozIuRg5QGDkVk3V8er4Yhw4A2LiZILPa5pvn4Eq0ez7QFpl0fQQuhRsA9CoP+X10Wt/5W/dFE/6Vn5L4C50QeeKMijxoJfFqnt; Expires=Tue, 25 Apr 2023 17:12:41 GMT; Path=/"
 								},
 								{
 									"key": "Set-Cookie",
-									"value": "AWSALBCORS=Me+CnbVD9eh0n5Df7Sgl0gAdskMSmOoHrkwlul2fos47YMb9zDJt3zq8HfN6Wl4SQPNWNzR/K2fmccw1fn7o/DAVPOAC30CxpLM4leWmFELngXA7vMAcx7d5hYAD; Expires=Wed, 26 Oct 2022 17:35:13 GMT; Path=/; SameSite=None; Secure"
+									"value": "AWSALBCORS=9cuuW8M1GDRQ+tuJk7TFWGgvzEozIuRg5QGDkVk3V8er4Yhw4A2LiZILPa5pvn4Eq0ez7QFpl0fQQuhRsA9CoP+X10Wt/5W/dFE/6Vn5L4C50QeeKMijxoJfFqnt; Expires=Tue, 25 Apr 2023 17:12:41 GMT; Path=/; SameSite=None; Secure"
 								},
 								{
 									"key": "Strict-Transport-Security",
@@ -4514,7 +4747,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"encodedKey\": \"8a44d44b83ee67fd0183f150508150d7\",\n    \"id\": \"892113038\",\n    \"creationDate\": \"2022-10-19T10:35:16-07:00\",\n    \"lastModifiedDate\": \"2022-10-19T10:35:16-07:00\",\n    \"groupName\": \"DevGroup1\",\n    \"loanCycle\": 0,\n    \"preferredLanguage\": \"ENGLISH\",\n    \"groupRoleKey\": \"8a44cde37b592d63017b5fac6e4c0519\",\n    \"addresses\": [],\n    \"groupMembers\": []\n}"
+							"body": "{\n    \"organizationId\": \"8a44d44b83ee67fd0183f150508150d7\",\n    \"organizationName\": \"DevGroup1\",\n    \"accounts\": [\n        {\n            \"accountNumber\": \"AMRT531\",\n            \"accountType\": \"REGULAR_SAVINGS\",\n            \"accountOwnershipType\": \"Owner\",\n            \"productId\": \"8a44d6d97c81ddbe017ca39738446161\",\n            \"name\": \"DEPOSIT PRODUCT\",\n            \"currency\": \"USD\",\n            \"parties\": [\n                {\n                    \"partyId\": \"8a44d44b83ee67fd0183f150508150d7\",\n                    \"partyType\": \"Organization\",\n                    \"partyAccountRole\": \"AccountOwner\"\n                }\n            ],\n            \"status\": \"APPROVED\",\n            \"statusDateAndTime\": \"2023-04-18T10:12:03-07:00\",\n            \"openDate\": \"2023-04-18T10:11:56-07:00\",\n            \"balances\": [\n                {\n                    \"balanceName\": \"Available\",\n                    \"amount\": 0,\n                    \"currency\": \"USD\"\n                }\n            ],\n            \"accountId\": \"8a44da408794957a0187953c76754cf5\"\n        }\n    ]\n}"
 						}
 					]
 				},
@@ -4900,37 +5133,6 @@
 			]
 		},
 		{
-			"name": "branches",
-			"item": [
-				{
-					"name": "Get All Branches",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/vnd.mambu.v2+json"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:7777/mambu-portx-cbs-connector/1.0/branches",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "7777",
-							"path": [
-								"mambu-portx-cbs-connector",
-								"1.0",
-								"branches"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
 			"name": "products",
 			"item": [
 				{
@@ -5091,225 +5293,6 @@
 							"body": "[\n    {\n        \"productId\": \"ID_DEPOSIT_PRODU\",\n        \"name\": \"DEPOSIT PRODUCT\",\n        \"description\": \"\",\n        \"acccountType\": \"REGULAR_SAVINGS\",\n        \"productType\": \"PERSONAL_DEPOSIT\"\n    },\n    {\n        \"productId\": \"ID_DEPOSIT_ARS\",\n        \"name\": \"DEPOSIT PRODUCT ARS\",\n        \"description\": \"\",\n        \"acccountType\": \"REGULAR_SAVINGS\",\n        \"productType\": \"PERSONAL_DEPOSIT\"\n    },\n    {\n        \"productId\": \"ACH_STLMT_OUT\",\n        \"name\": \"ACH_SETTLEMENT_OUTGOING\",\n        \"description\": \"\",\n        \"acccountType\": \"CURRENT_ACCOUNT\",\n        \"productType\": \"DAILY_BANKING_ACCOUNTS\"\n    },\n    {\n        \"productId\": \"PD_CA_0001\",\n        \"name\": \"PD_CA_0001\",\n        \"description\": \"\",\n        \"acccountType\": \"CURRENT_ACCOUNT\",\n        \"productType\": \"PERSONAL_DEPOSIT\"\n    },\n    {\n        \"productId\": \"PD_CA_0002\",\n        \"name\": \"PD_CA 0002\",\n        \"description\": \"Personal Deposit Account\",\n        \"acccountType\": \"CURRENT_ACCOUNT\",\n        \"productType\": \"PERSONAL_DEPOSIT\"\n    }\n]"
 						}
 					]
-				}
-			]
-		},
-		{
-			"name": "Update Person Copy",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"var jsonData = JSON.parse(responseBody);",
-							"",
-							"pm.test(\"Patch accounts response http status code = 200\", function(){",
-							"    pm.response.to.have.status(200);",
-							"})",
-							"",
-							"pm.test(\"name is changed\", function () {",
-							"    pm.expect(jsonData.name).eql(\"Allen Joe Soley\");",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"protocolProfileBehavior": {
-				"disabledSystemHeaders": {}
-			},
-			"request": {
-				"method": "PATCH",
-				"header": [
-					{
-						"key": "bankId",
-						"value": "1",
-						"type": "text"
-					},
-					{
-						"key": "",
-						"value": "",
-						"type": "text",
-						"disabled": true
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"genericIdentifiers\": [\n    {\n      \"number\": \"{{clientId}}\",\n      \"schemeName\": \"clientId\",\n      \"issuer\": \"Mambu\"\n    }\n  ],\n\n  \"postalAddress\": {\n    \"postCode\": \"45070\",\n    \"townName\": \"London\",\n    \"country\": \"VM\",\n    \"addressLine\": [\n      \"Nature\",\n      \"New Valley\"\n    ]\n  },\n  \"status\": \"ACTIVE\",\n  \"placeAndDateOfBirth\": {\n    \"birthDate\": \"1986-04-17\"\n  },\n  \"contact\": {\n    \"mobileNumber\": \"+1-415-731359\",\n    \"emailAddress\": \"allen.soley@gmail.com\"\n  },\n  \"structuredName\": {\n    \"firstName\": \"Allen\",\n    \"middleName\": \"Joe\",\n    \"lastName\": \"Soley\"\n  },\n  \"personId\": \"{{personId}}\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "https://{{host}}/{{demoApp}}/mambu-portx-cbs-connector/1.0/persons/{{personId}}",
-					"protocol": "https",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"{{demoApp}}",
-						"mambu-portx-cbs-connector",
-						"1.0",
-						"persons",
-						"{{personId}}"
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "Create Person - Jane Birkin",
-					"originalRequest": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "bankId",
-								"value": "1",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"bIC\": \"AAAABBCCXXX\",\n  \"lEI\": \"2ZCNRR8UK83OBTEK2170\",\n  \"genericIdentifiers\": [\n    {\n      \"number\": \"123-45-6789\",\n      \"schemeName\": \"SocialSecurityNumber\",\n      \"issuer\": \"string\"\n    }\n  ],\n  \"name\": \"Jane Birkin\",\n  \"shortName\": \"Jane Birkin\",\n  \"relatedParties\": [\n    {\n      \"partyId\": \"5fb9d4d6-1a3c-11ed-861d-0242ac120002\",\n      \"partyType\": \"Person\",\n      \"partyRelationType\": \"Owner\"\n    }\n  ],\n  \"countryOfResidence\": \"OE\",\n  \"postalAddress\": {\n    \"addressType\": \"string\",\n    \"department\": \"string\",\n    \"subDepartment\": \"string\",\n    \"streetName\": \"string\",\n    \"buildingNumber\": \"string\",\n    \"buildingName\": \"string\",\n    \"floor\": \"string\",\n    \"postBox\": \"string\",\n    \"room\": \"string\",\n    \"postCode\": \"string\",\n    \"townName\": \"string\",\n    \"townLocationName\": \"string\",\n    \"districtName\": \"string\",\n    \"countrySubDivision\": \"string\",\n    \"country\": \"VM\",\n    \"addressLine\": [\n      \"string\"\n    ]\n  },\n  \"residenceType\": \"string\",\n  \"status\": \"Queued\",\n  \"taxInformation\": {\n    \"tIN\": \"string\",\n    \"taxIdType\": \"stri\",\n    \"reportingFlag\": true,\n    \"tinStatus\": \"string\",\n    \"suplementaryData\": {}\n  },\n  \"supplementaryData\": {},\n  \"placeAndDateOfBirth\": {\n    \"birthDate\": \"2022-04-17\",\n    \"provinceOfBirth\": \"string\",\n    \"cityOfBirth\": \"string\",\n    \"countryOfBirth\": \"WO\"\n  },\n  \"signature\": \"ZXhhbXBsZQ==\",\n  \"contact\": {\n    \"namePrefix\": \"string\",\n    \"name\": \"string\",\n    \"phoneNumber\": \"+1-415-731359\",\n    \"mobileNumber\": \"+1-415-731359\",\n    \"faxNumber\": \"+1-415-731359\",\n    \"emailAddress\": \"string\",\n    \"emailPurpose\": \"string\",\n    \"jobTitle\": \"string\",\n    \"responsibility\": \"string\",\n    \"department\": \"string\",\n    \"otherContact\": {\n      \"channelType\": \"stri\",\n      \"identification\": \"string\"\n    },\n    \"preferredMethod\": \"string\"\n  },\n  \"headOfHousehold\": true,\n  \"civilStatus\": \"Single\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:7777/fis-horizon-core-sys-api/1.0/persons",
-							"host": [
-								"localhost"
-							],
-							"port": "7777",
-							"path": [
-								"fis-horizon-core-sys-api",
-								"1.0",
-								"persons"
-							]
-						}
-					},
-					"status": "Accepted",
-					"code": 202,
-					"_postman_previewlanguage": "xml",
-					"header": [
-						{
-							"key": "Date",
-							"value": "Tue, 11 Oct 2022 21:59:05 GMT"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/xml; charset=UTF-8"
-						},
-						{
-							"key": "Accept",
-							"value": "*/*"
-						},
-						{
-							"key": "Accept-Encoding",
-							"value": "gzip"
-						},
-						{
-							"key": "Access-Control-Allow-Headers",
-							"value": "Horizon-Authorization,organization-id,uuid,authorization,Content-Type,Authorization"
-						},
-						{
-							"key": "Access-Control-Allow-Methods",
-							"value": "POST"
-						},
-						{
-							"key": "Access-Control-Allow-Origin",
-							"value": "*"
-						},
-						{
-							"key": "Access-Control-Expose-Headers",
-							"value": "ETag"
-						},
-						{
-							"key": "activityid",
-							"value": "ef0781fa-0c64-4d9f-a188-62afab021bf9"
-						},
-						{
-							"key": "Akamai-Origin-Hop",
-							"value": "2"
-						},
-						{
-							"key": "Authorization",
-							"value": "{\"code\":\"FIS_HORIZON_AUTH_ERROR\",\"message\":\"An error happened during authentication\",\"details\":\"<ams:fault xmlns:ams=\\\"http://wso2.org/apimanager/security\\\"><ams:code>900901</ams:code><ams:message>Invalid Credentials</ams:message><ams:description>Invalid Credentials. Make sure you have provided the correct security credentials</ams:description></ams:fault>\"}"
-						},
-						{
-							"key": "bankId",
-							"value": "1"
-						},
-						{
-							"key": "nnCoection",
-							"value": "close"
-						},
-						{
-							"key": "Postman-Token",
-							"value": "82adb873-798c-4901-9c3d-94285e23f011"
-						},
-						{
-							"key": "Server",
-							"value": "Apache"
-						},
-						{
-							"key": "Set-Cookie",
-							"value": "ak_bmsc=8FEFE995AAB6F1714A83A4AB9C924CAC~000000000000000000000000000000~YAAQ8Tg3F8A1RK2DAQAAWhYPyRFRiNjZ4PCrBVN+tmUeY1tMIQuPyecPB+7juOl2W7P6L3KPCWnLb7+sZiR64cEuLajYSopZTfSGVvSuNMfwGSNFs5fkCCPn9I1GfNju7QVWwQJBAwDxMP2oRVXlpIlWSVLRSZuggvRYxkAM4JKALfyWQT9vEwAlxI1spQeFJEKQcMF679EbnRTU0wL/64n2Bo+EH6soBiOOAlMWz4+lURN7ofWFFFc3YvUOJtTpljKRficcuu8Ame05+glGf/56hlPkw3OckSX8OJ1UKY9Ti4IVtpisnwE2GqOsw9NRlAU33K+QgbRYKwq77yEQCOOo0hAoNSkniUdnWVtXrfXbvRb51J2okdq7Mt2y64Oh; Domain=.fisglobal.com; Path=/; Expires=Tue, 11 Oct 2022 23:59:10 GMT; Max-Age=7198; HttpOnly"
-						},
-						{
-							"key": "Strict-Transport-Security",
-							"value": "max-age=31536000 ; includeSubDomains"
-						},
-						{
-							"key": "traceparent",
-							"value": "00-05e1dd2f306fc94c433d8afc8a433390-c9889ae8ed0e10f3-01"
-						},
-						{
-							"key": "tracestate",
-							"value": "9848f37c-ce0e2925@dt=fw4;3;c5e323db;180045;0;0;0;261;b3f1;2h01;3hc5e323db;4h180045;5h01;7hc9889ae8ed0e10f3"
-						},
-						{
-							"key": "True-Client-IP",
-							"value": "107.201.177.71"
-						},
-						{
-							"key": "WWW-Authenticate",
-							"value": "OAuth2 realm=\"WSO2 API Manager\", error=\"invalid_token\", error_description=\"The access token expired\""
-						},
-						{
-							"key": "X-Akamai-CONFIG-LOG-DETAIL",
-							"value": "true"
-						},
-						{
-							"key": "X-dynaTrace",
-							"value": "FW4;-837932763;3;-974969893;1572933;0;-1740049540;609;9f81;2h01;3hc5e323db;4h180045;5h01;6h05e1dd2f306fc94c433d8afc8a433390;7hc9889ae8ed0e10f3"
-						},
-						{
-							"key": "X-Forwarded-For",
-							"value": "10.236.127.23"
-						},
-						{
-							"key": "X-Forwarded-For",
-							"value": "107.201.177.71"
-						},
-						{
-							"key": "X-Forwarded-Host",
-							"value": "api-gw-uat.fisglobal.com"
-						},
-						{
-							"key": "X-Forwarded-Server",
-							"value": "api-gw-uat.fisglobal.com"
-						},
-						{
-							"key": "Transfer-Encoding",
-							"value": "chunked"
-						}
-					],
-					"cookie": [],
-					"body": "{\n  \"bIC\": \"AAAABBCCXXX\",\n  \"lEI\": \"2ZCNRR8UK83OBTEK2170\",\n  \"genericIdentifiers\": [\n    {\n      \"number\": \"123-45-6789\",\n      \"schemeName\": \"SocialSecurityNumber\",\n      \"issuer\": \"string\"\n    }\n  ],\n  \"name\": \"Jane Birkin\",\n  \"shortName\": \"Jane Birkin\",\n  \"relatedParties\": [\n    {\n      \"partyId\": \"5fb9d4d6-1a3c-11ed-861d-0242ac120002\",\n      \"partyType\": \"Person\",\n      \"partyRelationType\": \"Owner\"\n    }\n  ],\n  \"countryOfResidence\": \"OE\",\n  \"postalAddress\": {\n    \"addressType\": \"string\",\n    \"department\": \"string\",\n    \"subDepartment\": \"string\",\n    \"streetName\": \"string\",\n    \"buildingNumber\": \"string\",\n    \"buildingName\": \"string\",\n    \"floor\": \"string\",\n    \"postBox\": \"string\",\n    \"room\": \"string\",\n    \"postCode\": \"string\",\n    \"townName\": \"string\",\n    \"townLocationName\": \"string\",\n    \"districtName\": \"string\",\n    \"countrySubDivision\": \"string\",\n    \"country\": \"VM\",\n    \"addressLine\": [\n      \"string\"\n    ]\n  },\n  \"residenceType\": \"string\",\n  \"status\": \"Queued\",\n  \"taxInformation\": {\n    \"tIN\": \"string\",\n    \"taxIdType\": \"stri\",\n    \"reportingFlag\": true,\n    \"tinStatus\": \"string\",\n    \"suplementaryData\": {}\n  },\n  \"supplementaryData\": {},\n  \"placeAndDateOfBirth\": {\n    \"birthDate\": \"2022-04-17\",\n    \"provinceOfBirth\": \"string\",\n    \"cityOfBirth\": \"string\",\n    \"countryOfBirth\": \"WO\"\n  },\n  \"signature\": \"ZXhhbXBsZQ==\",\n  \"contact\": {\n    \"namePrefix\": \"string\",\n    \"name\": \"string\",\n    \"phoneNumber\": \"+1-415-731359\",\n    \"mobileNumber\": \"+1-415-731359\",\n    \"faxNumber\": \"+1-415-731359\",\n    \"emailAddress\": \"string\",\n    \"emailPurpose\": \"string\",\n    \"jobTitle\": \"string\",\n    \"responsibility\": \"string\",\n    \"department\": \"string\",\n    \"otherContact\": {\n      \"channelType\": \"stri\",\n      \"identification\": \"string\"\n    },\n    \"preferredMethod\": \"string\"\n  },\n  \"headOfHousehold\": true,\n  \"civilStatus\": \"Single\"\n}"
 				}
 			]
 		}
