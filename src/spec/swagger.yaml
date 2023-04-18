@@ -2266,6 +2266,230 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /credit-transfers:
+    post:
+      tags:
+      - Credit Transfers
+      summary: Credit Transfer Initiation
+      description: "Instruction to pay an amount of money to an ultimate beneficiary, on behalf of an originator."
+      operationId: initiateCreditTransfer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreditTransferInitiation'
+        required: true
+      responses:
+        "202":
+          description: Payment was received and will be processed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreditTransfer'
+        "400":
+          description: BadRequest. See the payload for specific validation or other errors
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /credit-transfers/{paymentId}:
+    get:
+      tags:
+      - Credit Transfers
+      summary: Credit Transfer Status
+      description: "Returns the status report of a credit transfer initiation, process and excecution."
+      operationId: findCreditTransfer
+      parameters:
+      - name: paymentId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          $ref: '#/components/schemas/PaymentId'
+      responses:
+        "200":
+          description: Matching Payment
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreditTransfer'
+        "400":
+          description: BadRequest. See the payload for specific validation or other errors
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /credit-transfers/{paymentId}/cancellation:
+    post:
+      tags:
+      - Credit Transfers
+      summary: Credit Transfer Cancellation
+      description: Request a payment cancellation.
+      operationId: initiateCreditTransferCancellation
+      parameters:
+      - name: paymentId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          $ref: '#/components/schemas/PaymentId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreditTransferCancellationRequest'
+        required: true
+      responses:
+        "202":
+          description: Payment was received and will be processed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreditTransferCancellation'
+        "400":
+          description: BadRequest. See the payload for specific validation or other errors
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /direct-debits:
+    post:
+      tags:
+      - Direct Debits
+      summary: Direct Debit Initiation
+      description: Instruction to collect funds from a debitor.
+      operationId: initiateDirectDebit
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DirectDebitInitiation'
+        required: true
+      responses:
+        "202":
+          description: Payment was received and will be processed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DirectDebit'
+        "400":
+          description: BadRequest. See the payload for specific validation or other errors
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /direct-debits/{paymentId}:
+    get:
+      tags:
+      - Direct Debits
+      summary: Direct Debit Status
+      description: "Returns the status report of a direct debit initiation, process and excecution."
+      operationId: findDirectDebit
+      parameters:
+      - name: paymentId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          $ref: '#/components/schemas/PaymentId'
+      responses:
+        "200":
+          description: Matching Payment
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreditTransfer'
+        "400":
+          description: BadRequest. See the payload for specific validation or other errors
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /direct-debits/{paymentId}/cancellation:
+    post:
+      tags:
+      - Direct Debits
+      summary: Direct Debit Cancellation
+      description: Requests direct debit cancellation.
+      operationId: initiateDirectDebitCancellation
+      parameters:
+      - name: paymentId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          $ref: '#/components/schemas/PaymentId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreditTransferCancellationRequest'
+        required: true
+      responses:
+        "202":
+          description: Payment was received and will be processed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreditTransferCancellation'
+        "400":
+          description: BadRequest. See the payload for specific validation or other errors
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 components:
   schemas:
     Id:
@@ -5783,6 +6007,261 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PaymentCard'
+    CreditTransferInitiation:
+      type: object
+      properties:
+        paymentMethod:
+          $ref: '#/components/schemas/PaymentMethod'
+        paymentType:
+          $ref: '#/components/schemas/PaymentType'
+        amount:
+          $ref: '#/components/schemas/AmountInCents'
+        debtorAccountId:
+          $ref: '#/components/schemas/AccountId'
+        creditorAccountId:
+          $ref: '#/components/schemas/AccountId'
+        purpose:
+          $ref: '#/components/schemas/Description'
+        identifiers:
+          $ref: '#/components/schemas/PaymentIdentifiers'
+        paymentProcessing:
+          $ref: '#/components/schemas/PaymentProcessingDetail'
+        chargeBearerType:
+          $ref: '#/components/schemas/ChargeBearerType'
+        currency:
+          $ref: '#/components/schemas/CurrencyCode'
+        exchangeDetail:
+          $ref: '#/components/schemas/Exchange'
+        checkDetail:
+          $ref: '#/components/schemas/Check'
+        valueDate:
+          $ref: '#/components/schemas/Date'
+        creditor:
+          $ref: '#/components/schemas/PartyIdentification'
+    PartyIdentification:
+      type: object
+      properties:
+        name:
+          $ref: '#/components/schemas/Party'
+        postalAddress:
+          $ref: '#/components/schemas/AccountIdentifiers'
+        agent:
+          $ref: '#/components/schemas/FinancialInstitution'
+        bIC:
+          $ref: '#/components/schemas/BIC'
+        lEI:
+          $ref: '#/components/schemas/LEI'
+        placeAndDateOfBirth:
+          $ref: '#/components/schemas/PlaceAndDateOfBirth'
+        contact:
+          $ref: '#/components/schemas/PersonContactDetails'
+        genericIdentifiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/PartyGenericIdentification'
+        countryOfResidence:
+          $ref: '#/components/schemas/CountryCode'
+    PartyGenericIdentification:
+      type: object
+      properties:
+        number:
+          maxLength: 35
+          minLength: 1
+          type: string
+          description: Unique and unambiguous identification of an organization.
+          example: 123-45-6789
+        schemeName:
+          $ref: '#/components/schemas/PartySchemeName'
+        issuer:
+          type: string
+          description: Entity that assigns the identification.
+          example: UnitedStates
+        issueDate:
+          $ref: '#/components/schemas/Date'
+        expirationDate:
+          $ref: '#/components/schemas/Date'
+      description: Unique and unambiguous way to identify a party.
+    PartySchemeName:
+      maxLength: 35
+      minLength: 1
+      type: string
+      description: "Name of the identification scheme, in PascalCase form. Possible ISO compliant values are: \nBankPartyIdentification\nCentralBankIdentificationNumber\nClearingIdentificationNumber\nCertificateOfIncorporationNumber\nCountryIdentificationCode\nCustomerNumber\nDataUniversalNumberingSystem\nEmployerIdentificationNumber\nGS1GLNIdentifier\nSIREN\nSIRET\nTaxIdentificationNumber\nBusinessDomainIdentifier\nBusinessOtherIdentification\n AlienRegistrationNumber\nPassportNumber\nCustomerIdentificationNumber\nDriversLicenseNumber\nEmployeeIdentificationNumber\nNationalIdentityNumber\nSocialSecurityNumber\nTelephoneNumber\nTaxIdentificationNumber\nPersonCommercialIdentification\n"
+      example: TaxIdentificationNumber
+    CreditTransfer:
+      type: object
+      properties:
+        paymentMethod:
+          $ref: '#/components/schemas/PaymentMethod'
+        paymentType:
+          $ref: '#/components/schemas/PaymentType'
+        amount:
+          $ref: '#/components/schemas/AmountInCents'
+        debtorAccountId:
+          $ref: '#/components/schemas/AccountId'
+        creditorAccountId:
+          $ref: '#/components/schemas/AccountId'
+        purpose:
+          $ref: '#/components/schemas/Description'
+        identifiers:
+          $ref: '#/components/schemas/PaymentIdentifiers'
+        paymentProcessing:
+          $ref: '#/components/schemas/PaymentProcessingDetail'
+        chargeBearerType:
+          $ref: '#/components/schemas/ChargeBearerType'
+        currency:
+          $ref: '#/components/schemas/CurrencyCode'
+        exchangeDetail:
+          $ref: '#/components/schemas/Exchange'
+        checkDetail:
+          $ref: '#/components/schemas/Check'
+        valueDate:
+          $ref: '#/components/schemas/Date'
+        creditor:
+          $ref: '#/components/schemas/PartyIdentification'
+        paymentId:
+          $ref: '#/components/schemas/PaymentId'
+        status:
+          $ref: '#/components/schemas/PaymentStatus'
+        statusReason:
+          $ref: '#/components/schemas/StatusReason'
+        date:
+          $ref: '#/components/schemas/DateAndTime'
+    PaymentStatus:
+      maxLength: 60
+      minLength: 1
+      type: string
+      description: |
+        Indicates the status of a payment. ISO Complaiant values:
+        AcceptedTechnicalValidation, Received, Rejected, Pending, AcceptedCustomerProfile, AcceptedSettlementInProcess, AcceptedSettlementCompleted, Accepted, AcceptedCancellationRequest, RejectedCancellationRequest, AcceptedWithChange, PendingCancellationRequest, AcceptedCreditSettlementCompleted, PaymentCancelled,
+         AcceptedSettlementCompletedCreditorAccount, AcceptedCustomerProfile, AcceptedFundsChecked, AcceptedandChequeIssued, AcceptedSettlementCompletedDebitorAccount, AcceptedWithoutPosting, Blocked, CashPickedUpByCreditor, PartiallyAcceptedTechnicalCorrect, Presented, AcceptedClearingProcessed, ServicerDeadlineMissed
+      example: AcceptedSettlementCompleted
+    StatusReason:
+      maxLength: 36
+      minLength: 1
+      type: string
+      description: |
+        Reason for the status. Possible Values: AbortedClearingTimeout, AbortedClearingFatalError, AbortedSettlementTimeout, AbortedSettlementFatalError,TimeoutCreditorAgent, TimeoutInstructedAgent, OfflineAgent, OfflineCreditorAgent, ErrorCreditorAgent, ErrorInstructedAgent, TimeoutDebtorAgent,IncorrectAccountNumber, InvalidDebtorAccountNumber,InvalidCreditorAccountNumber, ClosedAccountNumber,ClosedDebtorAccountNumber, BlockedAccount,ClosedCreditorAccountNumber, InvalidBranchCode,InvalidAccountCurrency, InvalidDebtorAccountCurrency,InvalidCreditorAccountCurrency, InvalidAccountType,InvalidDebtorAccountType,InvalidCreditorAccountType,AccountDetailsChanged, CardNumberInvalid, TransactionForbidden, InvalidBankOperationCode, TransactionNotSupported, InvalidAgentCountry, InvalidDebtorAgentCountry, InvalidCreditorAgentCountry, UnsuccesfulDirectDebit, InvalidAccessRights,PaymentNotReceived, AgentSuspended,CreditorAgentSuspended, NotAllowedBookTransfer, ForbiddenReturnPayment, IncorrectAgent, ZeroAmount, NotAllowedAmount, NotAllowedCurrency, InsufficientFunds, Duplication, TooLowAmount, BlockedAmount, WrongAmount, InvalidControlSum, InvalidTransactionCurrency, InvalidAmount, AmountExceedsClearingSystemLimit, AmountExceedsAgreedLimit, AmountBelowClearingSystemMinimum, InvalidGroupControlSum, InvalidPaymentInfoControlSum, InvalidNumberOfTransactions,InvalidGroupNumberOfTransactions, InvalidPaymentInfoNumberOfTransactions, LimitExceeded, ZeroAmountNotApplied, AmountExceedsSettlementLimit, InconsistenWithEndCustomer, MissingCreditorAddress, UnrecognisedInitiatingParty, UnknownEndCustomer, MissingDebtorAddress, MissingDebtorName, InvalidCountry, InvalidDebtorCountry, InvalidCreditorCountry, InvalidCountryOfResidence, InvalidDebtorCountryOfResidence, InvalidCreditorCountryOfResidence, InvalidIdentificationCode, InvalidDebtorIdentificationCode, InvalidCreditorIdentificationCode, InvalidContactDetails, InvalidChargeBearerCode, InvalidNameLength, MissingName, MissingCreditorName, AccountProxyInvalid, CheckERI, RequestedExecutionDateOrRequestedCollectionDateTooFarInFuture, RequestedExecutionDateOrRequestedCollectionDateTooFarInPast, ElementIsNotToBeUsedAtB-andC-Level, MandateChangesNotAllowed, InformationOnMandateChangesMissing, CreditorIdentifierIncorrect, CreditorIdentifierNotUnambiguouslyAtTransaction-Level, OriginalDebtorAccountIsNotToBeUsed, OriginalDebtorAgentIsNotToBeUsed, ElementContentIncludesMoreThan140Characters, ElementContentFormallyIncorrect, ElementNotAdmitted, ValuesWillBeSetToNextTARGETday, DecimalPointsNotCompatibleWithCurrency, RequiredCompulsoryElementMissing, COREandB2BwithinOnemessage, ChequeSettledOnCreditorAccount, CreditorBankIsNotRegistered, IncorrectCurrency, RequestedByCustomer, DebtorBankIsNotRegistered,ElectronicSignaturesCorrect, OrderCancelled, OrderNotCancelled, OrderRejected, OrderForwardedForPostprocessing, TransferOrder, ProcessingOK, DecompressionError, DecryptionError, DataSignRequested, UnknownDataSignFormat, SignerCertificateRevoked, SignerCertificateNotValid, IncorrectSignerCertificate, SignerCertificationAuthoritySignerNotValid, NotAllowedPayment, NotAllowedAccount, NotAllowedNumberOfTransaction, Signer1CertificateRevoked, Signer1CertificateNotValid, IncorrectSigner1Certificate, SignerCertificationAuthoritySigner1NotValid, UserDoesNotExist, IdenticalSignatureFound, PublicKeyVersionIncorrect, DifferentOrderDataInSignatures, RepeatOrder, ElectronicSignatureRightsInsufficient, Signer2CertificateRevoked, Signer2CertificateNotValid, IncorrectSigner2Certificate, SignerCertificationAuthoritySigner2NotValid, WaitingTimeExpired, OrderFileDeleted, UserSignedMultipleTimes, UserNotYetActivated, InvalidDate, InvalidCreationDate, InvalidNonProcessingDate, FutureDateNotSupported, InvalidCutOffDate, ExecutionDateChanged, DuplicateMessageID, DuplicatePaymentInformationID, DuplicateTransaction, DuplicateEndToEndID, DuplicateInstructionID, DuplicatePayment, CorrespondentBankNotPossible, BalanceInfoRequest, SettlementFailed, SettlementSystemNotAvailable, ERIOptionNotSupported, InvalidFileFormat, SyntaxError, InvalidPaymentTypeInformation, InvalidServiceLevelCode, InvalidLocalInstrumentCode, InvalidCategoryPurposeCode, InvalidPurpose, InvalidEndToEndId, InvalidChequeNumber, BankSystemProcessingError, ClearingRequestAborted, PaymentTransferredAndTracked, PaymentTransferredAndNotTracked, CreditDebitNotConfirmed, CreditPendingDocuments, CreditPendingFunds, DeliveredWithServiceLevel, DeliveredWIthoutServiceLevel, CorrespondingOriginalFileStillNotSent, NoMandate, MissingMandatoryInformationInMandate, CollectionNotDue, RefundRequestByEndCustomer, EndCustomerDeceased, NotSpecifiedReasonCustomerGenerated, NotSpecifiedReasonAgentGenerated, Narrative, NoERI, BankIdentifierIncorrect, InvalidBankIdentifier, InvalidDebtorBankIdentifier, InvalidCreditorBankIdentifier, InvalidBICIdentifier, InvalidDebtorBICIdentifier, InvalidCreditorBICIdentifier, InvalidClearingSystemMemberIdentifier, InvalidDebtorClearingSystemMemberIdentifier, InvalidCreditorClearingSystemMemberIdentifier, InvalidIntermediaryAgent, MissingCreditorSchemeId, RMessageConflict, ReceiverCustomerInformation,NotUniqueTransactionReference, MissingDebtorAccountOrIdentification, MissingDebtorNameOrAddress, MissingCreditorNameOrAddress, RegulatoryReason, RegulatoryInformationInvalid, TaxInformationInvalid, RemittanceInformationInvalid, RemittanceInformationTruncated, InvalidStructuredCreditorReference, InvalidCharacterSet, InvalidDebtorAgentServiceID, InvalidPartyID, ValidRequestForCancellationAcknowledged, UETRFlaggedForCancellation, NetworkStopOfUETR, RequestForCancellationForwarded, RequestForCancellationDeliveryAcknowledgement, SpecificServiceOfferedByDebtorAgent, SpecificServiceOfferedByCreditorAgent, ServiceofClearingSystem, CreditorNotOnWhitelistOfDebtor, CreditorOnBlacklistOfDebtor, MaximumNumberOfDirectDebitTransactionsExceeded, MaximumDirectDebitTransactionAmountExceeded, TransmissonAborted, NoDataAvailable, FileNonReadable, IncorrectFileStructure, TokenInvalid, SenderTokenNotFound, ReceiverTokenNotFound, TokenMissing, TokenCounterpartyMismatch, TokenSingleUse, TokenSuspended, TokenValueLimitExceeded, TokenExpired, InvalidCutOffTime, TransmissionSuccessful, TransferToSignByHand, AuthorisationCancelled, FollowingCancellationRequest, Fraud, NotCompliantGeneric, NoAnswerFromCustomer, ReturnUponUnableToApply, UnduePayment, AlreadyAcceptedRTP, AlreadyExpiredRTP, AlreadyRefusedRTP, AlreadyRejectedRTP, AttachementsNotSupported, ExpiryDateTimeReached, ExpiryDateTooLong, FraudulentOrigin, IncorrectExpiryDateTime, InitialRTPNeverReceived, NonAgreedRTP, NoPaymentGuarantee, PayerOrPayerRTPSPNotReachable, RTPNotSupportedForDebtor, RTPReceivedCanBeProcessed, RTPServiceProviderIdentifierIncorrect, TypeOfPaymentInstrumentNotSupported, UnknownCreditor, OriginalTransactionNotEligibleForRequestedReturn, RequestForCancellationNotFound, SettlementNotReceived
+      example: Cash
+    FinancialInstitution:
+      type: object
+      properties:
+        clearingSystemMemberIdentification:
+          $ref: '#/components/schemas/ClearingSystemIdentification'
+        memberIdentification:
+          maxLength: 35
+          minLength: 1
+          type: string
+        name:
+          maxLength: 35
+          minLength: 1
+          type: string
+        postalAddress:
+          $ref: '#/components/schemas/PostalAddress'
+        bIC:
+          $ref: '#/components/schemas/BIC'
+        lEI:
+          $ref: '#/components/schemas/LEI'
+        genericIdentifiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrganizationIdentification'
+    ClearingSystemIdentification:
+      maxLength: 60
+      minLength: 1
+      type: string
+      description: "Specifies the clearing system member identification. Some ISO complaiant values from ExternalCashClearingSystem1Code are:\n UnitedStatesRoutingNumberFedwireNACHA, \n AustrianBankleitzahl, AustralianBankStateBranchCodeBSB,CanadianPaymentsAssociationPaymentRoutingNumber,SwissFinancialInstitutionIdentificationShort,SwissFinancialInstitutionIdentificationLong,CNAPSIdentifier, GermanBankleitzahl, SpanishDomesticInterbankingCode, UKDomesticSortCode, HelenicBankIdentificationCode, HongKongBankCode, IrishNationalClearingCode, IndianFinancialSystemCode, ItalianDomesticIdentificationCode, JapanZenginClearingCode, NewZealandNationalClearingCode, PolishNationalClearingCode, PortugueseNationalClearingCode, RussianCentralBankIdentificationCode, SwedenBankgiroClearingCode, IBGSortCode, ThaiCentralBankIdentificationCode, FinancialInstitutionCode, CHIPSParticipantIdentifier, SouthAfricanNationalClearingCode, NewZealandRTGSClearingCode\n"
+      example: UnitedStatesRoutingNumberFedwireNACHA
+    DirectDebit:
+      type: object
+      properties:
+        paymentId:
+          $ref: '#/components/schemas/PaymentId'
+        status:
+          $ref: '#/components/schemas/PaymentStatus'
+        statusReason:
+          $ref: '#/components/schemas/StatusReason'
+        paymentMethod:
+          $ref: '#/components/schemas/PaymentMethod'
+        paymentType:
+          $ref: '#/components/schemas/PaymentType'
+        amount:
+          $ref: '#/components/schemas/AmountInCents'
+        debtorAccountId:
+          $ref: '#/components/schemas/AccountId'
+        creditorAccountId:
+          $ref: '#/components/schemas/AccountId'
+        purpose:
+          $ref: '#/components/schemas/Description'
+        identifiers:
+          $ref: '#/components/schemas/PaymentIdentifiers'
+        paymentProcessing:
+          $ref: '#/components/schemas/PaymentProcessingDetail'
+        chargeBearerType:
+          $ref: '#/components/schemas/ChargeBearerType'
+        mandate:
+          $ref: '#/components/schemas/DirectDebitMandate'
+        requestedCollectionDate:
+          $ref: '#/components/schemas/Date'
+        debitor:
+          $ref: '#/components/schemas/PartyIdentification'
+    DirectDebitMandate:
+      type: object
+      properties:
+        mandateId:
+          $ref: '#/components/schemas/Id'
+        dateOfSignature:
+          $ref: '#/components/schemas/Date'
+        digitalSignature:
+          $ref: '#/components/schemas/DigitalSignature'
+        firstCollectionDate:
+          $ref: '#/components/schemas/Date'
+        finalCollectionDate:
+          $ref: '#/components/schemas/Date'
+        frequency:
+          $ref: '#/components/schemas/Frequency'
+        trackingDays:
+          $ref: '#/components/schemas/Day'
+      description: Provides details related to a direct debit mandate signed between the creditor and the debtor.
+    CreditTransferCancellationRequest:
+      type: object
+      properties:
+        cancellationReason:
+          $ref: '#/components/schemas/Description'
+      description: "Request the cancellation of a credit transfer instruction. \n"
+    DirectDebitInitiation:
+      type: object
+      properties:
+        paymentMethod:
+          $ref: '#/components/schemas/PaymentMethod'
+        paymentType:
+          $ref: '#/components/schemas/PaymentType'
+        amount:
+          $ref: '#/components/schemas/AmountInCents'
+        debtorAccountId:
+          $ref: '#/components/schemas/AccountId'
+        creditorAccountId:
+          $ref: '#/components/schemas/AccountId'
+        purpose:
+          $ref: '#/components/schemas/Description'
+        identifiers:
+          $ref: '#/components/schemas/PaymentIdentifiers'
+        paymentProcessing:
+          $ref: '#/components/schemas/PaymentProcessingDetail'
+        chargeBearerType:
+          $ref: '#/components/schemas/ChargeBearerType'
+        mandate:
+          $ref: '#/components/schemas/DirectDebitMandate'
+        requestedCollectionDate:
+          $ref: '#/components/schemas/Date'
+        debitor:
+          $ref: '#/components/schemas/PartyIdentification'
+    CreditTransferCancellation:
+      type: object
+      properties:
+        cancellationReason:
+          $ref: '#/components/schemas/Description'
+        cancellationId:
+          $ref: '#/components/schemas/Id'
   parameters:
     idempotencyId:
       name: idempotencyId
