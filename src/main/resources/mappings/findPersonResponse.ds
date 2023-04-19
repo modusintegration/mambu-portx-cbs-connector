@@ -20,7 +20,7 @@ local shortName = (if first!=null then first else "") +
 std.prune({
   "genericIdentifiers": [
     {
-      "number": payload.id,
+      "number": selector(payload, "id"),
       "schemeName": "clientId",
       "issuer": "Mambu"
     }
@@ -29,7 +29,7 @@ std.prune({
   "shortName": shortName,
   "relatedParties": [
     {
-      "partyId": payload.encodedKey,
+      "partyId": selector(payload, "encodedKey"),
       "partyType": "Person",
       "partyRelationType": "Owner"
     }
@@ -56,6 +56,6 @@ std.prune({
     "middleName": selector(payload, "middleName"),
     "lastName": selector(payload, "lastName"),
   },
-  "personId": payload.encodedKey
+  "personId": selector(payload, "encodedKey")
 })
 

@@ -5,7 +5,7 @@ info:
   description: "PortX Bank Account Management (BAM) semantic and interaction is based on ISO 20022 and restricted to the US banking domain. The scope covers the following communication flows: bank account opening, maintenance, closing and reporting.\nIn many cases, the financial institution will require additional documentation that is available as PDF or Word document. The recommended solution is to group one BAM message (for example the account opening request) with these accompanying documents in one file archive. The archive establishes the link between the different documents.\nEvery BAM request message has an attribute to support the ISO 20022 digital signature. \n"
   contact:
     email: betiana.darderes@modusbox.com
-  version: 1.0.16
+  version: 0.1.0
 servers:
   - url: /mambu-portx-cbs-connector/1.0
     description: SwaggerHub API
@@ -1091,7 +1091,7 @@ paths:
       tags:
         - Parties
       summary: Creates a Card
-      description: Creates a personal payment card related to one or multiple accounts.  The person may be not an account owner (an additional). For debit cards, the fund account should be provided in the request.
+      description: "Creates a personal payment card related to one or multiple accounts.  The person may be not an account owner (an additional). For debit cards, the fund account should be provided in the request."
       operationId: createPersonalPaymentCard
       parameters:
         - name: idempotencyId
@@ -2266,6 +2266,230 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /credit-transfers:
+    post:
+      tags:
+      - Credit Transfers
+      summary: Credit Transfer Initiation
+      description: "Instruction to pay an amount of money to an ultimate beneficiary, on behalf of an originator."
+      operationId: initiateCreditTransfer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreditTransferInitiation'
+        required: true
+      responses:
+        "202":
+          description: Payment was received and will be processed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreditTransfer'
+        "400":
+          description: BadRequest. See the payload for specific validation or other errors
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /credit-transfers/{paymentId}:
+    get:
+      tags:
+      - Credit Transfers
+      summary: Credit Transfer Status
+      description: "Returns the status report of a credit transfer initiation, process and excecution."
+      operationId: findCreditTransfer
+      parameters:
+      - name: paymentId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          $ref: '#/components/schemas/PaymentId'
+      responses:
+        "200":
+          description: Matching Payment
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreditTransfer'
+        "400":
+          description: BadRequest. See the payload for specific validation or other errors
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /credit-transfers/{paymentId}/cancellation:
+    post:
+      tags:
+      - Credit Transfers
+      summary: Credit Transfer Cancellation
+      description: Request a payment cancellation.
+      operationId: initiateCreditTransferCancellation
+      parameters:
+      - name: paymentId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          $ref: '#/components/schemas/PaymentId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreditTransferCancellationRequest'
+        required: true
+      responses:
+        "202":
+          description: Payment was received and will be processed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreditTransferCancellation'
+        "400":
+          description: BadRequest. See the payload for specific validation or other errors
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /direct-debits:
+    post:
+      tags:
+      - Direct Debits
+      summary: Direct Debit Initiation
+      description: Instruction to collect funds from a debitor.
+      operationId: initiateDirectDebit
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DirectDebitInitiation'
+        required: true
+      responses:
+        "202":
+          description: Payment was received and will be processed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DirectDebit'
+        "400":
+          description: BadRequest. See the payload for specific validation or other errors
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /direct-debits/{paymentId}:
+    get:
+      tags:
+      - Direct Debits
+      summary: Direct Debit Status
+      description: "Returns the status report of a direct debit initiation, process and excecution."
+      operationId: findDirectDebit
+      parameters:
+      - name: paymentId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          $ref: '#/components/schemas/PaymentId'
+      responses:
+        "200":
+          description: Matching Payment
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreditTransfer'
+        "400":
+          description: BadRequest. See the payload for specific validation or other errors
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /direct-debits/{paymentId}/cancellation:
+    post:
+      tags:
+      - Direct Debits
+      summary: Direct Debit Cancellation
+      description: Requests direct debit cancellation.
+      operationId: initiateDirectDebitCancellation
+      parameters:
+      - name: paymentId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          $ref: '#/components/schemas/PaymentId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreditTransferCancellationRequest'
+        required: true
+      responses:
+        "202":
+          description: Payment was received and will be processed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreditTransferCancellation'
+        "400":
+          description: BadRequest. See the payload for specific validation or other errors
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 components:
   schemas:
     Id:
@@ -2347,7 +2571,7 @@ components:
       maxLength: 70
       minLength: 1
       type: string
-      description: Name of the account. It provides an additional means of identification, and is designated by the account servicer in agreement with the account owner.
+      description: "Name of the account. It provides an additional means of identification, and is designated by the account servicer in agreement with the account owner."
       example: Hermes PD_CA 0002
     Description:
       maxLength: 1025
@@ -2357,13 +2581,13 @@ components:
     CurrencyCode:
       maxLength: 3
       minLength: 3
-      pattern: ^([A-Z]{3})?$
+      pattern: "^([A-Z]{3})?$"
       type: string
       description: "Three contiguous letters for the representation of currencies and funds. Valid currency codes are registered with the ISO 4217 Maintenance Agency. \n"
       example: USD
     AmountInCents:
       maxLength: 23
-      pattern: ^-?([0]|([1-9][0-9]{0,12}))([.][0-9]{0,8})?$
+      pattern: "^-?([0]|([1-9][0-9]{0,12}))([.][0-9]{0,8})?$"
       type: string
       description: "Number of monetary units where the size of the decimal part is defined by the currency.\nNote: \ntotal number of digits: 21\nnumber of digits in fractional part: 8\nmaxInclusive: 9999999999999.99999999\nminInclusive: -9999999999999.99999999\n"
       example: "100"
@@ -2387,10 +2611,6 @@ components:
             $ref: '#/components/schemas/ChargeCalculation'
         jurisdiction:
           $ref: '#/components/schemas/Jurisdiction'
-        fromDateTime:
-          $ref: '#/components/schemas/Date'
-        upToDateTime:
-          $ref: '#/components/schemas/Date'
         documentId:
           $ref: '#/components/schemas/Id'
         documentReference:
@@ -2412,16 +2632,16 @@ components:
           minLength: 1
           type: string
           description: Specifies the function of the document.
+        fromDateTime:
+          $ref: '#/components/schemas/Date'
+        upToDateTime:
+          $ref: '#/components/schemas/Date'
     Agreement:
       description: Contractual details related to an agreement between parties
       type: object
       properties:
         jurisdiction:
           $ref: '#/components/schemas/Jurisdiction'
-        fromDateTime:
-          $ref: '#/components/schemas/Date'
-        upToDateTime:
-          $ref: '#/components/schemas/Date'
         documentId:
           $ref: '#/components/schemas/Id'
         documentReference:
@@ -2443,6 +2663,10 @@ components:
           minLength: 1
           type: string
           description: Specifies the function of the document.
+        fromDateTime:
+          $ref: '#/components/schemas/Date'
+        upToDateTime:
+          $ref: '#/components/schemas/Date'
     Document:
       type: object
       properties:
@@ -2481,20 +2705,7 @@ components:
         upToDateTime:
           $ref: '#/components/schemas/Date'
     Jurisdiction:
-      description: "Area with a set of laws under the control of a system which are different from neighbouring areas\n\n \n"
-      properties:
-        countrySubdivision:
-          maxLength: 35
-          minLength: 1
-          type: string
-          example: Oregon
-        townName:
-          maxLength: 35
-          minLength: 1
-          type: string
-          example: Tualatin
-        country:
-          $ref: '#/components/schemas/CountryCode'
+      $ref: '#/components/schemas/Place'
     Place:
       type: object
       properties:
@@ -2510,17 +2721,19 @@ components:
           example: Tualatin
         country:
           $ref: '#/components/schemas/CountryCode'
-      description: Town, CountrySubdivision and Country .
+      description: "Town, CountrySubdivision and Country ."
     CountryCode:
-      pattern: ^([A-Z]{2,2})?$
+      pattern: "^([A-Z]{2,2})?$"
       type: string
-      description: Country name obtained from the United Nations (ISO 3166, Alpha-2 code).
+      description: "Country name obtained from the United Nations (ISO 3166, Alpha-2 code)."
       example: US
     InterestCalculation:
-      description: |
-        Set of parameters used to calculate an interest.
       type: object
       properties:
+        fromDateTime:
+          $ref: '#/components/schemas/Date'
+        upToDateTime:
+          $ref: '#/components/schemas/Date'
         name:
           $ref: '#/components/schemas/InterestName'
         dayCountBasis:
@@ -2535,10 +2748,6 @@ components:
           $ref: '#/components/schemas/Frequency'
         variableInterest:
           $ref: '#/components/schemas/VariableInterestCalculation'
-        romDateTime:
-          $ref: '#/components/schemas/Date'
-        upToDateTime:
-          $ref: '#/components/schemas/Date'
     InterestName:
       maxLength: 35
       minLength: 1
@@ -2555,7 +2764,7 @@ components:
       example: 30360AmericanBasicRule
     Percentage:
       maxLength: 23
-      pattern: ^((([0])([.][0-9]{0,10}))|[1])?$
+      pattern: "^((([0])([.][0-9]{0,10}))|[1])?$"
       type: string
       description: |
         Value expressed as a percentage, for example, 0.7 is %70;  0.3333 is %33.33.
@@ -2571,12 +2780,20 @@ components:
         Specifies the type of interest rate. Some ISO 20022 compliant values are: Fixed, Forfeit, Variable, Scheduled, Unscheduled, Discount, FixedRateUnderlyingExposureForLife, FixedRateUnderlyingExposureWithCompulsoryFutureSwitchToFloating, FixedWithFuturePeriodicResets, FloatingLinkedToIndex, FloatingRateUnderlyingExposureForLife, FloatingRateUnderlyingExposureWithCap, FloatingRateUnderlyingExposureWithFloor, FloatingRateUnderlyingExposureWithFloorAndCap, Modular, ObligorSwapped, Other, SwicthOptionality
       example: Fixed
     Frequency:
-      maxLength: 35
-      minLength: 1
-      type: string
-      description: |
-        Specifies a frequency. Some ISO 20022 compliant values are: Annual, Monthly, Quarterly, SemiAnnual, Weekly, Daily, Adhoc, IntraDay, Overnight, TenDays, Fortnightly, TriggeredByMovement, Never, Rate, OnCreditEvent, Upfront, OnExpiry, Hourly, TriAnnual, Bimonthly, OnDemand, Shift, TwiceAWeek
-      example: Monthly
+      type: object
+      properties:
+        unit:
+          maxLength: 35
+          minLength: 1
+          type: string
+          description: |
+            Specifies a frequency. Some ISO 20022 compliant values are: Annual, Monthly, Quarterly, SemiAnnual, Weekly, Daily, Adhoc, IntraDay, Overnight, TenDays, Fortnightly, TriggeredByMovement, Never, Rate, OnCreditEvent, Upfront, OnExpiry, Hourly, TriAnnual, Bimonthly, OnDemand, Shift, TwiceAWeek, XDays, XMonths, XYears.
+          example: Monthly
+        value:
+          maximum: 999
+          type: integer
+          description: "Number of units, for XDays, XMonths, XYears."
+      description: Specifies an event frequency
     VariableInterestCalculation:
       type: object
       properties:
@@ -2614,9 +2831,12 @@ components:
         Specifies a temporal unit. Possible values are: Days, Months, Weeks, Years.
       example: Months
     ChargeCalculation:
-      description: Calculation of a service charge or fee.
       type: object
       properties:
+        fromDateTime:
+          $ref: '#/components/schemas/Date'
+        upToDateTime:
+          $ref: '#/components/schemas/Date'
         name:
           $ref: '#/components/schemas/ChargeName'
         amount:
@@ -2630,13 +2850,10 @@ components:
         bearerType:
           $ref: '#/components/schemas/ChargeBearerType'
         maximumAmount:
-          $ref: '#/components/schemas/PositiveAmountInCents'
+          description: |
+            $ref: '#/components/schemas/PositiveAmountInCents'
         relatedInterest:
           $ref: '#/components/schemas/InterestCalculation'
-        romDateTime:
-          $ref: '#/components/schemas/Date'
-        upToDateTime:
-          $ref: '#/components/schemas/Date'
     ChargeName:
       maxLength: 60
       minLength: 1
@@ -2646,7 +2863,7 @@ components:
       example: cardLatePayment
     PositiveAmountInCents:
       maxLength: 23
-      pattern: ^([0]|([1-9][0-9]{0,12}))([.][0-9]{0,8})?$
+      pattern: "^([0]|([1-9][0-9]{0,12}))([.][0-9]{0,8})?$"
       type: string
       description: "Number of monetary units where the size of the decimal part is defined by the currency.\nNote: \ntotal number of digits: 21\nnumber of digits in fractional part: 8\nmaxInclusive: 9999999999999.99999999\nminInclusive: 0\n"
       example: "100"
@@ -2684,13 +2901,13 @@ components:
       description: |
         Possible values are:
          Person,
-         Organization.
+         Organization. Also other types of servicer internal entities: ServicerOfficer
       example: Person
     AccountPartyRole:
       maxLength: 35
       minLength: 1
       type: string
-      description: "Type of the account. Some possible ISO 20022 compliant values are: \n AccountOwner, LiquidityManager, LimitManager, PaymentManager, Reader, BackupManager, SettlementManager, FundManagementCompany, TransferAgent, FundAccountant, Registrar, InvestmentManager, Custodian, Auditor, PayingAgent, CashCorrespondent, DataProvider, FinalAgent, Investor, FirstAgent, Intermediary, Distributor, Concentrator, UnderlyingClient1, UnderlyingClient2, TransmittingAgent, FundBroker, FinancialAdvisor, ContactPersonAtInstructingPartyInstitution, ContactPersonAtExecutingPartyInstitution, NameOfAgentToOrder, PrimeBroker, Internal, LegalGuardian, DecisionMaker, Guarantor, LoanLender, LoanBorrower, LoanCoBorrower, PrimaryOwner, Trustee, CustodianForMinor, Nominee, SecondaryOwner, Executor, Beneficiary\n"
+      description: "Type of the account. Some possible ISO 20022 compliant values are: \n AccountOwner, LiquidityManager, LimitManager, PaymentManager, Reader, BackupManager, SettlementManager, FundManagementCompany, TransferAgent, FundAccountant, Registrar, InvestmentManager, Custodian, Auditor, PayingAgent, CashCorrespondent, DataProvider, FinalAgent, Investor, FirstAgent, Intermediary, Distributor, Concentrator, UnderlyingClient1, UnderlyingClient2, TransmittingAgent, FundBroker, FinancialAdvisor, ContactPersonAtInstructingPartyInstitution, ContactPersonAtExecutingPartyInstitution, NameOfAgentToOrder, PrimeBroker, Internal, LegalGuardian, DecisionMaker, Guarantor, LoanLender, LoanBorrower, LoanCoBorrower, PrimaryOwner, Trustee, CustodianForMinor, Nominee, SecondaryOwner, Executor, Beneficiary, PrimaryServicerOfficer, SecondaryServicerOfficer.\n"
       example: AccountOwner
     RelatedAccount:
       type: object
@@ -2800,7 +3017,7 @@ components:
       minLength: 1
       type: string
       description: |
-        Channel used to comunicate with a party. Possible Values: Email, Fax, File, Online, PostalService, LiveSupport, ATM, IVR, Kiosk, Mobile, OnlineBanking, Phone, SMS, Card.
+        Channel used to communicate with a party. Possible Values: Email, Fax, File, Online, PostalService, LiveSupport, ATM, IVR, Kiosk, Mobile, OnlineBanking, Phone, SMS, Card, InPerson.
       example: Email
     DocumentFormat:
       maxLength: 35
@@ -2830,20 +3047,6 @@ components:
     AccountResponse:
       type: object
       properties:
-        accountId:
-          $ref: '#/components/schemas/AccountId'
-        iBAN:
-          $ref: '#/components/schemas/IBAN'
-        accountNumber:
-          $ref: '#/components/schemas/AccountNumber'
-        routingNumbers:
-          type: array
-          items:
-            $ref: '#/components/schemas/RoutingNumber'
-        identifiers:
-          type: array
-          items:
-            $ref: '#/components/schemas/AccountIdentification'
         servicerBranchId:
           $ref: '#/components/schemas/ServicerBranchId'
         accountType:
@@ -2885,9 +3088,7 @@ components:
         statementSettings:
           $ref: '#/components/schemas/StatementSettings'
         supplementaryData:
-          type: array
-          items:
-            $ref: '#/components/schemas/SupplementaryData'
+          $ref: '#/components/schemas/SupplementaryData'
         status:
           $ref: '#/components/schemas/AccountStatus'
         statusDateAndTime:
@@ -2901,6 +3102,20 @@ components:
           $ref: '#/components/schemas/Date'
         closeDate:
           $ref: '#/components/schemas/Date'
+        iBAN:
+          $ref: '#/components/schemas/IBAN'
+        accountNumber:
+          $ref: '#/components/schemas/AccountNumber'
+        routingNumbers:
+          type: array
+          items:
+            $ref: '#/components/schemas/RoutingNumber'
+        identifiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountIdentification'
+        accountId:
+          $ref: '#/components/schemas/AccountId'
     AccountDetailedStatus:
       type: object
       properties:
@@ -2946,7 +3161,7 @@ components:
     IBAN:
       maxLength: 34
       minLength: 1
-      pattern: ^[A-Z]{2,2}[0-9]{2,2}[a-zA-Z0-9]{1,30}$
+      pattern: "^[A-Z]{2,2}[0-9]{2,2}[a-zA-Z0-9]{1,30}$"
       type: string
       description: |
         The International Bank Account Number is a code used internationally by financial institutions to uniquely identify the account of a customer at a financial institution. A valid IBAN consists of all three of the following components: Country Code, check digits and BBAN.
@@ -2994,34 +3209,74 @@ components:
           description: Entity that assigns the identification.
     Error:
       required:
-        - status
-        - type
+        - code
+        - message
       type: object
       properties:
-        uriType:
+        code:
+          type: string
+          description: |
+            A broad categorization of the error. A short string indicating the error code reported. Safe for programmatic use.
+          example: InvalidRequest
+        message:
+          type: string
+          description: |
+            A human-readable representation of the error.
+          example: Invalid Request
+        details:
+          type: array
+          description: |
+            An array of details about specific errors that led to this reported error.
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+        innerError:
+          $ref: '#/components/schemas/InnerError'
+        debugMessage:
+          type: object
+          description: |
+            Message used to debug the root cause of the error. Contents should not be used in consumer's business logic. Can change at any time and should only be used for consumer to communicate with the data provider about an issue.
+        documentationUrl:
           type: string
           description: |
             URI reference that identifies the
             problem type.  This specification encourages that, when dereferenced, it provide human-readable documentation for the problem type.
           example: /errors/invalid-credentials
-        title:
+    ErrorDetail:
+      required:
+        - code
+        - message
+      type: object
+      properties:
+        code:
           type: string
           description: |
-            A short, human-readable summary of the problem type. It sould not change from occurrence to occurrence of the problem.
-          example: Invalid Credentials
-        status:
+            A short string indicating the error code reported. Safe for programmatic use.
+          example: InvalidRequest
+        message:
           type: string
           description: |
-            The HTTP status code for this occurrence of the problem.
-          example: "401"
-        detail:
+            A human-readable representation of the error.
+          example: Invalid Request
+        target:
           type: string
           description: |
-            A human-readable explanation specific to this
-            occurrence of the problem.
-          example: Resource access denied due to invalid credentials.
-        nestedError:
-          $ref: '#/components/schemas/Error_nestedError'
+            The target of the error.
+          example: Invalid Request
+    InnerError:
+      type: object
+      properties:
+        code:
+          type: string
+          description: |
+            A short string indicating the error code reported. Safe for programmatic use.
+        message:
+          type: string
+          description: |
+            The description of the error code
+        innerError:
+          $ref: '#/components/schemas/InnerError'
+      description: |
+        An object containing more specific information than the current object about the error.
     DepositRequest:
       type: object
       properties:
@@ -3046,7 +3301,8 @@ components:
       type: object
       properties:
         currency:
-          $ref: '#/components/schemas/CurrencyCode'
+          description: |
+            $ref: '#/components/schemas/CurrencyCode'
         exchangeFactor:
           $ref: '#/components/schemas/BaseOneRate'
     BaseOneRate:
@@ -3245,11 +3501,11 @@ components:
       description: "Identification assigned by the card provider. A cardId is a unique identifier associated with a specific cardholder. Establishing the card ID is the first step. The card ID is used as the card reference. When a card is replaced, a new card ID must be requested for the new PAN.  \n  \n"
       example: 0dd926fe-1ca2-11ed-861d-0242ac120002
     MerchantCategoryCode:
-      pattern: ^[0-9]{4,4}
+      pattern: "^[0-9]{4,4}"
       type: string
       description: |
         Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction.
-      example: "742"
+      example: "482"
     PartyShortName:
       maxLength: 35
       minLength: 1
@@ -3321,7 +3577,7 @@ components:
           maxLength: 16
           minLength: 1
           type: string
-          description: Numbered box in a post office, assigned to a person or organisation, where letters are kept until called for.
+          description: "Numbered box in a post office, assigned to a person or organisation, where letters are kept until called for."
           example: MY779
         room:
           maxLength: 70
@@ -3339,7 +3595,7 @@ components:
           maxLength: 35
           minLength: 1
           type: string
-          description: Name of a built-up area, with defined boundaries, and a local government.
+          description: "Name of a built-up area, with defined boundaries, and a local government."
           example: Tualatin
         townLocationName:
           maxLength: 35
@@ -3361,12 +3617,12 @@ components:
           $ref: '#/components/schemas/CountryCode'
         addressLine:
           type: array
-          description: Information that locates and identifies a specific address, as defined by postal services, presented in free format text.
+          description: "Information that locates and identifies a specific address, as defined by postal services, presented in free format text."
           items:
             maxLength: 70
             minLength: 1
             type: string
-            example: 11407 Sw Amu st, Suite MY777
+            example: "11407 Sw Amu st, Suite MY777"
       description: |
         Information that locates and identifies a specific address, as defined by postal services.
     PrimaryContactIndicator:
@@ -3376,10 +3632,10 @@ components:
       maxLength: 35
       minLength: 1
       type: string
-      description: Name of a country subdivision such as state, region, county.
+      description: "Name of a country subdivision such as state, region, county."
       example: Oregon
     CountrySubdivisionCode:
-      pattern: ^[A-Z]{2,2}\-[0-9A-Z]{1,3}
+      pattern: "^[A-Z]{2,2}\\-[0-9A-Z]{1,3}"
       type: string
       description: |
         Code to identify a name of a unit resulting from the division of a country, dependency, or other area of special geopolitical interest contained in ISO 3166-1, on the basis of country names obtained from the United Nations (ISO 3166-2: Country subdivision code).
@@ -3436,20 +3692,6 @@ components:
     Account:
       type: object
       properties:
-        accountId:
-          $ref: '#/components/schemas/AccountId'
-        relatedCards:
-          type: array
-          description: |
-            Payment cards related to the account. Debit cards, for loans or current accounts. Credit cards, for credit card accounts.
-          items:
-            $ref: '#/components/schemas/RelatedCard'
-        standingOrders:
-          type: array
-          description: |
-            Instructions given by an account holder to an account servicer to make regular transfers on given dates to the same beneficiary.
-          items:
-            $ref: '#/components/schemas/StandingOrder'
         iBAN:
           $ref: '#/components/schemas/IBAN'
         accountNumber:
@@ -3503,9 +3745,7 @@ components:
         statementSettings:
           $ref: '#/components/schemas/StatementSettings'
         supplementaryData:
-          type: array
-          items:
-            $ref: '#/components/schemas/SupplementaryData'
+          $ref: '#/components/schemas/SupplementaryData'
         status:
           $ref: '#/components/schemas/AccountStatus'
         statusDateAndTime:
@@ -3527,6 +3767,20 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/NumberOfTransactions'
+        accountId:
+          $ref: '#/components/schemas/AccountId'
+        relatedCards:
+          type: array
+          description: |
+            Payment cards related to the account. Debit cards, for loans or current accounts. Credit cards, for credit card accounts.
+          items:
+            $ref: '#/components/schemas/RelatedCard'
+        standingOrders:
+          type: array
+          description: |
+            Instructions given by an account holder to an account servicer to make regular transfers on given dates to the same beneficiary.
+          items:
+            $ref: '#/components/schemas/StandingOrder'
     AccountBalance:
       type: object
       properties:
@@ -3558,16 +3812,8 @@ components:
       description: "Specifies the nature of the balance. Possible ISO 20022 compliant value names are:\n Current, \n Available, \n Pending, \n Blocked.\n"
       example: Available
     NumberOfTransactions:
-      description: Number of transaction per status and code.
       type: object
       properties:
-        status:
-          $ref: '#/components/schemas/TransactionStatus'
-        number:
-          type: integer
-          description: Number of individual transactions.
-        controlSum:
-          $ref: '#/components/schemas/AmountInCents'
         codeType:
           maxLength: 50
           minLength: 1
@@ -3588,6 +3834,13 @@ components:
           type: string
           description: Code value to identify the type of transaction.
           example: "195"
+        status:
+          $ref: '#/components/schemas/TransactionStatus'
+        number:
+          type: integer
+          description: Number of individual transactions.
+        controlSum:
+          $ref: '#/components/schemas/AmountInCents'
     RelatedCard:
       type: object
       properties:
@@ -3631,7 +3884,8 @@ components:
         eventDescription:
           $ref: '#/components/schemas/Description'
         day:
-          $ref: '#/components/schemas/Day'
+          description: |
+            $ref: '#/components/schemas/Day'
         timeOfDay:
           $ref: '#/components/schemas/HourOfTheDay'
         status:
@@ -3708,10 +3962,7 @@ components:
         Usage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction.
       example: "12345678912345"
     UETR:
-      maxLength: 36
-      minLength: 1
-      type: string
-      example: 5fb9d4d6-1a3c-11ed-861d-0242ac120002
+      $ref: '#/components/schemas/Id'
     PaymentIdentification:
       type: object
       properties:
@@ -3783,8 +4034,6 @@ components:
     Payment:
       type: object
       properties:
-        paymentId:
-          $ref: '#/components/schemas/PaymentId'
         paymentMethod:
           $ref: '#/components/schemas/PaymentMethod'
         paymentType:
@@ -3803,15 +4052,29 @@ components:
           $ref: '#/components/schemas/PaymentProcessingDetail'
         chargeBearerType:
           $ref: '#/components/schemas/ChargeBearerType'
+        paymentId:
+          $ref: '#/components/schemas/PaymentId'
     Day:
       maximum: 31
       type: integer
       description: Specifies the date in a month.
       example: 30
     HourOfTheDay:
+      type: object
+      properties:
+        hour:
+          type: string
+          format: time-hour
+          example: "12"
+        timeZone:
+          $ref: '#/components/schemas/TimeZone'
+    TimeZone:
+      maxLength: 30
+      minLength: 1
       type: string
-      format: time-hour
-      example: "12"
+      description: |
+        A time zone is an area which observes a uniform standard time for legal, commercial and social purposes. Some possible values: Pacific, Mountain, Central, Eastern, GreenwichMean
+      example: Pacific
     StandingOrderStatus:
       maxLength: 36
       minLength: 1
@@ -3853,10 +4116,6 @@ components:
     AccountIdentifiersResponse:
       type: object
       properties:
-        accountId:
-          $ref: '#/components/schemas/AccountId'
-        accountType:
-          $ref: '#/components/schemas/AccountType'
         iBAN:
           $ref: '#/components/schemas/IBAN'
         accountNumber:
@@ -3869,6 +4128,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AccountIdentification'
+        accountId:
+          $ref: '#/components/schemas/AccountId'
+        accountType:
+          $ref: '#/components/schemas/AccountType'
     AccountPartyResponse:
       type: object
       properties:
@@ -3905,18 +4168,6 @@ components:
     PaymentCard:
       type: object
       properties:
-        cardId:
-          $ref: '#/components/schemas/PaymentCardId'
-        productName:
-          $ref: '#/components/schemas/CardProductName'
-        creditCardStatement:
-          $ref: '#/components/schemas/CreditCardStatement'
-        offers:
-          type: array
-          description: |
-            Card provider offers assigned to the PAN.
-          items:
-            $ref: '#/components/schemas/CardProviderOffer'
         fundingSourceType:
           $ref: '#/components/schemas/CardFundingSourceType'
         productCode:
@@ -3991,6 +4242,18 @@ components:
           $ref: '#/components/schemas/Description'
         supplementaryData:
           $ref: '#/components/schemas/SupplementaryData'
+        cardId:
+          $ref: '#/components/schemas/PaymentCardId'
+        productName:
+          $ref: '#/components/schemas/CardProductName'
+        creditCardStatement:
+          $ref: '#/components/schemas/CreditCardStatement'
+        offers:
+          type: array
+          description: |
+            Card provider offers assigned to the PAN.
+          items:
+            $ref: '#/components/schemas/CardProviderOffer'
     PaymentCardRequest:
       type: object
       properties:
@@ -4101,7 +4364,7 @@ components:
           $ref: '#/components/schemas/AccountNumber'
     YearMonth:
       maxLength: 7
-      pattern: ^\d{4}-([0]\d|1[0-2])$
+      pattern: "^\\d{4}-([0]\\d|1[0-2])$"
       type: string
       description: |
         Month within a particular calendar year represented by YYYY-MM (ISO 8601).
@@ -4164,139 +4427,95 @@ components:
       description: |
         Request the cancellation of an existing standing order.
     PhoneNumber:
-      pattern: ^\+[0-9]{1,3}-[0-9()+\-]{1,30}$
+      pattern: "^\\+[0-9]{1,3}-[0-9()+\\-]{1,30}$"
       type: string
       description: The collection of information which identifies a specific phone or FAX number as defined by telecom services.
       example: +1-415-731359
     Person:
       type: object
       properties:
+        uSDocumentedIndicator:
+          type: boolean
+        genericIdentifiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/PersonIdentification'
+        name:
+          $ref: '#/components/schemas/PartyName'
+        shortName:
+          $ref: '#/components/schemas/PartyShortName'
+        relatedParties:
+          type: array
+          items:
+            $ref: '#/components/schemas/RelatedParty'
+        postalAddresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/PostalAddress'
+        residenceType:
+          maxLength: 35
+          minLength: 1
+          type: string
+          description: |
+            Specifies the type of residence where the party has its permanent home or principal establishment.  Possible ISO Complaian values are:
+            Domestic, Foreign, Mixed
+          example: Domestic
+        taxInformation:
+          $ref: '#/components/schemas/TaxPartyInformation'
+        powerOfAttorney:
+          $ref: '#/components/schemas/PowerOfAttorney'
+        supplementaryData:
+          $ref: '#/components/schemas/SupplementaryData'
+        settings:
+          $ref: '#/components/schemas/PartySystemSettings'
+        restrictions:
+          type: array
+          description: "Access and operation restrictions at Party level. \n"
+          items:
+            $ref: '#/components/schemas/Restriction'
+        placeAndDateOfBirth:
+          $ref: '#/components/schemas/PlaceAndDateOfBirth'
+        signature:
+          $ref: '#/components/schemas/DigitalSignature'
+        contact:
+          $ref: '#/components/schemas/PersonContactDetails'
+        headOfHousehold:
+          type: boolean
+          description: Indicates whether the person pay the costs of supporting a house.
+          example: true
+        civilStatus:
+          $ref: '#/components/schemas/CivilStatus'
+        structuredName:
+          $ref: '#/components/schemas/StructuredName'
+        gender:
+          $ref: '#/components/schemas/Gender'
+        profession:
+          $ref: '#/components/schemas/Profession'
+        jobTitle:
+          $ref: '#/components/schemas/JobTitle'
+        residentialStatus:
+          $ref: '#/components/schemas/ResidentialStatus'
+        minorIndicator:
+          $ref: '#/components/schemas/MinorIndicator'
+        citizenships:
+          type: array
+          items:
+            $ref: '#/components/schemas/Citizenship'
+        countryOfResidence:
+          $ref: '#/components/schemas/CountryCode'
+        profile:
+          $ref: '#/components/schemas/PersonProfile'
+        partySettings:
+          $ref: '#/components/schemas/PartySystemSettings'
         personId:
           $ref: '#/components/schemas/Id'
         status:
           $ref: '#/components/schemas/InstructionStatus'
-        placeAndDateOfBirth:
-          $ref: '#/components/schemas/PlaceAndDateOfBirth'
-        signature:
-          $ref: '#/components/schemas/DigitalSignature'
-        contact:
-          $ref: '#/components/schemas/PersonContactDetails'
-        headOfHousehold:
-          type: boolean
-          description: Indicates whether the person pay the costs of supporting a house.
-          example: true
-        civilStatus:
-          $ref: '#/components/schemas/CivilStatus'
-        structuredName:
-          $ref: '#/components/schemas/StructuredName'
-        gender:
-          $ref: '#/components/schemas/Gender'
-        profession:
-          $ref: '#/components/schemas/Profession'
-        businessFunctionTitle:
-          maxLength: 35
-          minLength: 1
-          type: string
-          description: Title of the function in an organization.
-          example: Head of Documentation
-        residentialStatus:
-          $ref: '#/components/schemas/ResidentialStatus'
-        minorIndicator:
-          $ref: '#/components/schemas/MinorIndicator'
-        citizenships:
-          type: array
-          items:
-            $ref: '#/components/schemas/Citizenship'
-        deathDate:
-          $ref: '#/components/schemas/Date'
-        powerOfAttorney:
-          $ref: '#/components/schemas/PowerOfAttorney'
-        countryOfResidence:
-          $ref: '#/components/schemas/CountryCode'
-        profile:
-          $ref: '#/components/schemas/PersonProfile'
-        partySettings:
-          $ref: '#/components/schemas/PartySystemSettings'
-        genericIdentifiers:
-          type: array
-          items:
-            $ref: '#/components/schemas/PersonIdentification'
-        name:
-          $ref: '#/components/schemas/PartyName'
-        shortName:
-          $ref: '#/components/schemas/PartyShortName'
-        relatedParties:
-          type: array
-          items:
-            $ref: '#/components/schemas/RelatedParty'
-        postalAddresses:
-          type: array
-          items:
-            $ref: '#/components/schemas/PostalAddress'
-        residenceType:
-          maxLength: 35
-          minLength: 1
-          type: string
-          description: |
-            Specifies the type of residence where the party has its permanent home or principal establishment.  Possible ISO Complaian values are:
-            Domestic, Foreign, Mixed
-          example: Domestic
-        taxInformation:
-          $ref: '#/components/schemas/TaxPartyInformation'
-        supplementaryData:
-          $ref: '#/components/schemas/SupplementaryData'
-        settings:
-          $ref: '#/components/schemas/PartySystemSettings'
-        restrictions:
-          type: array
-          description: "Access and operation restrictions at Party level. \n"
-          items:
-            $ref: '#/components/schemas/Restriction'
     PersonRequest:
       type: object
       properties:
-        placeAndDateOfBirth:
-          $ref: '#/components/schemas/PlaceAndDateOfBirth'
-        signature:
-          $ref: '#/components/schemas/DigitalSignature'
-        contact:
-          $ref: '#/components/schemas/PersonContactDetails'
-        headOfHousehold:
+        uSDocumentedIndicator:
           type: boolean
-          description: Indicates whether the person pay the costs of supporting a house.
-          example: true
-        civilStatus:
-          $ref: '#/components/schemas/CivilStatus'
-        structuredName:
-          $ref: '#/components/schemas/StructuredName'
-        gender:
-          $ref: '#/components/schemas/Gender'
-        profession:
-          $ref: '#/components/schemas/Profession'
-        businessFunctionTitle:
-          maxLength: 35
-          minLength: 1
-          type: string
-          description: Title of the function in an organization.
-          example: Head of Documentation
-        residentialStatus:
-          $ref: '#/components/schemas/ResidentialStatus'
-        minorIndicator:
-          $ref: '#/components/schemas/MinorIndicator'
-        citizenships:
-          type: array
-          items:
-            $ref: '#/components/schemas/Citizenship'
-        deathDate:
-          $ref: '#/components/schemas/Date'
-        powerOfAttorney:
-          $ref: '#/components/schemas/PowerOfAttorney'
-        countryOfResidence:
-          $ref: '#/components/schemas/CountryCode'
-        profile:
-          $ref: '#/components/schemas/PersonProfile'
-        partySettings:
-          $ref: '#/components/schemas/PartySystemSettings'
         genericIdentifiers:
           type: array
           items:
@@ -4323,6 +4542,8 @@ components:
           example: Domestic
         taxInformation:
           $ref: '#/components/schemas/TaxPartyInformation'
+        powerOfAttorney:
+          $ref: '#/components/schemas/PowerOfAttorney'
         supplementaryData:
           $ref: '#/components/schemas/SupplementaryData'
         settings:
@@ -4332,9 +4553,45 @@ components:
           description: "Access and operation restrictions at Party level. \n"
           items:
             $ref: '#/components/schemas/Restriction'
+        placeAndDateOfBirth:
+          $ref: '#/components/schemas/PlaceAndDateOfBirth'
+        signature:
+          $ref: '#/components/schemas/DigitalSignature'
+        contact:
+          $ref: '#/components/schemas/PersonContactDetails'
+        headOfHousehold:
+          type: boolean
+          description: Indicates whether the person pay the costs of supporting a house.
+          example: true
+        civilStatus:
+          $ref: '#/components/schemas/CivilStatus'
+        structuredName:
+          $ref: '#/components/schemas/StructuredName'
+        gender:
+          $ref: '#/components/schemas/Gender'
+        profession:
+          $ref: '#/components/schemas/Profession'
+        jobTitle:
+          $ref: '#/components/schemas/JobTitle'
+        residentialStatus:
+          $ref: '#/components/schemas/ResidentialStatus'
+        minorIndicator:
+          $ref: '#/components/schemas/MinorIndicator'
+        citizenships:
+          type: array
+          items:
+            $ref: '#/components/schemas/Citizenship'
+        countryOfResidence:
+          $ref: '#/components/schemas/CountryCode'
+        profile:
+          $ref: '#/components/schemas/PersonProfile'
+        partySettings:
+          $ref: '#/components/schemas/PartySystemSettings'
     PersonIdentifiers:
       type: object
       properties:
+        uSDocumentedIndicator:
+          type: boolean
         genericIdentifiers:
           type: array
           items:
@@ -4412,11 +4669,11 @@ components:
         ownershipPercentage:
           $ref: '#/components/schemas/Percentage'
     PartyRelationType:
-      maxLength: 35
+      maxLength: 40
       minLength: 1
       type: string
       description: |
-        Type of relation between parties.  Some ISO 20022 compliant values for Organizations are: RepresentativeOfficer, ResponsibleParty, Owner. For Trusts: Trustor, Trustee.  Between organizations: ParentOrganization, Branch.
+        Type of relation between parties.  Some ISO 20022 compliant values for Organizations are: RepresentativeOfficer, ResponsibleParty, Owner, PrimaryContact, SecondaryContact. For Trusts: Trustor, Trustee.  Between organizations: ParentOrganization, Branch. Between persons (organizations) and internal entities: PrimaryServicerOfficer, SecondaryServicerOfficer. Between financial institutions: AffiliateFinancialInstitution, HoldingCompany.
       example: Owner
     TaxPartyInformation:
       type: object
@@ -4435,7 +4692,7 @@ components:
           example: SSN
         reportingIndicator:
           type: boolean
-          description: 'Whether the financial income for this party should be reported to the U.S. government (IRS) when related to an account in a way which requires reporting (for example, primary, joint ownership). Defaults to true if not specified. '
+          description: "Whether the financial income for this party should be reported to the U.S. government (IRS) when related to an account in a way which requires reporting (for example, primary, joint ownership). Defaults to true if not specified. "
         tinStatus:
           type: string
           description: |
@@ -4523,20 +4780,10 @@ components:
         ForeignAccountTaxComplianceAct, NonResidentAlienTax, BackUpWithholding, VoluntaryWithholding, Federal, State, Local, W-4.
       example: NonResidentAlienTax
     PowerOfAttorney:
-      description: |
-        Document that transfers specific rights from a party to a person.
       type: object
       properties:
-        authorizedPerson:
-          $ref: '#/components/schemas/Id'
-        authorizedAccount:
-          $ref: '#/components/schemas/AccountId'
         jurisdiction:
           $ref: '#/components/schemas/Jurisdiction'
-        fromDateTime:
-          $ref: '#/components/schemas/Date'
-        upToDateTime:
-          $ref: '#/components/schemas/Date'
         documentId:
           $ref: '#/components/schemas/Id'
         documentReference:
@@ -4558,6 +4805,14 @@ components:
           minLength: 1
           type: string
           description: Specifies the function of the document.
+        fromDateTime:
+          $ref: '#/components/schemas/Date'
+        upToDateTime:
+          $ref: '#/components/schemas/Date'
+        authorizedPerson:
+          $ref: '#/components/schemas/Id'
+        authorizedAccount:
+          $ref: '#/components/schemas/AccountId'
     PartySystemSettings:
       type: object
       properties:
@@ -4571,21 +4826,26 @@ components:
       properties:
         channel:
           $ref: '#/components/schemas/CommunicationChannelName'
+        channelIdentification:
+          $ref: '#/components/schemas/CommunicationChannelIdentification'
         codeWord:
           type: string
           description: |
             A party is asked for a codeword to verify their identity trought a communication channel
         alertIndicator:
           description: |
-            Indicates whether the channel is used for Enterprise Alerts
+            Indicates whether the channel is used for enterprise alerts
       description: |
         Channel used to communicate with a party
+    CommunicationChannelIdentification:
+      maxLength: 128
+      minLength: 1
+      type: string
+      description: Communication value such as phone number or email address.
+      example: 011-02010020202
     PlaceAndDateOfBirth:
-      description: Date and place of birth of a person.
       type: object
       properties:
-        birthDate:
-          $ref: '#/components/schemas/Date'
         countrySubdivision:
           maxLength: 35
           minLength: 1
@@ -4598,6 +4858,8 @@ components:
           example: Tualatin
         country:
           $ref: '#/components/schemas/CountryCode'
+        birthDate:
+          $ref: '#/components/schemas/Date'
     DigitalSignature:
       maxLength: 13654
       minLength: 1
@@ -4624,17 +4886,7 @@ components:
           items:
             $ref: '#/components/schemas/Email'
         jobTitle:
-          maxLength: 35
-          minLength: 1
-          type: string
-          description: Title of the function.
-          example: Consultant
-        responsibility:
-          maxLength: 35
-          minLength: 1
-          type: string
-          description: Role of a person in an organisation.
-          example: Employee
+          $ref: '#/components/schemas/JobTitle'
         department:
           maxLength: 35
           minLength: 1
@@ -4651,12 +4903,18 @@ components:
           type: string
           description: "Preferred method used to reach the contact, in PascalCase form. Possible ISO compliant values are:  \nLetter, Email, Phone, Fax, MobileOrCellPhone.\n"
           example: Email
+        preferredLanguage:
+          $ref: '#/components/schemas/PreferredLanguage'
       description: Specifies the contact details of a person.
     Phone:
       type: object
       properties:
         number:
           $ref: '#/components/schemas/PhoneNumber'
+        extension:
+          maxLength: 5
+          type: string
+          description: Phone Number Extension.
         phoneType:
           maxLength: 35
           minLength: 1
@@ -4670,6 +4928,8 @@ components:
             Purpose of the phone address. Possible values are:   Business, Personal.
         primaryIndicator:
           $ref: '#/components/schemas/PrimaryContactIndicator'
+        preferredHourOfDay:
+          $ref: '#/components/schemas/HourOfTheDay'
       description: Collection of information that identifies a phone address.
     Email:
       type: object
@@ -4689,22 +4949,27 @@ components:
         primaryIndicator:
           $ref: '#/components/schemas/PrimaryContactIndicator'
       description: Collection of information that identifies an electronic mail address.
+    JobTitle:
+      maxLength: 35
+      minLength: 1
+      type: string
+      description: Title of the function in an organization.
+      example: Head of Documentation
     GenericContact:
       type: object
       properties:
         channelType:
-          maxLength: 30
-          minLength: 1
-          type: string
-          description: Method name used to contact the party.
-          example: Fax
+          $ref: '#/components/schemas/CommunicationChannelName'
         identification:
-          maxLength: 128
-          minLength: 1
-          type: string
-          description: Communication value such as phone number or email address.
-          example: 011-02010020202
+          $ref: '#/components/schemas/CommunicationChannelIdentification'
       description: Communication device number or electronic address used for communication.
+    PreferredLanguage:
+      maxLength: 35
+      minLength: 1
+      type: string
+      description: |
+        Language of the contact person. Names according to the language list provided in the ISO 639-1 codes. Some possible values: Chinese, Spanish, French, English, Japanese, Italian, German.
+      example: English
     CivilStatus:
       maxLength: 17
       minLength: 1
@@ -4742,6 +5007,20 @@ components:
           description: |
             Person surname.
           example: Smith
+        suffix:
+          maxLength: 20
+          minLength: 1
+          type: string
+          description: |
+            A name suffix in the Western English-Language naming tradition, follows a person's full name and provides additional information about the person. Possible Values:  PhD, Snr, Jnr.
+          example: PhD
+        prefix:
+          maxLength: 20
+          minLength: 1
+          type: string
+          description: |
+            Name prefixes are typically Dr., Mr., Mrs., Ms.
+          example: Dr.
       description: |
         The structured name is used to initialize the person name with the format <firstName middleName lastName>
     Gender:
@@ -4755,33 +5034,68 @@ components:
       maxLength: 35
       type: string
       description: |
-        Name of the occupation or job of a person.
+        Professional Designation or name of the occupation of a person.
       example: Artist
     ResidentialStatus:
       maxLength: 35
       minLength: 1
       type: string
       description: |
-        Residential status of an individual. Possible values: Permanent, Resident, NonResident.
+        Residential status of an individual. Possible values: Permanent, Resident, NonResident, Rents, Owns
       example: Permanent
     MinorIndicator:
       type: boolean
       description: |
         Indicates whether the person is a legal minor.
     Citizenship:
-      description: Specifies the country and a period where a person is legally accepted as belonging to the country.
       type: object
       properties:
+        countrySubdivision:
+          maxLength: 35
+          minLength: 1
+          type: string
+          example: Oregon
+        townName:
+          maxLength: 35
+          minLength: 1
+          type: string
+          example: Tualatin
         country:
           $ref: '#/components/schemas/CountryCode'
-        fromDateTime:
-          $ref: '#/components/schemas/Date'
-        upToDateTime:
-          $ref: '#/components/schemas/Date'
     PersonProfile:
       type: object
-      description: Information to support Know Your Customer (KYC) processes.
       properties:
+        riskLevel:
+          $ref: '#/components/schemas/RiskLevel'
+        creditReview:
+          $ref: '#/components/schemas/CreditReview'
+        creditBureauReportCode:
+          type: string
+          description: "Code used for reporting to the credit bureaus. This code is used to report the trade line of a credit account to the credit bureau agencies. \n"
+        previousFinancialInstitution:
+          $ref: '#/components/schemas/PartyName'
+        referredByWhom:
+          $ref: '#/components/schemas/PartyName'
+        moneyLaunderingCheck:
+          $ref: '#/components/schemas/MoneyLaunderingCheck'
+        knowYourCustomerCheck:
+          $ref: '#/components/schemas/KnowYourCustomerCheckType'
+        timeAtCurrentAddress:
+          $ref: '#/components/schemas/TemporalDuration'
+        sourceOfWealth:
+          $ref: '#/components/schemas/Description'
+        politicalAffiliation:
+          type: string
+          description: |
+            Indicates the political affiliation of the Party. Possible values could be: Democrat, Independent, Republican.
+        lastContactDate:
+          $ref: '#/components/schemas/Date'
+        lastContactChannel:
+          $ref: '#/components/schemas/CommunicationChannelName'
+        lostCustomerDate:
+          $ref: '#/components/schemas/Date'
+        lostCustomerReason:
+          $ref: '#/components/schemas/LostCustomerReason'
         customerConductClassification:
           $ref: '#/components/schemas/CustomerConductClassification'
         familyMedicalInsuranceIndicator:
@@ -4790,39 +5104,28 @@ components:
           example: true
         salaryRange:
           $ref: '#/components/schemas/AmountRange'
-        referredByWhom:
-          $ref: '#/components/schemas/PartyName'
         employmentStatus:
           $ref: '#/components/schemas/EmploymentStatus'
+        vIPStatus:
+          $ref: '#/components/schemas/VIPStatus'
         employments:
           type: array
           items:
             $ref: '#/components/schemas/Employment'
-        riskLevel:
-          $ref: '#/components/schemas/RiskLevel'
-        creditQuality:
-          $ref: '#/components/schemas/CreditQuality'
-        previousFinancialInstitution:
-          $ref: '#/components/schemas/PartyName'
-        moneyLaunderingCheck:
-          $ref: '#/components/schemas/MoneyLaunderingCheck'
-        knowYourCustomerCheck:
-          $ref: '#/components/schemas/KnowYourCustomerCheckType'
-        timeAtCurrentAddress:
-          $ref: '#/components/schemas/TemporalDuration'
-        sourceOfWealth:
-          $ref: '#/components/schemas/Description'
-        politicalAffiliation:
-          type: string
-          description: |
-            Indicates the political affiliation of the Party. Possible values could be: Democrat, Independent, Republican.
+        regulation0:
+          $ref: '#/components/schemas/Regulation0'
+        anualIncome:
+          $ref: '#/components/schemas/AmountInCents'
     PartyProfile:
       type: object
       properties:
         riskLevel:
           $ref: '#/components/schemas/RiskLevel'
-        creditQuality:
-          $ref: '#/components/schemas/CreditQuality'
+        creditReview:
+          $ref: '#/components/schemas/CreditReview'
+        creditBureauReportCode:
+          type: string
+          description: "Code used for reporting to the credit bureaus. This code is used to report the trade line of a credit account to the credit bureau agencies. \n"
         previousFinancialInstitution:
           $ref: '#/components/schemas/PartyName'
         referredByWhom:
@@ -4839,6 +5142,14 @@ components:
           type: string
           description: |
             Indicates the political affiliation of the Party. Possible values could be: Democrat, Independent, Republican.
+        lastContactDate:
+          $ref: '#/components/schemas/Date'
+        lastContactChannel:
+          $ref: '#/components/schemas/CommunicationChannelName'
+        lostCustomerDate:
+          $ref: '#/components/schemas/Date'
+        lostCustomerReason:
+          $ref: '#/components/schemas/LostCustomerReason'
     RiskLevel:
       maxLength: 35
       minLength: 1
@@ -4846,6 +5157,21 @@ components:
       description: |
         Specifies the customer’s money laundering risk. Possible values: High, Medium, Low.
       example: Permanent
+    CreditReview:
+      type: object
+      properties:
+        frequency:
+          $ref: '#/components/schemas/Frequency'
+        lastReviewDate:
+          $ref: '#/components/schemas/DateAndTime'
+        nextReviewDate:
+          $ref: '#/components/schemas/DateAndTime'
+        creditQuality:
+          $ref: '#/components/schemas/CreditQuality'
+        creditScore:
+          type: number
+      description: |
+        A credit review is a periodic assessment of an individual’s or businesses' credit profile.
     CreditQuality:
       maxLength: 35
       minLength: 1
@@ -4865,6 +5191,12 @@ components:
       description: |
         Specifies the type of Know Your Customer (KYC) or anti-money laundering due diligence to which the investor has been subjected. Possible Values: Ordinary, Simple, Enhanced.
       example: Ordinary
+    LostCustomerReason:
+      maxLength: 35
+      minLength: 1
+      type: string
+      description: "Possible values are: \n Competition, Deceased, Dissatisfied, Moved\n"
+      example: Deceased
     CustomerConductClassification:
       maxLength: 35
       minLength: 1
@@ -4883,15 +5215,18 @@ components:
       type: string
       description: |
         Represents available individual employment status. Possible Values: Contract, Employed, Homemaker, Retired, SelfEmployed, Student, Temporary, Unemployed.
+    VIPStatus:
+      type: string
+      description: |
+        Very Important People Program Status. Possible Values: Novice, Pro, Elite
+      example: Elite
     Employment:
       type: object
       properties:
         employingPartyName:
           $ref: '#/components/schemas/PartyName'
         jobTitle:
-          maxLength: 18
-          minLength: 1
-          type: string
+          $ref: '#/components/schemas/JobTitle'
         employeeTerminationIndicator:
           type: boolean
           example: false
@@ -4901,6 +5236,24 @@ components:
           $ref: '#/components/schemas/Date'
         place:
           $ref: '#/components/schemas/Place'
+    Regulation0:
+      type: object
+      properties:
+        insider:
+          $ref: '#/components/schemas/InsiderType'
+        familyRelationship:
+          $ref: '#/components/schemas/PartyRelationType'
+        institutionRelationship:
+          $ref: '#/components/schemas/PartyRelationType'
+      description: |
+        Regulation O is a Federal Reserve regulation that places limits and stipulations on the credit extensions a member bank can offer to its executive officers, principal shareholders, and directors.
+    InsiderType:
+      maxLength: 35
+      minLength: 1
+      type: string
+      description: |
+        Director, Employee, Officer, PrincipalShareholder, Shareholder, Executive.
+      example: Director
     InstructionStatus:
       maxLength: 35
       minLength: 1
@@ -4933,129 +5286,94 @@ components:
     Organization:
       type: object
       properties:
+        bIC:
+          $ref: '#/components/schemas/BIC'
+        lEI:
+          $ref: '#/components/schemas/LEI'
+        genericIdentifiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrganizationIdentification'
+        name:
+          $ref: '#/components/schemas/PartyName'
+        shortName:
+          $ref: '#/components/schemas/PartyShortName'
+        relatedParties:
+          type: array
+          items:
+            $ref: '#/components/schemas/RelatedParty'
+        postalAddresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/PostalAddress'
+        residenceType:
+          maxLength: 35
+          minLength: 1
+          type: string
+          description: |
+            Specifies the type of residence where the party has its permanent home or principal establishment.  Possible ISO Complaian values are:
+            Domestic, Foreign, Mixed
+          example: Domestic
+        taxInformation:
+          $ref: '#/components/schemas/TaxPartyInformation'
+        powerOfAttorney:
+          $ref: '#/components/schemas/PowerOfAttorney'
+        supplementaryData:
+          $ref: '#/components/schemas/SupplementaryData'
+        settings:
+          $ref: '#/components/schemas/PartySystemSettings'
+        restrictions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Restriction'
+        organizationType:
+          $ref: '#/components/schemas/OrganizationLegalStructure'
+        organizationPurpose:
+          $ref: '#/components/schemas/Description'
+        legalName:
+          $ref: '#/components/schemas/PartyShortName'
+        tradingName:
+          $ref: '#/components/schemas/PartyShortName'
+        registrationDate:
+          $ref: '#/components/schemas/Date'
+        establishmentDate:
+          $ref: '#/components/schemas/Date'
+        entityExpirationDate:
+          $ref: '#/components/schemas/Date'
+        merchantCategory:
+          $ref: '#/components/schemas/MerchantCategoryCode'
+        sector:
+          $ref: '#/components/schemas/OrganizationSector'
+        organizationProfile:
+          $ref: '#/components/schemas/OrganizationProfile'
+        phones:
+          type: array
+          items:
+            $ref: '#/components/schemas/Phone'
+        emails:
+          type: array
+          description: Business e-mails
+          items:
+            $ref: '#/components/schemas/Email'
+        webPage:
+          $ref: '#/components/schemas/URL'
+        logo:
+          $ref: '#/components/schemas/ComercialLogo'
         organizationId:
           $ref: '#/components/schemas/Id'
         status:
           $ref: '#/components/schemas/InstructionStatus'
-        organizationType:
-          $ref: '#/components/schemas/OrganizationLegalStructure'
-        organizationPurpose:
-          $ref: '#/components/schemas/Description'
-        legalName:
-          $ref: '#/components/schemas/PartyShortName'
-        tradingName:
-          $ref: '#/components/schemas/PartyShortName'
-        registrationDate:
-          $ref: '#/components/schemas/Date'
-        establishmentDate:
-          $ref: '#/components/schemas/Date'
-        entityExpirationDate:
-          $ref: '#/components/schemas/Date'
-        merchantCategory:
-          $ref: '#/components/schemas/MerchantCategoryCode'
-        sector:
-          $ref: '#/components/schemas/OrganizationSector'
-        organizationProfile:
-          $ref: '#/components/schemas/OrganizationProfile'
-        phones:
-          type: array
-          description: Business phone numbers
-          items:
-            $ref: '#/components/schemas/Phone'
-        emails:
-          type: array
-          description: Business e-mails
-          items:
-            $ref: '#/components/schemas/Email'
-        webPage:
-          $ref: '#/components/schemas/URL'
-        logo:
-          $ref: '#/components/schemas/ComercialLogo'
-        name:
-          $ref: '#/components/schemas/PartyName'
-        shortName:
-          $ref: '#/components/schemas/PartyShortName'
-        relatedParties:
-          type: array
-          items:
-            $ref: '#/components/schemas/RelatedParty'
-        postalAddresses:
-          type: array
-          items:
-            $ref: '#/components/schemas/PostalAddress'
-        residenceType:
-          maxLength: 35
-          minLength: 1
-          type: string
-          description: |
-            Specifies the type of residence where the party has its permanent home or principal establishment.  Possible ISO Complaian values are:
-            Domestic, Foreign, Mixed
-          example: Domestic
-        taxInformation:
-          $ref: '#/components/schemas/TaxPartyInformation'
-        powerOfAttorney:
-          $ref: '#/components/schemas/PowerOfAttorney'
-        supplementaryData:
-          $ref: '#/components/schemas/SupplementaryData'
-        settings:
-          $ref: '#/components/schemas/PartySystemSettings'
-        restrictions:
-          type: array
-          description: "Access and operation restrictions at Party level. \n"
-          items:
-            $ref: '#/components/schemas/Restriction'
-        bIC:
-          $ref: '#/components/schemas/BIC'
-        lEI:
-          $ref: '#/components/schemas/LEI'
-        genericIdentifiers:
-          type: array
-          items:
-            $ref: '#/components/schemas/OrganizationIdentification'
     OrganizationRequest:
       type: object
       properties:
-        organizationType:
-          $ref: '#/components/schemas/OrganizationLegalStructure'
-        servicerBranchId:
-          $ref: '#/components/schemas/ServicerBranchId'
-        organizationPurpose:
-          $ref: '#/components/schemas/Description'
-        legalName:
-          $ref: '#/components/schemas/PartyShortName'
-        tradingName:
-          $ref: '#/components/schemas/PartyShortName'
-        registrationDate:
-          $ref: '#/components/schemas/Date'
-        establishmentDate:
-          $ref: '#/components/schemas/Date'
-        emailAddress:
-          type: string
-          maxLength: 2048
-          minLength: 1
-          description: Address for electronic mail (e-mail).
-        entityExpirationDate:
-          $ref: '#/components/schemas/Date'
-        merchantCategory:
-          $ref: '#/components/schemas/MerchantCategoryCode'
-        sector:
-          $ref: '#/components/schemas/OrganizationSector'
-        organizationProfile:
-          $ref: '#/components/schemas/OrganizationProfile'
-        phones:
+        bIC:
+          $ref: '#/components/schemas/BIC'
+        lEI:
+          $ref: '#/components/schemas/LEI'
+        genericIdentifiers:
           type: array
-          description: Business phone numbers
           items:
-            $ref: '#/components/schemas/Phone'
-        emails:
-          type: array
-          description: Business e-mails
-          items:
-            $ref: '#/components/schemas/Email'
-        webPage:
-          $ref: '#/components/schemas/URL'
-        logo:
-          $ref: '#/components/schemas/ComercialLogo'
+            $ref: '#/components/schemas/OrganizationIdentification'
         name:
           $ref: '#/components/schemas/PartyName'
         shortName:
@@ -5089,14 +5407,40 @@ components:
           description: "Access and operation restrictions at Party level. \n"
           items:
             $ref: '#/components/schemas/Restriction'
-        bIC:
-          $ref: '#/components/schemas/BIC'
-        lEI:
-          $ref: '#/components/schemas/LEI'
-        genericIdentifiers:
+        organizationType:
+          $ref: '#/components/schemas/OrganizationLegalStructure'
+        organizationPurpose:
+          $ref: '#/components/schemas/Description'
+        legalName:
+          $ref: '#/components/schemas/PartyShortName'
+        tradingName:
+          $ref: '#/components/schemas/PartyShortName'
+        registrationDate:
+          $ref: '#/components/schemas/Date'
+        establishmentDate:
+          $ref: '#/components/schemas/Date'
+        entityExpirationDate:
+          $ref: '#/components/schemas/Date'
+        merchantCategory:
+          $ref: '#/components/schemas/MerchantCategoryCode'
+        sector:
+          $ref: '#/components/schemas/OrganizationSector'
+        organizationProfile:
+          $ref: '#/components/schemas/OrganizationProfile'
+        phones:
           type: array
+          description: Business phone numbers
           items:
-            $ref: '#/components/schemas/OrganizationIdentification'
+            $ref: '#/components/schemas/Phone'
+        emails:
+          type: array
+          description: Business e-mails
+          items:
+            $ref: '#/components/schemas/Email'
+        webPage:
+          $ref: '#/components/schemas/URL'
+        logo:
+          $ref: '#/components/schemas/ComercialLogo'
     OrganizationIdentifiers:
       type: object
       properties:
@@ -5111,7 +5455,7 @@ components:
     BIC:
       maxLength: 36
       minLength: 1
-      pattern: ^[A-Z0-9]{4,4}[A-Z]{2,2}[A-Z0-9]{2,2}([A-Z0-9]{3,3}){0,1}$
+      pattern: "^[A-Z0-9]{4,4}[A-Z]{2,2}[A-Z0-9]{2,2}([A-Z0-9]{3,3}){0,1}$"
       type: string
       description: |
         Business identification code of the organization. Code allocated to a financial or non-financial institution by the ISO 9362 Registration Authority, as described in ISO 9362: 2014 - "Banking - Banking telecommunication messages - Business identifier code (BIC)".
@@ -5119,7 +5463,7 @@ components:
     LEI:
       maxLength: 36
       minLength: 1
-      pattern: ^[A-Z0-9]{18,18}[0-9]{2,2}$
+      pattern: "^[A-Z0-9]{18,18}[0-9]{2,2}$"
       type: string
       description: |
         Legal Entity Identifier is a code allocated to a party as described in ISO 17442 "Financial Services - Legal Entity Identifier (LEI)".
@@ -5137,7 +5481,7 @@ components:
           maxLength: 35
           minLength: 1
           type: string
-          description: "Name of the identification scheme, in PascalCase form. Possible ISO compliant values are: \nBankPartyIdentification\nCentralBankIdentificationNumber\nClearingIdentificationNumber\nCertificateOfIncorporationNumber\nCountryIdentificationCode\nCustomerNumber\nDataUniversalNumberingSystem\nEmployerIdentificationNumber\nGS1GLNIdentifier\nSIREN\nSIRET\nTaxIdentificationNumber\nBusinessDomainIdentifier\nBusinessOtherIdentification\n"
+          description: "Name of the identification scheme, in PascalCase form. Possible ISO compliant values are: \nBankPartyIdentification\nCentralBankIdentificationNumber\nClearingIdentificationNumber\nCertificateOfIncorporationNumber\nCountryIdentificationCode\nCustomerNumber\nDataUniversalNumberingSystem\nEmployerIdentificationNumber\nGS1GLNIdentifier\nSIREN\nSIRET\nTaxIdentificationNumber\nBusinessDomainIdentifier\nBusinessOtherIdentification\nEmployerIdentificationNumber\n"
           example: TaxIdentificationNumber
         issuer:
           type: string
@@ -5160,25 +5504,13 @@ components:
     OrganizationProfile:
       type: object
       properties:
-        numberOfEmployees:
-          type: integer
-          description: Number of employees of the corporation.
-          example: 100
-        anualSales:
-          $ref: '#/components/schemas/AmountInCents'
-        services:
-          $ref: '#/components/schemas/Description'
-        goods:
-          $ref: '#/components/schemas/Description'
-        serviceOrGoodsLocations:
-          type: array
-          description: Places where the goods and services are sold.
-          items:
-            $ref: '#/components/schemas/Place'
         riskLevel:
           $ref: '#/components/schemas/RiskLevel'
-        creditQuality:
-          $ref: '#/components/schemas/CreditQuality'
+        creditReview:
+          $ref: '#/components/schemas/CreditReview'
+        creditBureauReportCode:
+          type: string
+          description: "Code used for reporting to the credit bureaus. This code is used to report the trade line of a credit account to the credit bureau agencies. \n"
         previousFinancialInstitution:
           $ref: '#/components/schemas/PartyName'
         referredByWhom:
@@ -5195,8 +5527,31 @@ components:
           type: string
           description: |
             Indicates the political affiliation of the Party. Possible values could be: Democrat, Independent, Republican.
-      description: Information to support Know Your Customer (KYC) processes.
+        lastContactDate:
+          $ref: '#/components/schemas/Date'
+        lastContactChannel:
+          $ref: '#/components/schemas/CommunicationChannelName'
+        lostCustomerDate:
+          $ref: '#/components/schemas/Date'
+        lostCustomerReason:
+          $ref: '#/components/schemas/LostCustomerReason'
+        numberOfEmployees:
+          type: integer
+          description: Number of employees of the corporation.
+          example: 100
+        anualSales:
+          $ref: '#/components/schemas/AmountInCents'
+        services:
+          $ref: '#/components/schemas/Description'
+        goods:
+          $ref: '#/components/schemas/Description'
+        serviceOrGoodsLocations:
+          type: array
+          description: Places where the goods and services are sold.
+          items:
+            $ref: '#/components/schemas/Place'
     URL:
+      pattern: "ˆ[(http(s)?):\\/\\/(www\\.)?a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)"
       type: string
       description: The address of a web page.
     ComercialLogo:
@@ -5295,9 +5650,7 @@ components:
         statmentSettings:
           $ref: '#/components/schemas/StatementSettings'
         supplementaryData:
-          type: array
-          items:
-            $ref: '#/components/schemas/SupplementaryData'
+          $ref: '#/components/schemas/SupplementaryData'
       description: |
         Request of an amount of money in exchange for future repayment of the principal amount along with interest or other finance charges.
     LoanType:
@@ -5307,9 +5660,35 @@ components:
       description: "Type of the account. Some possible BIAN compliant values are: \n Personal,\n Consumer,  \n Corporate, \n Lease, \n Syndicated, \n Mortgage,\n Conforming,\n Merchandising,\n LinesOfCredit,\n RevolvingCredit.\n"
       example: Personal
     LoanContract:
-      description: Contract by which an amount of money in exchange for future repayment of the principal amount along with interest or other finance charges.
       type: object
       properties:
+        jurisdiction:
+          $ref: '#/components/schemas/Jurisdiction'
+        documentId:
+          $ref: '#/components/schemas/Id'
+        documentReference:
+          maxLength: 35
+          minLength: 1
+          type: string
+          description: Document location.
+        version:
+          maxLength: 18
+          minLength: 1
+          type: string
+          description: Document version indentification.
+        signOffDate:
+          $ref: '#/components/schemas/Date'
+        issueDate:
+          $ref: '#/components/schemas/Date'
+        purpose:
+          maxLength: 35
+          minLength: 1
+          type: string
+          description: Specifies the function of the document.
+        fromDateTime:
+          $ref: '#/components/schemas/Date'
+        upToDateTime:
+          $ref: '#/components/schemas/Date'
         amount:
           $ref: '#/components/schemas/PositiveAmountInCents'
         borrower:
@@ -5356,33 +5735,6 @@ components:
           type: boolean
           description: Indicates whether the loan is an intra-company loan.
           example: false
-        jurisdiction:
-          $ref: '#/components/schemas/Jurisdiction'
-        fromDateTime:
-          $ref: '#/components/schemas/Date'
-        upToDateTime:
-          $ref: '#/components/schemas/Date'
-        documentId:
-          $ref: '#/components/schemas/Id'
-        documentReference:
-          maxLength: 35
-          minLength: 1
-          type: string
-          description: Document location.
-        version:
-          maxLength: 18
-          minLength: 1
-          type: string
-          description: Document version indentification.
-        signOffDate:
-          $ref: '#/components/schemas/Date'
-        issueDate:
-          $ref: '#/components/schemas/Date'
-        purpose:
-          maxLength: 35
-          minLength: 1
-          type: string
-          description: Specifies the function of the document.
     LoanContractTranche:
       type: object
       properties:
@@ -5454,26 +5806,8 @@ components:
       description: |
         Loan offered by a group of lenders (called a syndicate) who work together to lend an amount of money to a single borrower.
     Loan:
-      description: |
-        An account through which a party is able to repay a bank loan.
       type: object
       properties:
-        accountId:
-          $ref: '#/components/schemas/AccountId'
-        relatedCards:
-          type: array
-          description: |
-            Payment cards related to the account. Debit cards, for loans or current accounts. Credit cards, for credit card accounts.
-          items:
-            $ref: '#/components/schemas/RelatedCard'
-        principalAmount:
-          $ref: '#/components/schemas/PositiveAmountInCents'
-        accruedCapitalisationAmount:
-          $ref: '#/components/schemas/PositiveAmountInCents'
-        nextPayment:
-          $ref: '#/components/schemas/RepaymentSchedule'
-        lastPayment:
-          $ref: '#/components/schemas/Repayment'
         iBAN:
           $ref: '#/components/schemas/IBAN'
         accountNumber:
@@ -5521,9 +5855,7 @@ components:
         statmentSettings:
           $ref: '#/components/schemas/StatementSettings'
         supplementaryData:
-          type: array
-          items:
-            $ref: '#/components/schemas/SupplementaryData'
+          $ref: '#/components/schemas/SupplementaryData'
         status:
           $ref: '#/components/schemas/LoanStatus'
         statusDateAndTime:
@@ -5547,6 +5879,22 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/NumberOfTransactions'
+        accountId:
+          $ref: '#/components/schemas/AccountId'
+        relatedCards:
+          type: array
+          description: |
+            Payment cards related to the account. Debit cards, for loans or current accounts. Credit cards, for credit card accounts.
+          items:
+            $ref: '#/components/schemas/RelatedCard'
+        principalAmount:
+          $ref: '#/components/schemas/PositiveAmountInCents'
+        accruedCapitalisationAmount:
+          $ref: '#/components/schemas/PositiveAmountInCents'
+        nextPayment:
+          $ref: '#/components/schemas/RepaymentSchedule'
+        lastPayment:
+          $ref: '#/components/schemas/Repayment'
     LoanDetailedStatus:
       type: object
       properties:
@@ -5575,8 +5923,6 @@ components:
     Repayment:
       type: object
       properties:
-        paymentDate:
-          $ref: '#/components/schemas/Date'
         repaymentScheduleId:
           $ref: '#/components/schemas/Id'
         amount:
@@ -5587,8 +5933,8 @@ components:
           $ref: '#/components/schemas/Date'
         repaymentType:
           $ref: '#/components/schemas/LoanPaymentType'
-      description: |
-        An amount that was paid.
+        paymentDate:
+          $ref: '#/components/schemas/Date'
     LoanBalanceResponse:
       type: object
       properties:
@@ -5623,10 +5969,6 @@ components:
     LoanIdentifiersResponse:
       type: object
       properties:
-        loanId:
-          $ref: '#/components/schemas/AccountId'
-        loanType:
-          $ref: '#/components/schemas/LoanType'
         iBAN:
           $ref: '#/components/schemas/IBAN'
         accountNumber:
@@ -5639,6 +5981,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AccountIdentification'
+        loanId:
+          $ref: '#/components/schemas/AccountId'
+        loanType:
+          $ref: '#/components/schemas/LoanType'
     LoanPartyResponse:
       type: object
       properties:
@@ -5661,23 +6007,261 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PaymentCard'
-    Error_nestedError:
+    CreditTransferInitiation:
       type: object
       properties:
-        code:
+        paymentMethod:
+          $ref: '#/components/schemas/PaymentMethod'
+        paymentType:
+          $ref: '#/components/schemas/PaymentType'
+        amount:
+          $ref: '#/components/schemas/AmountInCents'
+        debtorAccountId:
+          $ref: '#/components/schemas/AccountId'
+        creditorAccountId:
+          $ref: '#/components/schemas/AccountId'
+        purpose:
+          $ref: '#/components/schemas/Description'
+        identifiers:
+          $ref: '#/components/schemas/PaymentIdentifiers'
+        paymentProcessing:
+          $ref: '#/components/schemas/PaymentProcessingDetail'
+        chargeBearerType:
+          $ref: '#/components/schemas/ChargeBearerType'
+        currency:
+          $ref: '#/components/schemas/CurrencyCode'
+        exchangeDetail:
+          $ref: '#/components/schemas/Exchange'
+        checkDetail:
+          $ref: '#/components/schemas/Check'
+        valueDate:
+          $ref: '#/components/schemas/Date'
+        creditor:
+          $ref: '#/components/schemas/PartyIdentification'
+    PartyIdentification:
+      type: object
+      properties:
+        name:
+          $ref: '#/components/schemas/Party'
+        postalAddress:
+          $ref: '#/components/schemas/AccountIdentifiers'
+        agent:
+          $ref: '#/components/schemas/FinancialInstitution'
+        bIC:
+          $ref: '#/components/schemas/BIC'
+        lEI:
+          $ref: '#/components/schemas/LEI'
+        placeAndDateOfBirth:
+          $ref: '#/components/schemas/PlaceAndDateOfBirth'
+        contact:
+          $ref: '#/components/schemas/PersonContactDetails'
+        genericIdentifiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/PartyGenericIdentification'
+        countryOfResidence:
+          $ref: '#/components/schemas/CountryCode'
+    PartyGenericIdentification:
+      type: object
+      properties:
+        number:
+          maxLength: 35
+          minLength: 1
           type: string
-          description: |
-            The original external error code
-        message:
+          description: Unique and unambiguous identification of an organization.
+          example: 123-45-6789
+        schemeName:
+          $ref: '#/components/schemas/PartySchemeName'
+        issuer:
           type: string
-          description: |
-            The description of the error code
-        system:
-          type: string
-          description: |
-            The delegated system
+          description: Entity that assigns the identification.
+          example: UnitedStates
+        issueDate:
+          $ref: '#/components/schemas/Date'
+        expirationDate:
+          $ref: '#/components/schemas/Date'
+      description: Unique and unambiguous way to identify a party.
+    PartySchemeName:
+      maxLength: 35
+      minLength: 1
+      type: string
+      description: "Name of the identification scheme, in PascalCase form. Possible ISO compliant values are: \nBankPartyIdentification\nCentralBankIdentificationNumber\nClearingIdentificationNumber\nCertificateOfIncorporationNumber\nCountryIdentificationCode\nCustomerNumber\nDataUniversalNumberingSystem\nEmployerIdentificationNumber\nGS1GLNIdentifier\nSIREN\nSIRET\nTaxIdentificationNumber\nBusinessDomainIdentifier\nBusinessOtherIdentification\n AlienRegistrationNumber\nPassportNumber\nCustomerIdentificationNumber\nDriversLicenseNumber\nEmployeeIdentificationNumber\nNationalIdentityNumber\nSocialSecurityNumber\nTelephoneNumber\nTaxIdentificationNumber\nPersonCommercialIdentification\n"
+      example: TaxIdentificationNumber
+    CreditTransfer:
+      type: object
+      properties:
+        paymentMethod:
+          $ref: '#/components/schemas/PaymentMethod'
+        paymentType:
+          $ref: '#/components/schemas/PaymentType'
+        amount:
+          $ref: '#/components/schemas/AmountInCents'
+        debtorAccountId:
+          $ref: '#/components/schemas/AccountId'
+        creditorAccountId:
+          $ref: '#/components/schemas/AccountId'
+        purpose:
+          $ref: '#/components/schemas/Description'
+        identifiers:
+          $ref: '#/components/schemas/PaymentIdentifiers'
+        paymentProcessing:
+          $ref: '#/components/schemas/PaymentProcessingDetail'
+        chargeBearerType:
+          $ref: '#/components/schemas/ChargeBearerType'
+        currency:
+          $ref: '#/components/schemas/CurrencyCode'
+        exchangeDetail:
+          $ref: '#/components/schemas/Exchange'
+        checkDetail:
+          $ref: '#/components/schemas/Check'
+        valueDate:
+          $ref: '#/components/schemas/Date'
+        creditor:
+          $ref: '#/components/schemas/PartyIdentification'
+        paymentId:
+          $ref: '#/components/schemas/PaymentId'
+        status:
+          $ref: '#/components/schemas/PaymentStatus'
+        statusReason:
+          $ref: '#/components/schemas/StatusReason'
+        date:
+          $ref: '#/components/schemas/DateAndTime'
+    PaymentStatus:
+      maxLength: 60
+      minLength: 1
+      type: string
       description: |
-        An error originated on another system.
+        Indicates the status of a payment. ISO Complaiant values:
+        AcceptedTechnicalValidation, Received, Rejected, Pending, AcceptedCustomerProfile, AcceptedSettlementInProcess, AcceptedSettlementCompleted, Accepted, AcceptedCancellationRequest, RejectedCancellationRequest, AcceptedWithChange, PendingCancellationRequest, AcceptedCreditSettlementCompleted, PaymentCancelled,
+         AcceptedSettlementCompletedCreditorAccount, AcceptedCustomerProfile, AcceptedFundsChecked, AcceptedandChequeIssued, AcceptedSettlementCompletedDebitorAccount, AcceptedWithoutPosting, Blocked, CashPickedUpByCreditor, PartiallyAcceptedTechnicalCorrect, Presented, AcceptedClearingProcessed, ServicerDeadlineMissed
+      example: AcceptedSettlementCompleted
+    StatusReason:
+      maxLength: 36
+      minLength: 1
+      type: string
+      description: |
+        Reason for the status. Possible Values: AbortedClearingTimeout, AbortedClearingFatalError, AbortedSettlementTimeout, AbortedSettlementFatalError,TimeoutCreditorAgent, TimeoutInstructedAgent, OfflineAgent, OfflineCreditorAgent, ErrorCreditorAgent, ErrorInstructedAgent, TimeoutDebtorAgent,IncorrectAccountNumber, InvalidDebtorAccountNumber,InvalidCreditorAccountNumber, ClosedAccountNumber,ClosedDebtorAccountNumber, BlockedAccount,ClosedCreditorAccountNumber, InvalidBranchCode,InvalidAccountCurrency, InvalidDebtorAccountCurrency,InvalidCreditorAccountCurrency, InvalidAccountType,InvalidDebtorAccountType,InvalidCreditorAccountType,AccountDetailsChanged, CardNumberInvalid, TransactionForbidden, InvalidBankOperationCode, TransactionNotSupported, InvalidAgentCountry, InvalidDebtorAgentCountry, InvalidCreditorAgentCountry, UnsuccesfulDirectDebit, InvalidAccessRights,PaymentNotReceived, AgentSuspended,CreditorAgentSuspended, NotAllowedBookTransfer, ForbiddenReturnPayment, IncorrectAgent, ZeroAmount, NotAllowedAmount, NotAllowedCurrency, InsufficientFunds, Duplication, TooLowAmount, BlockedAmount, WrongAmount, InvalidControlSum, InvalidTransactionCurrency, InvalidAmount, AmountExceedsClearingSystemLimit, AmountExceedsAgreedLimit, AmountBelowClearingSystemMinimum, InvalidGroupControlSum, InvalidPaymentInfoControlSum, InvalidNumberOfTransactions,InvalidGroupNumberOfTransactions, InvalidPaymentInfoNumberOfTransactions, LimitExceeded, ZeroAmountNotApplied, AmountExceedsSettlementLimit, InconsistenWithEndCustomer, MissingCreditorAddress, UnrecognisedInitiatingParty, UnknownEndCustomer, MissingDebtorAddress, MissingDebtorName, InvalidCountry, InvalidDebtorCountry, InvalidCreditorCountry, InvalidCountryOfResidence, InvalidDebtorCountryOfResidence, InvalidCreditorCountryOfResidence, InvalidIdentificationCode, InvalidDebtorIdentificationCode, InvalidCreditorIdentificationCode, InvalidContactDetails, InvalidChargeBearerCode, InvalidNameLength, MissingName, MissingCreditorName, AccountProxyInvalid, CheckERI, RequestedExecutionDateOrRequestedCollectionDateTooFarInFuture, RequestedExecutionDateOrRequestedCollectionDateTooFarInPast, ElementIsNotToBeUsedAtB-andC-Level, MandateChangesNotAllowed, InformationOnMandateChangesMissing, CreditorIdentifierIncorrect, CreditorIdentifierNotUnambiguouslyAtTransaction-Level, OriginalDebtorAccountIsNotToBeUsed, OriginalDebtorAgentIsNotToBeUsed, ElementContentIncludesMoreThan140Characters, ElementContentFormallyIncorrect, ElementNotAdmitted, ValuesWillBeSetToNextTARGETday, DecimalPointsNotCompatibleWithCurrency, RequiredCompulsoryElementMissing, COREandB2BwithinOnemessage, ChequeSettledOnCreditorAccount, CreditorBankIsNotRegistered, IncorrectCurrency, RequestedByCustomer, DebtorBankIsNotRegistered,ElectronicSignaturesCorrect, OrderCancelled, OrderNotCancelled, OrderRejected, OrderForwardedForPostprocessing, TransferOrder, ProcessingOK, DecompressionError, DecryptionError, DataSignRequested, UnknownDataSignFormat, SignerCertificateRevoked, SignerCertificateNotValid, IncorrectSignerCertificate, SignerCertificationAuthoritySignerNotValid, NotAllowedPayment, NotAllowedAccount, NotAllowedNumberOfTransaction, Signer1CertificateRevoked, Signer1CertificateNotValid, IncorrectSigner1Certificate, SignerCertificationAuthoritySigner1NotValid, UserDoesNotExist, IdenticalSignatureFound, PublicKeyVersionIncorrect, DifferentOrderDataInSignatures, RepeatOrder, ElectronicSignatureRightsInsufficient, Signer2CertificateRevoked, Signer2CertificateNotValid, IncorrectSigner2Certificate, SignerCertificationAuthoritySigner2NotValid, WaitingTimeExpired, OrderFileDeleted, UserSignedMultipleTimes, UserNotYetActivated, InvalidDate, InvalidCreationDate, InvalidNonProcessingDate, FutureDateNotSupported, InvalidCutOffDate, ExecutionDateChanged, DuplicateMessageID, DuplicatePaymentInformationID, DuplicateTransaction, DuplicateEndToEndID, DuplicateInstructionID, DuplicatePayment, CorrespondentBankNotPossible, BalanceInfoRequest, SettlementFailed, SettlementSystemNotAvailable, ERIOptionNotSupported, InvalidFileFormat, SyntaxError, InvalidPaymentTypeInformation, InvalidServiceLevelCode, InvalidLocalInstrumentCode, InvalidCategoryPurposeCode, InvalidPurpose, InvalidEndToEndId, InvalidChequeNumber, BankSystemProcessingError, ClearingRequestAborted, PaymentTransferredAndTracked, PaymentTransferredAndNotTracked, CreditDebitNotConfirmed, CreditPendingDocuments, CreditPendingFunds, DeliveredWithServiceLevel, DeliveredWIthoutServiceLevel, CorrespondingOriginalFileStillNotSent, NoMandate, MissingMandatoryInformationInMandate, CollectionNotDue, RefundRequestByEndCustomer, EndCustomerDeceased, NotSpecifiedReasonCustomerGenerated, NotSpecifiedReasonAgentGenerated, Narrative, NoERI, BankIdentifierIncorrect, InvalidBankIdentifier, InvalidDebtorBankIdentifier, InvalidCreditorBankIdentifier, InvalidBICIdentifier, InvalidDebtorBICIdentifier, InvalidCreditorBICIdentifier, InvalidClearingSystemMemberIdentifier, InvalidDebtorClearingSystemMemberIdentifier, InvalidCreditorClearingSystemMemberIdentifier, InvalidIntermediaryAgent, MissingCreditorSchemeId, RMessageConflict, ReceiverCustomerInformation,NotUniqueTransactionReference, MissingDebtorAccountOrIdentification, MissingDebtorNameOrAddress, MissingCreditorNameOrAddress, RegulatoryReason, RegulatoryInformationInvalid, TaxInformationInvalid, RemittanceInformationInvalid, RemittanceInformationTruncated, InvalidStructuredCreditorReference, InvalidCharacterSet, InvalidDebtorAgentServiceID, InvalidPartyID, ValidRequestForCancellationAcknowledged, UETRFlaggedForCancellation, NetworkStopOfUETR, RequestForCancellationForwarded, RequestForCancellationDeliveryAcknowledgement, SpecificServiceOfferedByDebtorAgent, SpecificServiceOfferedByCreditorAgent, ServiceofClearingSystem, CreditorNotOnWhitelistOfDebtor, CreditorOnBlacklistOfDebtor, MaximumNumberOfDirectDebitTransactionsExceeded, MaximumDirectDebitTransactionAmountExceeded, TransmissonAborted, NoDataAvailable, FileNonReadable, IncorrectFileStructure, TokenInvalid, SenderTokenNotFound, ReceiverTokenNotFound, TokenMissing, TokenCounterpartyMismatch, TokenSingleUse, TokenSuspended, TokenValueLimitExceeded, TokenExpired, InvalidCutOffTime, TransmissionSuccessful, TransferToSignByHand, AuthorisationCancelled, FollowingCancellationRequest, Fraud, NotCompliantGeneric, NoAnswerFromCustomer, ReturnUponUnableToApply, UnduePayment, AlreadyAcceptedRTP, AlreadyExpiredRTP, AlreadyRefusedRTP, AlreadyRejectedRTP, AttachementsNotSupported, ExpiryDateTimeReached, ExpiryDateTooLong, FraudulentOrigin, IncorrectExpiryDateTime, InitialRTPNeverReceived, NonAgreedRTP, NoPaymentGuarantee, PayerOrPayerRTPSPNotReachable, RTPNotSupportedForDebtor, RTPReceivedCanBeProcessed, RTPServiceProviderIdentifierIncorrect, TypeOfPaymentInstrumentNotSupported, UnknownCreditor, OriginalTransactionNotEligibleForRequestedReturn, RequestForCancellationNotFound, SettlementNotReceived
+      example: Cash
+    FinancialInstitution:
+      type: object
+      properties:
+        clearingSystemMemberIdentification:
+          $ref: '#/components/schemas/ClearingSystemIdentification'
+        memberIdentification:
+          maxLength: 35
+          minLength: 1
+          type: string
+        name:
+          maxLength: 35
+          minLength: 1
+          type: string
+        postalAddress:
+          $ref: '#/components/schemas/PostalAddress'
+        bIC:
+          $ref: '#/components/schemas/BIC'
+        lEI:
+          $ref: '#/components/schemas/LEI'
+        genericIdentifiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrganizationIdentification'
+    ClearingSystemIdentification:
+      maxLength: 60
+      minLength: 1
+      type: string
+      description: "Specifies the clearing system member identification. Some ISO complaiant values from ExternalCashClearingSystem1Code are:\n UnitedStatesRoutingNumberFedwireNACHA, \n AustrianBankleitzahl, AustralianBankStateBranchCodeBSB,CanadianPaymentsAssociationPaymentRoutingNumber,SwissFinancialInstitutionIdentificationShort,SwissFinancialInstitutionIdentificationLong,CNAPSIdentifier, GermanBankleitzahl, SpanishDomesticInterbankingCode, UKDomesticSortCode, HelenicBankIdentificationCode, HongKongBankCode, IrishNationalClearingCode, IndianFinancialSystemCode, ItalianDomesticIdentificationCode, JapanZenginClearingCode, NewZealandNationalClearingCode, PolishNationalClearingCode, PortugueseNationalClearingCode, RussianCentralBankIdentificationCode, SwedenBankgiroClearingCode, IBGSortCode, ThaiCentralBankIdentificationCode, FinancialInstitutionCode, CHIPSParticipantIdentifier, SouthAfricanNationalClearingCode, NewZealandRTGSClearingCode\n"
+      example: UnitedStatesRoutingNumberFedwireNACHA
+    DirectDebit:
+      type: object
+      properties:
+        paymentId:
+          $ref: '#/components/schemas/PaymentId'
+        status:
+          $ref: '#/components/schemas/PaymentStatus'
+        statusReason:
+          $ref: '#/components/schemas/StatusReason'
+        paymentMethod:
+          $ref: '#/components/schemas/PaymentMethod'
+        paymentType:
+          $ref: '#/components/schemas/PaymentType'
+        amount:
+          $ref: '#/components/schemas/AmountInCents'
+        debtorAccountId:
+          $ref: '#/components/schemas/AccountId'
+        creditorAccountId:
+          $ref: '#/components/schemas/AccountId'
+        purpose:
+          $ref: '#/components/schemas/Description'
+        identifiers:
+          $ref: '#/components/schemas/PaymentIdentifiers'
+        paymentProcessing:
+          $ref: '#/components/schemas/PaymentProcessingDetail'
+        chargeBearerType:
+          $ref: '#/components/schemas/ChargeBearerType'
+        mandate:
+          $ref: '#/components/schemas/DirectDebitMandate'
+        requestedCollectionDate:
+          $ref: '#/components/schemas/Date'
+        debitor:
+          $ref: '#/components/schemas/PartyIdentification'
+    DirectDebitMandate:
+      type: object
+      properties:
+        mandateId:
+          $ref: '#/components/schemas/Id'
+        dateOfSignature:
+          $ref: '#/components/schemas/Date'
+        digitalSignature:
+          $ref: '#/components/schemas/DigitalSignature'
+        firstCollectionDate:
+          $ref: '#/components/schemas/Date'
+        finalCollectionDate:
+          $ref: '#/components/schemas/Date'
+        frequency:
+          $ref: '#/components/schemas/Frequency'
+        trackingDays:
+          $ref: '#/components/schemas/Day'
+      description: Provides details related to a direct debit mandate signed between the creditor and the debtor.
+    CreditTransferCancellationRequest:
+      type: object
+      properties:
+        cancellationReason:
+          $ref: '#/components/schemas/Description'
+      description: "Request the cancellation of a credit transfer instruction. \n"
+    DirectDebitInitiation:
+      type: object
+      properties:
+        paymentMethod:
+          $ref: '#/components/schemas/PaymentMethod'
+        paymentType:
+          $ref: '#/components/schemas/PaymentType'
+        amount:
+          $ref: '#/components/schemas/AmountInCents'
+        debtorAccountId:
+          $ref: '#/components/schemas/AccountId'
+        creditorAccountId:
+          $ref: '#/components/schemas/AccountId'
+        purpose:
+          $ref: '#/components/schemas/Description'
+        identifiers:
+          $ref: '#/components/schemas/PaymentIdentifiers'
+        paymentProcessing:
+          $ref: '#/components/schemas/PaymentProcessingDetail'
+        chargeBearerType:
+          $ref: '#/components/schemas/ChargeBearerType'
+        mandate:
+          $ref: '#/components/schemas/DirectDebitMandate'
+        requestedCollectionDate:
+          $ref: '#/components/schemas/Date'
+        debitor:
+          $ref: '#/components/schemas/PartyIdentification'
+    CreditTransferCancellation:
+      type: object
+      properties:
+        cancellationReason:
+          $ref: '#/components/schemas/Description'
+        cancellationId:
+          $ref: '#/components/schemas/Id'
   parameters:
     idempotencyId:
       name: idempotencyId

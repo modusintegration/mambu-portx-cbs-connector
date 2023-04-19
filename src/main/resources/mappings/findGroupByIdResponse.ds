@@ -1,0 +1,137 @@
+/** DataSonnet
+version=2.0
+output application/json
+input payload application/json
+*/
+local selector(obj,key,dValue = null) = ds.or(ds.select(obj,key), dValue);
+
+local ein = selector(payload,"id");
+
+local organizationDetails = selector(payload,"_organizationDetails_Groups");
+local eINGroups = if organizationDetails != null then selector(organizationDetails,"eIN_Groups") else null;
+local mailingAddress = if organizationDetails != null then selector(organizationDetails,"mailingAddress_Groups") else null;
+local physicalAddress = if organizationDetails != null then selector(organizationDetails,"physicalAddress_Groups") else null;
+local previousFinancialInstitution = if organizationDetails != null then selector(organizationDetails,"previousFinancialInstitution_Gro") else null;
+local referredByWhom = if organizationDetails != null then selector(organizationDetails,"referredByWhom_Groups") else null;
+local politicalAffiliation = if organizationDetails != null then selector(organizationDetails,"politicalAfiliation_Groups") else null;
+
+local creationDate = selector(payload, "creationDate");
+local creationDateFormatted = ds.datetime.format(creationDate,"yyyy-MM-dd");
+
+local groupName = selector(payload,"groupName");
+local organizationPurpose = selector(payload,"notes");
+
+local addresses = selector(payload, "addresses");
+local country = if ds.isArray(addresses) && std.length(addresses) > 3 then selector(addresses[0], "country");
+local line1 = if ds.isArray(addresses) && std.length(addresses) > 3 then selector(addresses[0], "line1");
+
+local taxInformation = selector(payload, "_taxInformation_Groups");
+local tIN = if taxInformation != null then selector(taxInformation, "tIN_Groups") else null;
+local taxType = if taxInformation != null then selector(taxInformation, "taxType_Groups") else null;
+
+local timeAtCurrentAddress = selector(payload, "_timeAtCurrentAddress_Groups");
+local timeAtCurrentAddressValue = if timeAtCurrentAddress != null then selector(timeAtCurrentAddress, "value_Groups") else null;
+local timeAtCurrentAddressUnit = if timeAtCurrentAddress != null then selector(timeAtCurrentAddress, "unit_Groups") else null;
+
+
+local communicationChannel = selector(payload, "_communicationChannel_Groups");
+local useForEnterpriseAlertsInternet = if communicationChannel != null then selector(communicationChannel, "useForEnterpriseAlertsInternet_G") else null;
+local internetAccessCode = if communicationChannel != null then selector(communicationChannel, "internetAccessCode1_Groups") else null;
+local internetAccessCode2 = if communicationChannel != null then selector(communicationChannel,"internetAccessCode2_Groups") else null;
+
+
+local restrictions = selector(payload, "_restrictions_Groups");
+local cashManagementAccess1 = if restrictions != null then selector(restrictions, "cashManagementAccess1_Groups") else null;
+local ivrAccessCode = if restrictions != null then selector(restrictions, "ivrAccessCode_Groups") else null;
+local internetAccessAllowed = if restrictions != null then selector(restrictions,"internetAccessAllowed_Groups") else null;
+local cashManagementAccess2 = if restrictions != null then selector(restrictions,"cashManagementAccess2_Groups") else null;
+
+local groupMembers = selector(payload, "groupMembers");
+
+std.prune({
+  "genericIdentifiers": [
+    {
+      "number": selector(payload, "id")
+    },
+    {
+      "number": eINGroups[0:3] + "-" + eINGroups[3:6] + "-" + eINGroups[6:11]
+    }
+  ],
+  "name": selector(payload, "groupName"),
+  "organizationPurpose": selector(payload,"notes"),
+  "registrationDate": creationDateFormatted,
+  "postalAddresses": [
+    {
+      "addressType": mailingAddress
+    },
+    {
+      "addressType": physicalAddress,
+      "country": country,
+      "addressLine": [
+        line1
+      ]
+    }
+  ],
+  "taxInformation": {
+    "tIN": tIN,
+    "taxIdType": taxType
+  },
+  "organizationProfile": {
+    "previousFinancialInstitution": previousFinancialInstitution,
+    "referredByWhom": referredByWhom,
+    "timeAtCurrentAddress": {
+      "unit": timeAtCurrentAddressValue,
+      "value": timeAtCurrentAddressUnit
+    },
+    "politicalAffiliation": politicalAffiliation
+  },
+  "phones": [
+    {
+      "number": selector(payload, "homePhone")
+    },
+    {
+      "number": selector(payload, "mobilePhone")
+    }
+  ],
+  "emails": [
+    {
+      "emailAddress": selector(payload, "emailAddress")
+    }
+  ],
+  "relatedParties": [
+    if (groupMembers != null && std.length(groupMembers) > 0) then
+    [
+      {
+          "partyType": selector(groupMember, "clientKey"),
+          "partyRelationType": if groupMember.roles != null && std.length(groupMember.roles) > 0
+                               then selector(groupMember.roles[0], "groupRoleNameKey") else null
+      } for groupMember in groupMembers
+    ]
+      else [],
+  ],
+  "settings": {
+    "communicationChannels": [
+      {
+        "channel": useForEnterpriseAlertsInternet,
+        "codeWord": internetAccessCode
+      },
+      {
+        "channel": internetAccessCode2
+      }
+    ]
+  },
+  "restrictions": [
+    {
+      "name": cashManagementAccess1
+    },
+    {
+      "name": cashManagementAccess2
+    },
+    {
+      "name": internetAccessAllowed
+    },
+    {
+      "name": ivrAccessCode
+    }
+  ]
+})

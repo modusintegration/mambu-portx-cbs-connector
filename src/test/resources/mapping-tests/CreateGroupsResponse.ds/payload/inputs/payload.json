@@ -1,30 +1,91 @@
 {
-  "encodedKey": "8a44d13487223b7e018723a388ae2eb3",
-  "id": "813267316",
-  "creationDate": "2023-03-27T08:15:32-07:00",
-  "lastModifiedDate": "2023-03-27T08:15:32-07:00",
-  "groupName": "ViniciusGroup4",
-  "notes": "string",
-  "loanCycle": 0,
-  "emailAddress": "vinicius@email.com",
-  "mobilePhone": "string",
-  "homePhone": "string",
-  "preferredLanguage": "ENGLISH",
-  "groupRoleKey": "8a44cde37b592d63017b5fac6e4c0519",
-  "addresses": [
-    {
-      "encodedKey": "8a44d13487223b7e018723a388ae2eb4",
-      "parentKey": "8a44d13487223b7e018723a388ae2eb3",
-      "line1": "string",
-      "line2": "string",
-      "city": "string",
-      "region": "string",
-      "postcode": "string",
-      "country": "string",
-      "indexInList": 0,
-      "latitude": 0,
-      "longitude": 0
-    }
-  ],
-  "groupMembers": []
+    "genericIdentifiers": [
+        {
+            "number": "123-45-6789"
+        },
+        {
+            "number": "333-888-4567"
+        }
+    ],
+    "name": "Jane Birkin",
+    "organizationPurpose": "This is a description.",
+    "registrationDate": "2022-04-17",
+    "relatedParties": [
+        {
+            "partyId": "5fb9d4d6-1a3c-11ed-861d-0242ac120002",
+            "partyType": "Person",
+            "partyName": "Jane Birkin",
+            "partyRelationType": "Owner"
+        },
+        {
+            "partyId": "5fb9d4d6-1a3c-11ed-861d-0242ac120002",
+            "partyType": "Person",
+            "partyName": "Jane Birkin",
+            "partyRelationType": "Owner"
+        }
+    ],
+    "postalAddresses": [
+        {
+            "addressType": "Postal"
+        },
+        {
+            "addressType": "Postal",
+            "country": "US",
+            "addressLine": [
+                "11407 Sw Amu st, Suite MY777"
+            ]
+        }
+    ],
+    "taxInformation": {
+        "tIN": "778-62-8144",
+        "taxIdType": "SSN"
+    },
+    "organizationProfile": {
+        "previousFinancialInstitution": "Jane Birkin",
+        "referredByWhom": "Jane Birkin",
+        "timeAtCurrentAddress": {
+            "unit": "Months",
+            "value": 999
+        },
+        "politicalAffiliation": "string"
+    },
+    "phones": [
+        {
+            "number": "+1-415-731359"
+        },
+        {
+            "number": "+1-415-731359"
+        }
+    ],
+    "emails": [
+        {
+            "emailAddress": "string"
+        }
+    ],
+    "settings": {
+        "communicationChannels": [
+            {
+                "channel": "Email",
+                "codeWord": "string"
+            },
+            {
+                "channel": "Email"
+
+            }
+        ]
+    },
+    "restrictions": [
+        {
+            "name": "externalTransferAllowed"
+        },
+        {
+            "name": "externalTransferAllowed"
+        },
+        {
+            "name": "externalTransferAllowed"
+        },
+        {
+            "name": "externalTransferAllowed"
+        }
+    ]
 }
