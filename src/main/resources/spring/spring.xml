@@ -10,4 +10,6 @@
         <property name="headerName" value="Authorization"/>
     </bean>
     <bean id="encodeAuthHeader" class="io.portx.cbs.connector.EncodeAuthHeader"/>
+    <bean id="mapRelatedPartiesToGroupMembers" class="io.portx.cbs.connector.mapper.MapRelatedPartiesToGroupMembers"/>
+    <bean id="mapGroupMembersToRelatedParties" class="io.portx.cbs.connector.mapper.MapGroupMembersToRelatedParties"/>
 </beans>

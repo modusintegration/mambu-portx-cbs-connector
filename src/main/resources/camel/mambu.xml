@@ -938,11 +938,19 @@
         <log message="GET groups response is ${body}"/>
 
         <to uri="direct:commonAPIResponseValidator"/>
+        <setProperty name="rawGroupMembers">
+            <datasonnet bodyMediaType="application/json" outputMediaType="text/plain" resultType="java.lang.String">
+                local selector(obj,key,dValue = null) = ds.or(ds.select(obj,key), dValue);
+                std.prune(selector(body, "groupMembers", ""))
+            </datasonnet>
+        </setProperty>
+        <process ref="mapGroupMembersToRelatedParties" />
         <setBody>
             <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
-                resource:classpath:mappings/findGroupByIdResponse.ds
+                resource:classpath:mappings/CreateGroupsResponse.ds
             </datasonnet>
         </setBody>
+        <log message="GET organizations response is ${body}"/>
         <!--        <to uri="direct:endRoute"/>-->
     </route>
     <route id="createOrganizationRoute" routeConfigurationId="*">
@@ -966,19 +974,13 @@
             <simple>{{mambu.username}}:{{mambu.password}}</simple>
         </setProperty>
         <process ref="encodeAuthHeader" />
-        <choice>
-            <when>
-                <simple>${header.idempotencyId}</simple>
-                <!-- pass idempotencyId in header if present -->
-                <log message="idempotencyId: ${header.idempotencyId}"/>
-                <setHeader name="Idempotency-Key">
-                    <simple>${header.idempotencyId}</simple>
-                </setHeader>
-            </when>
-            <otherwise>
-                <log message="no idempotencyId provided"/>
-            </otherwise>
-        </choice>
+        <setProperty name="rawRelatedParties">
+            <datasonnet bodyMediaType="application/json" outputMediaType="text/plain" resultType="java.lang.String">
+                local selector(obj,key,dValue = null) = ds.or(ds.select(obj,key), dValue);
+                std.prune(selector(body, "relatedParties", ""))
+            </datasonnet>
+        </setProperty>
+        <process ref="mapRelatedPartiesToGroupMembers" />
         <setBody>
             <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
                 resource:classpath:mappings/CreateGroupsRequest.ds
@@ -988,21 +990,16 @@
         <toD uri="https://{{mambu.host}}/api/groups?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
         <log message="POST groups response is ${body}"/>
         <to uri="direct:commonAPIResponseValidator"/>
-        <setProperty name="groupCreatedId">
+        <setProperty name="originalBody">
+            <simple>${body}</simple>
+        </setProperty>
+        <setProperty name="rawGroupMembers">
             <datasonnet bodyMediaType="application/json" outputMediaType="text/plain" resultType="java.lang.String">
                 local selector(obj,key,dValue = null) = ds.or(ds.select(obj,key), dValue);
-                std.prune(selector(payload, "id", ""))
+                std.prune(selector(body, "groupMembers", ""))
             </datasonnet>
         </setProperty>
-        <setProperty name="date">
-            <datasonnet bodyMediaType="application/json" outputMediaType="text/plain" resultType="java.lang.String">
-                local selector(obj,key,dValue = null) = ds.or(ds.select(obj,key), dValue);
-                std.prune(selector(payload, "creationDate", ""))
-            </datasonnet>
-        </setProperty>
-        <setBody>
-            <simple>${exchangeProperty.originalBody}</simple>
-        </setBody>
+        <process ref="mapGroupMembersToRelatedParties" />
         <setBody>
             <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
                 resource:classpath:mappings/CreateGroupsResponse.ds
