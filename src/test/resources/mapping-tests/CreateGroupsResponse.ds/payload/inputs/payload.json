@@ -1,91 +1,77 @@
 {
-    "genericIdentifiers": [
+    "encodedKey":"8a44cc4c879dcfcb01879faed52e208f",
+    "id":"111118190",
+    "creationDate":"2023-04-20T14:53:52-07:00",
+    "lastModifiedDate":"2023-04-20T14:53:52-07:00",
+    "groupName":"vragroupsss",
+    "notes":"This is a description.",
+    "loanCycle":0,
+    "emailAddress":"example@email.com",
+    "mobilePhone":"+1-415-731359",
+    "homePhone":"+1-415-731359",
+    "preferredLanguage":"ENGLISH",
+    "groupRoleKey":"8a44cde37b592d63017b5fac6e4c0519",
+    "addresses":[
         {
-            "number": "123-45-6789"
-        },
-        {
-            "number": "333-888-4567"
+            "encodedKey":"8a44cc4c879dcfcb01879faed52e2090",
+            "parentKey":"8a44cc4c879dcfcb01879faed52e208f",
+            "line1":"11407 Sw Amu st, Suite MY777",
+            "country":"US",
+            "indexInList":0
         }
     ],
-    "name": "Jane Birkin",
-    "organizationPurpose": "This is a description.",
-    "registrationDate": "2022-04-17",
-    "relatedParties": [
+    "groupMembers":[
         {
-            "partyId": "5fb9d4d6-1a3c-11ed-861d-0242ac120002",
-            "partyType": "Person",
-            "partyName": "Jane Birkin",
-            "partyRelationType": "Owner"
+            "clientKey":"8a44d6d97c81ddbe017ca4234ef669fb",
+            "roles":[
+
+            ]
         },
         {
-            "partyId": "5fb9d4d6-1a3c-11ed-861d-0242ac120002",
-            "partyType": "Person",
-            "partyName": "Jane Birkin",
-            "partyRelationType": "Owner"
-        }
-    ],
-    "postalAddresses": [
-        {
-            "addressType": "Postal"
-        },
-        {
-            "addressType": "Postal",
-            "country": "US",
-            "addressLine": [
-                "11407 Sw Amu st, Suite MY777"
+            "clientKey":"8a44b0687f6d1c2c017f6f747aa91f21",
+            "roles":[
+                {
+                    "encodedKey":"8a44cc4c879dcfcb0187a0a8d61a349b",
+                    "groupRoleNameKey":"8a44b0f18706d32f01870a7aa66c7f69",
+                    "roleName":"President",
+                    "roleNameId":"328808045"
+                },
+                {
+                    "encodedKey":"8a44cc4c879dcfcb0187a0a8d61a349c",
+                    "groupRoleNameKey":"8a44b0f18706d32f01870a7aa66c7f6a",
+                    "roleName":"Treasurer",
+                    "roleNameId":"715206643"
+                }
             ]
         }
     ],
-    "taxInformation": {
-        "tIN": "778-62-8144",
-        "taxIdType": "SSN"
+    "_organizationDetails_Groups":{
+        "addressType_Groups":"Building",
+        "physicalAddress_Groups":"Postal",
+        "previousFinancialInstitution_Gro":"Jane Birkin",
+        "dateOfOrganization_Groups":"2022-04-17",
+        "eIN_Groups":"3338884561",
+        "mailingAddress_Groups":"Postal",
+        "politicalAfiliation_Groups":"string",
+        "referredByWhom_Groups":"Jane Birkin"
     },
-    "organizationProfile": {
-        "previousFinancialInstitution": "Jane Birkin",
-        "referredByWhom": "Jane Birkin",
-        "timeAtCurrentAddress": {
-            "unit": "Months",
-            "value": 999
-        },
-        "politicalAffiliation": "string"
+    "_taxInformation_Groups":{
+        "tIN_Groups":"778-62-8144",
+        "taxType_Groups":"SSN"
     },
-    "phones": [
-        {
-            "number": "+1-415-731359"
-        },
-        {
-            "number": "+1-415-731359"
-        }
-    ],
-    "emails": [
-        {
-            "emailAddress": "string"
-        }
-    ],
-    "settings": {
-        "communicationChannels": [
-            {
-                "channel": "Email",
-                "codeWord": "string"
-            },
-            {
-                "channel": "Email"
-
-            }
-        ]
+    "_timeAtCurrentAddress_Groups":{
+        "value_Groups":"999",
+        "unit_Groups":"Months"
     },
-    "restrictions": [
-        {
-            "name": "externalTransferAllowed"
-        },
-        {
-            "name": "externalTransferAllowed"
-        },
-        {
-            "name": "externalTransferAllowed"
-        },
-        {
-            "name": "externalTransferAllowed"
-        }
-    ]
+    "_communicationChannel_Groups":{
+        "internetAccessCode1_Groups":"string",
+        "useForEnterpriseAlertsInternet_G":"Email",
+        "internetAccessCode2_Groups":"Email"
+    },
+    "_restrictions_Groups":{
+        "cashManagementAccess1_Groups":"externalTransferAllowed1",
+        "ivrAccessCode_Groups":"externalTransferAllowed2",
+        "internetAccessAllowed_Groups":"externalTransferAllowed3",
+        "cashManagementAccess2_Groups":"externalTransferAllowed4"
+    }
 }

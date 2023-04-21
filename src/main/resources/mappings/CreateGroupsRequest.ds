@@ -49,7 +49,6 @@ local cashManagementAccess1 = if ds.isArray(restrictions) && std.length(restrict
 local cashManagementAccess2 = if ds.isArray(restrictions) && std.length(restrictions) > 1 then selector(restrictions[1], "name") else null;
 local internetAccessAllowed = if ds.isArray(restrictions) && std.length(restrictions) > 2 then selector(restrictions[2], "name") else null;
 local IVRAccessCode = if ds.isArray(restrictions) && std.length(restrictions) > 3 then selector(restrictions[3], "name") else null;
-
 std.prune({
   "id": idFormatted,
   "_organizationDetails_Groups": {
@@ -63,21 +62,7 @@ std.prune({
   },
   "groupName": selector(payload, "name"),
   "notes": selector(payload, "organizationPurpose"),
-  "groupMembers":
-    if (relatedParties != null && std.length(relatedParties) > 0) then
-    [
-      local groupRoleNameKey = if selector(relatedParty, "partyRelationType") != null then cml.properties("groupRoles." + selector(relatedParty, "partyRelationType") + ".groupRoleNameKey") else null;
-      {
-        "clientKey": selector(relatedParty, "partyId"),
-        "roles":
-        [
-          {
-            "groupRoleNameKey": groupRoleNameKey,
-          }
-        ],
-      } for relatedParty in relatedParties
-    ]
-    else [],
+  "groupMembers": cml.exchangeProperty('groupMembers'),
   "addresses": [
     {
     "line1": addressLine1,

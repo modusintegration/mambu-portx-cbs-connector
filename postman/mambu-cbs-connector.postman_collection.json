@@ -3583,19 +3583,25 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "bankId",
-								"value": "1",
-								"type": "text"
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "idempotencyId",
+								"value": "5fb9d4d6-1a3c-11ed-861d-0242ac120002"
+							},
+							{
+								"key": "servicerId",
+								"value": "5fb9d4d6-1a3c-11ed-861d-0242ac120002"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"genericIdentifiers\": [\n    {\n      \"number\": \"1111-11-996\"\n    },\n    {\n      \"number\": \"333-888-4561\"\n    }\n  ],\n    \"relatedParties\": [\n    {\n      \"partyId\": \"8a44d6d97c81ddbe017ca4234ef669fb\"\n    },\n    {\n      \"partyId\": \"8a44b0687f6d1c2c017f6f747aa91f21\", \n      \"partyRelationType\": \"Treasurer\"\n    }\n  ],\n  \"name\": \"vragroupsss\",\n  \"organizationPurpose\": \"This is a description.\", \n  \"registrationDate\": \"2022-04-17\",\n  \"postalAddresses\": [\n    {\n      \"addressType\": \"Postal\"\n    },\n    {\n      \"addressType\": \"Postal\", \n      \"country\": \"US\", \n      \"addressLine\": [\n        \"11407 Sw Amu st, Suite MY777\" \n      ]\n    }\n  ],\n  \"taxInformation\": {\n    \"tIN\": \"778-62-8144\", \n    \"taxIdType\": \"SSN\"\n  },\n  \"organizationProfile\": {\n    \"previousFinancialInstitution\": \"Jane Birkin\", \n    \"referredByWhom\": \"Jane Birkin\", \n    \"timeAtCurrentAddress\": {\n      \"unit\": \"Months\", \n      \"value\": 999 \n    },\n    \"politicalAffiliation\": \"string\" \n  },\n  \"phones\": [\n    {\n      \"number\": \"+1-415-731359\"\n    },\n    {\n      \"number\": \"+1-415-731359\"\n    }\n  ],\n  \"emails\": [\n    {\n      \"emailAddress\": \"example@email.com\"\n    }\n  ],\n  \"settings\": {\n    \"communicationChannels\": [\n      {\n        \"channel\": \"Email\", \n        \"codeWord\": \"string\"\n      },\n      {\n        \"channel\": \"Email\"\n\n      }\n    ]\n  },\n  \"restrictions\": [\n    {\n      \"name\": \"externalTransferAllowed\" \n    },\n    {\n      \"name\": \"externalTransferAllowed\" \n    },\n    {\n      \"name\": \"externalTransferAllowed\" \n    },\n    {\n      \"name\": \"externalTransferAllowed\" \n    }\n  ]\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							"raw": "{\n  \"genericIdentifiers\": [\n    {\n      \"number\": \"1111-11-995\"\n    },\n    {\n      \"number\": \"333-888-4561\"\n    }\n  ],\n    \"relatedParties\": [\n        {\n            \"partyId\": \"8a44d6d97c81ddbe017ca4234ef669fb\"\n        },\n        {\n            \"partyId\": \"8a44b0687f6d1c2c017f6f747aa91f21\", \n            \"partyRelationType\": \"Treasurer\"\n        },\n        {\n            \"partyId\": \"8a44b0687f6d1c2c017f6f747aa91f21\", \n            \"partyRelationType\": \"President\"\n        }\n  ],\n  \"name\": \"vragroupsss\",\n  \"organizationPurpose\": \"This is a description.\", \n  \"registrationDate\": \"2022-04-17\",\n  \"postalAddresses\": [\n    {\n      \"addressType\": \"Postal\"\n    },\n    {\n      \"addressType\": \"Postal\", \n      \"country\": \"US\", \n      \"addressLine\": [\n        \"11407 Sw Amu st, Suite MY777\" \n      ]\n    }\n  ],\n  \"taxInformation\": {\n    \"tIN\": \"778-62-8144\", \n    \"taxIdType\": \"SSN\"\n  },\n  \"organizationProfile\": {\n    \"previousFinancialInstitution\": \"Jane Birkin\", \n    \"referredByWhom\": \"Jane Birkin\", \n    \"timeAtCurrentAddress\": {\n      \"unit\": \"Months\", \n      \"value\": 999 \n    },\n    \"politicalAffiliation\": \"string\" \n  },\n  \"phones\": [\n    {\n      \"number\": \"+1-415-731359\"\n    },\n    {\n      \"number\": \"+1-415-731359\"\n    }\n  ],\n  \"emails\": [\n    {\n      \"emailAddress\": \"example@email.com\"\n    }\n  ],\n  \"settings\": {\n    \"communicationChannels\": [\n      {\n        \"channel\": \"Email\", \n        \"codeWord\": \"string\"\n      },\n      {\n        \"channel\": \"Email\"\n\n      }\n    ]\n  },\n  \"restrictions\": [\n    {\n      \"name\": \"externalTransferAllowed\" \n    },\n    {\n      \"name\": \"externalTransferAllowed\" \n    },\n    {\n      \"name\": \"externalTransferAllowed\" \n    },\n    {\n      \"name\": \"externalTransferAllowed\" \n    }\n  ]\n}"
 						},
 						"url": {
 							"raw": "http://localhost:7777/mambu-portx-cbs-connector/1.0/organizations",
@@ -4162,7 +4168,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:7777/mambu-portx-cbs-connector/1.0/organizations/111111996",
+							"raw": "http://localhost:7777/mambu-portx-cbs-connector/1.0/organizations/111111995",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -4172,7 +4178,7 @@
 								"mambu-portx-cbs-connector",
 								"1.0",
 								"organizations",
-								"111111996"
+								"111111995"
 							]
 						}
 					},
