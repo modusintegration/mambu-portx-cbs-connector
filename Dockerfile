@@ -1,14 +1,18 @@
-FROM maven:3.9.0-eclipse-temurin-11
+FROM eclipse-temurin:11.0.18_10-jre
 
-RUN apt update && \
-    apt install --only-upgrade curl libcurl4 libcurl3-gnutls -y
+RUN apt update && apt install --only-upgrade curl -y
+RUN apt update && apt install --only-upgrade libcurl4 -y
+RUN apt update && apt install --only-upgrade libcurl3-gnutls -y
+
 VOLUME /tmp
+
+RUN useradd -u 1000 -m -d /app app-user
+USER app-user
 
 WORKDIR /app
 
-COPY ./target/mambu-portx-cbs-connector-1.0.73.jar /app/app.jar
-COPY ./agent/opentelemetry-javaagent.jar /etc/agent/opentelemetry-javaagent.jar
+COPY ./target/*.jar /app/app.jar
 
 EXPOSE 8080 8090
 
-ENTRYPOINT ["java", "-javaagent:/etc/agent/opentelemetry-javaagent.jar" , "-jar", "/app/app.jar"]
+ENTRYPOINT java $JAVA_OPTS -jar /app/app.jar
