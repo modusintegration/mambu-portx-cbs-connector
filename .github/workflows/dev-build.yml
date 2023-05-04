@@ -7,8 +7,8 @@ jobs:
   package-gbp-deploy-dr-push:
     env:
     # LeaderBank cluster
-      REGISTRY: 314858003196.dkr.ecr.us-west-2.amazonaws.com
-      APP_NAME: mambu-portx-cbs-connector
+      REGISTRY: 854173534877.dkr.ecr.us-west-2.amazonaws.com
+      APP_NAME: demos/mambu-portx-cbs-connector
     # DEMOS cluster
       # REGISTRY: 854173534877.dkr.ecr.us-west-2.amazonaws.com
       # APP_NAME: demos/mambu-portx-cbs-connector
@@ -42,11 +42,12 @@ jobs:
           repositories: '[{"id":"portx-repository-snapshots", "url": "https://portx.jfrog.io/portx/portx-snapshots","releases":{"enabled":false},"snapshots":{"enabled":true}},{"id": "portx-repository-releases", "url": "https://portx.jfrog.io/portx/portx-releases","releases":{"enabled":true},"snapshots":{"enabled":false}}]'
           servers: |
             [{"id": "portx-repository-snapshots", "username": "deployer", "password": "${{ secrets.PORTX_SNAPSHOTS_PASSWORD }}"},{"id": "portx-repository-releases", "username": "deployer", "password": "${{ secrets.PORTX_RELEASES_PASSWORD }}"}]
+      - name: set mvn options
+        run: export MAVEN_OPTS=--add-opens=java.base/java.util=ALL-UNNAMED
       - name: Publish to Github packages
-        run: mvn -U deploy -e
+        run: _JAVA_OPTIONS="--add-opens=java.base/java.util=ALL-UNNAMED" mvn -U deploy -e
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
-          MAVEN_OPTS: --add-opens=java.base/java.util=ALL-UNNAMED
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:

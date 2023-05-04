@@ -1,8 +1,8 @@
-name: Production build
+name: build
 on:
   push:
     branches:
-      - main
+      - demos
 jobs:
   package-gbp-deploy-dr-push:
     env:
@@ -20,6 +20,9 @@ jobs:
       # APP_NAME: mambu-portx-cbs-connector
     name: Build API package
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -33,13 +36,12 @@ jobs:
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-
       - name: maven-settings-xml-action
         uses: whelk-io/maven-settings-xml-action@v20
         with:
-          repositories: '[{"id":"github", "url": "https://portx.jfrog.io/portx/portx-releases","releases":{"enabled":true},"snapshots":{"enabled":true}},{"id":"portx-repository-snapshots", "url": "https://portx.jfrog.io/portx/portx-snapshots","releases":{"enabled":false},"snapshots":{"enabled":true}},{"id": "portx-repository-releases", "url": "https://portx.jfrog.io/portx/portx-releases","releases":{"enabled":true},"snapshots":{"enabled":false}}]'
+          repositories: '[{"id":"portx-repository-snapshots", "url": "https://portx.jfrog.io/portx/portx-snapshots","releases":{"enabled":false},"snapshots":{"enabled":true}},{"id": "portx-repository-releases", "url": "https://portx.jfrog.io/portx/portx-releases","releases":{"enabled":true},"snapshots":{"enabled":false}}]'
           servers: |
-            [{"id": "github", "username": "${username}", "password": "${password}"},{"id": "portx-repository-snapshots", "username": "deployer", "password": "${{ secrets.PORTX_SNAPSHOTS_PASSWORD }}"},{"id": "portx-repository-releases", "username": "deployer", "password": "${{ secrets.PORTX_RELEASES_PASSWORD }}"}]
+            [{"id": "portx-repository-snapshots", "username": "deployer", "password": "${{ secrets.PORTX_SNAPSHOTS_PASSWORD }}"},{"id": "portx-repository-releases", "username": "deployer", "password": "${{ secrets.PORTX_RELEASES_PASSWORD }}"}]
       - name: set mvn options
         run: export MAVEN_OPTS=--add-opens=java.base/java.util=ALL-UNNAMED
       - name: Publish to Github packages
@@ -52,12 +54,10 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_ID }}
           aws-secret-access-key: ${{ secrets.AWS_ACCESS_KEY }}
           aws-region: us-west-2
-
       - name: Log in to ECR
         run: aws ecr get-login-password | docker login --password-stdin --username AWS $REGISTRY
-
       - name: Build and Push
         run: |
           docker build -t $REGISTRY/$APP_NAME -f Dockerfile .
-          docker tag $REGISTRY/$APP_NAME $REGISTRY/$APP_NAME:prod-${{ github.sha }}-latest
-          docker push $REGISTRY/$APP_NAME:prod-${{ github.sha }}-latest
+          docker tag $REGISTRY/$APP_NAME $REGISTRY/$APP_NAME:demos-${{ github.sha }}-latest
+          docker push $REGISTRY/$APP_NAME:demos-${{ github.sha }}-latest
