@@ -42,6 +42,37 @@
                 </setHeader>
                 <log message="MOCK: ${header.CamelHttpMethod} ${header.CamelInterceptedEndpoint} ${header.CamelHttpPath} ${header.CamelHttpResponseCode}"  loggingLevel="DEBUG"/>
             </when>
+            <when>
+                <simple>${header.CamelInterceptedEndpoint} regex '^.*/api/clients' &amp;&amp; ${header.CamelHttpMethod} == 'POST'</simple>
+                <setProperty name="TEST_createPersonRequest">
+                    <simple>${body}</simple>
+                </setProperty>
+                <log message="Create Person Mock Route REQUEST Body: ${body}"/>
+                <setBody>
+                    <simple>resource:classpath:test-data/json/mambuAPI/createPersonResponse.json</simple>
+                </setBody>
+                <log message="Create Person Mock Route RESPONSE Body: ${body}"/>
+                <setProperty name="personId">
+                    <datasonnet bodyMediaType="application/json" outputMediaType="text/plain" resultType="java.lang.String">
+                        ds.select(body, "encodedKey")
+                    </datasonnet>
+                </setProperty>
+                <setHeader name="CamelHttpResponseCode">
+                    <constant>200</constant>
+                </setHeader>
+                <log message="MOCK: ${header.CamelHttpMethod} ${header.CamelInterceptedEndpoint} ${header.CamelHttpPath} ${header.CamelHttpResponseCode}"  loggingLevel="DEBUG"/>
+            </when>
+            <when>
+                <simple>${header.CamelInterceptedEndpoint} regex '^.*/api/clients.*' &amp;&amp; ${header.CamelHttpMethod} == 'GET'</simple>
+                <setHeader name="CamelHttpResponseCode">
+                    <constant>200</constant>
+                </setHeader>
+                <setBody>
+                    <simple>resource:classpath:test-data/json/mambuAPI/getPersonByIdResponse.json</simple>
+                </setBody>
+                <log message="Get Persons Response Body: ${body}"/>
+                <log message="MOCK: ${header.CamelHttpMethod} ${header.CamelInterceptedEndpoint} ${header.CamelHttpPath} ${header.CamelHttpResponseCode}"  loggingLevel="DEBUG"/>
+            </when>
             <!-- <when>
                 <simple>${header.CamelInterceptedEndpoint} regex '^.*sql:select count(*) as cnt from person where last_name.*'</simple>
                 <setBody>

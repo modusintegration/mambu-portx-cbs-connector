@@ -53,9 +53,7 @@ public class ApplicationTest extends APITest {
        // Branch is created, check its id
        String branchId = exchange.getProperty("branchId", String.class);
        assertEquals("SEA_1", branchId);
-
    }
-
 
    @Test
    @DisplayName("Test update branch endpoint")
@@ -75,6 +73,45 @@ public class ApplicationTest extends APITest {
        assertNotNull(updateBranchRequest);
        JSONAssert.assertEquals(TestResourceReader.readFileAsString("test-data/json/mambuAPI/updateBranchRequest.json"), updateBranchRequest, true);
    }
+
+    @Test
+    @DisplayName("Test create person endpoint")
+    public void testCreatePerson() throws Exception {
+        Exchange exchange = sendTestRequest("direct:createPerson", ExchangePattern.InOut, new Processor() {
+            @Override
+            public void process(Exchange exchange) throws Exception {
+                Message in = exchange.getIn();
+                in.setBody(TestResourceReader.readFileAsString("test-data/json/mambuAPI/createPersonRequest.json"));
+            }
+        });
+
+        // Check the correct body is sent in request
+        String createPersonRequest = exchange.getProperty("TEST_createPersonRequest", String.class);
+        assertNotNull(createPersonRequest);
+        JSONAssert.assertEquals(TestResourceReader.readFileAsString("test-data/json/mambuAPI/createPersonRequest.json"), createPersonRequest, true);
+
+        // Person is created, check its id
+        String personId = exchange.getProperty("personId", String.class);
+        assertEquals("8a44a3c987fab5f30187fc27df6b17b3", personId);
+    }
+    @Test
+    @DisplayName("Test get person by id endpoint")
+    public void testGetPersonById() throws Exception {
+        Exchange exchange = sendTestRequest("direct:findPerson", ExchangePattern.InOut, new Processor() {
+            @Override
+            public void process(Exchange exchange) throws Exception {
+                Message in = exchange.getIn();
+                in.setHeader("personId", "8a44a3c987fab5f30187fc7226031882");
+            }
+        });
+
+        String response = exchange.getIn().getBody(String.class);
+        assertNotNull(response, "Response is not null");
+        JSONAssert.assertEquals(TestResourceReader.readFileAsString("test-data/json/mambuAPI/getPersonByIdResponse.json"), response, true);
+
+        String personId = exchange.getProperty("personId", String.class);
+        assertEquals("8a44a3c987fab5f30187fc7226031882", personId);
+    }
 
     // @Test
     // @DisplayName("Test Database Query")

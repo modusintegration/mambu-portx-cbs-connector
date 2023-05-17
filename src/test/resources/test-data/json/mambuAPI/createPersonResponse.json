@@ -1,0 +1,31 @@
+{
+  "encodedKey": "8a44a3c987fab5f30187fc7226031882",
+  "id": "132077719",
+  "state": "INACTIVE",
+  "creationDate": "2023-05-09T05:22:26-07:00",
+  "lastModifiedDate": "2023-05-09T05:22:26-07:00",
+  "approvedDate": "2023-05-09T05:22:26-07:00",
+  "firstName": "Copi",
+  "lastName": "Copito",
+  "middleName": "Joe",
+  "mobilePhone": "+1-415-731359",
+  "emailAddress": "email@gmail.com",
+  "preferredLanguage": "ENGLISH",
+  "birthDate": "2022-04-17",
+  "clientRoleKey": "8a44cde37b592d63017b5fac6e400518",
+  "loanCycle": 0,
+  "groupLoanCycle": 0,
+  "addresses": [
+    {
+      "encodedKey": "8a44a3c987fab5f30188007682f02323",
+      "parentKey": "8a44a3c987fab5f30187fc7226031882",
+      "line1": "Nature",
+      "line2": "Valley ",
+      "city": "Zapopan",
+      "postcode": "45090",
+      "country": "VM",
+      "indexInList": 0
+    }
+  ],
+  "idDocuments": []
+}

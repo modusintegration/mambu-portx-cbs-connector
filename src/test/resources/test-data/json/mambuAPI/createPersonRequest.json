@@ -1,0 +1,33 @@
+{
+  "postalAddresses": [
+    {
+      "postCode": "45090",
+      "townName": "Zapopan",
+      "country": "VM",
+      "addressLine": [
+        "Nature",
+        "Valley "
+      ]
+    }
+  ],
+  "placeAndDateOfBirth": {
+    "birthDate": "2022-04-17"
+  },
+  "contact": {
+    "phones": [
+      {
+        "number": "+1-415-731359"
+      }
+    ],
+    "emails": [
+      {
+        "emailAddress": "email@gmail.com"
+      }
+    ]
+  },
+  "structuredName": {
+    "firstName": "Copi",
+    "middleName": "Joe",
+    "lastName": "Copito"
+  }
+}
