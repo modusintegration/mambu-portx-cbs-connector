@@ -1,0 +1,61 @@
+/** DataSonnet
+version=2.0
+output application/json
+input payload application/json
+*/
+local selector(obj,key,dValue = null) = ds.or(ds.select(obj,key), dValue);
+local address = selector(payload, "addresses");
+local first = selector(payload, "firstName");
+local middle = selector(payload, "middleName");
+local last = selector(payload, "lastName");
+local fullname = (if first!=null then first else "") +
+                 (if first!=null && middle!=null then " " else "") +
+                 (if middle!=null then middle else "") +
+                 (if (first!=null || middle!=null) && last!=null then " " else "") +
+                 if last!=null then last;
+local shortName = (if first!=null then first else "") +
+                  (if first!=null && last!=null then " " else "") +
+                  if last!=null then last;
+
+std.prune({
+  "genericIdentifiers": [
+    {
+      "number": selector(payload, "id"),
+      "schemeName": "clientId",
+      "issuer": "Mambu"
+    }
+  ],
+  "name": fullname,
+  "shortName": shortName,
+  "relatedParties": [
+    {
+      "partyId": selector(payload, "encodedKey"),
+      "partyType": "Person",
+      "partyRelationType": "Owner"
+    }
+  ],
+  "postalAddress": {
+    "postCode": if ds.isArray(address) then selector(address[0], "postcode") else "",
+    "townName": if ds.isArray(address) then selector(address[0], "city") else "",
+    "country": if ds.isArray(address) then selector(address[0], "country") else "",
+    "addressLine": [
+      if ds.isArray(address) then selector(address[0], "line1"),
+      if ds.isArray(address) then selector(address[0], "line2")
+    ]
+  },
+  "status": selector(payload, "state"),
+  "placeAndDateOfBirth": {
+    "birthDate": selector(payload, "birthDate"),
+  },
+  "contact": {
+    "mobileNumber": selector(payload, "mobilePhone"),
+    "emailAddress": selector(payload, "emailAddress"),
+  },
+    "structuredName": {
+    "firstName": selector(payload, "firstName"),
+    "middleName": selector(payload, "middleName"),
+    "lastName": selector(payload, "lastName"),
+  },
+  "personId": selector(payload, "encodedKey")
+})
+

@@ -1,0 +1,38 @@
+{
+  "encodedKey": "8a44be138476ac2c0184795ccdf230ca",
+  "id": "554",
+  "creationDate": "2022-11-14T19:37:16-08:00",
+  "valueDate": "2022-11-14T19:37:16-08:00",
+  "bookingDate": "2022-11-14T19:37:16-08:00",
+  "notes": "test1",
+  "parentAccountKey": "8a44b06e83d75dcd0183e370be2736ae",
+  "type": "TRANSFER",
+  "amount": -3.0000000000,
+  "currencyCode": "USD",
+  "affectedAmounts": {
+    "fundsAmount": 3.0000000000,
+    "interestAmount": 0,
+    "feesAmount": 0,
+    "overdraftAmount": 0,
+    "overdraftFeesAmount": 0,
+    "overdraftInterestAmount": 0,
+    "technicalOverdraftAmount": 0,
+    "technicalOverdraftInterestAmount": 0,
+    "fractionAmount": 0
+  },
+  "taxes": {},
+  "accountBalances": {
+    "totalBalance": 178.3000000000
+  },
+  "userKey": "8a44b03a820b76c1018211b799693e87",
+  "terms": {
+    "interestSettings": {},
+    "overdraftInterestSettings": {},
+    "overdraftSettings": {}
+  },
+  "transactionDetails": {},
+  "transferDetails": {
+    "linkedDepositTransactionKey": "8a44be138476ac2c0184795ccdf230cc"
+  },
+  "fees": []
+}

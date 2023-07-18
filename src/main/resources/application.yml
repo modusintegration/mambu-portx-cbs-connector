@@ -37,8 +37,43 @@ mambu:
 
 error:
   default:
-    code: BANKACCTMGMT_OBPCOM_ERROR
-    message: An error happened in bankacctmgmt obpcom sys API
+    code: PORTX_CBS_ERROR
+    message: An error occured in Mambu PortX CBS Connector
   authentication:
-    code: BANKACCTMGMT_OBPCOM_AUTH_ERROR
-    message: An error happened during authentication
+    code: PORTX_CBS_AUTHENTICATION
+    message: Authentication error
+  badrequest:
+    code: PORTX_CBS_BADREQUEST
+    message: Invalid request
+  notfound:
+    code: PORTX_CBS_NOTFOUND
+    message: Requested Resource Not Found
+  alreadyexists:
+    code: PORTX_CBS_ALREADYEXISTS
+    message: Resource already exists
+  unavailable:
+    code: PORTX_CBS_UNAVAILABLE
+    message: Resquested service anavailable
+# above are the standard error codes/messages for this app, values can change but the entities are expected
+# add any new codes you need and override as props <errorCode> and <errorMessage> in routes
+
+opentelemetry:
+  enabled: true
+  tracer:
+    enabled: true
+    exporter:
+      otlp:
+        enabled: true
+        endpoint: http://localhost:55680
+groupRoles:
+  Treasurer:
+    groupRoleNameKey: 8a44b0f18706d32f01870a7aa66c7f6a
+  President:
+    groupRoleNameKey: 8a44b0f18706d32f01870a7aa66c7f69
+  Secretary:
+    groupRoleNameKey: 8a44b0f18706d32f01870a7aa66c7f68
+  Developer:
+    groupRoleNameKey: 8a44b0f18706d32f01870a879e1e7fc6
+  Assigner:
+    groupRoleNameKey: 8a44b0f18706d32f01870a7aa66c7f6b
+

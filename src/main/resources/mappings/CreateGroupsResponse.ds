@@ -1,0 +1,95 @@
+/** DataSonnet
+version=2.0
+output application/json
+input payload application/json
+*/
+local selector(obj,key,dValue = null) = ds.or(ds.select(obj,key), dValue);
+
+local organizationDetails = selector(payload, "_organizationDetails_Groups");
+local addresses = selector(payload, "addresses");
+local country = if addresses != null && std.length(addresses) > 0 then addresses[0].country else null;
+local addressLine = if addresses != null && std.length(addresses) > 0 then addresses[0].line1 else null;
+local taxInformation = selector(payload, "_taxInformation_Groups");
+local timeAtCurrentAddress = selector(payload, "_timeAtCurrentAddress_Groups");
+local communicationGroup = selector(payload, "_communicationChannel_Groups");
+local restrictions = selector(payload, "_restrictions_Groups");
+local groupMembers = selector(payload, "groupMembers");
+
+std.prune({
+  "genericIdentifiers": [
+    {
+    "number": selector(payload, "id"),
+    },
+    {
+      "number": selector(organizationDetails, "eIN_Groups"),
+    },
+  ],
+  "shortName": selector(payload, "groupName"),
+  "postalAddresses": [
+    {
+      "addressType": selector(organizationDetails, "addressType_Groups")
+    },
+    {
+      "addressType": selector(organizationDetails, "physicalAddress_Groups"),
+      "country": country,
+      "addressLine": [
+        addressLine
+      ]
+    }
+  ],
+  "taxInformation": {
+    "tIN": selector(taxInformation, "tIN_Groups"),
+    "taxIdType": selector(taxInformation, "taxType_Groups"),
+  },
+  "registrationDate": selector(organizationDetails, "dateOfOrganization_Groups"),
+  "organizationProfile": {
+    "previousFinancialInstitution": selector(organizationDetails, "previousFinancialInstitution_Groups"),
+    "referredByWhom": selector(organizationDetails, "referredByWhom_Groups"),
+    "timeAtCurrentAddress": {
+      "unit": selector(timeAtCurrentAddress, "unit_Groups"),
+      "value": selector(timeAtCurrentAddress, "value_Groups")
+    },
+    "politicalAffiliation": selector(organizationDetails, "politicalAfiliation_Groups"),
+  },
+  "phones": [
+    {
+      "number": selector(payload, "homePhone")
+    },
+    {
+      "number": selector(payload, "mobilePhone")
+    }
+  ],
+  "emails": [
+    {
+      "emailAddress": selector(payload, "emailAddress")
+    }
+  ],
+  "organizationType": selector(payload, "notes"),
+  "relatedParties": cml.exchangeProperty('relatedParties'),
+  "settings": {
+    "communicationChannels": [
+      {
+        "channel": selector(communicationGroup, "useForEnterpriseAlertsInternet_G"),
+        "codeWord": selector(communicationGroup, "internetAccessCode1_Groups"),
+      },
+      {
+        "channel": selector(communicationGroup, "internetAccessCode2_Groups")
+      }
+    ]
+  },
+  "restrictions": [
+    {
+      "name": selector(restrictions,"cashManagementAccess1_Groups"),
+    },
+    {
+      "name": selector(restrictions,"cashManagementAccess2_Groups"),
+    },
+    {
+      "name": selector(restrictions,"internetAccessAllowed_Groups"),
+    },
+    {
+      "name": selector(restrictions,"ivrAccessCode_Groups"),
+    }
+  ],
+})
+

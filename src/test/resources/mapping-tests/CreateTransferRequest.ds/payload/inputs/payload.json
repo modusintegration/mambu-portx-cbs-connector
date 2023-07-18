@@ -1,0 +1,254 @@
+{
+  "paymentMethod": "CreditTransfer",
+  "paymentType": "On-Us",
+  "amount": "10",
+  "debtorAccountId": "8a44a23d8419531901841a5b3bca5cc1",
+  "creditorAccountId": "8a44a23d8419531901841a4dae5a5ad9",
+  "purpose": "This is a description.",
+  "identifiers": {
+    "instructionIdentification": "123456789",
+    "endToEndIdentification": "12345678912345",
+    "uETR": "5fb9d4d6-1a3c-11ed-861d-0242ac120002",
+    "identifiers": [
+      {
+        "number": "string",
+        "identifierName": "ISOInitiationMessageIdentifier",
+        "issuer": "Banc of California"
+      }
+    ]
+  },
+  "paymentProcessing": {
+    "instructionPriority": "123456789",
+    "serviceLevel": "BookTransaction",
+    "clearingChannel": "ACH",
+    "localInstrument": "CreditTransfers",
+    "categoryPurpose": "SalaryPayment"
+  },
+  "chargeBearerType": "Shared",
+  "currency": "USD",
+  "exchangeDetail": {
+    "currency": "string",
+    "exchangeFactor": "0.7"
+  },
+  "checkDetail": {
+    "checkType": "string",
+    "checkNumber": "string",
+    "availabilityDate": "2022-04-17T08:00:00Z"
+  },
+  "valueDate": "2022-04-17",
+  "creditor": {
+    "name": {
+      "name": "Jane Birkin",
+      "shortName": "Jane",
+      "relatedParties": [
+        {
+          "partyId": "5fb9d4d6-1a3c-11ed-861d-0242ac120002",
+          "partyType": "Person",
+          "partyName": "Jane Birkin",
+          "partyRelationType": "Owner",
+          "ownershipPercentage": "0.7"
+        }
+      ],
+      "postalAddresses": [
+        {
+          "addressType": "Postal",
+          "addressPurpose": "Billing",
+          "primaryIndicator": true,
+          "department": "A",
+          "subDepartment": "B",
+          "streetName": "First Street",
+          "firstCrossStreetName": "string",
+          "secondCrossStreetName": "Second Street",
+          "buildingNumber": "11407",
+          "buildingName": "Tall Tower",
+          "floor": "20",
+          "postBox": "MY779",
+          "room": "22",
+          "postCode": "97062-6884",
+          "townName": "Tualatin",
+          "townLocationName": "Clackamas",
+          "districtName": "Washington",
+          "countrySubDivision": "Oregon",
+          "countrySubDivisionCode": "AR-B",
+          "country": "US",
+          "addressLine": [
+            "11407 Sw Amu st, Suite MY777"
+          ]
+        }
+      ],
+      "residenceType": "Domestic",
+      "taxInformation": {
+        "tIN": "778-62-8144",
+        "taxIdType": "SSN",
+        "reportingIndicator": true,
+        "tinStatus": "Valid",
+        "taxStatus": "Valid",
+        "forms": [
+          {
+            "formName": "W-9",
+            "cerfiticationDate": "2022-04-17",
+            "expirationDate": "2022-04-17"
+          }
+        ],
+        "regulations": [
+          {
+            "name": "Chapter4",
+            "section": "1471"
+          }
+        ],
+        "withholdings": [
+          {
+            "withholdingTaxType": "NonResidentAlienTax",
+            "withholdingRate": "0.7",
+            "withholdingAmount": "100"
+          }
+        ],
+        "nRAIndicator": true,
+        "countrySubDivision": "Oregon",
+        "countrySubDivisionCode": "AR-B",
+        "country": "US",
+        "supplementaryData": {}
+      },
+      "powerOfAttorney": {
+        "jurisdiction": {
+          "countrySubdivision": "Oregon",
+          "townName": "Tualatin",
+          "country": "US"
+        },
+        "documentId": "5fb9d4d6-1a3c-11ed-861d-0242ac120002",
+        "documentReference": "string",
+        "version": "string",
+        "signOffDate": "2022-04-17",
+        "issueDate": "2022-04-17",
+        "purpose": "string",
+        "fromDateTime": "2022-04-17",
+        "upToDateTime": "2022-04-17",
+        "authorizedPerson": "5fb9d4d6-1a3c-11ed-861d-0242ac120002",
+        "authorizedAccount": "0dd926fe-1ca2-11ed-861d-0242ac120002"
+      },
+      "supplementaryData": {},
+      "settings": {
+        "communicationChannels": [
+          {
+            "channel": "Email",
+            "channelIdentification": "011-02010020202",
+            "codeWord": "string",
+            "alertIndicator": "string"
+          }
+        ]
+      },
+      "restrictions": [
+        {
+          "name": "externalTransferAllowed",
+          "restrictionPurpose": "This is a description.",
+          "validFrom": "2022-04-17",
+          "validUntil": "2022-04-17"
+        }
+      ]
+    },
+    "postalAddress": {
+      "iBAN": "AL35202111090000000001234567",
+      "accountNumber": "012345678",
+      "identifiers": [
+        {
+          "identification": "string",
+          "schemeName": "BBANIdentifier",
+          "issuer": "string"
+        }
+      ]
+    },
+    "agent": {
+      "clearingSystemMemberIdentification": "UnitedStatesRoutingNumberFedwireNACHA",
+      "memberIdentification": "string",
+      "name": "string",
+      "postalAddress": {
+        "addressType": "Postal",
+        "addressPurpose": "Billing",
+        "primaryIndicator": true,
+        "department": "A",
+        "subDepartment": "B",
+        "streetName": "First Street",
+        "firstCrossStreetName": "string",
+        "secondCrossStreetName": "Second Street",
+        "buildingNumber": "11407",
+        "buildingName": "Tall Tower",
+        "floor": "20",
+        "postBox": "MY779",
+        "room": "22",
+        "postCode": "97062-6884",
+        "townName": "Tualatin",
+        "townLocationName": "Clackamas",
+        "districtName": "Washington",
+        "countrySubDivision": "Oregon",
+        "countrySubDivisionCode": "AR-B",
+        "country": "US",
+        "addressLine": [
+          "11407 Sw Amu st, Suite MY777"
+        ]
+      },
+      "bIC": "AAAABBCCXXX",
+      "lEI": "2ZCNRR8UK83OBTEK2170",
+      "genericIdentifiers": [
+        {
+          "number": "123-45-6789",
+          "schemeName": "TaxIdentificationNumber",
+          "issuer": "UnitedStates",
+          "issueDate": "2022-04-17",
+          "expirationDate": "2022-04-17"
+        }
+      ]
+    },
+    "bIC": "AAAABBCCXXX",
+    "lEI": "2ZCNRR8UK83OBTEK2170",
+    "placeAndDateOfBirth": {
+      "countrySubdivision": "Oregon",
+      "townName": "Tualatin",
+      "country": "US",
+      "birthDate": "2022-04-17"
+    },
+    "contact": {
+      "namePrefix": "string",
+      "name": "Jane Birkin",
+      "phones": [
+        {
+          "number": "+1-415-731359",
+          "extension": "strin",
+          "phoneType": "string",
+          "phonePurpose": "string",
+          "primaryIndicator": true,
+          "preferredHourOfDay": {
+            "hour": "12",
+            "timeZone": "Pacific"
+          }
+        }
+      ],
+      "emails": [
+        {
+          "emailAddress": "string",
+          "emailPurpose": "Statements",
+          "primaryIndicator": true
+        }
+      ],
+      "jobTitle": "Head of Documentation",
+      "department": "Sales",
+      "otherContactMethods": [
+        {
+          "channelType": "Email",
+          "identification": "011-02010020202"
+        }
+      ],
+      "preferredMethod": "Email",
+      "preferredLanguage": "English"
+    },
+    "genericIdentifiers": [
+      {
+        "number": "123-45-6789",
+        "schemeName": "TaxIdentificationNumber",
+        "issuer": "UnitedStates",
+        "issueDate": "2022-04-17",
+        "expirationDate": "2022-04-17"
+      }
+    ],
+    "countryOfResidence": "US"
+  }
+}

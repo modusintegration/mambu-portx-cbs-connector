@@ -1,0 +1,14 @@
+/** DataSonnet
+version=2.0
+output application/json
+input payload application/json
+*/
+local selector(obj,key,dValue = null) = ds.or(ds.select(obj,key), dValue);
+
+payload +
+std.prune({
+  "valueDate": cml.exchangeProperty("valueDate"),
+  "paymentId": cml.exchangeProperty("paymentId"),
+  "status": "AcceptedSettlementCompleted",
+  "date": cml.exchangeProperty("date"),
+})
