@@ -1,0 +1,8 @@
+
+mambu:
+  host: https://example.com
+  username: test
+  password: test
+
+validation:
+  rules-location: validations/rules # just a mock location which does nothing
