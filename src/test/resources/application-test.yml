@@ -5,4 +5,5 @@ mambu:
   password: test
 
 validation:
-  rules-location: validations/rules # just a mock location which does nothing
+  rules:
+    location: validations/rules # just a mock location which does nothing

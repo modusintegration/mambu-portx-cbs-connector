@@ -384,7 +384,7 @@
         <dependency>
             <groupId>io.portx.validation</groupId>
             <artifactId>portx-api-schema-validator</artifactId>
-            <version>0.0.3</version>
+            <version>0.0.6</version>
         </dependency>
     </dependencies>
     <repositories>
