@@ -36,7 +36,8 @@ mambu:
   password: Modusbox@123
 
 validation:
-  rules-location: # Injected from env var in values.yaml file on a given environment
+  rules:
+    location: # Injected from env var in values.yaml file on a given environment
   # For local development use absolute path to rule files
 
 error:

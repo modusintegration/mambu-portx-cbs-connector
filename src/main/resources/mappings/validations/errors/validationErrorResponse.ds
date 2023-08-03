@@ -1,0 +1,17 @@
+local exception = cml.exchangeProperty("exception");
+local code = "InvalidRequest";
+local message = std.format("List of errors found in %s", exception.target);
+{
+  code: code,
+  message: message,
+  target: exception.target,
+  details:
+  [
+    {
+      code: detail.code,
+      target: detail.target,
+      message: detail.message
+    }
+    for detail in exception.details
+  ]
+}
