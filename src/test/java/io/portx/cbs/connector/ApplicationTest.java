@@ -13,9 +13,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.DisplayName;
+import org.springframework.test.context.ActiveProfiles;
 
 @DisplayName("Application Tests")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT, classes=Application.class)
+@ActiveProfiles("test")
 public class ApplicationTest extends APITest {
 
    @Test

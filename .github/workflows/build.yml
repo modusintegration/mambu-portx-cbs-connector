@@ -25,6 +25,7 @@ jobs:
       # APP_NAME: mambu-portx-cbs-connector
     name: Build API package
     runs-on: ubuntu-latest
+    permissions: write-all    
     steps:
 
       - name: Checkout repository
@@ -49,6 +50,103 @@ jobs:
           servers: |
             [{"id": "github", "username": "${username}", "password": "${password}"},{"id": "portx-repository-snapshots", "username": "deployer", "password": "${{ secrets.PORTX_SNAPSHOTS_PASSWORD }}"},{"id": "portx-repository-releases", "username": "deployer", "password": "${{ secrets.PORTX_RELEASES_PASSWORD }}"}]
 
+      - name: Build and Run Tests
+        run: mvn test --batch-mode -U
+      
+      - name: Generate Test report
+        if: success() || failure()
+        run: mvn site -U
+
+      - name: Upload Test Results
+        if: success() || failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: unit-test-report
+          path: |
+            target/site/Unit-Test-Report.html
+            target/site/css/
+            target/site/images/
+ 
+      - name: Download Test Results
+        if: success() || failure()
+        uses: actions/download-artifact@v3
+        with:
+          name: unit-test-report
+          path: ~/download
+          
+      - name: Zip the results
+        if: success() || failure()      
+        run: |
+          ls -R /home/runner/download
+          cd /home/runner/download;zip -r Unit-Tests-${GITHUB_REPOSITORY#*/}.zip .
+          ls -R /home/runner/download
+  
+      - name: Send Slack Notification on Success
+        if: success()
+        uses: 8398a7/action-slack@v3
+        with:
+          status: custom
+          custom_payload: |
+            {
+              text: "Test Execution Passed",
+              attachments: [{
+                  color: 'good',
+                  text: `Test Execution for ${{ github.repository }} workflow has SUCCEEDED! :heavy_check_mark:`,
+                  fields: [{
+                    title: "Test Type",
+                    value: 'Unit Test',
+                    short: false  
+                  },
+                  {
+                    title: "Repository",
+                    value: `${process.env.AS_REPO}`,
+                    short: false  
+                  },
+                  {
+                    title: "View Run",
+                    value: `${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}`,
+                    short: true
+                  }]
+              }]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.OBA_SLACK_WEBHOOK_URL }} # required
+      - name: Send Slack Notification on Failure
+        uses: 8398a7/action-slack@v3
+        if: failure()
+        with:
+          status: custom
+          custom_payload: |
+            {
+              text: 'Test Execution Failed :warning::warning:',
+              attachments: [{
+                  color: 'danger',
+                  text: `Test Execution for ${{ github.repository }} workflow has FAILED! :x:`,
+                  fields: [{
+                      title: "Test Type",
+                      value: 'Unit Test',
+                      short: true
+                    },
+                    {
+                      title: "Repository",
+                      value: `${process.env.AS_REPO}`,
+                      short: true
+                    },
+                    {
+                      title: "View Run",
+                      value: `${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}`,
+                      short: true
+                    }]
+                }]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.OBA_SLACK_WEBHOOK_URL }} # required
+          
+      - name: Send zip report on slack2
+        if: success() || failure()
+        run: |
+          curl -F file=@/home/runner/download/Unit-Tests-${GITHUB_REPOSITORY#*/}.zip -F "initial_comment=Unit Test Results for ${{ github.repository }}" -F filetype="zip" -F channels=${{ secrets.OBA_SLACK_CHANNEL_NAME }} -H "Authorization: Bearer ${{ secrets.OBA_SLACK_BOT_TOKEN }}" https://slack.com/api/files.upload
+ 
       - name: Release
         run: |
           git config --global user.email "ci@modusbox.com"
