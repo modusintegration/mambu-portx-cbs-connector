@@ -1,0 +1,12 @@
+{
+  "lastName": "Smith",
+  "middleName": "Joe",
+  "firstName": "Mary",
+  "addresses": [
+    {
+      "line2": "",
+      "line1": ""
+    }
+  ],
+  "birthDate": "2022-04-17"
+}

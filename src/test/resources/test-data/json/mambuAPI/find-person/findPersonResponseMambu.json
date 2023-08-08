@@ -1,0 +1,18 @@
+{
+  "encodedKey": "8a44dcbe7f7251db017f7577043c160c",
+  "state": "ACTIVE",
+  "id": "474687140",
+  "creationDate": "2022-03-10T20:16:30+0000",
+  "lastModifiedDate": "2022-03-10T20:55:19+0000",
+  "approvedDate": "2022-03-10T20:16:30+0000",
+  "activationDate": "2022-03-10T20:55:19+0000",
+  "firstName": "International",
+  "lastName": "Hermes",
+  "middleName": "Bank",
+  "loanCycle": 0,
+  "groupLoanCycle": 0,
+  "preferredLanguage": "ENGLISH",
+  "clientRole": {
+    "encodedKey": "8a44cde37b592d63017b5fac6e400518"
+  }
+}
