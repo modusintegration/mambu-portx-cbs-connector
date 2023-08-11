@@ -1,9 +1,9 @@
 # LeaderBank cluster
 # export DOCKER_REPOSITORY_URL := 314858003196.dkr.ecr.us-west-2.amazonaws.com/mambu-portx-cbs-connector
 # DEMOS cluster
-export DOCKER_REPOSITORY_URL := 854173534877.dkr.ecr.us-west-2.amazonaws.com/demos/mambu-portx-cbs-connector
+# export DOCKER_REPOSITORY_URL := 854173534877.dkr.ecr.us-west-2.amazonaws.com/demos/mambu-portx-cbs-connector
 # VNext cluster
-# export DOCKER_REPOSITORY_URL := 823667448392.dkr.ecr.us-west-2.amazonaws.com/vnext/mambu-portx-cbs-connector
+export DOCKER_REPOSITORY_URL := 823667448392.dkr.ecr.us-west-2.amazonaws.com/vnext/mambu-portx-cbs-connector
 # SoundCU cluster
 # export DOCKER_REPOSITORY_URL := 117317084632.dkr.ecr.us-west-2.amazonaws.com/mambu-portx-cbs-connector
 
