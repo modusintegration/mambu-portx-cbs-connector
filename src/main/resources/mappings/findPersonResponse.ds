@@ -16,8 +16,13 @@ local fullname = (if first!=null then first else "") +
 local shortName = (if first!=null then first else "") +
                   (if first!=null && last!=null then " " else "") +
                   if last!=null then last;
+/*
+local ssn = if selector(payload, "idDocuments") != null then (ds.filter(selector(payload, "idDocuments"), function(value, index) value.documentType == "SSN"))[0];
+local tIN = if selector(payload, "idDocuments") != null then (ds.filter(selector(payload, "idDocuments"), function(value, index) value.documentType == "tIN"))[0];
+*/
 
 std.prune({
+  "personId": selector(payload, "encodedKey"),
   "genericIdentifiers": [
     {
       "number": selector(payload, "id"),
@@ -56,6 +61,13 @@ std.prune({
     "middleName": selector(payload, "middleName"),
     "lastName": selector(payload, "lastName"),
   },
-  "personId": selector(payload, "encodedKey")
+/*  //TODO fix TIN and SSN
+  "taxInformation": {
+    if tIN != null then
+    {
+      "tIN": tIN.documentId,
+      "taxIdType": tIN.documentType,
+    }
+  }*/
 })
 
