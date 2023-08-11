@@ -1,0 +1,35 @@
+/** DataSonnet
+version=2.0
+output application/json
+input payload application/json
+*/
+local selector(obj,key,dValue = null) = ds.or(ds.select(obj,key), dValue);
+
+std.prune({
+  "filterCriteria": [
+    if cml.exchangeProperty("firstName") != null then
+      {
+      "field": "firstName",
+      "operator": "EQUALS",
+      "value": cml.exchangeProperty("firstName")
+      },
+    if cml.exchangeProperty("lastName") != null then
+    {
+      "field": "lastName",
+      "operator": "EQUALS",
+      "value": cml.exchangeProperty("lastName")
+    },
+    if cml.exchangeProperty("tin") != null then
+    {
+      "field": "_searchablefields_Clients.tIN_Clients",
+      "operator": "EQUALS",
+      "value": cml.exchangeProperty("tin")
+    },
+    if cml.exchangeProperty("townName") != null then
+    {
+      "field": "_searchablefields_Clients.townName_Clients",
+      "operator": "EQUALS",
+      "value": cml.exchangeProperty("townName")
+    }
+  ]
+})

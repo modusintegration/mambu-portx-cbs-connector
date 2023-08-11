@@ -1,82 +1,44 @@
 {
-  "activationDate": "2016-09-06T13:37:50+03:00",
-  "addresses": [
+  "encodedKey":"8a44c43889e603ea0189e62d7dd80329",
+  "id":"549192746",
+  "state":"INACTIVE",
+  "creationDate":"2023-08-11T13:07:29-07:00",
+  "lastModifiedDate":"2023-08-11T13:07:29-07:00",
+  "approvedDate":"2023-08-11T13:07:29-07:00",
+  "firstName":"Vr",
+  "lastName":"Lab",
+  "middleName":"Lab",
+  "homePhone":"+1-415-731359",
+  "emailAddress":"string",
+  "preferredLanguage":"ENGLISH",
+  "birthDate":"2022-04-17",
+  "gender":"MALE",
+  "clientRoleKey":"8a44cde37b592d63017b5fac6e400518",
+  "loanCycle":0,
+  "groupLoanCycle":0,
+  "addresses":[
     {
-      "city": "string",
-      "country": "string",
-      "encodedKey": "string",
-      "indexInList": 0,
-      "latitude": 0,
-      "line1": "string",
-      "line2": "string",
-      "longitude": 0,
-      "parentKey": "string",
-      "postcode": "string",
-      "region": "string"
+      "encodedKey":"8a44c43889e603ea0189e6360cbd0349",
+      "parentKey":"8a44c43889e603ea0189e62d7dd80329",
+      "line1":"123 Main Street, Suite 23",
+      "city":"Chicago",
+      "region":"Illinois",
+      "postcode":"60601",
+      "country":"US",
+      "indexInList":0
     }
   ],
-  "approvedDate": "2016-09-06T13:37:50+03:00",
-  "assignedBranchKey": "string",
-  "assignedCentreKey": "string",
-  "assignedUserKey": "string",
-  "birthDate": "1987-04-26",
-  "clientRoleKey": "string",
-  "closedDate": "2016-09-06T13:37:50+03:00",
-  "creationDate": "2016-09-06T13:37:50+03:00",
-  "emailAddress": "string",
-  "encodedKey": "string",
-  "firstName": "string",
-  "gender": "MALE",
-  "groupKeys": [
-    "string"
-  ],
-  "groupLoanCycle": 0,
-  "homePhone": "string",
-  "id": "string",
-  "idDocuments": [
+  "idDocuments":[
     {
-      "attachments": [
-        {
-          "creationDate": "2016-09-06T13:37:50+03:00",
-          "encodedKey": "string",
-          "fileName": "string",
-          "fileSize": 0,
-          "id": 0,
-          "lastModifiedDate": "2016-09-06T13:37:50+03:00",
-          "location": "string",
-          "name": "string",
-          "notes": "string",
-          "ownerKey": "string",
-          "ownerType": "CLIENT",
-          "type": "string"
-        }
-      ],
-      "clientKey": "string",
-      "documentId": "string",
-      "documentType": "string",
-      "encodedKey": "string",
-      "identificationDocumentTemplateKey": "string",
-      "indexInList": 0,
-      "issuingAuthority": "string",
-      "validUntil": "1987-04-26"
+      "encodedKey":"8a44c43889e603ea0189e6360cbd0348",
+      "clientKey":"8a44c43889e603ea0189e62d7dd80329",
+      "documentType":"tIN",
+      "documentId":"778-62-8144",
+      "indexInList":0
     }
   ],
-  "lastModifiedDate": "2016-09-06T13:37:50+03:00",
-  "lastName": "string",
-  "loanCycle": 0,
-  "middleName": "string",
-  "migrationEventKey": "string",
-  "mobilePhone": "string",
-  "mobilePhone2": "string",
-  "notes": "string",
-  "portalSettings": {
-    "encodedKey": "string",
-    "lastLoggedInDate": "2016-09-06T13:37:50+03:00",
-    "portalState": "ENABLED"
-  },
-  "preferredLanguage": "ENGLISH",
-  "profilePictureKey": "string",
-  "profileSignatureKey": "string",
-  "state": "PENDING_APPROVAL"
+  "_searchablefields_Clients":{
+    "tIN_Clients":"778-62-8144",
+    "townName_Clients":"Chicago"
+  }
 }
-

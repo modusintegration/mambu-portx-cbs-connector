@@ -4,7 +4,10 @@ output application/json
 input payload application/json
 */
 local selector(obj,key,dValue = null) = ds.or(ds.select(obj,key), dValue);
-local addressLines = selector(payload, "postalAddress.addressLine");
+local postalAddresses = selector(payload, "postalAddresses");
+local address1 = selector(payload, "postalAddresses");
+local address1 = if ds.isArray(postalAddresses) && std.length(postalAddresses) > 0 then postalAddresses[0].addressType;
+local contact = selector(payload, "contact");
 
 std.prune({
   "lastName": payload.structuredName.lastName,
@@ -12,15 +15,31 @@ std.prune({
   "firstName": payload.structuredName.firstName,
   "addresses": [
     {
-      "country": selector(payload, "postalAddress.country"),
-      "city": selector(payload, "postalAddress.townName"),
-      "postcode": selector(payload, "postalAddress.postCode"),
-      "line2": if ds.isArray(addressLines) && std.length(addressLines) > 1 then addressLines[1] else "",
-      "line1": if ds.isArray(addressLines) && std.length(addressLines) > 0 then addressLines[0] else ""
+      "country": if ds.isArray(postalAddresses) && std.length(postalAddresses) > 0 then postalAddresses[0].country,
+      "city": if ds.isArray(postalAddresses) && std.length(postalAddresses) > 0 then postalAddresses[0].townName,
+      "region": if ds.isArray(postalAddresses) && std.length(postalAddresses) > 0 then postalAddresses[0].districtName,
+      "postcode": if ds.isArray(postalAddresses) && std.length(postalAddresses) > 0 then postalAddresses[0].postCode,
+      "line1": if ds.isArray(postalAddresses) && ds.isArray(postalAddresses[0].addressLine) then postalAddresses[0].addressLine[0] else "",
+      "line2": if ds.isArray(postalAddresses) && ds.isArray(postalAddresses[0].addressLine) && std.length(postalAddresses[0].addressLine) > 1 then postalAddresses[0].addressLine[1],
+}
+  ],
+  "homePhone" : if contact != null && selector(contact, "phones") != null then contact.phones[0].number,
+  "mobilePhone": if contact != null && selector(contact, "phones") != null && std.length(selector(contact, "phones")) > 0 then contact.phones[1].number,
+  "mobilePhone2": if contact != null && selector(contact, "phones") != null && std.length(selector(contact, "phones")) > 1 then contact.phones[2].number,
+  "emailAddress": if contact != null && selector(contact, "emails") != null then contact.emails[0].emailAddress,
+  "gender": selector(payload, "gender"),
+  "state": selector(payload, "status"),
+  "preferredLanguage": selector(contact, "preferredLanguage"),
+  "birthDate": selector(payload, "placeAndDateOfBirth.birthDate"),
+  "mobilePhone": selector(payload, "contact.mobileNumber"),
+  "idDocuments": [
+    {
+      "documentId": selector(payload, "taxInformation.tIN"),
+      "documentType": selector(payload, "taxInformation.taxIdType")
     }
   ],
-  "emailAddress": selector(payload, "contact.emailAddress"),
-  "state": selector(payload, "status"),
-  "birthDate": selector(payload, "placeAndDateOfBirth.birthDate"),
-  "mobilePhone": selector(payload, "contact.mobileNumber")
+  "_searchablefields_Clients": {
+    "townName_Clients": if ds.isArray(postalAddresses) && std.length(postalAddresses) > 0 then postalAddresses[0].townName,
+    "tIN_Clients": selector(payload, "taxInformation.tIN")
+  }
 })
