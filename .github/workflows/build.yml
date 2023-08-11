@@ -55,7 +55,7 @@ jobs:
       
       - name: Generate Test report
         if: success() || failure()
-        run: mvn site -U --offline
+        run: mvn site -U
 
       - name: Upload Test Results
         if: success() || failure()
