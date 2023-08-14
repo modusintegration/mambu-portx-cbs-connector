@@ -405,6 +405,7 @@
             <url>https://portx.jfrog.io/portx/portx-releases</url>
         </repository>
     </repositories>
+
     <scm>
         <connection>scm:git:https://github.com/modusintegration/${project.artifactId}.git</connection>
         <developerConnection>scm:git:https://github.com/modusintegration/${project.artifactId}.git</developerConnection>
