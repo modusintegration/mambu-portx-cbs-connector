@@ -8,6 +8,7 @@ on:
       - 'pom.xml'
       - 'Dockerfile'
       - 'Makefile'
+      - '.github/**'
 jobs:
   package-gbp-deploy-dr-push:
     env:
