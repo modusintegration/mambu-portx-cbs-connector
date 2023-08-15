@@ -228,17 +228,17 @@
         </setHeader>
         <setBody>
             <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
-                resource:classpath:mappings/findPersonCriteriaRequest.ds
+                resource:classpath:mappings/findPersonByCriteriaRequest.ds
             </datasonnet>
         </setBody>
         <log message="Find Person with request: ${body}"/>
         <log message="Find Persons"/>
-        <toD uri='https://{{mambu.host}}/api/clients&#x3A;search?throwExceptionOnFailure=false&amp;bridgeEndpoint=true'/>
+        <toD uri='https://{{mambu.host}}/api/clients&#x3A;search?detailsLevel=FULL&amp;throwExceptionOnFailure=false&amp;bridgeEndpoint=true'/>
         <to uri="direct:commonAPIResponseValidator"/>
         <log message="Find Person response is ${body}"/>
         <setBody>
             <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
-                resource:classpath:mappings/findPersonsResponse.ds
+                resource:classpath:mappings/findPersonByCriteriaResponse.ds
             </datasonnet>
         </setBody>
         <!--        <to uri="direct:endRoute"/>-->
@@ -270,7 +270,7 @@
         <log message="Find Person by Id response is ${body}"/>
         <setBody>
             <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
-                    resource:classpath:mappings/findPersonResponse.ds
+                    resource:classpath:mappings/findPersonByIdResponse.ds
             </datasonnet>
        </setBody>        
 
@@ -296,7 +296,7 @@
         <process ref="encodeAuthHeader" />
         <setBody>
             <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
-                resource:classpath:mappings/CreateClientsRequest.ds
+                resource:classpath:mappings/CreatePersonRequest.ds
             </datasonnet>
         </setBody>
         <log message="POST clients with request: ${body}"/>
@@ -306,7 +306,7 @@
         <log message="POST clients response is ${body}"/>
         <setBody>
             <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
-                    resource:classpath:mappings/findPersonResponse.ds
+                    resource:classpath:mappings/findPersonByIdResponse.ds
             </datasonnet>
        </setBody>        
 <!--        <to uri="direct:endRoute"/>-->
@@ -341,7 +341,7 @@
        <log message="PUT clients response is ${body}"/>
        <setBody>
             <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
-                    resource:classpath:mappings/findPersonResponse.ds
+                    resource:classpath:mappings/findPersonByIdResponse.ds
             </datasonnet>
        </setBody>
 
@@ -1232,7 +1232,7 @@
         <!-- <log message="GET clients response is ${body}"/> -->
         <setBody>
             <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
-                    resource:classpath:mappings/findPersonResponse.ds
+                    resource:classpath:mappings/findPersonByIdResponse.ds
             </datasonnet>
        </setBody>        
     
@@ -1258,7 +1258,7 @@
         <process ref="encodeAuthHeader" />
         <setBody>
             <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
-                resource:classpath:mappings/CreateClientsRequest.ds
+                resource:classpath:mappings/CreatePersonRequest.ds
             </datasonnet>
         </setBody>
         <!-- <log message="POST clients with request: ${body}"/> -->
@@ -1272,7 +1272,7 @@
         <!-- <log message="POST clients response is ${body}"/> -->
         <setBody>
             <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
-                    resource:classpath:mappings/findPersonResponse.ds
+                    resource:classpath:mappings/findPersonByIdResponse.ds
             </datasonnet>
        </setBody>        
     
@@ -1312,7 +1312,7 @@
        <!-- <log message="PUT clients response is ${body}"/> -->
        <setBody>
             <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
-                    resource:classpath:mappings/findPersonResponse.ds
+                    resource:classpath:mappings/findPersonByIdResponse.ds
             </datasonnet>
        </setBody>
     

@@ -32,7 +32,14 @@
     {
       "encodedKey":"8a44c43889e603ea0189e6360cbd0348",
       "clientKey":"8a44c43889e603ea0189e62d7dd80329",
-      "documentType":"tIN",
+      "documentType":"SocialSecurityNumber",
+      "documentId":"778-62-8144",
+      "indexInList":0
+    },
+    {
+      "encodedKey":"8a44c43889e603ea0189e6360cbd0348",
+      "clientKey":"8a44c43889e603ea0189e62d7dd80329",
+      "documentType":"AdoptionTaxpayerIdentificationNumber",
       "documentId":"778-62-8144",
       "indexInList":0
     }
