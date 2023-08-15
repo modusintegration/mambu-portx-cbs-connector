@@ -381,11 +381,11 @@
             <artifactId>camel-opentelemetry-starter</artifactId>
             <version>${camel-version}</version>
         </dependency>
-        <dependency>
+        <!-- <dependency>
             <groupId>io.portx.validation</groupId>
             <artifactId>portx-api-schema-validator</artifactId>
             <version>0.0.6</version>
-        </dependency>
+        </dependency> -->
     </dependencies>
     <repositories>
         <repository>
