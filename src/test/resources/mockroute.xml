@@ -42,6 +42,34 @@
                 </setHeader>
                 <log message="MOCK: ${header.CamelHttpMethod} ${header.CamelInterceptedEndpoint} ${header.CamelHttpPath} ${header.CamelHttpResponseCode}"  loggingLevel="DEBUG"/>
             </when>
+            <when>
+                <simple>${header.CamelHttpPath} == '/api/clients&#x3A;search' &amp;&amp;
+                    ${header.CamelHttpMethod} == 'POST' &amp;&amp;
+                    ${header.firstName.eq} == 'Michael' &amp;&amp;
+                    ${header.lastName.eq} == 'Jordan'
+                </simple>
+                <setHeader name="CamelHttpResponseCode">
+                    <constant>200</constant>
+                </setHeader>
+                <setBody>
+                    <simple>resource:classpath:test-data/json/mambuAPI/findPersonByFirstNameAndLastNameMambuResponse.json</simple>
+                </setBody>
+                <log message="MOCK: ${header.CamelInterceptedEndpoint} ${header.CamelHttpResponseCode} ${body}"  loggingLevel="DEBUG"/>
+            </when>
+            <when>
+                <simple>${header.CamelHttpPath} == '/api/clients&#x3A;search' &amp;&amp;
+                    ${header.CamelHttpMethod} == 'POST' &amp;&amp;
+                    ${header.townName.inc} == 'Chicago' &amp;&amp;
+                    ${header.tin.eq} == '111-22-3333'
+                </simple>
+                <setHeader name="CamelHttpResponseCode">
+                    <constant>200</constant>
+                </setHeader>
+                <setBody>
+                    <simple>resource:classpath:test-data/json/mambuAPI/findPersonByTownNameAndTinMambuResponse.json</simple>
+                </setBody>
+                <log message="MOCK: ${header.CamelInterceptedEndpoint} ${header.CamelHttpResponseCode} ${body}"  loggingLevel="DEBUG"/>
+            </when>
             <!-- <when>
                 <simple>${header.CamelInterceptedEndpoint} regex '^.*sql:select count(*) as cnt from person where last_name.*'</simple>
                 <setBody>

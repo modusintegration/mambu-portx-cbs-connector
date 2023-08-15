@@ -5,18 +5,6 @@ input payload application/json
 */
 
 local selector(obj,key,dValue = null) = ds.or(ds.select(obj,key), dValue);
-local address = selector(payload, "addresses");
-local first = selector(payload, "firstName");
-local middle = selector(payload, "middleName");
-local last = selector(payload, "lastName");
-local fullname = (if first!=null then first else "") +
-    (if first!=null && middle!=null then " " else "") +
-    (if middle!=null then middle else "") +
-    (if (first!=null || middle!=null) && last!=null then " " else "") +
-    if last!=null then last;
-local shortName = (if first!=null then first else "") +
-  (if first!=null && last!=null then " " else "") +
-if last!=null then last;
 
 local response = if (std.length(payload) > 0) then
   [
@@ -32,14 +20,33 @@ local response = if (std.length(payload) > 0) then
     local shortName = (if first!=null then first else "") +
     (if first!=null && last!=null then " " else "") +
     if last!=null then last;
+    local documents = if selector(x, "idDocuments") != null then (ds.filter(selector(x, "idDocuments"), function(value, index) value.documentType != "SSN"));
+    local SSN = if selector(x, "idDocuments") != null then (ds.filter(selector(x, "idDocuments"), function(value, index) value.documentType == "SSN")) else [];
+
+    local idDocuments = selector(payload, "idDocuments");
+    local mambuIdentifier = {
+      number: selector(x, "id"),
+      schemeName: "clientId",
+      issuer: "Mambu"
+    };
+    local otherDocuments =
+    if (documents != null && std.length(documents) > 0) then
+    [
+      {
+        number: selector(idDocument, "documentId"),
+        schemeName: selector(idDocument, "documentType"),
+      } for idDocument in documents
+    ]
+    else
+    [];
+    local genericIdentifiers = [mambuIdentifier] + otherDocuments;
+    local taxInformation = if (SSN != null && std.length(SSN) > 0) then{
+      tIN: selector(SSN[0], "documentId"),
+      taxIdType: selector(SSN[0], "documentType")
+    };
     {
-      "genericIdentifiers": [
-        {
-          "number": selector(x, "id"),
-          "schemeName": "clientId",
-          "issuer": "Mambu"
-        }
-      ],
+      "personId": selector(x, "encodedKey"),
+      "genericIdentifiers": genericIdentifiers,
       "name": fullname,
       "shortName": shortName,
       "relatedParties": [
@@ -71,7 +78,7 @@ local response = if (std.length(payload) > 0) then
         "middleName": selector(x, "middleName"),
         "lastName": selector(x, "lastName"),
       },
-      "personId": selector(x, "encodedKey")
+      "taxInformation": taxInformation
     } for x in payload
   ]
 else

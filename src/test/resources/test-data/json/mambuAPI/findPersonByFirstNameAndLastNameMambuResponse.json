@@ -1,0 +1,160 @@
+[
+  {
+    "encodedKey": "8a44dd2c89bc4e210189d1b79a472bf8",
+    "id": "309061060",
+    "state": "INACTIVE",
+    "creationDate": "2023-08-07T13:36:58-07:00",
+    "lastModifiedDate": "2023-08-07T13:36:58-07:00",
+    "approvedDate": "2023-08-07T13:36:58-07:00",
+    "firstName": "Kent",
+    "lastName": "Lab",
+    "preferredLanguage": "ENGLISH",
+    "clientRoleKey": "8a44cde37b592d63017b5fac6e400518",
+    "loanCycle": 0,
+    "groupLoanCycle": 0,
+    "groupKeys": [
+    ],
+    "addresses": [
+      {
+        "encodedKey": "8a44dd2c89bc4e210189d1b79a472bf9",
+        "parentKey": "8a44dd2c89bc4e210189d1b79a472bf8",
+        "line1": "",
+        "line2": "",
+        "indexInList": 0
+      }
+    ],
+    "idDocuments": [
+    ]
+  },
+  {
+    "encodedKey": "8a44dd2c89bc4e210189d1b79a472bfc",
+    "id": "385447964",
+    "state": "INACTIVE",
+    "creationDate": "2023-08-07T13:40:14-07:00",
+    "lastModifiedDate": "2023-08-07T13:40:14-07:00",
+    "approvedDate": "2023-08-07T13:40:15-07:00",
+    "firstName": "Kent",
+    "lastName": "Lab",
+    "mobilePhone": "+77-415-731-1111",
+    "emailAddress": "mj@mj.com",
+    "preferredLanguage": "ENGLISH",
+    "birthDate": "1963-04-17",
+    "clientRoleKey": "8a44cde37b592d63017b5fac6e400518",
+    "loanCycle": 0,
+    "groupLoanCycle": 0,
+    "groupKeys": [
+    ],
+    "addresses": [
+      {
+        "encodedKey": "8a44dd2c89bc4e210189d1ba99fa2c16",
+        "parentKey": "8a44dd2c89bc4e210189d1b79a472bfc",
+        "line1": "1 United Center",
+        "line2": "City ",
+        "city": "Chicago",
+        "postcode": "45090",
+        "country": "US",
+        "indexInList": 0
+      }
+    ],
+    "idDocuments": [
+    ]
+  },
+  {
+    "encodedKey": "8a44b37889bca9760189d16ab5281667",
+    "id": "136310504",
+    "state": "ACTIVE",
+    "creationDate": "2023-08-07T13:42:51-07:00",
+    "lastModifiedDate": "2023-08-07T13:49:21-07:00",
+    "activationDate": "2023-08-07T13:49:21-07:00",
+    "approvedDate": "2023-08-07T13:42:51-07:00",
+    "firstName": "Kent",
+    "lastName": "Lab",
+    "mobilePhone": "+77-415-731-1111",
+    "emailAddress": "mj@mj.com",
+    "preferredLanguage": "ENGLISH",
+    "birthDate": "1963-04-17",
+    "clientRoleKey": "8a44cde37b592d63017b5fac6e400518",
+    "loanCycle": 0,
+    "groupLoanCycle": 0,
+    "groupKeys": [
+    ],
+    "addresses": [
+      {
+        "encodedKey": "8a44b37889bca9760189d1bcfd61175d",
+        "parentKey": "8a44b37889bca9760189d16ab5281667",
+        "line1": "1 United Center",
+        "line2": "City ",
+        "city": "Chicago",
+        "postcode": "45090",
+        "country": "US",
+        "indexInList": 0
+      }
+    ],
+    "idDocuments": [
+    ]
+  },
+  {
+    "encodedKey": "8a44a3dc89bc448c0189d1c2f08d77db",
+    "id": "966873607",
+    "state": "ACTIVE",
+    "creationDate": "2023-08-07T13:51:51-07:00",
+    "lastModifiedDate": "2023-08-07T13:53:09-07:00",
+    "activationDate": "2023-08-07T13:53:09-07:00",
+    "approvedDate": "2023-08-07T13:51:51-07:00",
+    "firstName": "Kent",
+    "lastName": "Lab",
+    "mobilePhone": "+77-415-731-1111",
+    "emailAddress": "mj@mj.com",
+    "preferredLanguage": "ENGLISH",
+    "birthDate": "1963-04-17",
+    "clientRoleKey": "8a44cde37b592d63017b5fac6e400518",
+    "loanCycle": 0,
+    "groupLoanCycle": 0,
+    "groupKeys": [
+    ],
+    "addresses": [
+      {
+        "encodedKey": "8a44a3dc89bc448c0189d1c2f08d77dc",
+        "parentKey": "8a44a3dc89bc448c0189d1c2f08d77db",
+        "line1": "1 United Center",
+        "line2": "City ",
+        "city": "Chicago",
+        "postcode": "45090",
+        "country": "US",
+        "indexInList": 0
+      }
+    ],
+    "idDocuments": [
+    ]
+  },
+  {
+    "encodedKey": "8a44dffe89bc44200189d1d1990b6b41",
+    "id": "729347541",
+    "state": "ACTIVE",
+    "creationDate": "2023-08-07T14:08:00-07:00",
+    "lastModifiedDate": "2023-08-07T14:08:25-07:00",
+    "activationDate": "2023-08-07T14:08:25-07:00",
+    "approvedDate": "2023-08-07T14:08:01-07:00",
+    "firstName": "Kent",
+    "lastName": "Lab",
+    "middleName": "Lab",
+    "preferredLanguage": "ENGLISH",
+    "birthDate": "2022-04-17",
+    "clientRoleKey": "8a44cde37b592d63017b5fac6e400518",
+    "loanCycle": 0,
+    "groupLoanCycle": 0,
+    "groupKeys": [
+    ],
+    "addresses": [
+      {
+        "encodedKey": "8a44dffe89bc44200189d1d1990b6b42",
+        "parentKey": "8a44dffe89bc44200189d1d1990b6b41",
+        "line1": "",
+        "line2": "",
+        "indexInList": 0
+      }
+    ],
+    "idDocuments": [
+    ]
+  }
+]
