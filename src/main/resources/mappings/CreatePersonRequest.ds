@@ -8,7 +8,23 @@ local postalAddresses = selector(payload, "postalAddresses");
 local address1 = selector(payload, "postalAddresses");
 local address1 = if ds.isArray(postalAddresses) && std.length(postalAddresses) > 0 then postalAddresses[0].addressType;
 local contact = selector(payload, "contact");
+local genericIdentifiers = selector(payload, "genericIdentifiers");
 
+local taxId = {
+  documentId: selector(payload, "taxInformation.tIN"),
+  documentType: selector(payload, "taxInformation.taxIdType"),
+};
+local identifiers =
+  if (genericIdentifiers != null && std.length(genericIdentifiers) > 0) then
+  [
+    {
+      documentId: selector(genericIdentifier, "number"),
+      documentType: selector(genericIdentifier, "schemeName"),
+    } for genericIdentifier in genericIdentifiers
+  ]
+else
+  [];
+local idDocuments = [taxId] + identifiers;
 std.prune({
   "lastName": payload.structuredName.lastName,
   "middleName": selector(payload, "structuredName.middleName"),
@@ -32,12 +48,7 @@ std.prune({
   "preferredLanguage": selector(contact, "preferredLanguage"),
   "birthDate": selector(payload, "placeAndDateOfBirth.birthDate"),
   "mobilePhone": selector(payload, "contact.mobileNumber"),
-  "idDocuments": [
-    {
-      "documentId": selector(payload, "taxInformation.tIN"),
-      "documentType": selector(payload, "taxInformation.taxIdType")
-    }
-  ],
+  "idDocuments": idDocuments,
   "_searchablefields_Clients": {
     "townName_Clients": if ds.isArray(postalAddresses) && std.length(postalAddresses) > 0 then postalAddresses[0].townName,
     "tIN_Clients": selector(payload, "taxInformation.tIN")

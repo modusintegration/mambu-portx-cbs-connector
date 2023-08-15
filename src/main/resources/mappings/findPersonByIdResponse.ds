@@ -16,20 +16,33 @@ local fullname = (if first!=null then first else "") +
 local shortName = (if first!=null then first else "") +
                   (if first!=null && last!=null then " " else "") +
                   if last!=null then last;
-/*
-local ssn = if selector(payload, "idDocuments") != null then (ds.filter(selector(payload, "idDocuments"), function(value, index) value.documentType == "SSN"))[0];
-local tIN = if selector(payload, "idDocuments") != null then (ds.filter(selector(payload, "idDocuments"), function(value, index) value.documentType == "tIN"))[0];
-*/
+local documents = if selector(payload, "idDocuments") != null then (ds.filter(selector(payload, "idDocuments"), function(value, index) value.documentType != "SocialSecurityNumber"));
+local SSN = if selector(payload, "idDocuments") != null then (ds.filter(selector(payload, "idDocuments"), function(value, index) value.documentType == "SocialSecurityNumber")) else [];
 
+local idDocuments = selector(payload, "idDocuments");
+local mambuIdentifier = {
+  number: selector(payload, "id"),
+  schemeName: "clientId",
+  issuer: "Mambu"
+};
+local otherDocuments =
+  if (documents != null && std.length(documents) > 0) then
+  [
+    {
+      number: selector(idDocument, "documentId"),
+      schemeName: selector(idDocument, "documentType"),
+    } for idDocument in documents
+  ]
+  else
+  [];
+local genericIdentifiers = [mambuIdentifier] + otherDocuments;
+local taxInformation = if (SSN != null && std.length(SSN) > 0) then{
+    tIN: selector(SSN[0], "documentId"),
+    taxIdType: selector(SSN[0], "documentType")
+};
 std.prune({
   "personId": selector(payload, "encodedKey"),
-  "genericIdentifiers": [
-    {
-      "number": selector(payload, "id"),
-      "schemeName": "clientId",
-      "issuer": "Mambu"
-    }
-  ],
+  "genericIdentifiers": genericIdentifiers,
   "name": fullname,
   "shortName": shortName,
   "relatedParties": [
@@ -61,13 +74,6 @@ std.prune({
     "middleName": selector(payload, "middleName"),
     "lastName": selector(payload, "lastName"),
   },
-/*  //TODO fix TIN and SSN
-  "taxInformation": {
-    if tIN != null then
-    {
-      "tIN": tIN.documentId,
-      "taxIdType": tIN.documentType,
-    }
-  }*/
+  "taxInformation": taxInformation
 })
 

@@ -78,6 +78,48 @@ public class ApplicationTest extends APITest {
        JSONAssert.assertEquals(TestResourceReader.readFileAsString("test-data/json/mambuAPI/updateBranchRequest.json"), updateBranchRequest, true);
    }
 
+    @Test
+    @DisplayName("Test Search Person by First Name and Last name")
+    public void testSearchPersonByFirstNameAndLastName() throws Exception {
+        Exchange exchange = sendTestRequest("direct:findPerson", ExchangePattern.InOut, new Processor() {
+            @Override
+            public void process(Exchange exchange) throws Exception {
+                Message in = exchange.getIn();
+                in.setHeader("firstName.eq", "Michael");
+                in.setHeader("lastName.eq", "Jordan");
+            }
+        });
+
+        // validate response
+        String response = exchange.getIn().getBody(String.class);
+        String expectedPersonList = TestResourceReader
+                .readFileAsString("test-data/json/mambuAPI/findPersonByFirstNameAndLastNameOBAResponse.json");
+        assertNotNull(response);
+        assertEquals(expectedPersonList, response);
+
+    }
+
+    @Test
+    @DisplayName("Test Search Person by TownName and Tin")
+    public void testSearchPersonByTownNameAndTin() throws Exception {
+        Exchange exchange = sendTestRequest("direct:findPerson", ExchangePattern.InOut, new Processor() {
+            @Override
+            public void process(Exchange exchange) throws Exception {
+                Message in = exchange.getIn();
+                in.setHeader("townName.inc", "Chicago");
+                in.setHeader("tin.eq", "111-22-3333");
+            }
+        });
+
+        // validate response
+        String response = exchange.getIn().getBody(String.class);
+        String expectedPersonList = TestResourceReader
+                .readFileAsString("test-data/json/mambuAPI/findPersonByTownNameAndTinOBAResponse.json");
+        assertNotNull(response);
+        assertEquals(expectedPersonList, response);
+
+    }
+
     // @Test
     // @DisplayName("Test Database Query")
     // public void testDatabase() throws Exception {
@@ -95,7 +137,7 @@ public class ApplicationTest extends APITest {
     @Override
     public String[] getMockedRouteIDs() {
         // return new String[] { "findBranchesRoute", "testCreateBranchRoute", "testUpdateBranchRoute", "testDatabaseRoute" };
-        return new String[] { "findBranchesRoute", "testCreateBranchRoute", "testUpdateBranchRoute"};
+        return new String[] { "findBranchesRoute", "testCreateBranchRoute", "testUpdateBranchRoute", "findPersonRoute"};
         // return new String[] { "findBranchesRoute"};
     }
 
