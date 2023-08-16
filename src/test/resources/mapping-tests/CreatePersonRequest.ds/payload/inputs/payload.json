@@ -1,23 +1,29 @@
 {
   "uSDocumentedIndicator": true,
-  "genericIdentifiers": [
+  "identifiers": [
     {
       "number": "123-45-6789",
       "schemeName": "SocialSecurityNumber",
-      "issuer": "US",
+      "issuer": "Baltimore",
       "issueDate": "2022-04-17",
-      "expirationDate": "2022-04-17"
+      "expirationDate": "2022-04-17",
+      "foreingIDIndicator": true
     }
   ],
   "name": "Jane Birkin",
   "shortName": "Jane",
+  "nameTemplateId": "1",
+  "nameSoundExId": "1",
+  "partyBranchId": "SEA_1",
+  "comment": "This is a description.",
   "relatedParties": [
     {
       "partyId": "5fb9d4d6-1a3c-11ed-861d-0242ac120002",
       "partyType": "Person",
       "partyName": "Jane Birkin",
-      "partyRelationType": "Owner",
-      "ownershipPercentage": "0.7"
+      "partyRelationType": "PrimaryServicerOfficer",
+      "partyRelationDescription": "This is a description.",
+      "ownershipPercentage": "25"
     }
   ],
   "postalAddresses": [
@@ -35,7 +41,11 @@
       "floor": "20",
       "postBox": "MY779",
       "room": "22",
-      "postCode": "97062-6884",
+      "postCode": "97062-68",
+      "censusTrack": "04013216813",
+      "cBSACode": "49780",
+      "cBSAType": "MSA",
+      "foreignIndicator": true,
       "townName": "Tualatin",
       "townLocationName": "Clackamas",
       "districtName": "Washington",
@@ -44,20 +54,37 @@
       "country": "US",
       "addressLine": [
         "11407 Sw Amu st, Suite MY777"
-      ]
+      ],
+      "period": {
+        "fromDateTime": "2022-04-17T08:00:00Z",
+        "upToDateTime": "2022-04-17T08:00:00Z"
+      }
     }
   ],
+  "relationshipId": "5fb9d4d6-1a3c-11ed-861d-0242ac120002",
+  "relationshipLeadIndicator": true,
   "residenceType": "Domestic",
   "taxInformation": {
     "tIN": "778-62-8144",
-    "taxIdType": "SSN",
-    "reportingIndicator": true,
-    "tinStatus": "Valid",
+    "taxIdType": "SocialSecurityNumber",
+    "financialReportingIndicator": true,
+    "tINStatus": "Valid",
     "taxStatus": "Valid",
+    "verificationAttemps": 1,
     "forms": [
       {
-        "formName": "W-9",
-        "cerfiticationDate": "2022-04-17",
+        "formName": "W-8",
+        "taxRate": "100",
+        "codes": [
+          {
+            "name": "string",
+            "code": "string"
+          }
+        ],
+        "recipientGIIN": "ADN123.FG4FE3.LE.999",
+        "recipientPostCode": "97062-68",
+        "recipientTownName": "Tualatin",
+        "certificationDate": "2022-04-17",
         "expirationDate": "2022-04-17"
       }
     ],
@@ -70,17 +97,19 @@
     "withholdings": [
       {
         "withholdingTaxType": "NonResidentAlienTax",
-        "withholdingRate": "0.7",
+        "withholdingRate": "25",
         "withholdingAmount": "100"
       }
     ],
-    "nRAIndicator": true,
+    "foreignIndicator": true,
     "countrySubDivision": "Oregon",
     "countrySubDivisionCode": "AR-B",
     "country": "US",
     "supplementaryData": {}
   },
   "powerOfAttorney": {
+    "authorizedPerson": "5fb9d4d6-1a3c-11ed-861d-0242ac120002",
+    "authorizedAccount": "0dd926fe-1ca2-11ed-861d-0242ac120002",
     "jurisdiction": {
       "countrySubdivision": "Oregon",
       "townName": "Tualatin",
@@ -92,39 +121,42 @@
     "signOffDate": "2022-04-17",
     "issueDate": "2022-04-17",
     "purpose": "string",
-    "fromDateTime": "2022-04-17",
-    "upToDateTime": "2022-04-17",
-    "authorizedPerson": "5fb9d4d6-1a3c-11ed-861d-0242ac120002",
-    "authorizedAccount": "0dd926fe-1ca2-11ed-861d-0242ac120002"
+    "fromDateTime": "2022-04-17T08:00:00Z",
+    "upToDateTime": "2022-04-17T08:00:00Z"
   },
   "supplementaryData": {},
-  "settings": {
-    "communicationChannels": [
-      {
-        "channel": "Email",
-        "channelIdentification": "011-02010020202",
-        "codeWord": "string",
-        "alertIndicator": "string"
-      }
-    ]
+  "excludeMarketingIndicator": true,
+  "audit": {
+    "status": "string",
+    "creationDate": "2022-04-17",
+    "lastModificacionChannel": "Email",
+    "lastModificationDate": "2022-04-17"
   },
   "restrictions": [
     {
-      "name": "externalTransferAllowed",
+      "name": "WireTransferIn",
       "restrictionPurpose": "This is a description.",
+      "enableIndicator": true,
       "validFrom": "2022-04-17",
       "validUntil": "2022-04-17"
     }
   ],
   "placeAndDateOfBirth": {
+    "birthDate": "2022-04-17",
     "countrySubdivision": "Oregon",
     "townName": "Tualatin",
-    "country": "US",
-    "birthDate": "2022-04-17"
+    "country": "US"
   },
-  "signature": "string",
+  "signature": "binary U21GdVpTQkNhWEpyYVc0PQ==",
+  "signatureVerificationId": "0dd926fe-1ca2-11ed-861d-0242ac120002",
   "contact": {
-    "namePrefix": "string",
+    "structuredName": {
+      "firstName": "Mary",
+      "middleName": "Joe",
+      "lastName": "Smith",
+      "suffix": "PhD",
+      "prefix": "Dr."
+    },
     "name": "Jane Birkin",
     "phones": [
       {
@@ -136,6 +168,11 @@
         "preferredHourOfDay": {
           "hour": "12",
           "timeZone": "Pacific"
+        },
+        "comment": "This is a description.",
+        "period": {
+          "fromDateTime": "2022-04-17T08:00:00Z",
+          "upToDateTime": "2022-04-17T08:00:00Z"
         }
       }
     ],
@@ -148,10 +185,16 @@
     ],
     "jobTitle": "Head of Documentation",
     "department": "Sales",
-    "otherContactMethods": [
+    "communicationChannels": [
       {
-        "channelType": "Email",
-        "identification": "011-02010020202"
+        "channel": "Email",
+        "channelIdentification": "011-02010020202",
+        "channelPurpose": "Alert",
+        "codeWord": "string",
+        "alertIndicator": "string",
+        "lastContactDate": "2022-04-17",
+        "firstContactDate": "2022-04-17",
+        "primaryIndicator": true
       }
     ],
     "preferredMethod": "Email",
@@ -167,51 +210,44 @@
     "prefix": "Dr."
   },
   "gender": "Female",
+  "race": "Director",
   "profession": "Artist",
   "jobTitle": "Head of Documentation",
   "residentialStatus": "Permanent",
   "minorIndicator": true,
   "citizenships": [
     {
-      "countrySubdivision": "Oregon",
-      "townName": "Tualatin",
-      "country": "US"
+      "country": "US",
+      "fromDateTime": "2022-04-17T08:00:00Z",
+      "upToDateTime": "2022-04-17T08:00:00Z"
     }
   ],
   "countryOfResidence": "US",
   "profile": {
-    "riskLevel": "Permanent",
-    "creditReview": {
-      "frequency": {
-        "unit": "Monthly",
-        "value": 999
-      },
-      "lastReviewDate": "2022-04-17T08:00:00Z",
-      "nextReviewDate": "2022-04-17T08:00:00Z",
-      "creditQuality": "UpperMediumGrade",
-      "creditScore": 0
+    "customerIdentificationProgram": {
+      "certificateDocument": [
+        "IdentityCard"
+      ],
+      "certificationStatus": "CertifiedLevel1",
+      "certificationDate": "2022-04-17T08:00:00Z",
+      "certificationFrequency": {
+        "cycle": "Monthly",
+        "every": 15,
+        "weekDay": "Tuesday",
+        "weekNumber": "1st",
+        "day": 30,
+        "startDay": "04-17"
+      }
     },
-    "creditBureauReportCode": "string",
-    "previousFinancialInstitution": "Jane Birkin",
-    "referredByWhom": "Jane Birkin",
-    "moneyLaunderingCheck": "AuthorizedCredit",
-    "knowYourCustomerCheck": "Ordinary",
-    "timeAtCurrentAddress": {
-      "unit": "Months",
-      "value": 999
-    },
-    "sourceOfWealth": "This is a description.",
-    "politicalAffiliation": "string",
-    "lastContactDate": "2022-04-17",
-    "lastContactChannel": "Email",
-    "lostCustomerDate": "2022-04-17",
-    "lostCustomerReason": "Deceased",
     "customerConductClassification": "string",
     "familyMedicalInsuranceIndicator": true,
     "salaryRange": {
       "minAmount": "100",
       "maxAmount": "100"
     },
+    "residenceValue": "100",
+    "residenceMortage": "Jane Birkin",
+    "referredByWhom": "Jane Birkin",
     "employmentStatus": "string",
     "vIPStatus": "Elite",
     "employments": [
@@ -231,20 +267,57 @@
         }
       }
     ],
-    "regulation0": {
+    "servicerMember": {
       "insider": "Director",
-      "familyRelationship": "Owner",
-      "institutionRelationship": "Owner"
+      "familyRelationship": "PrimaryServicerOfficer",
+      "institutionRelationship": "PrimaryServicerOfficer"
     },
-    "anualIncome": "100"
-  },
-  "partySettings": {
-    "communicationChannels": [
+    "anualIncome": "100",
+    "yearsOfEducation": 0,
+    "politicallyExposedPerson": true,
+    "privacyNoticedIndicator": true,
+    "identityTheftServiceIndicator": true,
+    "identityQuestions": [
       {
-        "channel": "Email",
-        "channelIdentification": "011-02010020202",
-        "codeWord": "string",
-        "alertIndicator": "string"
+        "question": "This is a description.",
+        "answer": "This is a description."
+      }
+    ],
+    "riskLevel": "Permanent",
+    "bSARiskCode": 0,
+    "creditReview": {
+      "frequency": {
+        "cycle": "Monthly",
+        "every": 15,
+        "weekDay": "Tuesday",
+        "weekNumber": "1st",
+        "day": 30,
+        "startDay": "04-17"
+      },
+      "lastReviewDate": "2022-04-17T08:00:00Z",
+      "nextReviewDate": "2022-04-17T08:00:00Z",
+      "creditQuality": "UpperMediumGrade",
+      "creditScore": 0
+    },
+    "creditBureauReportCode": "string",
+    "oFACReportingIndicator": true,
+    "previousFinancialInstitution": "Jane Birkin",
+    "moneyLaunderingCheck": "AuthorizedCredit",
+    "knowYourCustomerCheck": "Ordinary",
+    "timeAtCurrentAddress": {
+      "unit": "Months",
+      "value": 999
+    },
+    "dateAtCurrentAddress": "2022-04-17",
+    "sourceOfWealth": "This is a description.",
+    "politicalAffiliation": "string",
+    "lostCustomerDate": "2022-04-17",
+    "lostCustomerReason": "Deceased",
+    "servicerAlerts": [
+      {
+        "alertName": "CreditBureauAlert",
+        "message": "This is a description.",
+        "lastAlertDate": "2022-04-17"
       }
     ]
   }

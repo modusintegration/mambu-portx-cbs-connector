@@ -46,39 +46,20 @@ local response = if (std.length(payload) > 0) then
     };
     {
       "personId": selector(x, "encodedKey"),
-      "genericIdentifiers": genericIdentifiers,
+      "identifiers": genericIdentifiers,
       "name": fullname,
       "shortName": shortName,
-      "relatedParties": [
-        {
-          "partyId": selector(x, "encodedKey"),
-          "partyType": "Person",
-          "partyRelationType": "Owner"
-        }
-      ],
-      "postalAddress": {
-        "postCode": if ds.isArray(address) then selector(address[0], "postcode") else "",
-        "townName": if ds.isArray(address) then selector(address[0], "city") else "",
-        "country": if ds.isArray(address) then selector(address[0], "country") else "",
-        "addressLine": [
-            if ds.isArray(address) then selector(address[0], "line1"),
-            if ds.isArray(address) then selector(address[0], "line2")
-        ]
-      },
       "status": selector(x, "state"),
       "placeAndDateOfBirth": {
         "birthDate": selector(x, "birthDate"),
       },
-      "contact": {
-        "mobileNumber": selector(x, "mobilePhone"),
-        "emailAddress": selector(x, "emailAddress"),
-      },
-      "structuredName": {
-        "firstName": selector(x, "firstName"),
-        "middleName": selector(x, "middleName"),
-        "lastName": selector(x, "lastName"),
-      },
-      "taxInformation": taxInformation
+      "gender" : selector(x, "gender"),
+      "taxInformation": taxInformation,
+      "audit" : {
+        "status": selector(x, "state"),
+        "creationDate": selector(x, "creationDate"),
+        "lastModificationDate": selector(x, "lastModifiedDate"),
+      }
     } for x in payload
   ]
 else

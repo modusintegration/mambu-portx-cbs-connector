@@ -45,6 +45,7 @@ std.prune(
         "accountId": encodedKey,
         "accountNumber": id,
         "accountType": accountType,
+        "ownershipType": "SingleOwnerAccount",
         "currency": currencyCode,
         "currentBalance": currentBal,
         "availableBalance": availableBal,
@@ -54,20 +55,44 @@ std.prune(
                 "transactionId": selector(txn, "encodedKey"),
                 "amount": txn.amount,
                 "creditDebitIndicator": if txn.amount > 0 then "Credit" else "Debit",
-                "bankTransactionDomain": "AccountManagement",
-                "bankTransactionFamily": txn.type,
+                "domain": "AccountManagement",
+                "family": txn.type,
+                "subfamily": "CreditCardPayment",
+                "description": selector(txn, "notes"),
                 "status": "Booked",
                 "reversalIndicator": if ds.select(txn, "adjustmentTransactionKey") == null then false else true,
                 "creationDate": txn.creationDate,
                 "bookingDate": selector(txn, "bookingDate"),
                 "valueDate": selector(txn, "dateValue"),
                 "availabilityDate": selector(txn, "dateValue"),
-                "charges": selector(txn, "affectedAmounts.feesAmount"),
-                "interest": selector(txn, "affectedAmounts.interestAmount"),
+                "charges": [
+                    {
+                        "name": "cardLatePayment",
+                        "amount": selector(txn, "affectedAmounts.feesAmount"),
+                    }
+                ],
+                "codes": [
+                    {
+                        "codeType": "DetailBAI",
+                        "codeName": selector(txn, "notes"),
+                        "code": selector(txn, "paymentDetails.paymentTypeInformation.serviceLevel.code")
+                    }
+                ],
+                "interests": [
+                    {
+                        "name": "LatePayment",
+                        "amount": selector(txn, "affectedAmounts.interestAmount"),
+                    }
+                ],
                 "currentBalance": txn.accountBalances.totalBalance,
-                "details": if ds.isObject(txn.transferDetails) then {
+                "payment": selector(txn, "externalId"),
+                "remittanceInformation": {
+                    "remittanceNumber": selector(txn, "paymentDetails.remittanceInformation.structured.creditorReferenceInformation.reference"),
+                    "documentType": selector(txn, "paymentDetails.remittanceInformation.structured.creditorReferenceInformation.referenceType")
+                }
+/*                "details": if ds.isObject(txn.transferDetails) then {
                     "counterpartAccount": selector(txn, "tranferDetails.linkedDepositTransactionKey")
-                } else null
+                } else null*/
             } for txn in filteredData
         ]
         else []

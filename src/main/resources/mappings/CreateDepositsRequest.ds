@@ -3,9 +3,18 @@ version=2.0
 output application/json
 input payload application/json
 */
+local selector(obj,key,dValue = null) = ds.or(ds.select(obj,key), dValue);
+local accountType =
+  if payload.accountType == 'Checking' then 'CURRENT_ACCOUNT'
+  else if payload.accountType == 'Savings' then 'REGULAR_SAVINGS'
+  else if payload.accountType == 'Investment' then 'INVESTOR_ACCOUNT'
+  else 'CURRENT_ACCOUNT';
+
 {
   "accountHolderKey": payload.parties[0].partyId,
   "accountHolderType": if payload.parties[0].partyType=="Person" then "CLIENT" else "GROUP",
+  "accountType": accountType,
+  "currencyCode": selector(payload, "currency"),
   "name": payload.name,
   "productTypeKey": payload.productId
 }
