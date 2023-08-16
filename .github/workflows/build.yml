@@ -1,4 +1,4 @@
-name: Production build
+name: Main build
 on:
   push:
     branches:
@@ -8,7 +8,7 @@ on:
       - 'pom.xml'
       - 'Dockerfile'
       - 'Makefile'
-      - '.github/**'
+      - '.github/**'      
 jobs:
   package-gbp-deploy-dr-push:
     env:
@@ -26,146 +26,141 @@ jobs:
       # APP_NAME: mambu-portx-cbs-connector
     name: Build API package
     runs-on: ubuntu-latest
-    permissions: write-all    
+    permissions: write-all
+#       contents: read
+#       packages: write 
     steps:
-
       - name: Checkout repository
         uses: actions/checkout@v3
-
       - name: Set up JDK 11
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v1
         with:
           java-version: '11'
-          distribution: 'adopt'
 
-      - name: Maven Caching
+      - name: Maven Caching    
         uses: actions/cache@v1
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-
       - name: maven-settings-xml-action
         uses: whelk-io/maven-settings-xml-action@v20
         with:
-          repositories: '[{"id":"github", "url": "https://portx.jfrog.io/portx/portx-releases","releases":{"enabled":true},"snapshots":{"enabled":true}},{"id":"portx-repository-snapshots", "url": "https://portx.jfrog.io/portx/portx-snapshots","releases":{"enabled":false},"snapshots":{"enabled":true}},{"id": "portx-repository-releases", "url": "https://portx.jfrog.io/portx/portx-releases","releases":{"enabled":true},"snapshots":{"enabled":false}}]'
+          repositories: '[{"id":"portx-repository-snapshots", "url": "https://portx.jfrog.io/portx/portx-snapshots","releases":{"enabled":false},"snapshots":{"enabled":true}},{"id": "portx-repository-releases", "url": "https://portx.jfrog.io/portx/portx-releases","releases":{"enabled":true},"snapshots":{"enabled":false}}]'
           servers: |
-            [{"id": "github", "username": "${username}", "password": "${password}"},{"id": "portx-repository-snapshots", "username": "deployer", "password": "${{ secrets.PORTX_SNAPSHOTS_PASSWORD }}"},{"id": "portx-repository-releases", "username": "deployer", "password": "${{ secrets.PORTX_RELEASES_PASSWORD }}"}]
+            [{"id": "portx-repository-snapshots", "username": "deployer", "password": "${{ secrets.PORTX_SNAPSHOTS_PASSWORD }}"},{"id": "portx-repository-releases", "username": "deployer", "password": "${{ secrets.PORTX_RELEASES_PASSWORD }}"}]
 
+      - name: set mvn options
+        run: export MAVEN_OPTS=--add-opens=java.base/java.util=ALL-UNNAMED
+        
       - name: Build and Run Tests
         run: mvn test --batch-mode -U
       
-      # - name: Generate Test report
-      #   if: success() || failure()
-      #   run: mvn site -U --offline
+      - name: Generate Test report
+        if: success() || failure()
+        run: mvn site -U
 
-      # - name: Upload Test Results
-      #   if: success() || failure()
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: unit-test-report
-      #     path: |
-      #       target/site/Unit-Test-Report.html
-      #       target/site/css/
-      #       target/site/images/
+      - name: Upload Test Results
+        if: success() || failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: unit-test-report
+          path: |
+            target/site/Unit-Test-Report.html
+            target/site/css/
+            target/site/images/
  
-      # - name: Download Test Results
-      #   if: success() || failure()
-      #   uses: actions/download-artifact@v3
-      #   with:
-      #     name: unit-test-report
-      #     path: ~/download
+      - name: Download Test Results
+        if: success() || failure()
+        uses: actions/download-artifact@v3
+        with:
+          name: unit-test-report
+          path: ~/download
           
-      # - name: Zip the results
-      #   if: success() || failure()      
-      #   run: |
-      #     ls -R /home/runner/download
-      #     cd /home/runner/download;zip -r Unit-Tests-${GITHUB_REPOSITORY#*/}.zip .
-      #     ls -R /home/runner/download
-  
-      # - name: Send Slack Notification on Success
-      #   if: success()
-      #   uses: 8398a7/action-slack@v3
-      #   with:
-      #     status: custom
-      #     custom_payload: |
-      #       {
-      #         text: "Test Execution Passed",
-      #         attachments: [{
-      #             color: 'good',
-      #             text: `Test Execution for ${{ github.repository }} workflow has SUCCEEDED! :heavy_check_mark:`,
-      #             fields: [{
-      #               title: "Test Type",
-      #               value: 'Unit Test',
-      #               short: false  
-      #             },
-      #             {
-      #               title: "Repository",
-      #               value: `${process.env.AS_REPO}`,
-      #               short: false  
-      #             },
-      #             {
-      #               title: "View Run",
-      #               value: `${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}`,
-      #               short: true
-      #             }]
-      #         }]
-      #       }
-      #   env:
-      #     SLACK_WEBHOOK_URL: ${{ secrets.OBA_SLACK_WEBHOOK_URL }} # required
-      # - name: Send Slack Notification on Failure
-      #   uses: 8398a7/action-slack@v3
-      #   if: failure()
-      #   with:
-      #     status: custom
-      #     custom_payload: |
-      #       {
-      #         text: 'Test Execution Failed :warning::warning:',
-      #         attachments: [{
-      #             color: 'danger',
-      #             text: `Test Execution for ${{ github.repository }} workflow has FAILED! :x:`,
-      #             fields: [{
-      #                 title: "Test Type",
-      #                 value: 'Unit Test',
-      #                 short: true
-      #               },
-      #               {
-      #                 title: "Repository",
-      #                 value: `${process.env.AS_REPO}`,
-      #                 short: true
-      #               },
-      #               {
-      #                 title: "View Run",
-      #                 value: `${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}`,
-      #                 short: true
-      #               }]
-      #           }]
-      #       }
-      #   env:
-      #     SLACK_WEBHOOK_URL: ${{ secrets.OBA_SLACK_WEBHOOK_URL }} # required
-          
-      # - name: Send zip report on slack2
-      #   if: success() || failure()
-      #   run: |
-      #     curl -F file=@/home/runner/download/Unit-Tests-${GITHUB_REPOSITORY#*/}.zip -F "initial_comment=Unit Test Results for ${{ github.repository }}" -F filetype="zip" -F channels=${{ secrets.OBA_SLACK_CHANNEL_NAME }} -H "Authorization: Bearer ${{ secrets.OBA_SLACK_BOT_TOKEN }}" https://slack.com/api/files.upload
- 
-      - name: Release
+      - name: Zip the results
+        if: success() || failure()      
         run: |
-          git config --global user.email "ci@modusbox.com"
-          git config --global user.name "ci"
-          mvn -B release:prepare release:perform -DignoreSnapshots=true -Dusername=$GITHUB_ACTOR -Dpassword=${{ secrets.PAT_TOKEN }} -DscmCommentPrefix="[skip ci]"
+          ls -R /home/runner/download
+          cd /home/runner/download;zip -r Unit-Tests-${GITHUB_REPOSITORY#*/}.zip .
+          ls -R /home/runner/download
+  
+      - name: Send Slack Notification on Success
+        if: success()
+        uses: 8398a7/action-slack@v3
+        with:
+          status: custom
+          custom_payload: |
+            {
+              text: "Test Execution Passed",
+              attachments: [{
+                  color: 'good',
+                  text: `Test Execution for ${{ github.repository }} workflow has SUCCEEDED! :heavy_check_mark:`,
+                  fields: [{
+                    title: "Test Type",
+                    value: 'Unit Test',
+                    short: false  
+                  },
+                  {
+                    title: "Repository",
+                    value: `${process.env.AS_REPO}`,
+                    short: false  
+                  },
+                  {
+                    title: "View Run",
+                    value: `${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}`,
+                    short: true
+                  }]
+              }]
+            }
         env:
-          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
-
+          SLACK_WEBHOOK_URL: ${{ secrets.OBA_SLACK_WEBHOOK_URL }} # required
+      - name: Send Slack Notification on Failure
+        uses: 8398a7/action-slack@v3
+        if: failure()
+        with:
+          status: custom
+          custom_payload: |
+            {
+              text: 'Test Execution Failed :warning::warning:',
+              attachments: [{
+                  color: 'danger',
+                  text: `Test Execution for ${{ github.repository }} workflow has FAILED! :x:`,
+                  fields: [{
+                      title: "Test Type",
+                      value: 'Unit Test',
+                      short: true
+                    },
+                    {
+                      title: "Repository",
+                      value: `${process.env.AS_REPO}`,
+                      short: true
+                    },
+                    {
+                      title: "View Run",
+                      value: `${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}`,
+                      short: true
+                    }]
+                }]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.OBA_SLACK_WEBHOOK_URL }} # required
+          
+      - name: Send zip report on slack2
+        if: success() || failure()
+        run: |
+          curl -F file=@/home/runner/download/Unit-Tests-${GITHUB_REPOSITORY#*/}.zip -F "initial_comment=Unit Test Results for ${{ github.repository }}" -F filetype="zip" -F channels=${{ secrets.OBA_SLACK_CHANNEL_NAME }} -H "Authorization: Bearer ${{ secrets.OBA_SLACK_BOT_TOKEN }}" https://slack.com/api/files.upload
+        
+      - name: Publish to Github packages
+        run: _JAVA_OPTIONS="--add-opens=java.base/java.util=ALL-UNNAMED" mvn -U deploy -e
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_ID }}
           aws-secret-access-key: ${{ secrets.AWS_ACCESS_KEY }}
           aws-region: us-west-2
-
       - name: Log in to ECR
         run: aws ecr get-login-password | docker login --password-stdin --username AWS $REGISTRY
-
       - name: Build and Push
         run: |
           docker build -t $REGISTRY/$APP_NAME -f Dockerfile .
