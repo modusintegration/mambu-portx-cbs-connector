@@ -525,14 +525,14 @@ paths:
         - name: Pagination-Cursor
           in: header
           description: Pagination Cursor
-          required: true
+          required: false
           schema:
             type: string
         - name: Pagination-Total
           in: header
           description: |
             Total number of resources.
-          required: true
+          required: false
           schema:
             type: string
       responses:
@@ -2851,14 +2851,14 @@ paths:
         - name: Pagination-Cursor
           in: header
           description: Pagination Cursor
-          required: true
+          required: false
           schema:
             type: string
         - name: Pagination-Total
           in: header
           description: |
             Total number of resources.
-          required: true
+          required: false
           schema:
             type: string
       responses:
@@ -3478,14 +3478,14 @@ paths:
         - name: Pagination-Cursor
           in: header
           description: Pagination Cursor
-          required: true
+          required: false
           schema:
             type: string
         - name: Pagination-Total
           in: header
           description: |
             Total number of resources.
-          required: true
+          required: false
           schema:
             type: string
       responses:
@@ -9535,7 +9535,7 @@ components:
       name: Pagination-Cursor
       in: header
       description: Pagination Cursor
-      required: true
+      required: false
       schema:
         type: string
     pageTotal:
@@ -9543,7 +9543,7 @@ components:
       in: header
       description: |
         Total number of resources.
-      required: true
+      required: false
       schema:
         type: string
     standingOrderId:
