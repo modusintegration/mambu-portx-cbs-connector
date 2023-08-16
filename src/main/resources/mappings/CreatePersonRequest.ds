@@ -5,40 +5,45 @@ input payload application/json
 */
 local selector(obj,key,dValue = null) = ds.or(ds.select(obj,key), dValue);
 local postalAddresses = selector(payload, "postalAddresses");
-local address1 = selector(payload, "postalAddresses");
-local address1 = if ds.isArray(postalAddresses) && std.length(postalAddresses) > 0 then postalAddresses[0].addressType;
 local contact = selector(payload, "contact");
-local genericIdentifiers = selector(payload, "genericIdentifiers");
-
+local identifiers = selector(payload, "identifiers");
+local addresses =
+  if (postalAddresses != null && std.length(postalAddresses) > 0) then
+    [
+      {
+        country: selector(address, "country"),
+        city: selector(address, "townName"),
+        region: selector(address, "districtName"),
+        postcode: selector(address, "postCode"),
+        line1: if (selector(address, "addressLine") != null && std.length(address.addressLine) > 0) then address.addressLine[0],
+        line2: if (selector(address, "addressLine") != null && std.length(address.addressLine) > 1) then address.addressLine[1],
+      } for address in postalAddresses
+    ]
+  else
+    [];
 local taxId = {
   documentId: selector(payload, "taxInformation.tIN"),
   documentType: selector(payload, "taxInformation.taxIdType"),
 };
-local identifiers =
-  if (genericIdentifiers != null && std.length(genericIdentifiers) > 0) then
-  [
-    {
-      documentId: selector(genericIdentifier, "number"),
-      documentType: selector(genericIdentifier, "schemeName"),
-    } for genericIdentifier in genericIdentifiers
-  ]
-else
-  [];
-local idDocuments = [taxId] + identifiers;
+local identifierList =
+  if (identifiers != null && std.length(identifiers) > 0) then
+    [
+      {
+        documentId: selector(identifier, "number"),
+        documentType: selector(identifier, "schemeName"),
+        issuingAuthority: selector(identifier, "issuer"),
+        validUntil: selector(identifier, "issueDate"),
+      } for identifier in identifiers
+    ]
+  else
+    [];
+local idDocuments = [taxId] + identifierList;
+
 std.prune({
   "lastName": payload.structuredName.lastName,
   "middleName": selector(payload, "structuredName.middleName"),
   "firstName": payload.structuredName.firstName,
-  "addresses": [
-    {
-      "country": if ds.isArray(postalAddresses) && std.length(postalAddresses) > 0 then postalAddresses[0].country,
-      "city": if ds.isArray(postalAddresses) && std.length(postalAddresses) > 0 then postalAddresses[0].townName,
-      "region": if ds.isArray(postalAddresses) && std.length(postalAddresses) > 0 then postalAddresses[0].districtName,
-      "postcode": if ds.isArray(postalAddresses) && std.length(postalAddresses) > 0 then postalAddresses[0].postCode,
-      "line1": if ds.isArray(postalAddresses) && ds.isArray(postalAddresses[0].addressLine) then postalAddresses[0].addressLine[0] else "",
-      "line2": if ds.isArray(postalAddresses) && ds.isArray(postalAddresses[0].addressLine) && std.length(postalAddresses[0].addressLine) > 1 then postalAddresses[0].addressLine[1],
-}
-  ],
+  "addresses": addresses,
   "homePhone" : if contact != null && selector(contact, "phones") != null then contact.phones[0].number,
   "mobilePhone": if contact != null && selector(contact, "phones") != null && std.length(selector(contact, "phones")) > 0 then contact.phones[1].number,
   "mobilePhone2": if contact != null && selector(contact, "phones") != null && std.length(selector(contact, "phones")) > 1 then contact.phones[2].number,

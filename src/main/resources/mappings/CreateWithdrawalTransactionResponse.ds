@@ -6,23 +6,46 @@ input payload application/json
 local selector(obj,key,dValue = null) = ds.or(ds.select(obj,key), dValue);
 
 std.prune(
-    { 
+    {
         "transactionId": selector(payload, "encodedKey"),
         "amount": payload.amount,
         "creditDebitIndicator": if payload.amount > 0 then "Credit" else "Debit",
-        "bankTransactionDomain": "AccountManagement",
-        "bankTransactionFamily": payload.type,
+        "domain": "AccountManagement",
+        "family": payload.type,
+        "subfamily": "CreditCardPayment",
         "status": "Booked",
         "reversalIndicator": if ds.select(payload, "adjustmentTransactionKey") == null then false else true,
         "creationDate": payload.creationDate,
         "bookingDate": selector(payload, "bookingDate"),
-        "dateValue": selector(payload, "dateValue"),
+        "valueDate": selector(payload, "dateValue"),
         "availabilityDate": selector(payload, "dateValue"),
-        "charges": selector(payload, "affectedAmounts.feesAmount"),
-        "interest": selector(payload, "affectedAmounts.interestAmount"),
+        "charges": [
+            {
+                "name": "cardLatePayment",
+                "amount": selector(payload, "affectedAmounts.feesAmount"),
+            }
+        ],
+        "codes": [
+            {
+                "codeType": "DetailBAI",
+                "codeName": selector(payload, "notes"),
+                "code": selector(payload, "paymentDetails.paymentTypeInformation.serviceLevel.code")
+            }
+        ],
+        "interests": [
+            {
+                "name": "LatePayment",
+                "amount": selector(payload, "affectedAmounts.interestAmount"),
+            }
+        ],
         "currentBalance": payload.accountBalances.totalBalance,
-        "details": if ds.isObject(payload.transferDetails) then {
+        "payment": selector(payload, "externalId"),
+        "remittanceInformation": {
+            "remittanceNumber": selector(payload, "paymentDetails.remittanceInformation.structured.creditorReferenceInformation.reference"),
+            "documentType": selector(payload, "paymentDetails.remittanceInformation.structured.creditorReferenceInformation.referenceType")
+        }
+    /*            "details": if ds.isObject(payload.transferDetails) then {
             "counterpartAccount": selector(payload, "tranferDetails.linkedDepositTransactionKey")
-        } else null
+        } else null*/
     }
 )

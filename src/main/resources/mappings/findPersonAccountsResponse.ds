@@ -10,16 +10,24 @@ local closeDate = selector(x, "closeDate");
 
 if (std.length(payload) > 0) then                          
   std.prune({
-      "personId": cml.header('personId'),
-      "personName": clientName,
+    "personId": cml.header('personId'),
+    "personName": clientName,
     "accounts": [
       {
+        "accountId": selector(x, "encodedKey"),
         "accountNumber": selector(x, "id"),
-        "servicerBranchId": selector(x, "assignedBranchKey"),
+        "accountBranchCode": selector(x, "assignedBranchKey"),
+        "identifiers": [
+          {
+            "identification": selector(x, "id"),
+            "schemeName": "IssuerIdentificationNumber",
+            "issuer": "Mambu"
+          }
+        ],
         "accountType": selector(x, "accountType"),
-        "accountOwnershipType": "Owner",
-        "productId": selector(x, "productTypeKey"),
-        "name": selector(x, "name"),
+        "ownershipType": "Owner",
+//        "productId": selector(x, "productTypeKey"),
+//        "name": selector(x, "name"),
         "currency": selector(x, "currencyCode"),
         "parties": [
           {
@@ -29,19 +37,36 @@ if (std.length(payload) > 0) then
           }
         ],
         "status": selector(x, "accountState"),
-        "statusDateAndTime": selector(x, "lastModifiedDate"),
-        "openDate": ds.datetime.toLocalDate(selector(x, "creationDate")),
-        "closeDate": selector(x, "closeDate"),
-        "maturityDate": selector(x, "maturityDate"),
+//        "statusDateAndTime": selector(x, "lastModifiedDate"),
+//        "openDate": ds.datetime.toLocalDate(selector(x, "creationDate")),
+//        "closeDate": selector(x, "closeDate"),
+//        "maturityDate": selector(x, "maturityDate"),
         "balances": [
           {
-            "balanceName": "Available",
-            "amount": x.balances.availableBalance,
+          "balanceName": "Available",
+          "amount": x.balances.availableBalance,
+          "currency": selector(x, "currencyCode"),
+          "calculationDate": x.lastModifiedDate
+          },
+          {
+            "balanceName": "Blocked",
+            "amount": x.balances.blockedBalance,
             "currency": selector(x, "currencyCode"),
+            "calculationDate": x.lastModifiedDate
+          },
+          {
+            "balanceName": "Pending",
+            "amount": x.balances.holdBalance,
+            "currency": selector(x, "currencyCode"),
+            "calculationDate": x.lastModifiedDate
+          },
+          {
+            "balanceName": "Current",
+            "amount": x.balances.totalBalance,
+            "currency": selector(x, "currencyCode"),
+            "calculationDate": x.lastModifiedDate
           }
-        ],
-
-        "accountId": selector(x, "encodedKey")
+        ]
       } for x in payload
     ]
   })

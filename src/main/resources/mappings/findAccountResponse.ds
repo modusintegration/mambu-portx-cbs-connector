@@ -5,13 +5,20 @@ input payload application/json
 */
                           
 local selector(obj,key,dValue = null) = ds.or(ds.select(obj,key), dValue);
+local accountStatus = if selector(payload, "accountState") != null
+  && selector(payload, "accountState") == 'PENDING_APPROVAL' then 'Pending'
+  else if selector(payload, "accountState") != null
+  && selector(payload, "accountState") == 'CLOSED' then 'Deleted'
+  else if selector(payload, "accountState") != null
+  && selector(payload, "accountState") == 'LOCKED' then 'Disable'
+  else selector(payload, "accountState");
 
 std.prune(
   {
-    "accountNumber": payload.id,
-    "servicerBranchId": selector(payload, "assignedBranchKey"),
     "accountType": selector(payload, "accountType"),
-    "accountOwnershipType": "Owner",
+    "ownershipType": "Owner",
+    "accountNumber": payload.id,
+    "accountBranchId": selector(payload, "assignedBranchKey"),
     "productId": payload.productTypeKey,
     "name": payload.name,
     "currency": selector(payload, "currencyCode"),
@@ -22,11 +29,11 @@ std.prune(
         "partyAccountRole": "Owner"
       }
     ],
-    "status": selector(payload, "accountState"),
+    "status": accountStatus,
     "statusDateAndTime": selector(payload, "lastModifiedDate"),
-    "openDate": if ds.select(payload, "creationDate") !=null then ds.datetime.toLocalDate(payload.creationDate) else null,
-    "closeDate": if ds.select(payload, "closeDate") !=null then ds.datetime.toLocalDate(payload.closeDate) else null,
-    "maturityDate": if ds.select(payload, "maturityDate") !=null then ds.datetime.toLocalDate(payload.maturityDate) else null,
+    "openDate": if ds.select(payload, "creationDate") != null then ds.datetime.toLocalDate(payload.creationDate) else null,
+    "closeDate": if ds.select(payload, "closeDate") != null then ds.datetime.toLocalDate(payload.closeDate) else null,
+    "maturityDate": if ds.select(payload, "maturityDate") != null then ds.datetime.toLocalDate(payload.maturityDate) else null,
     "balances": [
         {
             "balanceName": "Available",

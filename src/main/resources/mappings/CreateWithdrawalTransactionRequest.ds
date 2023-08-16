@@ -14,7 +14,7 @@ std.prune(
         "amount": selector(payload, "amount", 0.00),
         "transactionDetails": {
             "transactionChannelId": if std.objectHas(payload, "transactionType") then setTransactionChannel(payload.transactionType)
-        }
-
+        },
+        "valueDate": selector(payload, "availabilityDate")
     }
 )
