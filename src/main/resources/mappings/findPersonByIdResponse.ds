@@ -4,7 +4,7 @@ output application/json
 input payload application/json
 */
 local selector(obj,key,dValue = null) = ds.or(ds.select(obj,key), dValue);
-local address = selector(payload, "addresses");
+local addresses = selector(payload, "addresses");
 local first = selector(payload, "firstName");
 local middle = selector(payload, "middleName");
 local last = selector(payload, "lastName");
@@ -20,6 +20,22 @@ local documents = if selector(payload, "idDocuments") != null then (ds.filter(se
 local SSN = if selector(payload, "idDocuments") != null then (ds.filter(selector(payload, "idDocuments"), function(value, index) value.documentType == "SocialSecurityNumber")) else [];
 
 local idDocuments = selector(payload, "idDocuments");
+local postalAddresses =
+  if (addresses != null && std.length(addresses) > 0) then
+    [
+      {
+        postCode: selector(address, "postcode"),
+        townName: selector(address, "city"),
+        country: selector(address, "country"),
+        addressLine: [
+          selector(address, "line1"),
+          selector(address, "line2"),
+        ]
+      } for address in addresses
+    ]
+  else
+    [];
+
 local mambuIdentifier = {
   number: selector(payload, "id"),
   schemeName: "clientId",
@@ -35,14 +51,14 @@ local otherDocuments =
   ]
   else
   [];
-local genericIdentifiers = [mambuIdentifier] + otherDocuments;
+local identifiers = [mambuIdentifier] + otherDocuments;
 local taxInformation = if (SSN != null && std.length(SSN) > 0) then{
     tIN: selector(SSN[0], "documentId"),
     taxIdType: selector(SSN[0], "documentType")
 };
 std.prune({
   "personId": selector(payload, "encodedKey"),
-  "genericIdentifiers": genericIdentifiers,
+  "identifiers": identifiers,
   "name": fullname,
   "shortName": shortName,
   "relatedParties": [
@@ -52,15 +68,7 @@ std.prune({
       "partyRelationType": "Owner"
     }
   ],
-  "postalAddress": {
-    "postCode": if ds.isArray(address) then selector(address[0], "postcode") else "",
-    "townName": if ds.isArray(address) then selector(address[0], "city") else "",
-    "country": if ds.isArray(address) then selector(address[0], "country") else "",
-    "addressLine": [
-      if ds.isArray(address) then selector(address[0], "line1"),
-      if ds.isArray(address) then selector(address[0], "line2")
-    ]
-  },
+  "postalAddresses": postalAddresses,
   "status": selector(payload, "state"),
   "placeAndDateOfBirth": {
     "birthDate": selector(payload, "birthDate"),
@@ -69,11 +77,17 @@ std.prune({
     "mobileNumber": selector(payload, "mobilePhone"),
     "emailAddress": selector(payload, "emailAddress"),
   },
-    "structuredName": {
+  "structuredName": {
     "firstName": selector(payload, "firstName"),
     "middleName": selector(payload, "middleName"),
     "lastName": selector(payload, "lastName"),
   },
-  "taxInformation": taxInformation
+  "gender" : selector(payload, "gender"),
+  "taxInformation": taxInformation,
+  "audit" : {
+    "status": selector(payload, "state"),
+    "creationDate": selector(payload, "creationDate"),
+    "lastModificationDate": selector(payload, "lastModifiedDate"),
+  }
 })
 

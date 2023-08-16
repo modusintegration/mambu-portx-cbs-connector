@@ -81,7 +81,7 @@ public class ApplicationTest extends APITest {
     @Test
     @DisplayName("Test Search Person by First Name and Last name")
     public void testSearchPersonByFirstNameAndLastName() throws Exception {
-        Exchange exchange = sendTestRequest("direct:findPerson", ExchangePattern.InOut, new Processor() {
+        Exchange exchange = sendTestRequest("direct:findPersons", ExchangePattern.InOut, new Processor() {
             @Override
             public void process(Exchange exchange) throws Exception {
                 Message in = exchange.getIn();
@@ -102,7 +102,7 @@ public class ApplicationTest extends APITest {
     @Test
     @DisplayName("Test Search Person by TownName and Tin")
     public void testSearchPersonByTownNameAndTin() throws Exception {
-        Exchange exchange = sendTestRequest("direct:findPerson", ExchangePattern.InOut, new Processor() {
+        Exchange exchange = sendTestRequest("direct:findPersons", ExchangePattern.InOut, new Processor() {
             @Override
             public void process(Exchange exchange) throws Exception {
                 Message in = exchange.getIn();
@@ -137,7 +137,7 @@ public class ApplicationTest extends APITest {
     @Override
     public String[] getMockedRouteIDs() {
         // return new String[] { "findBranchesRoute", "testCreateBranchRoute", "testUpdateBranchRoute", "testDatabaseRoute" };
-        return new String[] { "findBranchesRoute", "testCreateBranchRoute", "testUpdateBranchRoute", "findPersonRoute"};
+        return new String[] { "findBranchesRoute", "testCreateBranchRoute", "testUpdateBranchRoute", "findPersonsRoute"};
         // return new String[] { "findBranchesRoute"};
     }
 
