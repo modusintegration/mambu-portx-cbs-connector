@@ -51,6 +51,9 @@ This is a PortX connector for Mambu core banking system based on Portx Open Bank
 ```
 
 
+## Open Banking API
+
+
 ## Build and Deploy
 
 ### How to run app locally
