@@ -1,6 +1,6 @@
 
 mambu:
-  host: modusbox.sandbox.mambu.com
+  host: http://modusbox.sandbox.mambu.com
   username: test
   password: test
 

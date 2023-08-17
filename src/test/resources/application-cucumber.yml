@@ -1,5 +1,5 @@
 mambu:
-  host: localhost:8043
+  host: http://localhost:8043
   username: test
   password: test
 validation:
