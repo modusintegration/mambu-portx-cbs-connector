@@ -71,7 +71,6 @@ public class PersonCucumberTestDefinition extends CucumberTestDefinition {
 
     @And("I get the person id")
     public void findPersonCreatedById() {
-        personIdCreated = "12345-v.1.0.10";
         findPersonResponse = restFactory.get(LOCALHOST_URL + "/persons/" + personIdCreated);
         findPersonByIdResponse = gson.fromJson(findPersonResponse.body(), Person.class);
         assertNotNull(findPersonByIdResponse);
@@ -84,10 +83,10 @@ public class PersonCucumberTestDefinition extends CucumberTestDefinition {
                 createPersonResponse.getContact().getEmails().get(0).getEmailAddress());
         assertEquals(personRequest.getName(),
                 createPersonResponse.getName());
-        assertEquals(personRequest.getProfession(),
-                createPersonResponse.getProfession());
-        assertEquals(personRequest.getPlaceAndDateOfBirth().getCountrySubdivision(),
-                createPersonResponse.getPlaceAndDateOfBirth().getCountrySubdivision());
+        assertEquals(personRequest.getIdentifiers().get(0).getSchemeName(),
+                createPersonResponse.getIdentifiers().get(1).getSchemeName());
+        assertEquals(personRequest.getPostalAddresses().get(0).getDistrictName(),
+                createPersonResponse.getPostalAddresses().get(0).getDistrictName());
     }
 
     /**

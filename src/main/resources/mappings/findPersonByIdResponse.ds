@@ -16,16 +16,15 @@ local fullname = (if first!=null then first else "") +
 local shortName = (if first!=null then first else "") +
                   (if first!=null && last!=null then " " else "") +
                   if last!=null then last;
-local documents = if selector(payload, "idDocuments") != null then (ds.filter(selector(payload, "idDocuments"), function(value, index) value.documentType != "SocialSecurityNumber"));
-local SSN = if selector(payload, "idDocuments") != null then (ds.filter(selector(payload, "idDocuments"), function(value, index) value.documentType == "SocialSecurityNumber")) else [];
+local documents = selector(payload, "idDocuments");
 
-local idDocuments = selector(payload, "idDocuments");
 local postalAddresses =
   if (addresses != null && std.length(addresses) > 0) then
     [
       {
         postCode: selector(address, "postcode"),
         townName: selector(address, "city"),
+        districtName: selector(address, "region"),
         country: selector(address, "country"),
         addressLine: [
           selector(address, "line1"),
@@ -41,7 +40,7 @@ local mambuIdentifier = {
   schemeName: "clientId",
   issuer: "Mambu"
 };
-local otherDocuments =
+local identifiers =
   if (documents != null && std.length(documents) > 0) then
   [
     {
@@ -51,11 +50,6 @@ local otherDocuments =
   ]
   else
   [];
-local identifiers = [mambuIdentifier] + otherDocuments;
-local taxInformation = if (SSN != null && std.length(SSN) > 0) then{
-    tIN: selector(SSN[0], "documentId"),
-    taxIdType: selector(SSN[0], "documentType")
-};
 std.prune({
   "personId": selector(payload, "encodedKey"),
   "identifiers": identifiers,
@@ -74,20 +68,39 @@ std.prune({
     "birthDate": selector(payload, "birthDate"),
   },
   "contact": {
-    "mobileNumber": selector(payload, "mobilePhone"),
-    "emailAddress": selector(payload, "emailAddress"),
+    "structuredName": {
+      "firstName": selector(payload, "firstName"),
+      "middleName": selector(payload, "middleName"),
+      "lastName": selector(payload, "lastName"),
+    },
+    "phones": [
+      {
+        "number": selector(payload, "homePhone")
+      },
+      {
+        "number": selector(payload, "mobilePhone")
+      },
+      {
+        "number": selector(payload, "mobilePhone2")
+      },
+    ],
+    "emails" : [
+      {
+        "emailAddress": selector(payload, "emailAddress"),
+      }
+    ],
+    "preferredLanguage": selector(payload, "preferredLanguage")
   },
+  "gender" : selector(payload, "gender"),
   "structuredName": {
     "firstName": selector(payload, "firstName"),
     "middleName": selector(payload, "middleName"),
     "lastName": selector(payload, "lastName"),
   },
-  "gender" : selector(payload, "gender"),
-  "taxInformation": taxInformation,
   "audit" : {
     "status": selector(payload, "state"),
-    "creationDate": selector(payload, "creationDate"),
-    "lastModificationDate": selector(payload, "lastModifiedDate"),
+    "creationDate": if ds.select(payload, "creationDate") != null then ds.datetime.toLocalDate(payload.creationDate),
+    "lastModificationDate": if ds.select(payload, "lastModifiedDate") != null then ds.datetime.toLocalDate(payload.lastModifiedDate)
   }
 })
 

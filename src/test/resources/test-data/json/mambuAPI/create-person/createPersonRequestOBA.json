@@ -1,21 +1,21 @@
 {
   "uSDocumentedIndicator": true,
-  "genericIdentifiers": [
+  "identifiers": [
     {
-      "number": "123-45-6789",
+      "number": "111111111",
       "schemeName": "SocialSecurityNumber",
       "issuer": "US",
       "issueDate": "2022-04-17",
       "expirationDate": "2022-04-17"
     }
   ],
-  "name": "Jane Birkin",
-  "shortName": "Jane",
+  "name": "Vr Lab Lab",
+  "shortName": "Vr",
   "relatedParties": [
     {
       "partyId": "5fb9d4d6-1a3c-11ed-861d-0242ac120002",
       "partyType": "Person",
-      "partyName": "Jane Birkin",
+      "partyName": "Vr Lab",
       "partyRelationType": "Owner",
       "ownershipPercentage": "0.7"
     }
@@ -27,37 +27,35 @@
       "primaryIndicator": true,
       "department": "A",
       "subDepartment": "B",
-      "streetName": "First Street",
-      "firstCrossStreetName": "string",
-      "secondCrossStreetName": "Second Street",
-      "buildingNumber": "11407",
-      "buildingName": "Tall Tower",
-      "floor": "20",
-      "postBox": "MY779",
+      "streetName": "Main Street",
+      "firstCrossStreetName": "Elm Street",
+      "secondCrossStreetName": "Oak Street",
+      "buildingNumber": "123",
+      "buildingName": "Chicago Tower",
+      "floor": "10",
+      "postBox": "CHI456",
       "room": "22",
-      "postCode": "97062-6884",
-      "townName": "Tualatin",
-      "townLocationName": "Clackamas",
-      "districtName": "Washington",
-      "countrySubDivision": "Oregon",
-      "countrySubDivisionCode": "AR-B",
+      "postCode": "60601",
+      "townName": "Chicago",
+      "townLocationName": "Cook",
+      "districtName": "Illinois",
+      "countrySubDivision": "Cook County",
+      "countrySubDivisionCode": "US-IL",
       "country": "US",
       "addressLine": [
-        "11407 Sw Amu st, Suite MY777"
+        "123 Main Street, Suite 23"
       ]
     }
   ],
   "residenceType": "Domestic",
   "taxInformation": {
-    "tIN": "778-62-8144",
+    "tIN": "111-22-3333",
     "taxIdType": "SSN",
-    "reportingIndicator": true,
-    "tinStatus": "Valid",
+    "tINStatus": "Valid",
     "taxStatus": "Valid",
     "forms": [
       {
         "formName": "W-9",
-        "cerfiticationDate": "2022-04-17",
         "expirationDate": "2022-04-17"
       }
     ],
@@ -74,7 +72,6 @@
         "withholdingAmount": "100"
       }
     ],
-    "nRAIndicator": true,
     "countrySubDivision": "Oregon",
     "countrySubDivisionCode": "AR-B",
     "country": "US",
@@ -92,22 +89,12 @@
     "signOffDate": "2022-04-17",
     "issueDate": "2022-04-17",
     "purpose": "string",
-    "fromDateTime": "2022-04-17",
-    "upToDateTime": "2022-04-17",
+    "fromDateTime": "2022-04-17T08:00:00Z",
+    "upToDateTime": "2022-04-17T08:00:00Z",
     "authorizedPerson": "5fb9d4d6-1a3c-11ed-861d-0242ac120002",
     "authorizedAccount": "0dd926fe-1ca2-11ed-861d-0242ac120002"
   },
   "supplementaryData": {},
-  "settings": {
-    "communicationChannels": [
-      {
-        "channel": "Email",
-        "channelIdentification": "011-02010020202",
-        "codeWord": "string",
-        "alertIndicator": "string"
-      }
-    ]
-  },
   "restrictions": [
     {
       "name": "externalTransferAllowed",
@@ -123,8 +110,12 @@
     "birthDate": "2022-04-17"
   },
   "contact": {
-    "namePrefix": "string",
-    "name": "Jane Birkin",
+    "structuredName": {
+      "firstName": "Vr",
+      "lastName": "Lab"
+
+    },
+    "name": "Vr Lab Lab",
     "phones": [
       {
         "number": "+1-415-731359",
@@ -147,33 +138,23 @@
     ],
     "jobTitle": "Head of Documentation",
     "department": "Sales",
-    "otherContactMethods": [
-      {
-        "channelType": "Email",
-        "identification": "011-02010020202"
-      }
-    ],
     "preferredMethod": "Email",
     "preferredLanguage": "English"
   },
   "headOfHousehold": true,
   "civilStatus": "Single",
   "structuredName": {
-    "firstName": "Mary",
-    "middleName": "Joe",
-    "lastName": "Smith",
-    "suffix": "PhD",
-    "prefix": "Dr."
+    "firstName": "Vr",
+    "middleName": "Lab",
+    "lastName": "Lab"
   },
-  "gender": "Female",
-  "profession": "Artist",
+  "gender": "Male",
+  "profession": "Technology",
   "jobTitle": "Head of Documentation",
   "residentialStatus": "Permanent",
   "minorIndicator": true,
   "citizenships": [
     {
-      "countrySubdivision": "Oregon",
-      "townName": "Tualatin",
       "country": "US"
     }
   ],
@@ -182,8 +163,8 @@
     "riskLevel": "Permanent",
     "creditReview": {
       "frequency": {
-        "unit": "Monthly",
-        "value": 999
+        "cycle": "Monthly",
+        "every": 999
       },
       "lastReviewDate": "2022-04-17T08:00:00Z",
       "nextReviewDate": "2022-04-17T08:00:00Z",
@@ -201,8 +182,6 @@
     },
     "sourceOfWealth": "This is a description.",
     "politicalAffiliation": "string",
-    "lastContactDate": "2022-04-17",
-    "lastContactChannel": "Email",
     "lostCustomerDate": "2022-04-17",
     "lostCustomerReason": "Deceased",
     "customerConductClassification": "string",
@@ -230,21 +209,6 @@
         }
       }
     ],
-    "regulation0": {
-      "insider": "Director",
-      "familyRelationship": "Owner",
-      "institutionRelationship": "Owner"
-    },
     "anualIncome": "100"
-  },
-  "partySettings": {
-    "communicationChannels": [
-      {
-        "channel": "Email",
-        "channelIdentification": "011-02010020202",
-        "codeWord": "string",
-        "alertIndicator": "string"
-      }
-    ]
   }
 }

@@ -1,26 +1,53 @@
 {
-  "encodedKey": "8a44b37889bca9760189c282acae3397",
-  "id": "120281700",
+  "encodedKey": "12345",
+  "id": "149725640",
   "state": "INACTIVE",
-  "creationDate": "2023-08-07T07:48:32-07:00",
-  "lastModifiedDate": "2023-08-07T07:48:32-07:00",
-  "approvedDate": "2023-08-07T07:48:32-07:00",
-  "firstName": "Mary",
-  "lastName": "Smith",
-  "middleName": "Joe",
+  "creationDate": "2023-08-17T06:30:56-07:00",
+  "lastModifiedDate": "2023-08-17T06:30:56-07:00",
+  "approvedDate": "2023-08-17T06:30:56-07:00",
+  "firstName": "Vr",
+  "lastName": "Lab",
+  "middleName": "Lab",
+  "homePhone": "+1-415-731359",
+  "emailAddress": "string",
   "preferredLanguage": "ENGLISH",
   "birthDate": "2022-04-17",
+  "gender": "MALE",
   "clientRoleKey": "8a44cde37b592d63017b5fac6e400518",
   "loanCycle": 0,
   "groupLoanCycle": 0,
   "addresses": [
     {
-      "encodedKey": "8a44b37889bca9760189c282acae3398",
-      "parentKey": "8a44b37889bca9760189c282acae3397",
-      "line1": "",
-      "line2": "",
+      "encodedKey": "8a44b5f58a004d9c018a03b127e62de0",
+      "parentKey": "8a44b5f58a004d9c018a03a59793652b",
+      "line1": "123 Main Street, Suite 23",
+      "city": "Chicago",
+      "region": "Illinois",
+      "postcode": "60601",
+      "country": "US",
       "indexInList": 0
     }
   ],
-  "idDocuments": []
+  "idDocuments": [
+    {
+      "encodedKey": "8a44b5f58a004d9c018a03a59793652c",
+      "clientKey": "8a44b5f58a004d9c018a03a59793652b",
+      "documentType": "SSN",
+      "documentId": "111-22-3333",
+      "indexInList": 0
+    },
+    {
+      "encodedKey": "8a44b5f58a004d9c018a03b127e62ddf",
+      "clientKey": "8a44b5f58a004d9c018a03a59793652b",
+      "documentType": "SocialSecurityNumber",
+      "documentId": "111111111",
+      "issuingAuthority": "US",
+      "validUntil": "2022-04-17",
+      "indexInList": 1
+    }
+  ],
+  "_searchablefields_Clients": {
+    "tIN_Clients": "111-22-3333",
+    "townName_Clients": "Chicago"
+  }
 }
