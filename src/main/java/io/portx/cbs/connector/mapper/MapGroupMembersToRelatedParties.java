@@ -45,6 +45,7 @@ public class MapGroupMembersToRelatedParties implements Processor {
                     roles.forEach(role -> {
                         ObjectNode party = objectMapper.createObjectNode();
                         party.put(PARTY_ID, partyId);
+                        party.put(PARTY_TYPE, PARTY_TYPE_PERSON);
                         party.put(PARTY_RELATION_TYPE, relatedPartiesMap.get(role.get(GROUP_ROLE_NAME_KEY).asText()));
                         relatedParties.add(party);
                     });

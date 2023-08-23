@@ -50,7 +50,7 @@
   "residenceType": "Domestic",
   "taxInformation": {
     "tIN": "111-22-3333",
-    "taxIdType": "SSN",
+    "taxIdType": "SocialSecurityNumber",
     "tINStatus": "Valid",
     "taxStatus": "Valid",
     "forms": [

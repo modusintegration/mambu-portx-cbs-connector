@@ -16,12 +16,17 @@ local restrictions = selector(payload, "_restrictions_Groups");
 local groupMembers = selector(payload, "groupMembers");
 
 std.prune({
-  "genericIdentifiers": [
+  "organizationId": selector(payload, "encodedKey"),
+  "organizationType": "Corporation",
+  "identifiers": [
     {
-    "number": selector(payload, "id"),
+      "number": selector(payload, "id"),
+      "schemeName": "InternalCustomerNumber",
+      "issuer" : "Mambu"
     },
     {
       "number": selector(organizationDetails, "eIN_Groups"),
+      "schemeName": if selector(organizationDetails, "eIN_Groups") != null then "EmployerIdentificationNumber"
     },
   ],
   "shortName": selector(payload, "groupName"),
@@ -40,33 +45,22 @@ std.prune({
   "taxInformation": {
     "tIN": selector(taxInformation, "tIN_Groups"),
     "taxIdType": selector(taxInformation, "taxType_Groups"),
+    "tINStatus": "Valid"
   },
-  "registrationDate": selector(organizationDetails, "dateOfOrganization_Groups"),
-  "organizationProfile": {
-    "previousFinancialInstitution": selector(organizationDetails, "previousFinancialInstitution_Groups"),
-    "referredByWhom": selector(organizationDetails, "referredByWhom_Groups"),
-    "timeAtCurrentAddress": {
-      "unit": selector(timeAtCurrentAddress, "unit_Groups"),
-      "value": selector(timeAtCurrentAddress, "value_Groups")
-    },
-    "politicalAffiliation": selector(organizationDetails, "politicalAfiliation_Groups"),
-  },
-  "phones": [
-    {
-      "number": selector(payload, "homePhone")
-    },
-    {
-      "number": selector(payload, "mobilePhone")
-    }
-  ],
-  "emails": [
-    {
-      "emailAddress": selector(payload, "emailAddress")
-    }
-  ],
-  "organizationType": selector(payload, "notes"),
-  "relatedParties": cml.exchangeProperty('relatedParties'),
-  "settings": {
+  "contact": {
+    "phones": [
+      {
+        "number": selector(payload, "homePhone")
+      },
+      {
+        "number": selector(payload, "mobilePhone")
+      }
+    ],
+    "emails": [
+      {
+        "emailAddress": selector(payload, "emailAddress")
+      }
+    ],
     "communicationChannels": [
       {
         "channel": selector(communicationGroup, "useForEnterpriseAlertsInternet_G"),
@@ -77,6 +71,17 @@ std.prune({
       }
     ]
   },
+  "registrationDate": selector(organizationDetails, "dateOfOrganization_Groups"),
+  "organizationProfile": {
+    "previousFinancialInstitution": selector(organizationDetails, "previousFinancialInstitution_Groups"),
+    "referredByWhom": selector(organizationDetails, "referredByWhom_Groups"),
+    "timeAtCurrentAddress": {
+      "unit": selector(timeAtCurrentAddress, "unit_Groups"),
+      "value": if selector(timeAtCurrentAddress, "value_Groups") != null then ds.parseInt(selector(timeAtCurrentAddress, "value_Groups"))
+    },
+    "politicalAffiliation": selector(organizationDetails, "politicalAfiliation_Groups"),
+  },
+  "relatedParties": cml.exchangeProperty('relatedParties'),
   "restrictions": [
     {
       "name": selector(restrictions,"cashManagementAccess1_Groups"),

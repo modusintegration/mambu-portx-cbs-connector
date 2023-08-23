@@ -233,7 +233,7 @@
         </setBody>
         <log message="Find Person with request: ${body}"/>
         <log message="Find Persons"/>
-        <toD uri='https://{{mambu.host}}/api/clients&#x3A;search?detailsLevel=FULL&amp;throwExceptionOnFailure=false&amp;bridgeEndpoint=true'/>
+        <toD uri='{{mambu.host}}/api/clients&#x3A;search?detailsLevel=FULL&amp;throwExceptionOnFailure=false&amp;bridgeEndpoint=true'/>
         <to uri="direct:commonAPIResponseValidator"/>
         <log message="Find Person response is ${body}"/>
         <setBody>
@@ -965,14 +965,14 @@
 <!--        <log message="PUT deposits response is ${body}"/>-->
 <!--        <to uri="direct:endRoute"/>-->
 <!--    </route>-->
-    <route id="findOrganizationRoute" routeConfigurationId="*">
+    <route id="findOrganizationByIdRoute" routeConfigurationId="*">
         <from uri="direct:findOrganizationById"/>
         <setProperty name="flowId">
             <simple>${routeId}:${id}</simple>
         </setProperty>
         <setBody><constant>{}</constant></setBody>
 <!--        <to uri="direct:startRoute"/>-->
-        <log message="== findOrganization Route"/>
+        <log message="== findOrganizationById Route"/>
         <setHeader name="CamelHttpMethod">
             <constant>GET</constant>
         </setHeader>
@@ -998,7 +998,7 @@
         <process ref="mapGroupMembersToRelatedParties" />
         <setBody>
             <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
-                resource:classpath:mappings/CreateGroupsResponse.ds
+                resource:classpath:mappings/findOrganizationByIdResponse.ds
             </datasonnet>
         </setBody>
         <log message="GET organizations response is ${body}"/>
@@ -1034,7 +1034,7 @@
         <process ref="mapRelatedPartiesToGroupMembers" />
         <setBody>
             <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
-                resource:classpath:mappings/CreateGroupsRequest.ds
+                resource:classpath:mappings/CreateOrganizationRequest.ds
             </datasonnet>
         </setBody>
         <log message="POST groups with request: ${body}"/>
@@ -1053,7 +1053,7 @@
         <process ref="mapGroupMembersToRelatedParties" />
         <setBody>
             <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
-                resource:classpath:mappings/CreateGroupsResponse.ds
+                resource:classpath:mappings/findOrganizationByIdResponse.ds
             </datasonnet>
         </setBody>
         <log message="POST organizations response is ${body}"/>
@@ -1846,7 +1846,7 @@
         <process ref="encodeAuthHeader" />
         <setBody>
             <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
-                resource:classpath:mappings/CreateGroupsRequest.ds
+                resource:classpath:mappings/CreateOrganizationRequest.ds
             </datasonnet>
         </setBody>
         <!-- <log message="POST groups with request: ${body}"/> -->

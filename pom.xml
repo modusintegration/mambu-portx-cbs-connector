@@ -8,6 +8,9 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>11</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
         <camel-version>3.20.3</camel-version>
         <portx-camel-lib.version>2.0.18</portx-camel-lib.version>
         <sentry.version>5.6.1</sentry.version>
@@ -68,7 +71,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.8.1</version>
+                    <version>3.11.0</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -253,7 +256,7 @@
         <dependency>
             <groupId>org.skyscreamer</groupId>
             <artifactId>jsonassert</artifactId>
-            <version>1.5.0</version>
+            <version>1.5.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -387,11 +390,11 @@
             <artifactId>camel-opentelemetry-starter</artifactId>
             <version>${camel-version}</version>
         </dependency>
-        <dependency>
+<!--        <dependency>
             <groupId>io.portx.validation</groupId>
             <artifactId>portx-api-schema-validator</artifactId>
             <version>0.0.6</version>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>

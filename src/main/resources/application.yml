@@ -31,7 +31,7 @@ endpoints:
     enabled: true
 
 mambu:
-  host: modusbox.sandbox.mambu.com
+  host: https://modusbox.sandbox.mambu.com
   username: shashi
   password: Modusbox@123
 

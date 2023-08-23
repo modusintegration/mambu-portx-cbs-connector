@@ -19,7 +19,7 @@
   "idDocuments": [
     {
       "documentId": "111-22-3333",
-      "documentType": "SSN"
+      "documentType": "SocialSecurityNumber"
     },
     {
       "documentId": "111111111",

@@ -7,16 +7,10 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestClientException;
 
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManagerFactory;
-import java.io.InputStream;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.security.KeyStore;
-import java.security.KeyStoreException;
-import java.security.cert.X509Certificate;
 import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.fail;
@@ -28,37 +22,10 @@ import static org.junit.jupiter.api.Assertions.fail;
 public class RestHttpRequestFactory {
 
     private Gson gson = GsonBuilderUtil.getGson();
-    private final HttpClient httpClient;
-
-    public RestHttpRequestFactory() {
-        SSLContext sslContext = null;
-        try {
-            // Load your keystore
-            KeyStore keyStore = KeyStore.getInstance("JKS");
-            try (InputStream inputStream = WiremockFactory.class.getResourceAsStream("/wiremock/https/key/keystore.jks")) {
-                keyStore.load(inputStream, "password".toCharArray());
-            }
-
-            // Load the certificate from the keystore
-            X509Certificate certificate = (X509Certificate) keyStore.getCertificate("myalias");
-
-            // Create a TrustManager that trusts the certificate
-            TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
-            trustManagerFactory.init(keyStore);
-
-            // Create an SSL context that trusts the certificate
-            sslContext = SSLContext.getInstance("TLS");
-            sslContext.init(null, trustManagerFactory.getTrustManagers(), new java.security.SecureRandom());
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        httpClient = HttpClient.newBuilder()
-                .sslContext(sslContext)
-                .version(HttpClient.Version.HTTP_2)
-                .connectTimeout(Duration.ofSeconds(10))
-                .build();
-    }
+    public static final HttpClient httpClient = HttpClient.newBuilder()
+            .version(HttpClient.Version.HTTP_2)
+            .connectTimeout(Duration.ofSeconds(10))
+            .build();
 
     /**
      * Sends an HTTP GET request to the specified URL and returns the deserialized response.

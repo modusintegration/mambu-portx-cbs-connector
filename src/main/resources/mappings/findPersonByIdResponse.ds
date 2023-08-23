@@ -50,9 +50,14 @@ local identifiers =
   ]
   else
   [];
+local internalClientNumber = {
+  number: selector(payload, "id"),
+  schemeName: "InternalCustomerNumber",
+  issuer: "Mambu"
+};
 std.prune({
   "personId": selector(payload, "encodedKey"),
-  "identifiers": identifiers,
+  "identifiers": [internalClientNumber] + identifiers,
   "name": fullname,
   "shortName": shortName,
   "relatedParties": [

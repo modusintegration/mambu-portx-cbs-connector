@@ -32,7 +32,7 @@
     {
       "encodedKey": "8a44b5f58a004d9c018a03a59793652c",
       "clientKey": "8a44b5f58a004d9c018a03a59793652b",
-      "documentType": "SSN",
+      "documentType": "SocialSecurityNumber",
       "documentId": "111-22-3333",
       "indexInList": 0
     },
