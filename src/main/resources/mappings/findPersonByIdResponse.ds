@@ -86,8 +86,8 @@ std.prune({
   "taxInformation": taxInformation,
   "audit" : {
     "status": selector(payload, "state"),
-    "creationDate": selector(payload, "creationDate"),
-    "lastModificationDate": selector(payload, "lastModifiedDate"),
+    "creationDate": if selector(payload, "creationDate") != null then ds.datetime.toLocalDate(selector(payload, "creationDate")),
+    "lastModificationDate": if selector(payload, "lastModifiedDate") != null then ds.datetime.toLocalDate(selector(payload, "lastModifiedDate")),
   }
 })
 

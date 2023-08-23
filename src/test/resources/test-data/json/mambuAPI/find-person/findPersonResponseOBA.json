@@ -1,0 +1,41 @@
+{
+  "personId": "12345",
+  "identifiers": [
+    {
+      "number": "120281700",
+      "schemeName": "clientId",
+      "issuer": "Mambu"
+    }
+  ],
+  "name": "Mary Joe Smith",
+  "shortName": "Mary Smith",
+  "relatedParties": [
+    {
+      "partyId": "12345",
+      "partyType": "Person",
+      "partyRelationType": "Owner"
+    }
+  ],
+  "postalAddresses": [
+    {
+      "addressLine": [
+        "Test",
+        "Test 2"
+      ]
+    }
+  ],
+  "status": "INACTIVE",
+  "placeAndDateOfBirth": {
+    "birthDate": "2022-04-17"
+  },
+  "structuredName": {
+    "firstName": "Mary",
+    "middleName": "Joe",
+    "lastName": "Smith"
+  },
+  "audit": {
+    "status": "INACTIVE",
+    "creationDate": "2023-08-07",
+    "lastModificationDate": "2023-08-07"
+  }
+}
