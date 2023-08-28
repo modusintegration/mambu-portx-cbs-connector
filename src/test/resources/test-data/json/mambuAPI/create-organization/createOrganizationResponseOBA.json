@@ -1,0 +1,94 @@
+{
+  "organizationId": "12345",
+  "organizationType": "Corporation",
+  "identifiers": [
+    {
+      "number": "776665745",
+      "schemeName": "InternalCustomerNumber",
+      "issuer": "Mambu"
+    },
+    {
+      "number": "123231321",
+      "schemeName": "EmployerIdentificationNumber"
+    }
+  ],
+  "shortName": "mambu-group-test-o",
+  "postalAddresses": [
+    {
+      "addressType": "Postal",
+      "country": "US",
+      "addressLine": [
+        "11407 Sw Amu st, Suite MY777"
+      ]
+    }
+  ],
+  "taxInformation": {
+    "tIN": "778-62-8144",
+    "taxIdType": "SSN",
+    "tINStatus": "Valid"
+  },
+  "contact": {
+    "phones": [
+      {
+        "number": "+1-415-731359"
+      },
+      {
+        "number": "+1-415-731359"
+      }
+    ],
+    "emails": [
+      {
+        "emailAddress": "example@email.com"
+      }
+    ],
+    "communicationChannels": [
+      {
+        "channel": "Email",
+        "codeWord": "string"
+      },
+      {
+        "channel": "Email"
+      }
+    ]
+  },
+  "registrationDate": "2022-04-17",
+  "organizationProfile": {
+    "referredByWhom": "Jane Birkin",
+    "timeAtCurrentAddress": {
+      "unit": "Months",
+      "value": 999
+    },
+    "politicalAffiliation": "string"
+  },
+  "relatedParties": [
+    {
+      "partyId": "8a44d6d97c81ddbe017ca4234ef669fb",
+      "partyType": "Person",
+      "partyRelationType": "Assigner"
+    },
+    {
+      "partyId": "8a44b0687f6d1c2c017f6f747aa91f21",
+      "partyType": "Person",
+      "partyRelationType": "President"
+    },
+    {
+      "partyId": "8a44b0687f6d1c2c017f6f747aa91f21",
+      "partyType": "Person",
+      "partyRelationType": "Treasurer"
+    }
+  ],
+  "restrictions": [
+    {
+      "name": "externalTransferAllowed"
+    },
+    {
+      "name": "externalTransferAllowed"
+    },
+    {
+      "name": "externalTransferAllowed"
+    },
+    {
+      "name": "externalTransferAllowed"
+    }
+  ]
+}

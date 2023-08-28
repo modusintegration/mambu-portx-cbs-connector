@@ -1,0 +1,98 @@
+{
+  "organizationType": "Corporation",
+  "identifiers": [
+    {
+      "number": "496115330-947225186-324949350",
+      "schemeName": "SocialSecurityNumber"
+    },
+    {
+      "number": "333-888-4567",
+      "schemeName": "EmployerIdentificationNumber"
+    }
+  ],
+  "relatedParties": [
+    {
+      "partyId": "8a44d6d97c81ddbe017ca4234ef669fb",
+      "partyType": "Person",
+      "partyRelationType": "Assigner"
+    },
+    {
+      "partyId": "8a44b0687f6d1c2c017f6f747aa91f21",
+      "partyType": "Person",
+      "partyRelationType": "Treasurer"
+    },
+    {
+      "partyId": "8a44b0687f6d1c2c017f6f747aa91f21",
+      "partyType": "Person",
+      "partyRelationType": "President"
+    }
+  ],
+  "name": "mambu-group-test-e",
+  "organizationPurpose": "This is a description.",
+  "registrationDate": "2022-04-17",
+  "postalAddresses": [
+    {
+      "addressType": "Postal"
+    },
+    {
+      "addressType": "Postal",
+      "country": "US",
+      "addressLine": [
+        "11407 Sw Amu st, Suite MY777"
+      ]
+    }
+  ],
+  "contact" : {
+    "phones": [
+      {
+        "number": "+1-415-731359"
+      },
+      {
+        "number": "+1-415-731359"
+      }
+    ],
+    "emails": [
+      {
+        "emailAddress": "example@email.com"
+      }
+    ],
+    "communicationChannels": [
+      {
+        "channel": "Email",
+        "codeWord": "string"
+      },
+      {
+        "channel": "Email"
+
+      }
+    ]
+  },
+  "taxInformation": {
+    "tIN": "778-62-8144",
+    "tINStatus": "valid",
+    "taxIdType": "EmployerIdentificationNumber"
+  },
+  "organizationProfile": {
+    "previousFinancialInstitution": "Jane Birkin",
+    "referredByWhom": "Jane Birkin",
+    "timeAtCurrentAddress": {
+      "unit": "Months",
+      "value": 999
+    },
+    "politicalAffiliation": "string"
+  },
+  "restrictions": [
+    {
+      "name": "externalTransferAllowed"
+    },
+    {
+      "name": "externalTransferAllowed"
+    },
+    {
+      "name": "externalTransferAllowed"
+    },
+    {
+      "name": "externalTransferAllowed"
+    }
+  ]
+}

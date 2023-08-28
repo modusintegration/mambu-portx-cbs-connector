@@ -8,6 +8,8 @@ public class Constants {
     static final String CLIENT_KEY = "clientKey";
     static final String ROLES = "roles";
     static final String PARTY_ID = "partyId";
+    static final String PARTY_TYPE = "partyType";
+    static final String PARTY_TYPE_PERSON = "Person";
     static final String PARTY_RELATION_TYPE = "partyRelationType";
     static final String GROUP_ROLE_NAME_KEY = "groupRoleNameKey";
     static final String RELATED_PARTIES = "relatedParties";

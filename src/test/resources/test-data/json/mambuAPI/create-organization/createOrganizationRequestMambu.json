@@ -1,0 +1,62 @@
+{
+  "_organizationDetails_Groups": {
+    "eIN_Groups": "3338884567",
+    "dateOfOrganization_Groups": "2022-04-17",
+    "mailingAddress_Groups": "Postal",
+    "physicalAddress_Groups": "Postal",
+    "previousFinancialInstitution_Gro": "Jane Birkin",
+    "referredByWhom_Groups": "Jane Birkin",
+    "politicalAfiliation_Groups": "string"
+  },
+  "groupName": "mambu-group-test-0",
+  "notes": "This is a description.",
+  "groupMembers": [
+    {
+      "clientKey": "8a44d6d97c81ddbe017ca4234ef669fb",
+      "roles": [
+        {
+          "groupRoleNameKey": "8a44b0f18706d32f01870a7aa66c7f6b"
+        }
+      ]
+    },
+    {
+      "clientKey": "8a44b0687f6d1c2c017f6f747aa91f21",
+      "roles": [
+        {
+          "groupRoleNameKey": "8a44b0f18706d32f01870a7aa66c7f6a"
+        },
+        {
+          "groupRoleNameKey": "8a44b0f18706d32f01870a7aa66c7f69"
+        }
+      ]
+    }
+  ],
+  "addresses": [
+    {
+      "line1": "11407 Sw Amu st, Suite MY777",
+      "country": "US"
+    }
+  ],
+  "_taxInformation_Groups": {
+    "taxType_Groups": "EmployerIdentificationNumber",
+    "tIN_Groups": "778-62-8144"
+  },
+  "homePhone": "+1-415-731359",
+  "mobilePhone": "+1-415-731359",
+  "emailAddress": "example@email.com",
+  "_communicationChannel_Groups": {
+    "useForEnterpriseAlertsInternet_G": "Email",
+    "internetAccessCode1_Groups": "string",
+    "internetAccessCode2_Groups": "Email"
+  },
+  "_timeAtCurrentAddress_Groups": {
+    "unit_Groups": "Months",
+    "value_Groups": 999
+  },
+  "_restrictions_Groups": {
+    "cashManagementAccess1_Groups": "externalTransferAllowed",
+    "cashManagementAccess2_Groups": "externalTransferAllowed",
+    "internetAccessAllowed_Groups": "externalTransferAllowed",
+    "ivrAccessCode_Groups": "externalTransferAllowed"
+  }
+}
