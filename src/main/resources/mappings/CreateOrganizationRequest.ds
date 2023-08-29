@@ -5,11 +5,10 @@ input payload application/json
 */
 local selector(obj,key,dValue = null) = ds.or(ds.select(obj,key), dValue);
 
-local genericIdentifiers = selector(payload, "genericIdentifiers");
-local id = if genericIdentifiers != null && (std.length(genericIdentifiers) > 0) then selector(genericIdentifiers[0], "number") else null;
-local ein = if genericIdentifiers != null && (std.length(genericIdentifiers) > 1) then selector(genericIdentifiers[1], "number") else null;
-local idFormatted = if id != null then ds.replace(id, '-', '') else null;
-local einFormatted = if ein != null then ds.replace(ein, '-', '') else null;
+local identifiers = selector(payload, "identifiers");
+
+local einNumber = if identifiers != null then (ds.filter(identifiers, function(value, index) value.schemeName ==  "EmployerIdentificationNumber"))[0].number else null;
+local einFormatted = if einNumber != null then ds.replace(einNumber, '-', '') else null;
 
 local postalAddresses = selector(payload, "postalAddresses");
 local mailingAddress = if ds.isArray(postalAddresses) && std.length(postalAddresses) > 0 then postalAddresses[0].addressType;
@@ -31,16 +30,15 @@ local timeAtCurrentAddressValue = selector(timeAtCurrentAddress, "value");
 local politicalAffiliation = selector(organizationProfile, "politicalAffiliation");
 
 local relatedParties = selector(payload, "relatedParties");
-
-local phones = selector(payload, "phones");
+local contact = selector(payload, "contact");
+local phones = selector(contact, "phones");
 local phone1 = if phones != null && std.length(phones) > 0 then selector(phones[0], "number") else null;
 local phone2 = if phones != null && std.length(phones) > 1 then selector(phones[1], "number") else null;
 
-local emails = selector(payload, "emails");
+local emails = selector(contact, "emails");
 local firstEmails = if emails != null && std.length(emails) > 0 then selector(emails[0], "emailAddress") else null;
 
-local settings = selector(payload, "settings");
-local communicationChannels = selector(settings, "communicationChannels");
+local communicationChannels = selector(contact, "communicationChannels");
 local useForEnterpriseAlertsInternet = if ds.isArray(communicationChannels) && std.length(communicationChannels) > 0 then selector(communicationChannels[0], "channel") else null;
 local internetAccessCode = if ds.isArray(communicationChannels) && std.length(communicationChannels) > 0 then selector(communicationChannels[0], "codeWord") else null;
 local internetAccessCode2 = if ds.isArray(communicationChannels) && std.length(communicationChannels) > 1 then selector(communicationChannels[1], "channel") else null;
@@ -50,7 +48,6 @@ local cashManagementAccess2 = if ds.isArray(restrictions) && std.length(restrict
 local internetAccessAllowed = if ds.isArray(restrictions) && std.length(restrictions) > 2 then selector(restrictions[2], "name") else null;
 local IVRAccessCode = if ds.isArray(restrictions) && std.length(restrictions) > 3 then selector(restrictions[3], "name") else null;
 std.prune({
-  "id": idFormatted,
   "_organizationDetails_Groups": {
     "eIN_Groups" : einFormatted,
     "dateOfOrganization_Groups" : selector(payload, "registrationDate"),

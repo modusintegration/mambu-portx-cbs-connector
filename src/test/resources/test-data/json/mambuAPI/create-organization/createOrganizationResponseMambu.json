@@ -1,0 +1,75 @@
+{
+  "encodedKey": "12345",
+  "id": "776665745",
+  "creationDate": "2023-08-22T01:32:33-07:00",
+  "lastModifiedDate": "2023-08-22T01:32:33-07:00",
+  "groupName": "mambu-group-test-o",
+  "notes": "This is a description.",
+  "loanCycle": 0,
+  "emailAddress": "example@email.com",
+  "mobilePhone": "+1-415-731359",
+  "homePhone": "+1-415-731359",
+  "preferredLanguage": "ENGLISH",
+  "groupRoleKey": "8a44cde37b592d63017b5fac6e4c0519",
+  "addresses": [
+    {
+      "encodedKey": "8a44d69b8a183c32018a1c5fc61b7769",
+      "parentKey": "8a44d69b8a183c32018a1a62ae0b6b20",
+      "line1": "11407 Sw Amu st, Suite MY777",
+      "country": "US",
+      "indexInList": 0
+    }
+  ],
+  "groupMembers": [
+    {
+      "clientKey": "8a44d6d97c81ddbe017ca4234ef669fb",
+      "roles": [
+        {
+          "encodedKey": "8a44d69b8a183c32018a1c5fc63f777e",
+          "groupRoleNameKey": "8a44b0f18706d32f01870a7aa66c7f6b"
+        }
+      ]
+    },
+    {
+      "clientKey": "8a44b0687f6d1c2c017f6f747aa91f21",
+      "roles": [
+        {
+          "encodedKey": "8a44d69b8a183c32018a1c5fc63f777d",
+          "groupRoleNameKey": "8a44b0f18706d32f01870a7aa66c7f69"
+        },
+        {
+          "encodedKey": "8a44d69b8a183c32018a1c5fc63f777f",
+          "groupRoleNameKey": "8a44b0f18706d32f01870a7aa66c7f6a"
+        }
+      ]
+    }
+  ],
+  "_organizationDetails_Groups": {
+    "eIN_Groups":"123231321",
+    "physicalAddress_Groups": "Postal",
+    "previousFinancialInstitution_Gro": "Jane Birkin",
+    "dateOfOrganization_Groups": "2022-04-17",
+    "mailingAddress_Groups": "Postal",
+    "politicalAfiliation_Groups": "string",
+    "referredByWhom_Groups": "Jane Birkin"
+  },
+  "_taxInformation_Groups": {
+    "tIN_Groups": "778-62-8144",
+    "taxType_Groups": "SSN"
+  },
+  "_timeAtCurrentAddress_Groups": {
+    "value_Groups": "999",
+    "unit_Groups": "Months"
+  },
+  "_communicationChannel_Groups": {
+    "internetAccessCode1_Groups": "string",
+    "useForEnterpriseAlertsInternet_G": "Email",
+    "internetAccessCode2_Groups": "Email"
+  },
+  "_restrictions_Groups": {
+    "cashManagementAccess1_Groups": "externalTransferAllowed",
+    "ivrAccessCode_Groups": "externalTransferAllowed",
+    "internetAccessAllowed_Groups": "externalTransferAllowed",
+    "cashManagementAccess2_Groups": "externalTransferAllowed"
+  }
+}

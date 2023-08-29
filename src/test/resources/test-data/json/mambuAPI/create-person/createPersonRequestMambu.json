@@ -1,0 +1,35 @@
+{
+  "lastName": "Lab",
+  "middleName": "Lab",
+  "firstName": "Vr",
+  "addresses": [
+    {
+      "country": "US",
+      "city": "Chicago",
+      "region": "Illinois",
+      "postcode": "60601",
+      "line1": "123 Main Street, Suite 23"
+    }
+  ],
+  "homePhone": "+1-415-731359",
+  "emailAddress": "string",
+  "gender": "Male",
+  "preferredLanguage": "English",
+  "birthDate": "2022-04-17",
+  "idDocuments": [
+    {
+      "documentId": "111-22-3333",
+      "documentType": "SocialSecurityNumber"
+    },
+    {
+      "documentId": "111111111",
+      "documentType": "SocialSecurityNumber",
+      "issuingAuthority": "US",
+      "validUntil": "2022-04-17"
+    }
+  ],
+  "_searchablefields_Clients": {
+    "townName_Clients": "Chicago",
+    "tIN_Clients": "111-22-3333"
+  }
+}

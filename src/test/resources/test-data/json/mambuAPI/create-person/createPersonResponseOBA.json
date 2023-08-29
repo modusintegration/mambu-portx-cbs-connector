@@ -1,0 +1,71 @@
+{
+  "personId": "12345",
+  "identifiers": [
+    {
+      "number": "149725640",
+      "schemeName": "InternalCustomerNumber",
+      "issuer": "Mambu"
+    },
+    {
+      "number": "111-22-3333",
+      "schemeName": "SocialSecurityNumber"
+    },
+    {
+      "number": "111111111",
+      "schemeName": "SocialSecurityNumber"
+    }
+  ],
+  "name": "Vr Lab Lab",
+  "shortName": "Vr Lab",
+  "relatedParties": [
+    {
+      "partyId": "12345",
+      "partyType": "Person",
+      "partyRelationType": "Owner"
+    }
+  ],
+  "postalAddresses": [
+    {
+      "postCode": "60601",
+      "townName": "Chicago",
+      "districtName": "Illinois",
+      "country": "US",
+      "addressLine": [
+        "123 Main Street, Suite 23"
+      ]
+    }
+  ],
+  "status": "INACTIVE",
+  "placeAndDateOfBirth": {
+    "birthDate": "2022-04-17"
+  },
+  "contact": {
+    "structuredName": {
+      "firstName": "Vr",
+      "middleName": "Lab",
+      "lastName": "Lab"
+    },
+    "phones": [
+      {
+        "number": "+1-415-731359"
+      }
+    ],
+    "emails": [
+      {
+        "emailAddress": "string"
+      }
+    ],
+    "preferredLanguage": "ENGLISH"
+  },
+  "gender": "MALE",
+  "structuredName": {
+    "firstName": "Vr",
+    "middleName": "Lab",
+    "lastName": "Lab"
+  },
+  "audit": {
+    "status": "INACTIVE",
+    "creationDate": "2023-08-17",
+    "lastModificationDate": "2023-08-17"
+  }
+}

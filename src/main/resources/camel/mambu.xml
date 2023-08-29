@@ -37,7 +37,7 @@
             </datasonnet>
         </setBody>
         <log message="POST deposits transfer-transactions with request: ${body}"/>
-        <toD uri="https://{{mambu.host}}/api/deposits/${exchangeProperty.depositAccountId}/transfer-transactions?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
+        <toD uri="{{mambu.host}}/api/deposits/${exchangeProperty.depositAccountId}/transfer-transactions?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
         <to uri="direct:commonAPIResponseValidator"/>
         <log message="POST deposits transfer-transactions response is ${body}"/>
         <setProperty name="valueDate">
@@ -91,7 +91,7 @@
         <process ref="encodeAuthHeader" />
 
         <log message="GET deposits/transactions with id: ${header.paymentId}"/>
-        <toD uri="https://{{mambu.host}}/api/deposits/transactions/${header.paymentId}?detailsLevel=FULL&amp;throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
+        <toD uri="{{mambu.host}}/api/deposits/transactions/${header.paymentId}?detailsLevel=FULL&amp;throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
         <to uri="direct:commonAPIResponseValidator"/>
         <log message="GET deposits transactions response is ${body}"/>
         <setProperty name="debtorPaymentId">
@@ -111,7 +111,7 @@
         </setProperty>
 
         <log message="GET deposits/transactions with id: ${exchangeProperty.debtorPaymentId}"/>
-        <toD uri="https://{{mambu.host}}/api/deposits/transactions/${exchangeProperty.debtorPaymentId}?detailsLevel=FULL&amp;throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
+        <toD uri="{{mambu.host}}/api/deposits/transactions/${exchangeProperty.debtorPaymentId}?detailsLevel=FULL&amp;throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
 
         <to uri="direct:commonAPIResponseValidator"/>
         <log message="GET deposits transactions response is ${body}"/>
@@ -154,7 +154,7 @@
         <process ref="encodeAuthHeader" />
 
         <log message="GET branches request is ${body}"/>
-        <to uri="https://{{mambu.host}}/api/branches?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
+        <to uri="{{mambu.host}}/api/branches?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
 
         <to uri="direct:commonAPIResponseValidator"/>
         <log message="GET branches response is ${body}"/>
@@ -181,7 +181,7 @@
         <process ref="encodeAuthHeader" />
 
         <log message="GET depositproducts request is ${body}"/>
-        <to uri="https://{{mambu.host}}/api/depositproducts?detailsLevel=FULL&amp;throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
+        <to uri="{{mambu.host}}/api/depositproducts?detailsLevel=FULL&amp;throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
 
         <to uri="direct:commonAPIResponseValidator"/>
         <log message="GET depositproducts response is ${body}"/>
@@ -233,7 +233,7 @@
         </setBody>
         <log message="Find Person with request: ${body}"/>
         <log message="Find Persons"/>
-        <toD uri='https://{{mambu.host}}/api/clients&#x3A;search?detailsLevel=FULL&amp;throwExceptionOnFailure=false&amp;bridgeEndpoint=true'/>
+        <toD uri='{{mambu.host}}/api/clients&#x3A;search?detailsLevel=FULL&amp;throwExceptionOnFailure=false&amp;bridgeEndpoint=true'/>
         <to uri="direct:commonAPIResponseValidator"/>
         <log message="Find Person response is ${body}"/>
         <setBody>
@@ -264,7 +264,7 @@
         <process ref="encodeAuthHeader" />
 
         <log message="Find Person by Id with id: ${header.personId}"/>
-        <toD uri="https://{{mambu.host}}/api/clients/${header.personId}?detailsLevel=FULL&amp;throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
+        <toD uri="{{mambu.host}}/api/clients/${header.personId}?detailsLevel=FULL&amp;throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
 
         <to uri="direct:commonAPIResponseValidator"/>
         <log message="Find Person by Id response is ${body}"/>
@@ -300,7 +300,7 @@
             </datasonnet>
         </setBody>
         <log message="POST clients with request: ${body}"/>
-        <toD uri="https://{{mambu.host}}/api/clients?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
+        <toD uri="{{mambu.host}}/api/clients?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
 
         <to uri="direct:commonAPIResponseValidator"/>
         <log message="POST clients response is ${body}"/>
@@ -336,7 +336,7 @@
        </setBody>
 
        <log message="PUT clients with request: ${body}"/>
-       <toD uri="https://{{mambu.host}}/api/clients/${header.personId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
+       <toD uri="{{mambu.host}}/api/clients/${header.personId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
         <to uri="direct:commonAPIResponseValidator"/>
        <log message="PUT clients response is ${body}"/>
        <setBody>
@@ -388,7 +388,7 @@
             </datasonnet>
         </setBody>
         <log message="POST deposit-transaction for account ${header.accountId} with request: ${body}"/>
-        <toD uri="https://{{mambu.host}}/api/deposits/${header.accountId}/deposit-transactions?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
+        <toD uri="{{mambu.host}}/api/deposits/${header.accountId}/deposit-transactions?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
 
         <to uri="direct:commonAPIResponseValidator"/>
         <log message="POST deposit-transaction response is ${body}"/>
@@ -439,7 +439,7 @@
         </datasonnet>
         </setBody>
         <log message="POST withdrawal-transaction for account ${header.accountId} with request: ${body}" />
-        <toD uri="https://{{mambu.host}}/api/deposits/${header.accountId}/withdrawal-transactions?throwExceptionOnFailure=false&amp;bridgeEndpoint=true" />
+        <toD uri="{{mambu.host}}/api/deposits/${header.accountId}/withdrawal-transactions?throwExceptionOnFailure=false&amp;bridgeEndpoint=true" />
 
         <to uri="direct:commonAPIResponseValidator"/>
         <log message="POST withdrawal-transaction response is ${body}" />
@@ -471,7 +471,7 @@
         <process ref="encodeAuthHeader" />
 
         <log message="GET deposits with id: ${header.accountId}"/>
-        <toD uri="https://{{mambu.host}}/api/deposits/${header.accountId}?detailsLevel=FULL&amp;throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
+        <toD uri="{{mambu.host}}/api/deposits/${header.accountId}?detailsLevel=FULL&amp;throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
         <log message="Response code: ${header.CamelHttpResponseCode}"/>
 
         <to uri="direct:commonAPIResponseValidator"/>
@@ -507,7 +507,7 @@
         <process ref="encodeAuthHeader" />
 
         <log message="GET deposits with id: ${header.accountId}"/>
-        <toD uri="https://{{mambu.host}}/api/deposits/${header.accountId}?detailsLevel=FULL&amp;throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
+        <toD uri="{{mambu.host}}/api/deposits/${header.accountId}?detailsLevel=FULL&amp;throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
 
         <to uri="direct:commonAPIResponseValidator"/>
         <log message="GET deposits response is ${body}"/>
@@ -556,7 +556,7 @@
         <process ref="encodeAuthHeader" />
 
         <log message="GET all transactions for deposit account with id: ${header.accountId}"/>
-        <toD uri="https://{{mambu.host}}/api/deposits/${header.accountId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
+        <toD uri="{{mambu.host}}/api/deposits/${header.accountId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
         <log message="GET all transactions for deposit account with id: ${header.accountId} response is ${body}"/>
 
         <to uri="direct:commonAPIResponseValidator"/>
@@ -591,7 +591,7 @@
             </datasonnet>
         </setProperty>
         <log message="GET all transactions for deposit account with id: ${header.accountId}"/>
-        <toD uri="https://{{mambu.host}}/api/deposits/${header.accountId}/transactions?detailsLevel=FULL&amp;throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
+        <toD uri="{{mambu.host}}/api/deposits/${header.accountId}/transactions?detailsLevel=FULL&amp;throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
         <log message="GET all transactions for deposit account with id: ${header.accountId} response is ${body}"/>
 
         <to uri="direct:commonAPIResponseValidator"/>
@@ -622,7 +622,7 @@
         </setProperty>
         <process ref="encodeAuthHeader" />
         <log message="GET deposits with id: ${header.accountId}"/>
-        <toD uri="https://{{mambu.host}}/api/deposits/${header.accountId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
+        <toD uri="{{mambu.host}}/api/deposits/${header.accountId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
         <log message="GET deposits response is ${body}"/>
 
         <to uri="direct:commonAPIResponseValidator"/>
@@ -654,7 +654,7 @@
         </setProperty>
         <process ref="encodeAuthHeader" />
         <log message="GET deposits with id: ${header.accountId}"/>
-        <toD uri="https://{{mambu.host}}/api/deposits/${header.accountId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
+        <toD uri="{{mambu.host}}/api/deposits/${header.accountId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
         <log message="GET deposits response is ${body}"/>
 
         <to uri="direct:commonAPIResponseValidator"/>
@@ -686,7 +686,7 @@
         </setProperty>
         <process ref="encodeAuthHeader" />
         <log message="GET deposits with id: ${header.accountId}"/>
-        <toD uri="https://{{mambu.host}}/api/deposits/${header.accountId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
+        <toD uri="{{mambu.host}}/api/deposits/${header.accountId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
         <log message="GET deposits response is ${body}"/>
 
         <to uri="direct:commonAPIResponseValidator"/>
@@ -719,7 +719,7 @@
         <process ref="encodeAuthHeader" />
 
         <log message="GET client with id: ${header.personId}"/>
-        <toD uri="https://{{mambu.host}}/api/clients/${header.personId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
+        <toD uri="{{mambu.host}}/api/clients/${header.personId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
         <log message="GET client response is ${body}"/>
 
         <to uri="direct:commonAPIResponseValidator"/>
@@ -730,7 +730,7 @@
         </setProperty>
 
         <log message="GET deposits with id: ${header.personId}"/>
-        <toD uri="https://{{mambu.host}}/api/deposits?accountHolderType=CLIENT&amp;accountHolderId=${header.personId}&amp;detailsLevel=FULL&amp;throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
+        <toD uri="{{mambu.host}}/api/deposits?accountHolderType=CLIENT&amp;accountHolderId=${header.personId}&amp;detailsLevel=FULL&amp;throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
         <log message="GET deposits response is ${body}"/>
 
         <to uri="direct:commonAPIResponseValidator"/>
@@ -763,7 +763,7 @@
         <process ref="encodeAuthHeader" />
 
         <log message="GET groups with id: ${header.organizationId}"/>
-        <toD uri="https://{{mambu.host}}/api/groups/${header.organizationId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
+        <toD uri="{{mambu.host}}/api/groups/${header.organizationId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
         <log message="GET groups response is ${body}"/>
 
         <to uri="direct:commonAPIResponseValidator"/>
@@ -775,7 +775,7 @@
         </setProperty>
 
         <log message="GET deposits with id: ${header.organizationId}"/>
-        <toD uri="https://{{mambu.host}}/api/deposits?accountHolderType=GROUP&amp;accountHolderId=${header.organizationId}&amp;throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
+        <toD uri="{{mambu.host}}/api/deposits?accountHolderType=GROUP&amp;accountHolderId=${header.organizationId}&amp;throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
         <log message="GET deposits response is ${body}"/>
 
         <to uri="direct:commonAPIResponseValidator"/>
@@ -824,7 +824,7 @@
             </datasonnet>
         </setBody>
         <log message="POST deposits with request: ${body}"/>
-        <toD uri="https://{{mambu.host}}/api/deposits?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
+        <toD uri="{{mambu.host}}/api/deposits?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
 
         <to uri="direct:commonAPIResponseValidator"/>
         <setProperty name="postDepositResponse">
@@ -848,7 +848,7 @@
             <constant>application/json</constant>
         </setHeader>
         <log message="POST deposits change state with request: ${body}"/>
-        <toD uri="https://{{mambu.host}}/api/deposits/${exchangeProperty.id}:changeState?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
+        <toD uri="{{mambu.host}}/api/deposits/${exchangeProperty.id}:changeState?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
 
         <to uri="direct:commonAPIResponseValidator"/>
         <log message="POST deposits change state response is ${body}"/>
@@ -925,7 +925,7 @@
                     <constant>application/json</constant>
                 </setHeader>
                 <log message="POST deposits deposit-transaction for account ${exchangeProperty.id} with request: ${body}"/>
-                <toD uri="https://{{mambu.host}}/api/deposits/${exchangeProperty.id}/deposit-transactions?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
+                <toD uri="{{mambu.host}}/api/deposits/${exchangeProperty.id}/deposit-transactions?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
                 <to uri="direct:commonAPIResponseValidator"/>
                 <log message="POST deposits deposit-transaction response is ${body}"/>
             </when>
@@ -961,18 +961,18 @@
 <!--        <process ref="encodeAuthHeader" />-->
 
 <!--        <log message="PUT deposits with request: ${body}"/>-->
-<!--        <toD uri="https://{{mambu.host}}/api/deposits/${header.accountId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>-->
+<!--        <toD uri="{{mambu.host}}/api/deposits/${header.accountId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>-->
 <!--        <log message="PUT deposits response is ${body}"/>-->
 <!--        <to uri="direct:endRoute"/>-->
 <!--    </route>-->
-    <route id="findOrganizationRoute" routeConfigurationId="*">
+    <route id="findOrganizationByIdRoute" routeConfigurationId="*">
         <from uri="direct:findOrganizationById"/>
         <setProperty name="flowId">
             <simple>${routeId}:${id}</simple>
         </setProperty>
         <setBody><constant>{}</constant></setBody>
 <!--        <to uri="direct:startRoute"/>-->
-        <log message="== findOrganization Route"/>
+        <log message="== findOrganizationById Route"/>
         <setHeader name="CamelHttpMethod">
             <constant>GET</constant>
         </setHeader>
@@ -985,7 +985,7 @@
             <constant>application/vnd.mambu.v2+json</constant>
         </setHeader>
         <log message="GET groups with id: ${header.organizationId}"/>
-        <toD uri="https://{{mambu.host}}/api/groups/${header.organizationId}?detailsLevel=FULL&amp;throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
+        <toD uri="{{mambu.host}}/api/groups/${header.organizationId}?detailsLevel=FULL&amp;throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
         <log message="GET groups response is ${body}"/>
 
         <to uri="direct:commonAPIResponseValidator"/>
@@ -998,7 +998,7 @@
         <process ref="mapGroupMembersToRelatedParties" />
         <setBody>
             <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
-                resource:classpath:mappings/CreateGroupsResponse.ds
+                resource:classpath:mappings/findOrganizationByIdResponse.ds
             </datasonnet>
         </setBody>
         <log message="GET organizations response is ${body}"/>
@@ -1034,11 +1034,11 @@
         <process ref="mapRelatedPartiesToGroupMembers" />
         <setBody>
             <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
-                resource:classpath:mappings/CreateGroupsRequest.ds
+                resource:classpath:mappings/CreateOrganizationRequest.ds
             </datasonnet>
         </setBody>
         <log message="POST groups with request: ${body}"/>
-        <toD uri="https://{{mambu.host}}/api/groups?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
+        <toD uri="{{mambu.host}}/api/groups?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
         <log message="POST groups response is ${body}"/>
         <to uri="direct:commonAPIResponseValidator"/>
         <setProperty name="originalBody">
@@ -1053,7 +1053,7 @@
         <process ref="mapGroupMembersToRelatedParties" />
         <setBody>
             <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
-                resource:classpath:mappings/CreateGroupsResponse.ds
+                resource:classpath:mappings/findOrganizationByIdResponse.ds
             </datasonnet>
         </setBody>
         <log message="POST organizations response is ${body}"/>
@@ -1080,7 +1080,7 @@
 <!--        <process ref="encodeAuthHeader" />-->
 
 <!--        <log message="PUT groups with request: ${body}"/>-->
-<!--        <toD uri="https://{{mambu.host}}/api/groups/${header.personId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>-->
+<!--        <toD uri="{{mambu.host}}/api/groups/${header.personId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>-->
 <!--        <log message="PUT groups response is ${body}"/>-->
 <!--        <to uri="direct:endRoute"/>-->
 <!--    </route>-->
@@ -1092,7 +1092,7 @@
         <setHeader name="CamelHttpMethod">
             <constant>POST</constant>
         </setHeader>
-        <to uri="https://{{mambu.host}}/api/branches"/>
+        <to uri="{{mambu.host}}/api/branches"/>
         <choice>
             <when>
                 <simple>${header.CamelHttpResponseCode} == 200</simple>
@@ -1118,7 +1118,7 @@
         <setHeader name="CamelHttpMethod">
             <constant>PUT</constant>
         </setHeader>
-        <to uri="https://{{mambu.host}}/api/branches/id"/>
+        <to uri="{{mambu.host}}/api/branches/id"/>
         <choice>
             <when>
                 <simple>${header.CamelHttpResponseCode} == 200</simple>
@@ -1187,7 +1187,7 @@
         <process ref="encodeAuthHeader" />
     
         <!-- <log message="GET depositproducts request is ${body}"/> -->
-        <!-- <to uri="https://{{mambu.host}}/api/depositproducts?detailsLevel=FULL&amp;throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
+        <!-- <to uri="{{mambu.host}}/api/depositproducts?detailsLevel=FULL&amp;throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
         <setBody>
             <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
                 resource:classpath:mappings/perf/getProductResponse.ds
@@ -1228,7 +1228,7 @@
             </datasonnet>
         </setBody>
     
-        <!-- <toD uri="https://{{mambu.host}}/api/clients/${header.personId}?detailsLevel=FULL&amp;throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
+        <!-- <toD uri="{{mambu.host}}/api/clients/${header.personId}?detailsLevel=FULL&amp;throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
         <!-- <log message="GET clients response is ${body}"/> -->
         <setBody>
             <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
@@ -1268,7 +1268,7 @@
             </datasonnet>
         </setBody>
     
-        <!-- <toD uri="https://{{mambu.host}}/api/clients?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
+        <!-- <toD uri="{{mambu.host}}/api/clients?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
         <!-- <log message="POST clients response is ${body}"/> -->
         <setBody>
             <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
@@ -1308,7 +1308,7 @@
         </datasonnet>
        </setBody>
     
-       <!-- <toD uri="https://{{mambu.host}}/api/clients/${header.personId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
+       <!-- <toD uri="{{mambu.host}}/api/clients/${header.personId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
        <!-- <log message="PUT clients response is ${body}"/> -->
        <setBody>
             <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
@@ -1343,7 +1343,7 @@
         </setBody>
         
         <!-- <log message="GET deposits with id: ${header.accountId}"/> -->
-        <!-- <toD uri="https://{{mambu.host}}/api/deposits/${header.accountId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
+        <!-- <toD uri="{{mambu.host}}/api/deposits/${header.accountId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
         <!-- <log message="GET deposits response is ${body}"/> -->
         <setBody>
             <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
@@ -1383,7 +1383,7 @@
             </datasonnet>
         </setBody>
         
-        <!-- <toD uri="https://{{mambu.host}}/api/deposits/${header.accountId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
+        <!-- <toD uri="{{mambu.host}}/api/deposits/${header.accountId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
         <!-- <log message="GET deposits response is ${body}"/> -->
         <setBody>
             <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
@@ -1435,7 +1435,7 @@
             </datasonnet>
         </setBody>
     
-        <!-- <toD uri="https://{{mambu.host}}/api/deposits/${header.accountId}/transactions?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
+        <!-- <toD uri="{{mambu.host}}/api/deposits/${header.accountId}/transactions?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
         <!-- <log message="GET all transactions for deposit account with id: ${header.accountId} response is ${body}"/> -->
         
     </route>
@@ -1464,7 +1464,7 @@
                 resource:classpath:mappings/perf/getDepositResponse.ds
             </datasonnet>
         </setBody>    
-        <!-- <toD uri="https://{{mambu.host}}/api/deposits/${header.accountId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
+        <!-- <toD uri="{{mambu.host}}/api/deposits/${header.accountId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
         <!-- <log message="GET deposits response is ${body}"/> -->
         <setBody>
             <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
@@ -1500,7 +1500,7 @@
             </datasonnet>
         </setBody>    
     
-        <!-- <toD uri="https://{{mambu.host}}/api/deposits/${header.accountId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
+        <!-- <toD uri="{{mambu.host}}/api/deposits/${header.accountId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
         <!-- <log message="GET deposits response is ${body}"/> -->
         <setBody>
             <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
@@ -1536,7 +1536,7 @@
             </datasonnet>
         </setBody>    
     
-        <!-- <toD uri="https://{{mambu.host}}/api/deposits/${header.accountId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
+        <!-- <toD uri="{{mambu.host}}/api/deposits/${header.accountId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
         <!-- <log message="GET deposits response is ${body}"/> -->
         <setBody>
             <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
@@ -1573,7 +1573,7 @@
             </datasonnet>
         </setBody>    
     
-        <!-- <toD uri="https://{{mambu.host}}/api/clients/${header.personId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
+        <!-- <toD uri="{{mambu.host}}/api/clients/${header.personId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
         <!-- <log message="GET clients response is ${body}"/> -->
     
         <setProperty name="clientName">
@@ -1589,7 +1589,7 @@
             </datasonnet>
         </setBody>    
     
-        <!-- <toD uri="https://{{mambu.host}}/api/deposits?accountHolderType=CLIENT&amp;accountHolderId=${header.personId}&amp;throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
+        <!-- <toD uri="{{mambu.host}}/api/deposits?accountHolderType=CLIENT&amp;accountHolderId=${header.personId}&amp;throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
         <!-- <log message="GET deposits response is ${body}"/> -->
         <setBody>
             <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
@@ -1625,7 +1625,7 @@
                 resource:classpath:mappings/perf/getGroupResponse.ds
             </datasonnet>
         </setBody>   
-        <!-- <toD uri="https://{{mambu.host}}/api/groups/${header.organizationId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
+        <!-- <toD uri="{{mambu.host}}/api/groups/${header.organizationId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
         <!-- <log message="GET groups response is ${body}"/> -->
     
         <setProperty name="clientName">
@@ -1640,7 +1640,7 @@
                 resource:classpath:mappings/perf/getDepositsResponse.ds
             </datasonnet>
         </setBody>  
-        <!-- <toD uri="https://{{mambu.host}}/api/deposits?accountHolderType=GROUP&amp;accountHolderId=${header.organizationId}&amp;throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
+        <!-- <toD uri="{{mambu.host}}/api/deposits?accountHolderType=GROUP&amp;accountHolderId=${header.organizationId}&amp;throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
         <!-- <log message="GET deposits response is ${body}"/> -->
         <setBody>
             <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
@@ -1692,7 +1692,7 @@
                 resource:classpath:mappings/perf/createClientResponse.ds
             </datasonnet>
         </setBody>  
-        <!-- <toD uri="https://{{mambu.host}}/api/deposits?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
+        <!-- <toD uri="{{mambu.host}}/api/deposits?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
         <setProperty name="postDepositResponse">
             <simple>${body}</simple>
         </setProperty>
@@ -1719,7 +1719,7 @@
                 resource:classpath:mappings/perf/getDepositResponse.ds
             </datasonnet>
         </setBody>  
-        <!-- <toD uri="https://{{mambu.host}}/api/deposits/${exchangeProperty.id}:changeState?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
+        <!-- <toD uri="{{mambu.host}}/api/deposits/${exchangeProperty.id}:changeState?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
         <!-- <log message="POST deposits change state response is ${body}"/> -->
         <setProperty name="accountState">
             <datasonnet bodyMediaType="application/json" outputMediaType="text/plain" resultType="java.lang.String">
@@ -1783,7 +1783,7 @@
                         resource:classpath:mappings/perf/postDepositTransactionResponse.ds
                     </datasonnet>
                 </setBody>  
-                <!-- <toD uri="https://{{mambu.host}}/api/deposits/${exchangeProperty.id}/deposit-transactions?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
+                <!-- <toD uri="{{mambu.host}}/api/deposits/${exchangeProperty.id}/deposit-transactions?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
                 <!-- <log message="POST deposits deposit-transaction response is ${body}"/> -->
             </when>
             <otherwise>
@@ -1822,7 +1822,7 @@
             </datasonnet>
         </setBody>   
     
-        <!-- <toD uri="https://{{mambu.host}}/api/groups/${header.organizationId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
+        <!-- <toD uri="{{mambu.host}}/api/groups/${header.organizationId}?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
         <!-- <log message="GET groups response is ${body}"/> -->
     
     </route>
@@ -1846,7 +1846,7 @@
         <process ref="encodeAuthHeader" />
         <setBody>
             <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
-                resource:classpath:mappings/CreateGroupsRequest.ds
+                resource:classpath:mappings/CreateOrganizationRequest.ds
             </datasonnet>
         </setBody>
         <!-- <log message="POST groups with request: ${body}"/> -->
@@ -1856,7 +1856,7 @@
             </datasonnet>
         </setBody>   
     
-        <!-- <toD uri="https://{{mambu.host}}/api/groups?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
+        <!-- <toD uri="{{mambu.host}}/api/groups?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/> -->
         <!-- <log message="POST groups response is ${body}"/> -->
         
     </route>

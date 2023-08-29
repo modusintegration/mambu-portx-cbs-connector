@@ -1,6 +1,7 @@
-
+server:
+  port: 7788
 mambu:
-  host: modusbox.sandbox.mambu.com
+  host: https://modusbox.sandbox.mambu.com
   username: test
   password: test
 
