@@ -1,0 +1,12 @@
+{
+  "code": "InvalidRequest",
+  "message": "List of errors found in null",
+  "target": null,
+  "details": [
+    {
+      "code": "InvalidPersonPartyType",
+      "target": "parties.partyType",
+      "message": "Person party type must be one of ['Person', 'Organization'] "
+    }
+  ]
+}

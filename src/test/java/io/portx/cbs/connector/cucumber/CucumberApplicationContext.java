@@ -4,6 +4,7 @@ import io.cucumber.java.AfterAll;
 import io.cucumber.java.BeforeAll;
 import io.cucumber.spring.CucumberContextConfiguration;
 import io.portx.cbs.connector.Application;
+import io.portx.cbs.connector.cucumber.definitions.AccountCucumberTestDefinition;
 import io.portx.cbs.connector.cucumber.definitions.OrganizationCucumberTestDefinition;
 import io.portx.cbs.connector.cucumber.definitions.PersonCucumberTestDefinition;
 import io.portx.cbs.connector.cucumber.util.WiremockFactory;
@@ -20,8 +21,10 @@ public class CucumberApplicationContext {
 
     private final OrganizationCucumberTestDefinition organizationCucumberTestDefinition;
     private final PersonCucumberTestDefinition personCucumberTestDefinition;
+    private final AccountCucumberTestDefinition accountCucumberTestDefinition;
 
     public CucumberApplicationContext() {
+        this.accountCucumberTestDefinition = new AccountCucumberTestDefinition();
         this.organizationCucumberTestDefinition = new OrganizationCucumberTestDefinition();
         this.personCucumberTestDefinition = new PersonCucumberTestDefinition();
     }

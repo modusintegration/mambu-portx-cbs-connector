@@ -24,10 +24,9 @@ public class OrganizationCucumberTestDefinition extends CucumberTestDefinition {
             "test-data/json/mambuAPI/create-organization/createOrganizationResponseOBA.json";
     private static final String FIND_ORGANIZATION_RESPONSE_OBA_PATH
             = "test-data/json/mambuAPI/find-organization/findOrganizationByIdResponseOBA.json";
-    private String payload;
     private HttpResponse<String> createOrganizationResponse;
     private HttpResponse<String> findPersonResponse;
-    public static String organizationIdCreated;
+    private static String organizationIdCreated;
 
     /**
      * Scenario: Create a Organization
@@ -40,7 +39,7 @@ public class OrganizationCucumberTestDefinition extends CucumberTestDefinition {
 
     @When("I create an organization using the API")
     public void requestCreateOrganization() {
-        createOrganizationResponse = restFactory.post(LOCALHOST_URL + "/organizations", payload);
+        createOrganizationResponse = restFactory.post(LOCALHOST_URL + "/organizations", payload, true);
         organizationIdCreated = extractValueFromJson(createOrganizationResponse.body(), "organizationId");
     }
 

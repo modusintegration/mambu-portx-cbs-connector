@@ -1,0 +1,34 @@
+{
+  "apiVersion": "0.3.0",
+  "ruleVersion": 1,
+  "name": "BR_Account_009_SingleOwnerAccountParties",
+  "description": "Single Owner Account Parties",
+  "schemas": [
+    {"name": "Account", "isParentSchema": true, "operationIds": ["updateAccount"]},
+    {"name": "AccountRequest", "isParentSchema": true, "operationIds": ["openBankingAccount"]}
+  ],
+  "conditions": {
+    "all": [
+      {
+        "type": "JSON_LOGIC",
+        "comment": "Single Owner Account Parties Validation",
+        "logic": {
+          "if": [
+            { "==":[ { "var": "ownershipType" } , "SingleOwnerAccount" ] },
+            { "and": [
+              {"some" : [ {"var":"parties"}, {"==":[{"var":"partyAccountRole"}, "AccountOwner" ]} ]}
+            ] },
+            true
+          ]
+        }
+      }
+    ]
+  },
+  "event": {
+    "comment": "Invalid Request Error",
+    "type": "error",
+    "message": "If the ownership type is SingleOwnerAccount, the parties list should have at least one party with role: AccountOwner.",
+    "target": "parties",
+    "code": "InvalidSingleOwnerAccountParties"
+  }
+}

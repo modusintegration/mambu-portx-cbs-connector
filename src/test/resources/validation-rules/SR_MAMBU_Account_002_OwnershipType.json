@@ -1,0 +1,26 @@
+{
+  "apiVersion": "0.3.0",
+  "ruleVersion": 1,
+  "name": "SR_MAMBU_Account_002_OwnershipType",
+  "description": "MAMBU Account Ownership Types",
+  "schemas": [
+    {"name": "Account", "isParentSchema": true, "operationIds": ["updateAccount"]},
+    {"name": "AccountRequest", "isParentSchema": true, "operationIds": ["openBankingAccount"]}
+  ],
+  "conditions": {
+    "all": [
+      {
+        "type": "JSON_LOGIC",
+        "comment": "Account ownership type must be one of ['SingleOwnerAccount']",
+        "logic": {"in":[ { "var": "ownershipType" } , ["SingleOwnerAccount", null] ]}
+      }
+    ]
+  },
+  "event": {
+    "comment": "Invalid Request Error",
+    "type": "error",
+    "target": "accountOwnershipType",
+    "code": "InvalidOwnershipType",
+    "message": "Account ownership type must be one of ['SingleOwnerAccount'] "
+  }
+}

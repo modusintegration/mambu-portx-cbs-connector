@@ -1,0 +1,14 @@
+{
+  "filterCriteria": [
+    {
+      "field": "firstName",
+      "operator": "EQUALS",
+      "value": "John"
+    },
+    {
+      "field": "lastName",
+      "operator": "EQUALS",
+      "value": "Due"
+    }
+  ]
+}
