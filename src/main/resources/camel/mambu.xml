@@ -283,6 +283,9 @@
         </setProperty>
 <!--        <to uri="direct:startRoute"/>-->
         <log message="== createPerson Route"/>
+        <setHeader name="operationId"><constant>createPerson</constant></setHeader>
+        <process ref="idempotenceProcessor" />
+
         <setHeader name="CamelHttpMethod">
             <constant>POST</constant>
         </setHeader>
