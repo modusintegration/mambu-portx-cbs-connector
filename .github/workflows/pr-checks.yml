@@ -34,8 +34,11 @@ jobs:
       - name: Build
         run: mvn -U --batch-mode -DskipTests package
 
-      - name: Test
-        run: mvn -U --batch-mode -Dmaven.test.failure.ignore=true test
+      - name: Run Unit tests
+        run: mvn -U --batch-mode -Dgroups=unit-tests test
+
+      - name: Run Functional tests
+        run: mvn -U --batch-mode -Dtest=io.portx.cbs.connector.CucumberFeatureTest test
 
       - name: Report
         uses: dorny/test-reporter@v1

@@ -1,0 +1,12 @@
+{
+  "code": "InvalidRequest",
+  "message": "List of errors found in AccountRequest",
+  "target": "AccountRequest",
+  "details": [
+    {
+      "code": "InvalidSingleOwnerAccountParties",
+      "target": "parties",
+      "message": "If the ownership type is SingleOwnerAccount, the parties list should have at least one party with role: AccountOwner."
+    }
+  ]
+}

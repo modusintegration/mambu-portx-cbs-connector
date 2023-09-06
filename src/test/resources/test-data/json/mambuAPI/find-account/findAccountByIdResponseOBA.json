@@ -1,0 +1,47 @@
+{
+  "accountType": "CURRENT_ACCOUNT",
+  "ownershipType": "Owner",
+  "accountNumber": "99999999",
+  "accountBranchId": "string",
+  "productId": "string",
+  "name": "string",
+  "currency": "USD",
+  "parties": [
+    {
+      "partyId": "string",
+      "partyType": "Person",
+      "partyAccountRole": "Owner"
+    }
+  ],
+  "status": "Pending",
+  "statusDateAndTime": "2016-09-06T13:37:50+03:00",
+  "openDate": "2016-09-06",
+  "maturityDate": "2016-09-06",
+  "balances": [
+    {
+      "balanceName": "Available",
+      "amount": "0",
+      "currency": "USD",
+      "calculationDate": "2016-09-06T13:37:50+03:00"
+    },
+    {
+      "balanceName": "Blocked",
+      "amount": "0",
+      "currency": "USD",
+      "calculationDate": "2016-09-06T13:37:50+03:00"
+    },
+    {
+      "balanceName": "Pending",
+      "amount": "0",
+      "currency": "USD",
+      "calculationDate": "2016-09-06T13:37:50+03:00"
+    },
+    {
+      "balanceName": "Current",
+      "amount": "0",
+      "currency": "USD",
+      "calculationDate": "2016-09-06T13:37:50+03:00"
+    }
+  ],
+  "accountId": "99999999"
+}
