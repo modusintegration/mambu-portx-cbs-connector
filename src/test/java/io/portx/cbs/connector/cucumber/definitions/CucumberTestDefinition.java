@@ -9,6 +9,7 @@ public class CucumberTestDefinition {
     protected static final String BASE_PATH = "/mambu-portx-cbs-connector/1.0";
     protected static String LOCALHOST_URL = "http://localhost:8042" + BASE_PATH;
     protected RestHttpRequestFactory restFactory = new RestHttpRequestFactory();
+    protected String payload;
 
     /**
      * Extracts a value from a JSON structure using Gson.

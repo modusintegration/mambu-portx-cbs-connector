@@ -1,0 +1,236 @@
+{
+  "accountType": "Checking",
+  "ownershipType": "SingleOwnerAccount",
+  "productId": "PD_CA_0002",
+  "name": "Hermes PD_CA 0002",
+  "accountPurpose": "This is a description.",
+  "currency": "USD",
+  "initialAmount": "100",
+  "contract": {
+    "targetClosingDate": "2022-04-17",
+    "targetGoLiveDate": "2022-04-17",
+    "masterAgreement": {
+      "documentId": "5fb9d4d6-1a3c-11ed-861d-0242ac120002",
+      "documentReference": "string",
+      "version": "string",
+      "signOffDate": "2022-04-17",
+      "issueDate": "2022-04-17",
+      "purpose": "string"
+    },
+    "interests": [
+      {
+        "name": "LatePayment",
+        "dayCountBasis": "30360AmericanBasicRule",
+        "rate": "25",
+        "interestRateType": "Fixed",
+        "calculationFrequency": {
+          "cycle": "Monthly",
+          "every": 15,
+          "weekDay": "Tuesday",
+          "weekNumber": "1st",
+          "day": 30,
+          "startDay": "04-17"
+        },
+        "applicationFrequency": {
+          "cycle": "Monthly",
+          "every": 15,
+          "weekDay": "Tuesday",
+          "weekNumber": "1st",
+          "day": 30,
+          "startDay": "04-17"
+        },
+        "variableInterest": {
+          "referenceRateName": "string",
+          "term": {
+            "unit": "Months",
+            "value": 999
+          },
+          "spreadRate": "25",
+          "basisPointSpread": 0
+        },
+        "fromDateTime": "2022-04-17T08:00:00Z",
+        "upToDateTime": "2022-04-17T08:00:00Z"
+      }
+    ],
+    "charges": [
+      {
+        "name": "cardLatePayment",
+        "amount": "100",
+        "rate": "25",
+        "chargeType": "ManagementFee",
+        "calculationBasis": "Monthly",
+        "bearerType": "Shared",
+        "maximumAmount": "100",
+        "relatedInterest": {
+          "name": "LatePayment",
+          "dayCountBasis": "30360AmericanBasicRule",
+          "rate": "25",
+          "interestRateType": "Fixed",
+          "calculationFrequency": {
+            "cycle": "Monthly",
+            "every": 15,
+            "weekDay": "Tuesday",
+            "weekNumber": "1st",
+            "day": 30,
+            "startDay": "04-17"
+          },
+          "applicationFrequency": {
+            "cycle": "Monthly",
+            "every": 15,
+            "weekDay": "Tuesday",
+            "weekNumber": "1st",
+            "day": 30,
+            "startDay": "04-17"
+          },
+          "variableInterest": {
+            "referenceRateName": "string",
+            "term": {
+              "unit": "Months",
+              "value": 999
+            },
+            "spreadRate": "25",
+            "basisPointSpread": 0
+          },
+          "fromDateTime": "2022-04-17T08:00:00Z",
+          "upToDateTime": "2022-04-17T08:00:00Z"
+        },
+        "chargeIndicator": true,
+        "accountToCharge": "0dd926fe-1ca2-11ed-861d-0242ac120002",
+        "periodicity": {
+          "cycle": "Monthly",
+          "every": 15,
+          "weekDay": "Tuesday",
+          "weekNumber": "1st",
+          "day": 30,
+          "startDay": "04-17"
+        },
+        "fromDateTime": "2022-04-17T08:00:00Z",
+        "upToDateTime": "2022-04-17T08:00:00Z"
+      }
+    ],
+    "jurisdiction": {
+      "countrySubdivision": "Oregon",
+      "townName": "Tualatin",
+      "country": "US"
+    },
+    "documentId": "5fb9d4d6-1a3c-11ed-861d-0242ac120002",
+    "documentReference": "string",
+    "version": "string",
+    "signOffDate": "2022-04-17",
+    "issueDate": "2022-04-17",
+    "purpose": "string",
+    "fromDateTime": "2022-04-17T08:00:00Z",
+    "upToDateTime": "2022-04-17T08:00:00Z"
+  },
+  "parties": [
+    {
+      "partyId": "5fb9d4d6-1a3c-11ed-861d-0242ac120002",
+      "partyType": "Person",
+      "partyAccountRole": "AccountOwner",
+      "partyName": "Jane Birkin"
+    }
+  ],
+  "maturityDate": "2022-04-17",
+  "relatedAccounts": [
+    {
+      "accountRelationType": "Child",
+      "accountId": "0dd926fe-1ca2-11ed-861d-0242ac120002",
+      "accountNumber": "012345678",
+      "accountType": "Checking"
+    }
+  ],
+  "referenceAccount": "5fb9d4d6-1a3c-11ed-861d-0242ac120002",
+  "restrictions": [
+    {
+      "name": "WireTransferIn",
+      "restrictionPurpose": "This is a description.",
+      "enableIndicator": true,
+      "validFrom": "2022-04-17",
+      "validUntil": "2022-04-17"
+    }
+  ],
+  "limits": [
+    {
+      "name": "creditLimit",
+      "limitTypeCode": "DirectDebit",
+      "channelType": "string",
+      "amount": "100",
+      "number": 0,
+      "percentage": "25",
+      "validityPeriod": {
+        "fromDateTime": "2022-04-17T08:00:00Z",
+        "upToDateTime": "2022-04-17T08:00:00Z"
+      },
+      "renewalFrequency": {
+        "cycle": "Monthly",
+        "every": 15,
+        "weekDay": "Tuesday",
+        "weekNumber": "1st",
+        "day": 30,
+        "startDay": "04-17"
+      },
+      "usedAmount": "100",
+      "usedNumber": 0,
+      "usedPercentage": "25",
+      "status": "Requested",
+      "periodicity": {
+        "cycle": "Monthly",
+        "every": 15,
+        "weekDay": "Tuesday",
+        "weekNumber": "1st",
+        "day": 30,
+        "startDay": "04-17"
+      }
+    }
+  ],
+  "statement": {
+    "category": "BalanceSheet",
+    "subcategory": "Cash",
+    "profitabilityModelId": "1",
+    "frequency": {
+      "cycle": "Monthly",
+      "every": 15,
+      "weekDay": "Tuesday",
+      "weekNumber": "1st",
+      "day": 30,
+      "startDay": "04-17"
+    },
+    "communicationMethod": "Email",
+    "format": "PDF",
+    "templateCode": "1",
+    "lastStatementPeriod": {
+      "fromDateTime": "2022-04-17T08:00:00Z",
+      "upToDateTime": "2022-04-17T08:00:00Z"
+    },
+    "lastStatementDate": "2022-04-17",
+    "accountNameIndicator": true
+  },
+  "servicerAlerts": [
+    {
+      "alertName": "CreditBureauAlert",
+      "message": "This is a description.",
+      "lastAlertDate": "2022-04-17"
+    }
+  ],
+  "supplementaryData": {},
+  "compositeId": {
+    "branch": "1",
+    "type": "DD",
+    "subtype": "HA",
+    "number": "12345"
+  },
+  "accountNumber": "012345678",
+  "routingNumbers": [
+    {
+      "number": "012345678",
+      "routingNumberType": "ACH-28293"
+    }
+  ],
+  "identifiers": [
+    {
+      "identification": "string",
+      "schemeName": "BBANIdentifier",
+      "issuer": "string"
+    }
+  ]
+}

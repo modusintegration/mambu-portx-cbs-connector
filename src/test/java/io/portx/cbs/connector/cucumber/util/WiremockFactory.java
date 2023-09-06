@@ -16,17 +16,35 @@ public class WiremockFactory {
 
     private static final String CREATE_PERSON_REQUEST_MAMBU = "test-data/json/mambuAPI/create-person/createPersonRequestMambu.json";
     private static final String CREATE_PERSON_RESPONSE_MAMBU = "test-data/json/mambuAPI/create-person/createPersonResponseMambu.json";
-    private static final String FIND_PERSON_BY_ID_RESPONSE_MAMBU = "test-data/json/mambuAPI/find-person/findPersonResponseMambu.json";
+    private static final String FIND_PERSON_BY_ID_RESPONSE_MAMBU = "test-data/json/mambuAPI/find-person/findPersonByIdResponseMambu.json";
+    private static final String FIND_PERSON_BY_FIRSTNAME_AND_LAST_NAME_RESPONSE_MAMBU
+            = "test-data/json/mambuAPI/find-person/findPersonByFirstNameAndLastNameResponseMambu.json";
     private static final StringValuePattern MAMBU_AUTHORIZATION_TOKEN = WireMock.equalTo("Basic dGVzdDp0ZXN0");
     private static final StringValuePattern MAMBU_HEADER = WireMock.equalTo("application/vnd.mambu.v2+json");
     private static final String CONTENT_TYPE = "Content-Type";
     private static final String MAMBU_POST_CLIENTS_URL = "/api/clients";
     private static final String MAMBU_GET_CLIENT_BY_ID_URL = "/api/clients/12345";
+    private static final String MAMBU_FIND_CLIENTS_BY_FIRSTNAME_AND_LASTNAME_URL = "/api/clients:search?detailsLevel=FULL";
     private static final String MAMBU_POST_GROUPS_URL = "/api/groups";
+    private static final String MAMBU_POST_DEPOSITS_URL = "/api/deposits";
+    private static final String MAMBU_POST_DEPOSITS_CHANGE_STATE_URL = "/api/deposits/99999999:changeState";
+    private static final String MAMBU_POST_DEPOSITS_TRANSACTION_URL = "/api/deposits/99999999/deposit-transactions";
+    private static final String MAMBU_GET_ACCOUNT_BY_ID_URL = "/api/deposits/99999999";
     private static final String CREATE_ORGANIZATION_REQUEST_MAMBU = "test-data/json/mambuAPI/create-organization/createOrganizationRequestMambu.json";
     private static final String CREATE_ORGANIZATION_RESPONSE_MAMBU = "test-data/json/mambuAPI/create-organization/createOrganizationResponseMambu.json";
+    private static final String CREATE_ACCOUNT_REQUEST_MAMBU = "test-data/json/mambuAPI/create-account/createAccountRequestMambu.json";
+    private static final String CREATE_ACCOUNT_RESPONSE_MAMBU = "test-data/json/mambuAPI/create-account/createAccountResponseMambu.json";
+    private static final String CHANGE_ACCOUNT_STATE_REQUEST_MAMBU = "test-data/json/mambuAPI/create-account/changeAccountStateRequestMambu.json";
+    private static final String CHANGE_ACCOUNT_STATE_RESPONSE_MAMBU = "test-data/json/mambuAPI/create-account/changeAccountStateResponseMambu.json";
+    private static final String DEPOSIT_ACCOUNT_REQUEST_MAMBU = "test-data/json/mambuAPI/create-account/depositAccountRequestMambu.json";
+    private static final String DEPOSIT_ACCOUNT_RESPONSE_MAMBU = "test-data/json/mambuAPI/create-account/depositAccountResponseMambu.json";
+    private static final String FIND_ACCOUNT_BY_ID_RESPONSE_MAMBU = "test-data/json/mambuAPI/create-account/findAccountByIdResponseMambu.json";
     private static final String MAMBU_GET_ORGANIZATION_BY_ID_URL = "/api/groups/12345";
     private static final String FIND_ORGANIZATION_BY_ID_RESPONSE_MAMBU = "test-data/json/mambuAPI/find-organization/findOrganizationByIdResponseMambu.json";
+    private static final String FIND_PERSON_BY_FIRSTNAME_AND_LASTNAME_REQUEST_MAMBU =
+            "test-data/json/mambuAPI/find-person/findPersonByFirstNameAndLastNameRequestMambu.json";
+
+    ;
     private static WireMockServer wireMockServer;
     private static final int WIREMOCK_PORT = 8043;
     public static void init() {
@@ -44,6 +62,24 @@ public class WiremockFactory {
     private static void createWiremockResponsesForMambuIntegration() {
         mockPersonOperations();
         mockOrganizationOperations();
+        mockAccountOperations();
+    }
+    private static void mockAccountOperations() {
+        mockPost(MAMBU_POST_DEPOSITS_URL,
+                Optional.of(CREATE_ACCOUNT_REQUEST_MAMBU),
+                CREATE_ACCOUNT_RESPONSE_MAMBU,
+                HttpStatus.ACCEPTED.value());
+        mockPost(MAMBU_POST_DEPOSITS_CHANGE_STATE_URL,
+                Optional.of(CHANGE_ACCOUNT_STATE_REQUEST_MAMBU),
+                CHANGE_ACCOUNT_STATE_RESPONSE_MAMBU,
+                HttpStatus.ACCEPTED.value());
+        mockPost(MAMBU_POST_DEPOSITS_TRANSACTION_URL,
+                Optional.of(DEPOSIT_ACCOUNT_REQUEST_MAMBU),
+                DEPOSIT_ACCOUNT_RESPONSE_MAMBU,
+                HttpStatus.ACCEPTED.value());
+        mockGet(MAMBU_GET_ACCOUNT_BY_ID_URL,
+                FIND_ACCOUNT_BY_ID_RESPONSE_MAMBU,
+                HttpStatus.OK.value());
     }
 
     private static void mockOrganizationOperations() {
@@ -63,6 +99,10 @@ public class WiremockFactory {
                 HttpStatus.ACCEPTED.value());
         mockGet(MAMBU_GET_CLIENT_BY_ID_URL,
                 FIND_PERSON_BY_ID_RESPONSE_MAMBU,
+                HttpStatus.OK.value());
+        mockPost(MAMBU_FIND_CLIENTS_BY_FIRSTNAME_AND_LASTNAME_URL,
+                Optional.of(FIND_PERSON_BY_FIRSTNAME_AND_LASTNAME_REQUEST_MAMBU),
+                FIND_PERSON_BY_FIRSTNAME_AND_LAST_NAME_RESPONSE_MAMBU,
                 HttpStatus.OK.value());
     }
 

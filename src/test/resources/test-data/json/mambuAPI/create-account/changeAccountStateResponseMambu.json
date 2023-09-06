@@ -1,0 +1,115 @@
+{
+  "accountHolderKey": "string",
+  "accountHolderType": "CLIENT",
+  "accountState": "APPROVED",
+  "accountType": "CURRENT_ACCOUNT",
+  "accruedAmounts": {
+    "interestAccrued": 0,
+    "negativeInterestAccrued": 0,
+    "overdraftInterestAccrued": 0,
+    "technicalOverdraftInterestAccrued": 0
+  },
+  "activationDate": "2016-09-06T13:37:50+03:00",
+  "approvedDate": "2016-09-06T13:37:50+03:00",
+  "assignedBranchKey": "string",
+  "assignedCentreKey": "string",
+  "assignedUserKey": "string",
+  "balances": {
+    "availableBalance": 0,
+    "blockedBalance": 0,
+    "feesDue": 0,
+    "forwardAvailableBalance": 0,
+    "holdBalance": 0,
+    "lockedBalance": 0,
+    "overdraftAmount": 0,
+    "overdraftInterestDue": 0,
+    "technicalOverdraftAmount": 0,
+    "technicalOverdraftInterestDue": 0,
+    "totalBalance": 0
+  },
+  "closedDate": "2016-09-06T13:37:50+03:00",
+  "creationDate": "2016-09-06T13:37:50+03:00",
+  "creditArrangementKey": "string",
+  "currencyCode": "USD",
+  "encodedKey": "99999999",
+  "id": "99999999",
+  "interestSettings": {
+    "interestPaymentSettings": {
+      "interestPaymentDates": [
+        {
+          "day": 0,
+          "month": 0
+        }
+      ],
+      "interestPaymentPoint": "FIRST_DAY_OF_MONTH"
+    },
+    "interestRateSettings": {
+      "encodedKey": "string",
+      "interestChargeFrequency": "ANNUALIZED",
+      "interestChargeFrequencyCount": 0,
+      "interestRate": 0,
+      "interestRateReviewCount": 0,
+      "interestRateReviewUnit": "DAYS",
+      "interestRateSource": "FIXED_INTEREST_RATE",
+      "interestRateTerms": "FIXED",
+      "interestRateTiers": [
+        {
+          "encodedKey": "string",
+          "endingBalance": 0,
+          "endingDay": 0,
+          "interestRate": 0
+        }
+      ],
+      "interestSpread": 0
+    }
+  },
+  "internalControls": {
+    "maxDepositBalance": 0,
+    "maxWithdrawalAmount": 0,
+    "recommendedDepositAmount": 0,
+    "targetAmount": 0
+  },
+  "lastAccountAppraisalDate": "2016-09-06T13:37:50+03:00",
+  "lastInterestCalculationDate": "2016-09-06T13:37:50+03:00",
+  "lastInterestReviewDate": "2016-09-06T13:37:50+03:00",
+  "lastInterestStoredDate": "2016-09-06T13:37:50+03:00",
+  "lastModifiedDate": "2016-09-06T13:37:50+03:00",
+  "lastOverdraftInterestReviewDate": "2016-09-06T13:37:50+03:00",
+  "lastSetToArrearsDate": "2016-09-06T13:37:50+03:00",
+  "linkedSettlementAccountKeys": [
+    "string"
+  ],
+  "lockedDate": "2016-09-06T13:37:50+03:00",
+  "maturityDate": "2016-09-06T13:37:50+03:00",
+  "migrationEventKey": "string",
+  "name": "string",
+  "notes": "string",
+  "overdraftInterestSettings": {
+    "interestRateSettings": {
+      "encodedKey": "string",
+      "interestChargeFrequency": "ANNUALIZED",
+      "interestChargeFrequencyCount": 0,
+      "interestRate": 0,
+      "interestRateReviewCount": 0,
+      "interestRateReviewUnit": "DAYS",
+      "interestRateSource": "FIXED_INTEREST_RATE",
+      "interestRateTerms": "FIXED",
+      "interestRateTiers": [
+        {
+          "encodedKey": "string",
+          "endingBalance": 0,
+          "endingDay": 0,
+          "interestRate": 0
+        }
+      ],
+      "interestSpread": 0
+    }
+  },
+  "overdraftSettings": {
+    "allowOverdraft": true,
+    "overdraftExpiryDate": "2016-09-06T13:37:50+03:00",
+    "overdraftLimit": 0
+  },
+  "productTypeKey": "string",
+  "withholdingTaxSourceKey": "string"
+}

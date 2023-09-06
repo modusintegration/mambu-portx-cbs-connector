@@ -133,7 +133,7 @@ public class RestHttpRequestFactory {
      * @return the deserialized response object
      * @throws RestClientException if an unexpected response or error occurs
      */
-    public HttpResponse post(String httpUrl, String jsonBody) {
+    public HttpResponse post(String httpUrl, String jsonBody, Boolean resolveHttpStatus) {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(httpUrl))
                 .setHeader("User-Agent", "Java 11 HttpClient")
@@ -143,6 +143,9 @@ public class RestHttpRequestFactory {
         HttpResponse<String> httpResponse = null;
         try {
             httpResponse = this.httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+            if (resolveHttpStatus) {
+                resolveHttpResponseStatus(httpResponse);
+            }
         } catch (Throwable e) {
             failTest(e, httpUrl);
         }

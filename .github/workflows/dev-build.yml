@@ -46,12 +46,15 @@ jobs:
       - name: set mvn options
         run: export MAVEN_OPTS=--add-opens=java.base/java.util=ALL-UNNAMED
 
-      - name: Build and Run Tests
-        run: mvn test --batch-mode -U
+      - name: Run Unit tests
+        run: mvn -U --batch-mode -Dgroups=unit-tests test
+
+      - name: Run Functional tests
+        run: mvn -U --batch-mode -Dtest=io.portx.cbs.connector.CucumberFeatureTest test
       
       - name: Generate Test report
         if: success() || failure()
-        run: mvn site -U
+        run: mvn site -U -DskipTests
 
       - name: Upload Test Results
         if: success() || failure()

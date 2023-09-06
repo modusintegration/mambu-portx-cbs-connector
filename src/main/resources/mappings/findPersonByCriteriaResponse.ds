@@ -21,8 +21,6 @@ local response = if (std.length(payload) > 0) then
     (if first!=null && last!=null then " " else "") +
     if last!=null then last;
     local documents = if selector(x, "idDocuments") != null then (ds.filter(selector(x, "idDocuments"), function(value, index) value.documentType != "SSN"));
-    local SSN = if selector(x, "idDocuments") != null then (ds.filter(selector(x, "idDocuments"), function(value, index) value.documentType == "SSN")) else [];
-
     local idDocuments = selector(payload, "idDocuments");
     local mambuIdentifier = {
       number: selector(x, "id"),
@@ -40,25 +38,19 @@ local response = if (std.length(payload) > 0) then
     else
     [];
     local genericIdentifiers = [mambuIdentifier] + otherDocuments;
-    local taxInformation = if (SSN != null && std.length(SSN) > 0) then{
-      tIN: selector(SSN[0], "documentId"),
-      taxIdType: selector(SSN[0], "documentType")
-    };
     {
       "personId": selector(x, "encodedKey"),
       "identifiers": genericIdentifiers,
       "name": fullname,
       "shortName": shortName,
-      "status": selector(x, "state"),
       "placeAndDateOfBirth": {
         "birthDate": selector(x, "birthDate"),
       },
       "gender" : selector(x, "gender"),
-      "taxInformation": taxInformation,
       "audit" : {
         "status": selector(x, "state"),
-        "creationDate": selector(x, "creationDate"),
-        "lastModificationDate": selector(x, "lastModifiedDate"),
+        "creationDate": if selector(x, "creationDate") != null then ds.datetime.toLocalDate(selector(x, "creationDate")),
+        "lastModificationDate": if selector(x, "lastModifiedDate") != null then ds.datetime.toLocalDate(selector(x, "lastModifiedDate")),
       }
     } for x in payload
   ]

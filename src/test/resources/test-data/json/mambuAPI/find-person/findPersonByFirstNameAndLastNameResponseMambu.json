@@ -1,0 +1,1065 @@
+[
+  {
+    "encodedKey": "8a44a3dc89bc448c0189d1c2f08d77db",
+    "id": "966873607",
+    "state": "ACTIVE",
+    "creationDate": "2023-08-07T13:51:51-07:00",
+    "lastModifiedDate": "2023-08-07T13:53:09-07:00",
+    "activationDate": "2023-08-07T13:53:09-07:00",
+    "approvedDate": "2023-08-07T13:51:51-07:00",
+    "firstName": "Kent",
+    "lastName": "Lab",
+    "mobilePhone": "+77-415-731-1111",
+    "emailAddress": "mj@mj.com",
+    "preferredLanguage": "ENGLISH",
+    "birthDate": "1963-04-17",
+    "clientRoleKey": "8a44cde37b592d63017b5fac6e400518",
+    "loanCycle": 0,
+    "groupLoanCycle": 0,
+    "groupKeys": [],
+    "addresses": [
+      {
+        "encodedKey": "8a44a3dc89bc448c0189d1c2f08d77dc",
+        "parentKey": "8a44a3dc89bc448c0189d1c2f08d77db",
+        "line1": "1 United Center",
+        "line2": "City ",
+        "city": "Chicago",
+        "postcode": "45090",
+        "country": "US",
+        "indexInList": 0
+      }
+    ],
+    "idDocuments": []
+  },
+  {
+    "encodedKey": "8a44adbc8a183c69018a192828d6470d",
+    "id": "200699544",
+    "state": "INACTIVE",
+    "creationDate": "2023-08-21T12:21:31-07:00",
+    "lastModifiedDate": "2023-08-21T12:21:31-07:00",
+    "approvedDate": "2023-08-21T12:21:32-07:00",
+    "firstName": "Kent",
+    "lastName": "Lab",
+    "homePhone": "+1-312-645-5348",
+    "emailAddress": "Elsa_Abernathy@example.org",
+    "preferredLanguage": "ENGLISH",
+    "birthDate": "2002-04-17",
+    "gender": "FEMALE",
+    "clientRoleKey": "8a44cde37b592d63017b5fac6e400518",
+    "loanCycle": 0,
+    "groupLoanCycle": 0,
+    "groupKeys": [],
+    "addresses": [
+      {
+        "encodedKey": "8a44adbc8a183c69018a198b92164de5",
+        "parentKey": "8a44adbc8a183c69018a192828d6470d",
+        "line1": "49345 Beier River",
+        "city": "Apex",
+        "indexInList": 0
+      }
+    ],
+    "idDocuments": [
+      {
+        "encodedKey": "8a44adbc8a183c69018a198b92164de4",
+        "clientKey": "8a44adbc8a183c69018a192828d6470d",
+        "documentType": "SSN",
+        "documentId": "588211615",
+        "indexInList": 0
+      }
+    ],
+    "_searchablefields_Clients": {
+      "tIN_Clients": "588211615",
+      "townName_Clients": "Apex"
+    }
+  },
+  {
+    "encodedKey": "8a44adbc8a183c69018a19c0f6f84f0e",
+    "id": "326960042",
+    "state": "INACTIVE",
+    "creationDate": "2023-08-21T13:32:36-07:00",
+    "lastModifiedDate": "2023-08-21T13:32:36-07:00",
+    "approvedDate": "2023-08-21T13:32:36-07:00",
+    "firstName": "Kent",
+    "lastName": "Lab",
+    "homePhone": "+1-939-722-6223",
+    "emailAddress": "Thelma73@example.com",
+    "preferredLanguage": "ENGLISH",
+    "birthDate": "2002-04-17",
+    "gender": "FEMALE",
+    "clientRoleKey": "8a44cde37b592d63017b5fac6e400518",
+    "loanCycle": 0,
+    "groupLoanCycle": 0,
+    "groupKeys": [],
+    "addresses": [
+      {
+        "encodedKey": "8a44adbc8a183c69018a19cca38c4f33",
+        "parentKey": "8a44adbc8a183c69018a19c0f6f84f0e",
+        "line1": "5558 Howell Dam",
+        "city": "Apex",
+        "indexInList": 0
+      }
+    ],
+    "idDocuments": [
+      {
+        "encodedKey": "8a44adbc8a183c69018a19c0f6f84f0f",
+        "clientKey": "8a44adbc8a183c69018a19c0f6f84f0e",
+        "documentType": "SSN",
+        "documentId": "588211615",
+        "indexInList": 0
+      }
+    ],
+    "_searchablefields_Clients": {
+      "tIN_Clients": "588211615",
+      "townName_Clients": "Apex"
+    }
+  },
+  {
+    "encodedKey": "8a44adbc8a183c69018a19fa2a7c4f7e",
+    "id": "600433540",
+    "state": "INACTIVE",
+    "creationDate": "2023-08-21T14:22:19-07:00",
+    "lastModifiedDate": "2023-08-21T14:22:19-07:00",
+    "approvedDate": "2023-08-21T14:22:20-07:00",
+    "firstName": "Kent",
+    "lastName": "Lab",
+    "homePhone": "+1-652-395-8430",
+    "emailAddress": "Adolf_Bergstrom94@example.net",
+    "preferredLanguage": "ENGLISH",
+    "birthDate": "2002-04-17",
+    "gender": "FEMALE",
+    "clientRoleKey": "8a44cde37b592d63017b5fac6e400518",
+    "loanCycle": 0,
+    "groupLoanCycle": 0,
+    "groupKeys": [],
+    "addresses": [
+      {
+        "encodedKey": "8a44adbc8a183c69018a19fa2a7c4f80",
+        "parentKey": "8a44adbc8a183c69018a19fa2a7c4f7e",
+        "line1": "558 Stamm Rue",
+        "city": "Apex",
+        "indexInList": 0
+      }
+    ],
+    "idDocuments": [
+      {
+        "encodedKey": "8a44adbc8a183c69018a19fa2a7c4f7f",
+        "clientKey": "8a44adbc8a183c69018a19fa2a7c4f7e",
+        "documentType": "SSN",
+        "documentId": "588211615",
+        "indexInList": 0
+      }
+    ],
+    "_searchablefields_Clients": {
+      "tIN_Clients": "588211615",
+      "townName_Clients": "Apex"
+    }
+  },
+  {
+    "encodedKey": "8a44adbc8a183c69018a19fa2a8b4f85",
+    "id": "215641087",
+    "state": "INACTIVE",
+    "creationDate": "2023-08-21T14:24:14-07:00",
+    "lastModifiedDate": "2023-08-21T14:24:14-07:00",
+    "approvedDate": "2023-08-21T14:24:15-07:00",
+    "firstName": "Kent",
+    "lastName": "Lab",
+    "homePhone": "+1-273-353-4194",
+    "emailAddress": "Junius_Casper92@example.net",
+    "preferredLanguage": "ENGLISH",
+    "birthDate": "2002-04-17",
+    "gender": "FEMALE",
+    "clientRoleKey": "8a44cde37b592d63017b5fac6e400518",
+    "loanCycle": 0,
+    "groupLoanCycle": 0,
+    "groupKeys": [],
+    "addresses": [
+      {
+        "encodedKey": "8a44adbc8a183c69018a19fa2a8b4f87",
+        "parentKey": "8a44adbc8a183c69018a19fa2a8b4f85",
+        "line1": "003 Sterling Junctions",
+        "city": "Apex",
+        "indexInList": 0
+      }
+    ],
+    "idDocuments": [
+      {
+        "encodedKey": "8a44adbc8a183c69018a19fa2a8b4f86",
+        "clientKey": "8a44adbc8a183c69018a19fa2a8b4f85",
+        "documentType": "SSN",
+        "documentId": "588211615",
+        "indexInList": 0
+      }
+    ],
+    "_searchablefields_Clients": {
+      "tIN_Clients": "588211615",
+      "townName_Clients": "Apex"
+    }
+  },
+  {
+    "encodedKey": "8a44adbc8a183c69018a1a383f255244",
+    "id": "943723632",
+    "state": "INACTIVE",
+    "creationDate": "2023-08-21T15:30:08-07:00",
+    "lastModifiedDate": "2023-08-21T15:30:08-07:00",
+    "approvedDate": "2023-08-21T15:30:08-07:00",
+    "firstName": "Kent",
+    "lastName": "Lab",
+    "homePhone": "+1-307-227-9727",
+    "emailAddress": "Lenny_Orn35@example.org",
+    "preferredLanguage": "ENGLISH",
+    "birthDate": "2002-04-17",
+    "gender": "FEMALE",
+    "clientRoleKey": "8a44cde37b592d63017b5fac6e400518",
+    "loanCycle": 0,
+    "groupLoanCycle": 0,
+    "groupKeys": [],
+    "addresses": [
+      {
+        "encodedKey": "8a44adbc8a183c69018a1a383f255246",
+        "parentKey": "8a44adbc8a183c69018a1a383f255244",
+        "line1": "027 Ceasar Coves",
+        "city": "Apex",
+        "indexInList": 0
+      }
+    ],
+    "idDocuments": [
+      {
+        "encodedKey": "8a44adbc8a183c69018a1a383f255245",
+        "clientKey": "8a44adbc8a183c69018a1a383f255244",
+        "documentType": "SSN",
+        "documentId": "588211615",
+        "indexInList": 0
+      }
+    ],
+    "_searchablefields_Clients": {
+      "tIN_Clients": "588211615",
+      "townName_Clients": "Apex"
+    }
+  },
+  {
+    "encodedKey": "8a44adbc8a183c69018a1a47c29253ec",
+    "id": "660269370",
+    "state": "ACTIVE",
+    "creationDate": "2023-08-21T15:48:03-07:00",
+    "lastModifiedDate": "2023-08-21T15:48:30-07:00",
+    "activationDate": "2023-08-21T15:48:30-07:00",
+    "approvedDate": "2023-08-21T15:48:03-07:00",
+    "firstName": "Kent",
+    "lastName": "Lab",
+    "homePhone": "+1-792-797-4480",
+    "emailAddress": "Kevin.Marks58@example.net",
+    "preferredLanguage": "ENGLISH",
+    "birthDate": "2002-04-17",
+    "gender": "FEMALE",
+    "clientRoleKey": "8a44cde37b592d63017b5fac6e400518",
+    "loanCycle": 0,
+    "groupLoanCycle": 0,
+    "groupKeys": [],
+    "addresses": [
+      {
+        "encodedKey": "8a44adbc8a183c69018a1a48a6445425",
+        "parentKey": "8a44adbc8a183c69018a1a47c29253ec",
+        "line1": "15061 Shaina Burg",
+        "city": "Apex",
+        "indexInList": 0
+      }
+    ],
+    "idDocuments": [
+      {
+        "encodedKey": "8a44adbc8a183c69018a1a48a6445424",
+        "clientKey": "8a44adbc8a183c69018a1a47c29253ec",
+        "documentType": "SSN",
+        "documentId": "588211615",
+        "indexInList": 0
+      }
+    ],
+    "_searchablefields_Clients": {
+      "tIN_Clients": "588211615",
+      "townName_Clients": "Apex"
+    }
+  },
+  {
+    "encodedKey": "8a44b37889bca9760189d16ab5281667",
+    "id": "136310504",
+    "state": "ACTIVE",
+    "creationDate": "2023-08-07T13:42:51-07:00",
+    "lastModifiedDate": "2023-08-07T13:49:21-07:00",
+    "activationDate": "2023-08-07T13:49:21-07:00",
+    "approvedDate": "2023-08-07T13:42:51-07:00",
+    "firstName": "Kent",
+    "lastName": "Lab",
+    "mobilePhone": "+77-415-731-1111",
+    "emailAddress": "mj@mj.com",
+    "preferredLanguage": "ENGLISH",
+    "birthDate": "1963-04-17",
+    "clientRoleKey": "8a44cde37b592d63017b5fac6e400518",
+    "loanCycle": 0,
+    "groupLoanCycle": 0,
+    "groupKeys": [],
+    "addresses": [
+      {
+        "encodedKey": "8a44b37889bca9760189d1bcfd61175d",
+        "parentKey": "8a44b37889bca9760189d16ab5281667",
+        "line1": "1 United Center",
+        "line2": "City ",
+        "city": "Chicago",
+        "postcode": "45090",
+        "country": "US",
+        "indexInList": 0
+      }
+    ],
+    "idDocuments": []
+  },
+  {
+    "encodedKey": "8a44b4738a18754d018a1a16210f2547",
+    "id": "245177208",
+    "state": "ACTIVE",
+    "creationDate": "2023-08-21T15:16:51-07:00",
+    "lastModifiedDate": "2023-08-21T15:17:35-07:00",
+    "activationDate": "2023-08-21T15:17:35-07:00",
+    "approvedDate": "2023-08-21T15:16:51-07:00",
+    "firstName": "Kent",
+    "lastName": "Lab",
+    "homePhone": "+1-914-273-6683",
+    "emailAddress": "Horace.OReilly@example.org",
+    "preferredLanguage": "ENGLISH",
+    "birthDate": "2002-04-17",
+    "gender": "FEMALE",
+    "clientRoleKey": "8a44cde37b592d63017b5fac6e400518",
+    "loanCycle": 0,
+    "groupLoanCycle": 0,
+    "groupKeys": [],
+    "addresses": [
+      {
+        "encodedKey": "8a44b4738a18754d018a1a2c15ee28dc",
+        "parentKey": "8a44b4738a18754d018a1a16210f2547",
+        "line1": "29036 Mason Plains",
+        "city": "Apex",
+        "indexInList": 0
+      }
+    ],
+    "idDocuments": [
+      {
+        "encodedKey": "8a44b4738a18754d018a1a16210f2548",
+        "clientKey": "8a44b4738a18754d018a1a16210f2547",
+        "documentType": "SSN",
+        "documentId": "588211615",
+        "indexInList": 0
+      }
+    ],
+    "_searchablefields_Clients": {
+      "tIN_Clients": "588211615",
+      "townName_Clients": "Apex"
+    }
+  },
+  {
+    "encodedKey": "8a44b4738a18754d018a1a4a3d9e2c5a",
+    "id": "209172960",
+    "state": "INACTIVE",
+    "creationDate": "2023-08-21T15:51:34-07:00",
+    "lastModifiedDate": "2023-08-21T15:51:34-07:00",
+    "approvedDate": "2023-08-21T15:51:34-07:00",
+    "firstName": "Kent",
+    "lastName": "Lab",
+    "homePhone": "+1-800-814-2591",
+    "emailAddress": "Polly.Hermiston@example.net",
+    "preferredLanguage": "ENGLISH",
+    "birthDate": "2002-04-17",
+    "gender": "FEMALE",
+    "clientRoleKey": "8a44cde37b592d63017b5fac6e400518",
+    "loanCycle": 0,
+    "groupLoanCycle": 0,
+    "groupKeys": [],
+    "addresses": [
+      {
+        "encodedKey": "8a44b4738a18754d018a1a4bdefa2c61",
+        "parentKey": "8a44b4738a18754d018a1a4a3d9e2c5a",
+        "line1": "61568 Scottie Stream",
+        "city": "Apex",
+        "indexInList": 0
+      }
+    ],
+    "idDocuments": [
+      {
+        "encodedKey": "8a44b4738a18754d018a1a4bdefa2c60",
+        "clientKey": "8a44b4738a18754d018a1a4a3d9e2c5a",
+        "documentType": "SSN",
+        "documentId": "588211615",
+        "indexInList": 0
+      }
+    ],
+    "_searchablefields_Clients": {
+      "tIN_Clients": "588211615",
+      "townName_Clients": "Apex"
+    }
+  },
+  {
+    "encodedKey": "8a44b4738a18754d018a1a4bdf162c66",
+    "id": "899317583",
+    "state": "ACTIVE",
+    "creationDate": "2023-08-21T15:52:10-07:00",
+    "lastModifiedDate": "2023-08-21T15:52:35-07:00",
+    "activationDate": "2023-08-21T15:52:35-07:00",
+    "approvedDate": "2023-08-21T15:52:10-07:00",
+    "firstName": "Kent",
+    "lastName": "Lab",
+    "homePhone": "+1-299-455-7338",
+    "emailAddress": "Dax.Hauck@example.org",
+    "preferredLanguage": "ENGLISH",
+    "birthDate": "2002-04-17",
+    "gender": "FEMALE",
+    "clientRoleKey": "8a44cde37b592d63017b5fac6e400518",
+    "loanCycle": 0,
+    "groupLoanCycle": 0,
+    "groupKeys": [],
+    "addresses": [
+      {
+        "encodedKey": "8a44b4738a18754d018a1a4bdf162c68",
+        "parentKey": "8a44b4738a18754d018a1a4bdf162c66",
+        "line1": "8747 Gardner Road",
+        "city": "Apex",
+        "indexInList": 0
+      }
+    ],
+    "idDocuments": [
+      {
+        "encodedKey": "8a44b4738a18754d018a1a4bdf162c67",
+        "clientKey": "8a44b4738a18754d018a1a4bdf162c66",
+        "documentType": "SSN",
+        "documentId": "588211615",
+        "indexInList": 0
+      }
+    ],
+    "_searchablefields_Clients": {
+      "tIN_Clients": "588211615",
+      "townName_Clients": "Apex"
+    }
+  },
+  {
+    "encodedKey": "8a44d69b8a183c32018a192d79455ab8",
+    "id": "758451417",
+    "state": "ACTIVE",
+    "creationDate": "2023-08-21T13:19:20-07:00",
+    "lastModifiedDate": "2023-08-21T13:19:51-07:00",
+    "activationDate": "2023-08-21T13:19:51-07:00",
+    "approvedDate": "2023-08-21T13:19:21-07:00",
+    "firstName": "Kent",
+    "lastName": "Lab",
+    "homePhone": "+1-625-883-3398",
+    "emailAddress": "Delilah.Barton@example.com",
+    "preferredLanguage": "ENGLISH",
+    "birthDate": "2002-04-17",
+    "gender": "FEMALE",
+    "clientRoleKey": "8a44cde37b592d63017b5fac6e400518",
+    "loanCycle": 0,
+    "groupLoanCycle": 0,
+    "groupKeys": [],
+    "addresses": [
+      {
+        "encodedKey": "8a44d69b8a183c32018a19c08006614f",
+        "parentKey": "8a44d69b8a183c32018a192d79455ab8",
+        "line1": "8858 Romaguera Avenue",
+        "city": "Apex",
+        "indexInList": 0
+      }
+    ],
+    "idDocuments": [
+      {
+        "encodedKey": "8a44d69b8a183c32018a19c08006614e",
+        "clientKey": "8a44d69b8a183c32018a192d79455ab8",
+        "documentType": "SSN",
+        "documentId": "588211615",
+        "indexInList": 0
+      }
+    ],
+    "_searchablefields_Clients": {
+      "tIN_Clients": "588211615",
+      "townName_Clients": "Apex"
+    }
+  },
+  {
+    "encodedKey": "8a44d69b8a183c32018a19c080886155",
+    "id": "891056262",
+    "state": "INACTIVE",
+    "creationDate": "2023-08-21T13:39:41-07:00",
+    "lastModifiedDate": "2023-08-21T13:39:41-07:00",
+    "approvedDate": "2023-08-21T13:39:42-07:00",
+    "firstName": "Kent",
+    "lastName": "Lab",
+    "homePhone": "+1-983-849-1502",
+    "emailAddress": "Melany.Macejkovic84@example.net",
+    "preferredLanguage": "ENGLISH",
+    "birthDate": "2002-04-17",
+    "gender": "FEMALE",
+    "clientRoleKey": "8a44cde37b592d63017b5fac6e400518",
+    "loanCycle": 0,
+    "groupLoanCycle": 0,
+    "groupKeys": [],
+    "addresses": [
+      {
+        "encodedKey": "8a44d69b8a183c32018a19c080886157",
+        "parentKey": "8a44d69b8a183c32018a19c080886155",
+        "line1": "0311 Lera Wall",
+        "city": "Apex",
+        "indexInList": 0
+      }
+    ],
+    "idDocuments": [
+      {
+        "encodedKey": "8a44d69b8a183c32018a19c080886156",
+        "clientKey": "8a44d69b8a183c32018a19c080886155",
+        "documentType": "SSN",
+        "documentId": "588211615",
+        "indexInList": 0
+      }
+    ],
+    "_searchablefields_Clients": {
+      "tIN_Clients": "588211615",
+      "townName_Clients": "Apex"
+    }
+  },
+  {
+    "encodedKey": "8a44d69b8a183c32018a19d3211a6161",
+    "id": "007063152",
+    "state": "INACTIVE",
+    "creationDate": "2023-08-21T13:58:43-07:00",
+    "lastModifiedDate": "2023-08-21T13:58:43-07:00",
+    "approvedDate": "2023-08-21T13:58:44-07:00",
+    "firstName": "Kent",
+    "lastName": "Lab",
+    "homePhone": "+1-634-300-3778",
+    "emailAddress": "Vernon.Powlowski@example.net",
+    "preferredLanguage": "ENGLISH",
+    "birthDate": "2002-04-17",
+    "gender": "FEMALE",
+    "clientRoleKey": "8a44cde37b592d63017b5fac6e400518",
+    "loanCycle": 0,
+    "groupLoanCycle": 0,
+    "groupKeys": [],
+    "addresses": [
+      {
+        "encodedKey": "8a44d69b8a183c32018a19e48e9e6163",
+        "parentKey": "8a44d69b8a183c32018a19d3211a6161",
+        "line1": "968 Katarina Plains",
+        "city": "Apex",
+        "indexInList": 0
+      }
+    ],
+    "idDocuments": [
+      {
+        "encodedKey": "8a44d69b8a183c32018a19e48e9e6162",
+        "clientKey": "8a44d69b8a183c32018a19d3211a6161",
+        "documentType": "SSN",
+        "documentId": "588211615",
+        "indexInList": 0
+      }
+    ],
+    "_searchablefields_Clients": {
+      "tIN_Clients": "588211615",
+      "townName_Clients": "Apex"
+    }
+  },
+  {
+    "encodedKey": "8a44d69b8a183c32018a19e48ed36168",
+    "id": "252064302",
+    "state": "ACTIVE",
+    "creationDate": "2023-08-21T14:52:40-07:00",
+    "lastModifiedDate": "2023-08-21T14:52:53-07:00",
+    "activationDate": "2023-08-21T14:52:53-07:00",
+    "approvedDate": "2023-08-21T14:52:40-07:00",
+    "firstName": "Kent",
+    "lastName": "Lab",
+    "homePhone": "+1-642-280-6359",
+    "emailAddress": "Annie.Huels81@example.net",
+    "preferredLanguage": "ENGLISH",
+    "birthDate": "2002-04-17",
+    "gender": "FEMALE",
+    "clientRoleKey": "8a44cde37b592d63017b5fac6e400518",
+    "loanCycle": 0,
+    "groupLoanCycle": 0,
+    "groupKeys": [],
+    "addresses": [
+      {
+        "encodedKey": "8a44d69b8a183c32018a19e48ed3616a",
+        "parentKey": "8a44d69b8a183c32018a19e48ed36168",
+        "line1": "75594 Donnell Mews",
+        "city": "Apex",
+        "indexInList": 0
+      }
+    ],
+    "idDocuments": [
+      {
+        "encodedKey": "8a44d69b8a183c32018a19e48ed36169",
+        "clientKey": "8a44d69b8a183c32018a19e48ed36168",
+        "documentType": "SSN",
+        "documentId": "588211615",
+        "indexInList": 0
+      }
+    ],
+    "_searchablefields_Clients": {
+      "tIN_Clients": "588211615",
+      "townName_Clients": "Apex"
+    }
+  },
+  {
+    "encodedKey": "8a44d69b8a183c32018a1a388f296644",
+    "id": "860421547",
+    "state": "INACTIVE",
+    "creationDate": "2023-08-21T15:30:28-07:00",
+    "lastModifiedDate": "2023-08-21T15:30:28-07:00",
+    "approvedDate": "2023-08-21T15:30:29-07:00",
+    "firstName": "Kent",
+    "lastName": "Lab",
+    "homePhone": "+1-558-689-2187",
+    "emailAddress": "Royal85@example.com",
+    "preferredLanguage": "ENGLISH",
+    "birthDate": "2002-04-17",
+    "gender": "FEMALE",
+    "clientRoleKey": "8a44cde37b592d63017b5fac6e400518",
+    "loanCycle": 0,
+    "groupLoanCycle": 0,
+    "groupKeys": [],
+    "addresses": [
+      {
+        "encodedKey": "8a44d69b8a183c32018a1a388f296646",
+        "parentKey": "8a44d69b8a183c32018a1a388f296644",
+        "line1": "138 Rosemary Highway",
+        "city": "Apex",
+        "indexInList": 0
+      }
+    ],
+    "idDocuments": [
+      {
+        "encodedKey": "8a44d69b8a183c32018a1a388f296645",
+        "clientKey": "8a44d69b8a183c32018a1a388f296644",
+        "documentType": "SSN",
+        "documentId": "588211615",
+        "indexInList": 0
+      }
+    ],
+    "_searchablefields_Clients": {
+      "tIN_Clients": "588211615",
+      "townName_Clients": "Apex"
+    }
+  },
+  {
+    "encodedKey": "8a44d69b8a183c32018a1a388f6e664b",
+    "id": "152714074",
+    "state": "ACTIVE",
+    "creationDate": "2023-08-21T15:34:27-07:00",
+    "lastModifiedDate": "2023-08-21T15:34:51-07:00",
+    "activationDate": "2023-08-21T15:34:51-07:00",
+    "approvedDate": "2023-08-21T15:34:27-07:00",
+    "firstName": "Kent",
+    "lastName": "Lab",
+    "homePhone": "+1-581-973-6342",
+    "emailAddress": "Favian.Dare15@example.com",
+    "preferredLanguage": "ENGLISH",
+    "birthDate": "2002-04-17",
+    "gender": "FEMALE",
+    "clientRoleKey": "8a44cde37b592d63017b5fac6e400518",
+    "loanCycle": 0,
+    "groupLoanCycle": 0,
+    "groupKeys": [],
+    "addresses": [
+      {
+        "encodedKey": "8a44d69b8a183c32018a1a388f6e664d",
+        "parentKey": "8a44d69b8a183c32018a1a388f6e664b",
+        "line1": "901 Haskell Place",
+        "city": "Apex",
+        "indexInList": 0
+      }
+    ],
+    "idDocuments": [
+      {
+        "encodedKey": "8a44d69b8a183c32018a1a388f6e664c",
+        "clientKey": "8a44d69b8a183c32018a1a388f6e664b",
+        "documentType": "SSN",
+        "documentId": "588211615",
+        "indexInList": 0
+      }
+    ],
+    "_searchablefields_Clients": {
+      "tIN_Clients": "588211615",
+      "townName_Clients": "Apex"
+    }
+  },
+  {
+    "encodedKey": "8a44d8218a183c36018a19282d3e5eb9",
+    "id": "392575776",
+    "state": "INACTIVE",
+    "creationDate": "2023-08-21T12:19:15-07:00",
+    "lastModifiedDate": "2023-08-21T12:19:15-07:00",
+    "approvedDate": "2023-08-21T12:19:15-07:00",
+    "firstName": "Kent",
+    "lastName": "Lab",
+    "homePhone": "+1-950-532-4146",
+    "emailAddress": "Aimee23@example.com",
+    "preferredLanguage": "ENGLISH",
+    "birthDate": "2002-04-17",
+    "gender": "FEMALE",
+    "clientRoleKey": "8a44cde37b592d63017b5fac6e400518",
+    "loanCycle": 0,
+    "groupLoanCycle": 0,
+    "groupKeys": [],
+    "addresses": [
+      {
+        "encodedKey": "8a44d8218a183c36018a19897ba3640b",
+        "parentKey": "8a44d8218a183c36018a19282d3e5eb9",
+        "line1": "71046 Cecil Islands",
+        "city": "Apex",
+        "indexInList": 0
+      }
+    ],
+    "idDocuments": [
+      {
+        "encodedKey": "8a44d8218a183c36018a19897ba3640a",
+        "clientKey": "8a44d8218a183c36018a19282d3e5eb9",
+        "documentType": "SSN",
+        "documentId": "588211615",
+        "indexInList": 0
+      }
+    ],
+    "_searchablefields_Clients": {
+      "tIN_Clients": "588211615",
+      "townName_Clients": "Apex"
+    }
+  },
+  {
+    "encodedKey": "8a44d8218a183c36018a19897c326410",
+    "id": "135399832",
+    "state": "INACTIVE",
+    "creationDate": "2023-08-21T12:20:20-07:00",
+    "lastModifiedDate": "2023-08-21T12:20:20-07:00",
+    "approvedDate": "2023-08-21T12:20:21-07:00",
+    "firstName": "Kent",
+    "lastName": "Lab",
+    "homePhone": "+1-336-816-3198",
+    "emailAddress": "Guillermo88@example.org",
+    "preferredLanguage": "ENGLISH",
+    "birthDate": "2002-04-17",
+    "gender": "FEMALE",
+    "clientRoleKey": "8a44cde37b592d63017b5fac6e400518",
+    "loanCycle": 0,
+    "groupLoanCycle": 0,
+    "groupKeys": [],
+    "addresses": [
+      {
+        "encodedKey": "8a44d8218a183c36018a19897c326412",
+        "parentKey": "8a44d8218a183c36018a19897c326410",
+        "line1": "5417 Eulalia Lodge",
+        "city": "Apex",
+        "indexInList": 0
+      }
+    ],
+    "idDocuments": [
+      {
+        "encodedKey": "8a44d8218a183c36018a19897c326411",
+        "clientKey": "8a44d8218a183c36018a19897c326410",
+        "documentType": "SSN",
+        "documentId": "588211615",
+        "indexInList": 0
+      }
+    ],
+    "_searchablefields_Clients": {
+      "tIN_Clients": "588211615",
+      "townName_Clients": "Apex"
+    }
+  },
+  {
+    "encodedKey": "8a44d8218a183c36018a198a7bab644e",
+    "id": "232947417",
+    "state": "ACTIVE",
+    "creationDate": "2023-08-21T13:08:55-07:00",
+    "lastModifiedDate": "2023-08-21T13:13:59-07:00",
+    "activationDate": "2023-08-21T13:13:59-07:00",
+    "approvedDate": "2023-08-21T13:08:55-07:00",
+    "firstName": "Kent",
+    "lastName": "Lab",
+    "homePhone": "+1-737-604-9942",
+    "emailAddress": "Jalen64@example.com",
+    "preferredLanguage": "ENGLISH",
+    "birthDate": "2002-04-17",
+    "gender": "FEMALE",
+    "clientRoleKey": "8a44cde37b592d63017b5fac6e400518",
+    "loanCycle": 0,
+    "groupLoanCycle": 0,
+    "groupKeys": [],
+    "addresses": [
+      {
+        "encodedKey": "8a44d8218a183c36018a19b6f4a26554",
+        "parentKey": "8a44d8218a183c36018a198a7bab644e",
+        "line1": "142 Murphy Highway",
+        "city": "Apex",
+        "indexInList": 0
+      }
+    ],
+    "idDocuments": [
+      {
+        "encodedKey": "8a44d8218a183c36018a198a7bab644f",
+        "clientKey": "8a44d8218a183c36018a198a7bab644e",
+        "documentType": "SSN",
+        "documentId": "588211615",
+        "indexInList": 0
+      }
+    ],
+    "_searchablefields_Clients": {
+      "tIN_Clients": "588211615",
+      "townName_Clients": "Apex"
+    }
+  },
+  {
+    "encodedKey": "8a44d8218a183c36018a19c189996567",
+    "id": "576872561",
+    "state": "INACTIVE",
+    "creationDate": "2023-08-21T13:36:17-07:00",
+    "lastModifiedDate": "2023-08-21T13:36:17-07:00",
+    "approvedDate": "2023-08-21T13:36:17-07:00",
+    "firstName": "Kent",
+    "lastName": "Lab",
+    "homePhone": "+1-684-529-6902",
+    "emailAddress": "Russ.Bednar@example.com",
+    "preferredLanguage": "ENGLISH",
+    "birthDate": "2002-04-17",
+    "gender": "FEMALE",
+    "clientRoleKey": "8a44cde37b592d63017b5fac6e400518",
+    "loanCycle": 0,
+    "groupLoanCycle": 0,
+    "groupKeys": [],
+    "addresses": [
+      {
+        "encodedKey": "8a44d8218a183c36018a19d002076573",
+        "parentKey": "8a44d8218a183c36018a19c189996567",
+        "line1": "805 Jadon Stream",
+        "city": "Apex",
+        "indexInList": 0
+      }
+    ],
+    "idDocuments": [
+      {
+        "encodedKey": "8a44d8218a183c36018a19d002076572",
+        "clientKey": "8a44d8218a183c36018a19c189996567",
+        "documentType": "SSN",
+        "documentId": "588211615",
+        "indexInList": 0
+      }
+    ],
+    "_searchablefields_Clients": {
+      "tIN_Clients": "588211615",
+      "townName_Clients": "Apex"
+    }
+  },
+  {
+    "encodedKey": "8a44d8218a183c36018a19d002396578",
+    "id": "491885570",
+    "state": "INACTIVE",
+    "creationDate": "2023-08-21T14:26:04-07:00",
+    "lastModifiedDate": "2023-08-21T14:26:04-07:00",
+    "approvedDate": "2023-08-21T14:26:04-07:00",
+    "firstName": "Kent",
+    "lastName": "Lab",
+    "homePhone": "+1-273-353-4194",
+    "emailAddress": "Junius_Casper92@example.net",
+    "preferredLanguage": "ENGLISH",
+    "birthDate": "2002-04-17",
+    "gender": "FEMALE",
+    "clientRoleKey": "8a44cde37b592d63017b5fac6e400518",
+    "loanCycle": 0,
+    "groupLoanCycle": 0,
+    "groupKeys": [],
+    "addresses": [
+      {
+        "encodedKey": "8a44d8218a183c36018a19d00239657a",
+        "parentKey": "8a44d8218a183c36018a19d002396578",
+        "line1": "003 Sterling Junctions",
+        "city": "Apex",
+        "indexInList": 0
+      }
+    ],
+    "idDocuments": [
+      {
+        "encodedKey": "8a44d8218a183c36018a19d002396579",
+        "clientKey": "8a44d8218a183c36018a19d002396578",
+        "documentType": "SSN",
+        "documentId": "588211615",
+        "indexInList": 0
+      }
+    ],
+    "_searchablefields_Clients": {
+      "tIN_Clients": "588211615",
+      "townName_Clients": "Apex"
+    }
+  },
+  {
+    "encodedKey": "8a44d8218a183c36018a1a24f5f7678e",
+    "id": "177730620",
+    "state": "ACTIVE",
+    "creationDate": "2023-08-21T15:09:04-07:00",
+    "lastModifiedDate": "2023-08-21T15:09:15-07:00",
+    "activationDate": "2023-08-21T15:09:15-07:00",
+    "approvedDate": "2023-08-21T15:09:04-07:00",
+    "firstName": "Kent",
+    "lastName": "Lab",
+    "homePhone": "+1-546-779-6122",
+    "emailAddress": "Furman_Mosciski30@example.com",
+    "preferredLanguage": "ENGLISH",
+    "birthDate": "2002-04-17",
+    "gender": "FEMALE",
+    "clientRoleKey": "8a44cde37b592d63017b5fac6e400518",
+    "loanCycle": 0,
+    "groupLoanCycle": 0,
+    "groupKeys": [],
+    "addresses": [
+      {
+        "encodedKey": "8a44d8218a183c36018a1a24f5f76790",
+        "parentKey": "8a44d8218a183c36018a1a24f5f7678e",
+        "line1": "109 Ruthe Ridges",
+        "city": "Apex",
+        "indexInList": 0
+      }
+    ],
+    "idDocuments": [
+      {
+        "encodedKey": "8a44d8218a183c36018a1a24f5f7678f",
+        "clientKey": "8a44d8218a183c36018a1a24f5f7678e",
+        "documentType": "SSN",
+        "documentId": "588211615",
+        "indexInList": 0
+      }
+    ],
+    "_searchablefields_Clients": {
+      "tIN_Clients": "588211615",
+      "townName_Clients": "Apex"
+    }
+  },
+  {
+    "encodedKey": "8a44d8218a183c36018a1a4e2bef6aff",
+    "id": "154989311",
+    "state": "ACTIVE",
+    "creationDate": "2023-08-21T15:56:36-07:00",
+    "lastModifiedDate": "2023-08-21T15:57:06-07:00",
+    "activationDate": "2023-08-21T15:57:06-07:00",
+    "approvedDate": "2023-08-21T15:56:37-07:00",
+    "firstName": "Kent",
+    "lastName": "Lab",
+    "homePhone": "+1-437-572-7722",
+    "emailAddress": "Gene_Macejkovic@example.net",
+    "preferredLanguage": "ENGLISH",
+    "birthDate": "2002-04-17",
+    "gender": "FEMALE",
+    "clientRoleKey": "8a44cde37b592d63017b5fac6e400518",
+    "loanCycle": 0,
+    "groupLoanCycle": 0,
+    "groupKeys": [],
+    "addresses": [
+      {
+        "encodedKey": "8a44d8218a183c36018a1a4e2bef6b01",
+        "parentKey": "8a44d8218a183c36018a1a4e2bef6aff",
+        "line1": "61134 Erdman Station",
+        "city": "Apex",
+        "indexInList": 0
+      }
+    ],
+    "idDocuments": [
+      {
+        "encodedKey": "8a44d8218a183c36018a1a4e2bef6b00",
+        "clientKey": "8a44d8218a183c36018a1a4e2bef6aff",
+        "documentType": "SSN",
+        "documentId": "588211615",
+        "indexInList": 0
+      }
+    ],
+    "_searchablefields_Clients": {
+      "tIN_Clients": "588211615",
+      "townName_Clients": "Apex"
+    }
+  },
+  {
+    "encodedKey": "8a44dd2c89bc4e210189d1b79a472bf8",
+    "id": "309061060",
+    "state": "INACTIVE",
+    "creationDate": "2023-08-07T13:36:58-07:00",
+    "lastModifiedDate": "2023-08-07T13:36:58-07:00",
+    "approvedDate": "2023-08-07T13:36:58-07:00",
+    "firstName": "Kent",
+    "lastName": "Lab",
+    "preferredLanguage": "ENGLISH",
+    "clientRoleKey": "8a44cde37b592d63017b5fac6e400518",
+    "loanCycle": 0,
+    "groupLoanCycle": 0,
+    "groupKeys": [],
+    "addresses": [
+      {
+        "encodedKey": "8a44dd2c89bc4e210189d1b79a472bf9",
+        "parentKey": "8a44dd2c89bc4e210189d1b79a472bf8",
+        "line1": "",
+        "line2": "",
+        "indexInList": 0
+      }
+    ],
+    "idDocuments": []
+  },
+  {
+    "encodedKey": "8a44dd2c89bc4e210189d1b79a472bfc",
+    "id": "385447964",
+    "state": "INACTIVE",
+    "creationDate": "2023-08-07T13:40:14-07:00",
+    "lastModifiedDate": "2023-08-07T13:40:14-07:00",
+    "approvedDate": "2023-08-07T13:40:15-07:00",
+    "firstName": "Kent",
+    "lastName": "Lab",
+    "mobilePhone": "+77-415-731-1111",
+    "emailAddress": "mj@mj.com",
+    "preferredLanguage": "ENGLISH",
+    "birthDate": "1963-04-17",
+    "clientRoleKey": "8a44cde37b592d63017b5fac6e400518",
+    "loanCycle": 0,
+    "groupLoanCycle": 0,
+    "groupKeys": [],
+    "addresses": [
+      {
+        "encodedKey": "8a44dd2c89bc4e210189d1ba99fa2c16",
+        "parentKey": "8a44dd2c89bc4e210189d1b79a472bfc",
+        "line1": "1 United Center",
+        "line2": "City ",
+        "city": "Chicago",
+        "postcode": "45090",
+        "country": "US",
+        "indexInList": 0
+      }
+    ],
+    "idDocuments": []
+  },
+  {
+    "encodedKey": "8a44dffe89bc44200189d1d1990b6b41",
+    "id": "729347541",
+    "state": "ACTIVE",
+    "creationDate": "2023-08-07T14:08:00-07:00",
+    "lastModifiedDate": "2023-08-11T10:25:35-07:00",
+    "activationDate": "2023-08-07T14:08:25-07:00",
+    "approvedDate": "2023-08-07T14:08:01-07:00",
+    "firstName": "Kent",
+    "lastName": "Lab",
+    "middleName": "Lab",
+    "preferredLanguage": "ENGLISH",
+    "birthDate": "2022-04-17",
+    "notes": "",
+    "clientRoleKey": "8a44cde37b592d63017b5fac6e400518",
+    "loanCycle": 0,
+    "groupLoanCycle": 0,
+    "groupKeys": [],
+    "addresses": [
+      {
+        "encodedKey": "8a44dffe89bc44200189d1d1990b6b42",
+        "parentKey": "8a44dffe89bc44200189d1d1990b6b41",
+        "line1": "",
+        "line2": "",
+        "indexInList": 0
+      }
+    ],
+    "idDocuments": [],
+    "_searchablefields_Clients": {
+      "townName_Clients": "test"
+    }
+  }
+]

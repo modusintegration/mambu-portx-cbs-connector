@@ -1,0 +1,12 @@
+{
+  "code": "InvalidRequest",
+  "message": "List of errors found in AccountRequest",
+  "target": "AccountRequest",
+  "details": [
+    {
+      "code": "InvalidOwnershipType",
+      "target": "accountOwnershipType",
+      "message": "Account ownership type must be one of ['SingleOwnerAccount'] "
+    }
+  ]
+}

@@ -1,0 +1,153 @@
+{
+  "accountBalances": {
+    "totalBalance": 0
+  },
+  "adjustmentTransactionKey": "string",
+  "affectedAmounts": {
+    "feesAmount": 0,
+    "fractionAmount": 0,
+    "fundsAmount": 0,
+    "interestAmount": 0,
+    "overdraftAmount": 0,
+    "overdraftFeesAmount": 0,
+    "overdraftInterestAmount": 0,
+    "technicalOverdraftAmount": 0,
+    "technicalOverdraftInterestAmount": 0
+  },
+  "amount": 0,
+  "blockId": "string",
+  "bookingDate": "2016-09-06T13:37:50+03:00",
+  "branchKey": "string",
+  "cardTransaction": {
+    "advice": true,
+    "amount": 0,
+    "cardAcceptor": {
+      "city": "string",
+      "country": "string",
+      "mcc": 0,
+      "name": "string",
+      "state": "string",
+      "street": "string",
+      "zip": "string"
+    },
+    "cardToken": "string",
+    "currencyCode": "USD",
+    "encodedKey": "string",
+    "externalAuthorizationReferenceId": "string",
+    "externalReferenceId": "string",
+    "userTransactionTime": "string"
+  },
+  "centreKey": "string",
+  "creationDate": "2016-09-06T13:37:50+03:00",
+  "currencyCode": "USD",
+  "encodedKey": "99999999",
+  "externalId": "string",
+  "fees": [
+    {
+      "amount": 0,
+      "name": "string",
+      "predefinedFeeKey": "string",
+      "taxAmount": 0,
+      "trigger": "MANUAL"
+    }
+  ],
+  "holdExternalReferenceId": "string",
+  "id": "99999999",
+  "interestAccruedAmounts": {
+    "interestAccrued": 0,
+    "negativeInterestAccrued": 0,
+    "overdraftInterestAccrued": 0,
+    "technicalOverdraftInterestAccrued": 0
+  },
+  "migrationEventKey": "string",
+  "notes": "string",
+  "originalTransactionKey": "string",
+  "parentAccountKey": "string",
+  "paymentDetails": {
+    "creditor": {
+      "name": "string"
+    },
+    "creditorAccount": {
+      "currency": "USD",
+      "identification": {
+        "iban": "string",
+        "other": {
+          "identification": "string",
+          "scheme": "string"
+        }
+      }
+    },
+    "creditorAgent": {
+      "financialInstitutionIdentification": {
+        "bic": "string"
+      }
+    },
+    "debtor": {
+      "name": "string"
+    },
+    "debtorAccount": {
+      "currency": "USD",
+      "identification": {
+        "iban": "string",
+        "other": {
+          "identification": "string",
+          "scheme": "string"
+        }
+      }
+    },
+    "debtorAgent": {
+      "financialInstitutionIdentification": {
+        "bic": "string"
+      }
+    },
+    "paymentIdentification": {
+      "endToEndIdentification": "string",
+      "instructionIdentification": "string",
+      "transactionIdentification": "string"
+    },
+    "paymentTypeInformation": {
+      "serviceLevel": {
+        "code": "string"
+      }
+    },
+    "remittanceInformation": {
+      "structured": {
+        "creditorReferenceInformation": {
+          "reference": "string",
+          "referenceIssuer": "string",
+          "referenceType": "string"
+        }
+      },
+      "unstructured": "string"
+    }
+  },
+  "paymentOrderId": "string",
+  "taxes": {
+    "taxRate": 0
+  },
+  "terms": {
+    "interestSettings": {
+      "indexInterestRate": 0,
+      "interestRate": 0
+    },
+    "overdraftInterestSettings": {
+      "indexInterestRate": 0,
+      "interestRate": 0
+    },
+    "overdraftSettings": {
+      "overdraftLimit": 0
+    }
+  },
+  "tillKey": "string",
+  "transactionDetails": {
+    "transactionChannelId": "string",
+    "transactionChannelKey": "string"
+  },
+  "transferDetails": {
+    "linkedDepositTransactionKey": "string",
+    "linkedLoanTransactionKey": "string"
+  },
+  "type": "IMPORT",
+  "userKey": "string",
+  "valueDate": "2016-09-06T13:37:50+03:00"
+}

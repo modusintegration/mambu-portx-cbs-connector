@@ -1,0 +1,221 @@
+{
+  "uSDocumentedIndicator": true,
+  "identifiers": [
+    {
+      "number": "111111111",
+      "schemeName": "SocialSecurityNumber",
+      "issuer": "US",
+      "issueDate": "2022-04-17",
+      "expirationDate": "2022-04-17"
+    }
+  ],
+  "name": "Vr Lab Lab",
+  "shortName": "Vr",
+  "relatedParties": [
+    {
+      "partyId": "5fb9d4d6-1a3c-11ed-861d-0242ac120002",
+      "partyType": "Distribution",
+      "partyName": "Distribution Lab",
+      "partyRelationType": "Owner",
+      "ownershipPercentage": "0.7"
+    },
+    {
+      "partyId": "5fb9d4d6-1a3c-11ed-861d-0242ac120002",
+      "partyType": "Industry",
+      "partyName": "Industry Lab",
+      "partyRelationType": "Owner 2",
+      "ownershipPercentage": "0.3"
+    }
+  ],
+  "postalAddresses": [
+    {
+      "addressType": "Postal",
+      "addressPurpose": "Billing",
+      "primaryIndicator": true,
+      "department": "A",
+      "subDepartment": "B",
+      "streetName": "Main Street",
+      "firstCrossStreetName": "Elm Street",
+      "secondCrossStreetName": "Oak Street",
+      "buildingNumber": "123",
+      "buildingName": "Chicago Tower",
+      "floor": "10",
+      "postBox": "CHI456",
+      "room": "22",
+      "postCode": "60601",
+      "townName": "Chicago",
+      "townLocationName": "Cook",
+      "districtName": "Illinois",
+      "countrySubDivision": "Cook County",
+      "countrySubDivisionCode": "US-IL",
+      "country": "US",
+      "addressLine": [
+        "123 Main Street, Suite 23"
+      ]
+    }
+  ],
+  "residenceType": "Domestic",
+  "taxInformation": {
+    "tIN": "111-22-3333",
+    "taxIdType": "SocialSecurityNumber",
+    "tINStatus": "Valid",
+    "taxStatus": "Valid",
+    "forms": [
+      {
+        "formName": "W-9",
+        "expirationDate": "2022-04-17"
+      }
+    ],
+    "regulations": [
+      {
+        "name": "Chapter4",
+        "section": "1471"
+      }
+    ],
+    "withholdings": [
+      {
+        "withholdingTaxType": "NonResidentAlienTax",
+        "withholdingRate": "0.7",
+        "withholdingAmount": "100"
+      }
+    ],
+    "countrySubDivision": "Oregon",
+    "countrySubDivisionCode": "AR-B",
+    "country": "US",
+    "supplementaryData": {}
+  },
+  "powerOfAttorney": {
+    "jurisdiction": {
+      "countrySubdivision": "Oregon",
+      "townName": "Tualatin",
+      "country": "US"
+    },
+    "documentId": "5fb9d4d6-1a3c-11ed-861d-0242ac120002",
+    "documentReference": "string",
+    "version": "string",
+    "signOffDate": "2022-04-17",
+    "issueDate": "2022-04-17",
+    "purpose": "string",
+    "fromDateTime": "2022-04-17T08:00:00Z",
+    "upToDateTime": "2022-04-17T08:00:00Z",
+    "authorizedPerson": "5fb9d4d6-1a3c-11ed-861d-0242ac120002",
+    "authorizedAccount": "0dd926fe-1ca2-11ed-861d-0242ac120002"
+  },
+  "supplementaryData": {},
+  "restrictions": [
+    {
+      "name": "externalTransferAllowed",
+      "restrictionPurpose": "This is a description.",
+      "validFrom": "2022-04-17",
+      "validUntil": "2022-04-17"
+    }
+  ],
+  "placeAndDateOfBirth": {
+    "countrySubdivision": "Oregon",
+    "townName": "Tualatin",
+    "country": "US",
+    "birthDate": "2022-04-17"
+  },
+  "contact": {
+    "structuredName": {
+      "firstName": "Vr",
+      "lastName": "Lab"
+
+    },
+    "name": "Vr Lab Lab",
+    "phones": [
+      {
+        "number": "+1-415-731359",
+        "extension": "strin",
+        "phoneType": "string",
+        "phonePurpose": "string",
+        "primaryIndicator": true,
+        "preferredHourOfDay": {
+          "hour": "12",
+          "timeZone": "Pacific"
+        }
+      }
+    ],
+    "emails": [
+      {
+        "emailAddress": "string",
+        "emailPurpose": "Statements",
+        "primaryIndicator": true
+      }
+    ],
+    "jobTitle": "Head of Documentation",
+    "department": "Sales",
+    "preferredMethod": "Email",
+    "preferredLanguage": "English"
+  },
+  "headOfHousehold": true,
+  "civilStatus": "Single",
+  "structuredName": {
+    "firstName": "Vr",
+    "middleName": "Lab",
+    "lastName": "Lab"
+  },
+  "gender": "Male",
+  "profession": "Technology",
+  "jobTitle": "Head of Documentation",
+  "residentialStatus": "Permanent",
+  "minorIndicator": true,
+  "citizenships": [
+    {
+      "country": "US"
+    }
+  ],
+  "countryOfResidence": "US",
+  "profile": {
+    "riskLevel": "Permanent",
+    "creditReview": {
+      "frequency": {
+        "cycle": "Monthly",
+        "every": 999
+      },
+      "lastReviewDate": "2022-04-17T08:00:00Z",
+      "nextReviewDate": "2022-04-17T08:00:00Z",
+      "creditQuality": "UpperMediumGrade",
+      "creditScore": 0
+    },
+    "creditBureauReportCode": "string",
+    "previousFinancialInstitution": "Jane Birkin",
+    "referredByWhom": "Jane Birkin",
+    "moneyLaunderingCheck": "AuthorizedCredit",
+    "knowYourCustomerCheck": "Ordinary",
+    "timeAtCurrentAddress": {
+      "unit": "Months",
+      "value": 999
+    },
+    "sourceOfWealth": "This is a description.",
+    "politicalAffiliation": "string",
+    "lostCustomerDate": "2022-04-17",
+    "lostCustomerReason": "Deceased",
+    "customerConductClassification": "string",
+    "familyMedicalInsuranceIndicator": true,
+    "salaryRange": {
+      "minAmount": "100",
+      "maxAmount": "100"
+    },
+    "employmentStatus": "string",
+    "vIPStatus": "Elite",
+    "employments": [
+      {
+        "employingPartyName": "Jane Birkin",
+        "jobTitle": "Head of Documentation",
+        "employeeTerminationIndicator": false,
+        "lengthOfEmployment": {
+          "unit": "Months",
+          "value": 999
+        },
+        "endDate": "2022-04-17",
+        "place": {
+          "countrySubdivision": "Oregon",
+          "townName": "Tualatin",
+          "country": "US"
+        }
+      }
+    ],
+    "anualIncome": "100"
+  }
+}
