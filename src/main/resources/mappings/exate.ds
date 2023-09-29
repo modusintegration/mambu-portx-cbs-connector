@@ -1,0 +1,26 @@
+/** DataSonnet
+version=2.0
+output application/json
+input payload application/json
+*/
+
+std.prune({
+          "countryCode": "GB",
+          "dataOwningCountryCode": "GB",
+          "manifestName": "PortX Persons Request Definition",
+          "jobType": "Pseudonymise",
+          "dataSet": payload,
+          "protectNullValues": true,
+          "preserveStringLength": false,
+          "snapshotDate": "2021-11-18T00:00:00Z",
+          "restrictedText": "*********",
+          "matchingRule": {
+          "claims": [
+          {
+          "attributeName": "ADGroup",
+          "attributeValue": "Marketing"
+          }
+          ]
+          },
+          "dataUsageId": 265
+})

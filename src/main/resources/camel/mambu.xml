@@ -231,10 +231,62 @@
             <simple>${routeId}:${id}</simple>
         </setProperty>
 <!--        <to uri="direct:startRoute"/>-->
-        <log message="== createPerson Route"/>
+        <log message="== createPerson Route with request: ${body}"/>
+        <setProperty name="originalBody">
+            <simple>${body}</simple>
+        </setProperty>
         <setHeader name="CamelHttpMethod">
             <constant>POST</constant>
         </setHeader>
+        <setHeader name="X-Api-Key">
+            <constant>9224f26b-cd2b-468a-a6db-fcc708770cad</constant>
+        </setHeader>
+        <setHeader name="Content-Type">
+            <constant>application/x-www-form-urlencoded</constant>
+        </setHeader>
+        <setBody>
+            <datasonnet bodyMediaType="application/json" outputMediaType="text/plain" resultType="java.lang.String">
+                <![CDATA[
+                "grant_type=client_credentials" +
+                "&client_id=" + ds.url.encode("ef552b56-8f73-4e30-b900-bdb3be5c5adb") +
+                "&client_secret=" + ds.url.encode(";L|%l-ap1")
+                ]]>
+            </datasonnet>
+        </setBody>
+        <log message="token request is ${body}"/>
+        <toD uri="https://api.exate.co/apigator/identity/v1/token?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
+        <log message="token response is ${body}"/>
+        <setHeader name="X-Resource-Token">
+            <datasonnet bodyMediaType="application/json" outputMediaType="text/plain" resultType="java.lang.String">
+                "Bearer " + ds.select(body,"access_token")
+            </datasonnet>
+        </setHeader>
+        <setHeader name="X-Data-Set-Type">
+            <constant>JSON</constant>
+        </setHeader>
+        <setHeader name="X-Request-ID">
+            <constant>5c0e1492-831c-4fc5-8b5c-ab5897fc78a6</constant>
+        </setHeader>
+        <setHeader name="Content-Type">
+            <constant>application/json</constant>
+        </setHeader>
+        <setBody>
+            <simple>${exchangeProperty.originalBody}</simple>
+        </setBody>
+        <process ref="jsonToStringProc" />
+        <setBody>
+            <datasonnet bodyMediaType="application/json" outputMediaType="application/json" resultType="java.lang.String">
+                resource:classpath:mappings/exate.ds
+            </datasonnet>
+        </setBody>
+        <log message="request to exate: ${body}"/>
+        <toD uri="https://api.exate.co/apigator/protect/v1/dataset?throwExceptionOnFailure=false&amp;bridgeEndpoint=true"/>
+        <log message="request exateD: ${body}"/>
+
+        <setBody>
+            <simple>${exchangeProperty.originalBody}</simple>
+        </setBody>
+
         <setHeader name="Accept">
             <constant>application/vnd.mambu.v2+json</constant>
         </setHeader>
