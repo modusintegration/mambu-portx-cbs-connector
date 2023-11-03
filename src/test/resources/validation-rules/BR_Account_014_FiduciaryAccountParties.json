@@ -1,0 +1,35 @@
+{
+  "apiVersion": "0.3.0",
+  "ruleVersion": 1,
+  "name": "BR_Account_014_FiduciaryAccountParties",
+  "description": "Fiduciary Account Parties",
+  "schemas": [
+    {"name": "Account", "isParentSchema": true, "operationIds": ["updateAccount"]},
+    {"name": "AccountRequest", "isParentSchema": true, "operationIds": ["openBankingAccount"]}
+  ],
+  "conditions": {
+    "all": [
+      {
+        "type": "JSON_LOGIC",
+        "comment": "Fiduciary Account Parties Validation",
+        "logic": {
+          "if": [
+            { "==":[ { "var": "ownershipType" } , "Fiduciary" ] },
+            { "and": [
+              {"some" : [ {"var":"parties"}, {"==":[{"var":"partyAccountRole"}, "Trustee" ]} ]},
+              {"some" : [ {"var":"parties"}, {"==":[{"var":"partyAccountRole"}, "Beneficiary" ]} ]}
+            ] },
+            true
+          ]
+        }
+      }
+    ]
+  },
+  "event": {
+    "comment": "Invalid Request Error",
+    "type": "error",
+    "message": "If the ownership type is Fiduciary, the parties list should have at least one party with role: Trustee and another with role: Beneficiary.",
+    "target": "parties",
+    "code": "InvalidFiduciaryAccountParties"
+  }
+}
