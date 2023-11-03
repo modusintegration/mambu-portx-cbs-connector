@@ -393,7 +393,7 @@
         <dependency>
             <groupId>io.portx.validation</groupId>
             <artifactId>portx-api-schema-validator</artifactId>
-            <version>0.0.7</version>
+            <version>0.0.11</version>
         </dependency>
         <dependency>
             <groupId>io.cucumber</groupId>
