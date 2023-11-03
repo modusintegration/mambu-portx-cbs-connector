@@ -1,0 +1,35 @@
+{
+  "apiVersion": "0.3.0",
+  "ruleVersion": 1,
+  "name": "BR_Account_001_JointAccountParties",
+  "description": "Joint Account Parties",
+  "schemas": [
+    {"name": "Account", "isParentSchema": true, "operationIds": ["updateAccount"]},
+    {"name": "AccountRequest", "isParentSchema": true, "operationIds": ["openBankingAccount"]}
+  ],
+  "conditions": {
+    "all": [
+      {
+        "type": "JSON_LOGIC",
+        "comment": "Joint Account Parties Validation",
+        "logic": {
+          "if": [
+            { "==":[ { "var": "ownershipType" } , "JointAccount" ] },
+            { "and": [
+              {"some" : [ {"var":"parties"}, {"==":[{"var":"partyAccountRole"}, "PrimaryOwner" ]} ]},
+              {"some" : [ {"var":"parties"}, {"==":[{"var":"partyAccountRole"}, "SecondaryOwner" ]} ]}
+            ] },
+            true
+          ]
+        }
+      }
+    ]
+  },
+  "event": {
+    "comment": "Invalid Request Error",
+    "type": "error",
+    "message": "If the ownership type is JointAccount, the parties list should have at least one party with role: PrimaryOwner and another with role: SecondaryOwner.",
+    "target": "parties",
+    "code": "InvalidJointAccountParties"
+  }
+}
