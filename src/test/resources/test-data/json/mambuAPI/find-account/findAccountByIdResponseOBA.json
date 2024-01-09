@@ -2,6 +2,11 @@
   "accountType": "CURRENT_ACCOUNT",
   "ownershipType": "Owner",
   "accountNumber": "99999999",
+  "routingNumbers": [
+    {
+      "number": "000000001"
+    }
+  ],
   "accountBranchId": "string",
   "productId": "string",
   "name": "string",
