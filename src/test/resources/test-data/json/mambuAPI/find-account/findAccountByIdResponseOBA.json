@@ -4,8 +4,7 @@
   "accountNumber": "99999999",
   "routingNumbers": [
     {
-      "number": "000000001",
-      "routingNumberType": "ACH"
+      "number": "000000001"
     }
   ],
   "accountBranchId": "string",

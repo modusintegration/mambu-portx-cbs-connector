@@ -20,8 +20,7 @@ std.prune(
     "accountNumber": payload.id,
     "routingNumbers": [
       {
-        "number": "000000001",
-        "routingNumberType": "ACH"
+        "number": "000000001"
       }
     ],
     "accountBranchId": selector(payload, "assignedBranchKey"),
