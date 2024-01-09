@@ -35,6 +35,10 @@ mambu:
   username: shashi
   password: Modusbox@123
 
+operations:
+  getAccount:
+    routingNumber: "000000001"
+
 validation:
   rules:
     location: # Injected from env var in values.yaml file on a given environment

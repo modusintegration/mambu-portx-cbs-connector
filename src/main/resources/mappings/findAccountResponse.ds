@@ -20,7 +20,7 @@ std.prune(
     "accountNumber": payload.id,
     "routingNumbers": [
       {
-        "number": "000000001"
+        "number": cml.properties("operations.getAccount.routingNumber")
       }
     ],
     "accountBranchId": selector(payload, "assignedBranchKey"),
