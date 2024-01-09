@@ -18,6 +18,12 @@ std.prune(
     "accountType": selector(payload, "accountType"),
     "ownershipType": "Owner",
     "accountNumber": payload.id,
+    "routingNumbers": [
+      {
+        "number": "000000001",
+        "routingNumberType": "ACH"
+      }
+    ],
     "accountBranchId": selector(payload, "assignedBranchKey"),
     "productId": payload.productTypeKey,
     "name": payload.name,
